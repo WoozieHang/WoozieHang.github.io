@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/02/04/Detecting-OoD-Using-Early-layers/" class="post-title-link" itemprop="url">Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output</a>
+            <a href="/2021/02/04/Detecting-OoD-Using-Early-layers/" class="post-title-link" itemprop="url">【阅读笔记】 Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output</a>
         </h2>
 
         <div class="post-meta">
@@ -177,7 +177,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-02-04 13:08:20 / 修改时间：14:36:46" itemprop="dateCreated datePublished" datetime="2021-02-04T13:08:20+08:00">2021-02-04</time>
+              <time title="创建时间：2021-02-04 13:08:20 / 修改时间：15:27:11" itemprop="dateCreated datePublished" datetime="2021-02-04T13:08:20+08:00">2021-02-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -185,7 +185,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">文献阅读笔记</span></a>
+                  <a href="/categories/OoD-Detection/" itemprop="url" rel="index"><span itemprop="name">OoD Detection</span></a>
                 </span>
             </span>
 
@@ -201,7 +201,10 @@
 
       
           <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在<em>分类</em>这件人类经常接触的问题上性能远超于人。<br>DNN在I.I.D假设下工作良好，但遇到OoD样本时往往过分自信（给出偏高的分类置信度）。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在<strong>分类</strong>这件人类经常接触的问题上性能远超于人。</p>
+<p>DNN在I.I.D假设下工作良好，但遇到OoD样本时往往过分自信（给出偏高的分类置信度），这阻碍了在安全要求很高的系统中DNN的可采用性。例如，训练集中没有自行车，但汽车的分类器会错分类骑自行车的人。因此分类器需要加强分辨ID和OoD的机制。以往的论文中也提到了类似地检测不同域的样本的方法，例如outlier and novelty detection。</p>
+<p>作者接着介绍了常见的一些OoD检测方法。首先是Hendrycks和Gimpel提出的基于max-softmax的baseline。这个方法引入了阈值去辨别OoD(max-softmax低于阈值就认为是OoD)。这个方法对深度模型没有任何假设且没有使用OoD的数据进行训练。它可直接对训练好的模型使用，但是它的性能不是特别令人满意。其他的方法性能比max-softmax好，但它们有的限制了深度模型的结构；有的给定了深度特征的分布假设；有的不能应用于已经训练好的模型；有的需要OoD的训练样本去提高性能…在以上背景下，作者认为，没有上述的种种限制并且比max-softmax的性能更好依然是一个挑战。在本篇文章中，作者致力于提出一种检测手段，不需要重新训练网络，也不限制网络的结构。</p>
+<p>现有的一些方法本质上都依赖于深度神经网络的倒数第二层。这一层的特征对于ID自身的分类非常重要。</p>
 
       
     </div>
