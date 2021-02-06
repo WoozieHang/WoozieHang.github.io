@@ -22,13 +22,13 @@
 
   <meta name="description" content="阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的中间部分，并整理了笔记。 整理了算法设计分析第二版（NJU CS算法教材）的第一章笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【工作日志】 2021-02-5">
+<meta property="og:title" content="【工作日志】 2021-02-05">
 <meta property="og:url" content="https://wooziehang.github.io/2021/02/05/working-log-2021-2-5/index.html">
 <meta property="og:site_name" content="吴紫航">
 <meta property="og:description" content="阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的中间部分，并整理了笔记。 整理了算法设计分析第二版（NJU CS算法教材）的第一章笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-05T08:36:04.000Z">
-<meta property="article:modified_time" content="2021-02-05T08:38:10.614Z">
+<meta property="article:modified_time" content="2021-02-05T08:41:07.484Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>【工作日志】 2021-02-5 | 吴紫航</title>
+  <title>【工作日志】 2021-02-05 | 吴紫航</title>
   
 
 
@@ -171,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【工作日志】 2021-02-5
+          【工作日志】 2021-02-05
         </h1>
 
         <div class="post-meta">
@@ -182,7 +182,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-02-05 16:36:04 / 修改时间：16:38:10" itemprop="dateCreated datePublished" datetime="2021-02-05T16:36:04+08:00">2021-02-05</time>
+              <time title="创建时间：2021-02-05 16:36:04 / 修改时间：16:41:07" itemprop="dateCreated datePublished" datetime="2021-02-05T16:36:04+08:00">2021-02-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,10 +239,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/04/working-log-2021-2-4/" rel="prev" title="【工作日志】 2021-02-4">
-      <i class="fa fa-chevron-left"></i> 【工作日志】 2021-02-4
+    <a href="/2021/02/04/working-log-2021-2-4/" rel="prev" title="【工作日志】 2021-02-04">
+      <i class="fa fa-chevron-left"></i> 【工作日志】 2021-02-04
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/06/working-log-2021-2-6/" rel="next" title="【工作日志】 2021-02-06">
+      【工作日志】 2021-02-06 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -316,7 +319,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -374,6 +377,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -387,6 +391,65 @@
 
 <script src="/js/next-boot.js"></script>
 
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
@@ -406,9 +469,13 @@
 
 
 
+    <div id="pjax">
   
 
   
 
+  
+
+    </div>
 </body>
 </html>
