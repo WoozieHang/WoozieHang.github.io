@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的配置和结论部分，并整理了笔记。">
+  <meta name="description" content="2月4日 阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的前面部分，并整理了笔记。 OOD和OSC的definition&amp;benchmark&amp;difference：按个人理解，基于DNN的OoD假设训练集数据来自一个未知但确定的分布，并且假设训">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【工作日志】 2021-2-8">
-<meta property="og:url" content="https://wooziehang.github.io/2021/02/08/working-log-2021-2-8/index.html">
+<meta property="og:title" content="【工作日志】 2021年2月">
+<meta property="og:url" content="https://wooziehang.github.io/2021/02/13/worklog-2021-2/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的配置和结论部分，并整理了笔记。">
+<meta property="og:description" content="2月4日 阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的前面部分，并整理了笔记。 OOD和OSC的definition&amp;benchmark&amp;difference：按个人理解，基于DNN的OoD假设训练集数据来自一个未知但确定的分布，并且假设训">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-08T10:54:07.000Z">
-<meta property="article:modified_time" content="2021-02-10T13:26:26.515Z">
+<meta property="article:published_time" content="2021-02-13T04:26:56.000Z">
+<meta property="article:modified_time" content="2021-02-13T04:38:54.359Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/02/08/working-log-2021-2-8/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/02/13/worklog-2021-2/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>【工作日志】 2021-2-8 | 吴紫航</title>
+  <title>【工作日志】 2021年2月 | 吴紫航</title>
   
 
 
@@ -158,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/02/08/working-log-2021-2-8/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/02/13/worklog-2021-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -171,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【工作日志】 2021-2-8
+          【工作日志】 2021年2月
         </h1>
 
         <div class="post-meta">
@@ -180,16 +180,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-02-08 18:54:07" itemprop="dateCreated datePublished" datetime="2021-02-08T18:54:07+08:00">2021-02-08</time>
+              <time title="创建时间：2021-02-13 12:26:56 / 修改时间：12:38:54" itemprop="dateCreated datePublished" datetime="2021-02-13T12:26:56+08:00">2021-02-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 21:26:26" itemprop="dateModified" datetime="2021-02-10T21:26:26+08:00">2021-02-10</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -201,7 +195,7 @@
             </span>
 
           
-            <span id="/2021/02/08/working-log-2021-2-8/" class="post-meta-item leancloud_visitors" data-flag-title="【工作日志】 2021-2-8" title="阅读次数">
+            <span id="/2021/02/13/worklog-2021-2/" class="post-meta-item leancloud_visitors" data-flag-title="【工作日志】 2021年2月" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -216,8 +210,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/02/08/working-log-2021-2-8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/08/working-log-2021-2-8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/02/13/worklog-2021-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/13/worklog-2021-2/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -232,8 +226,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
+        <h3 id="2月4日"><a href="#2月4日" class="headerlink" title="2月4日"></a>2月4日</h3><ul>
+<li>阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的前面部分，并整理了笔记。</li>
+<li>OOD和OSC的definition&amp;benchmark&amp;difference：按个人理解，基于DNN的OoD假设训练集数据来自一个未知但确定的分布，并且假设训练集很大时可以很精确逼近这个分布，来自这个分布的数据可以在用该分布的数据集训练好的网络上分类性能很好。在此假设下OoD的目标是衡量新来的样本和该未知分布的差距，也就是新来样本多大可能是来自于这个未知分布的。另一方面OSC关注于新来样本是不是划分为于训练集的某个类，或者是训练集中从未出现的新类。这是Out of Distribution Detection和Open Set Classification的区别。 OoD中max-softmax的方法是一个baseline;ODIN的方法是一个benchmark。总的OoD检测方法有4大类。</li>
+<li>每周组会：交流了目前的进展、论文的思路和接下来的计划安排。</li>
+</ul>
+<h3 id="2月5日"><a href="#2月5日" class="headerlink" title="2月5日"></a>2月5日</h3><ul>
+<li>阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的中间部分，并整理了笔记。</li>
+<li>整理了算法设计分析第二版（NJU CS算法教材）的第一章笔记。</li>
+</ul>
+<h3 id="2月6日"><a href="#2月6日" class="headerlink" title="2月6日"></a>2月6日</h3><ul>
+<li>配置了hexo使得可以显示数学公式。</li>
+</ul>
+<h3 id="2月7日"><a href="#2月7日" class="headerlink" title="2月7日"></a>2月7日</h3><ul>
+<li>阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的方法部分，并整理了笔记。</li>
+<li>配置hexo使得可以显示图片、并添加了评论系统Valine。</li>
+<li>开通了校内的实验服务器。</li>
+</ul>
+<h3 id="2月8日"><a href="#2月8日" class="headerlink" title="2月8日"></a>2月8日</h3><ul>
 <li>阅读文献：Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output的配置和结论部分，并整理了笔记。</li>
+</ul>
+<h3 id="2月9日"><a href="#2月9日" class="headerlink" title="2月9日"></a>2月9日</h3><ul>
+<li>休息一天。</li>
+</ul>
+<h3 id="2月10日"><a href="#2月10日" class="headerlink" title="2月10日"></a>2月10日</h3><ul>
+<li>继续整理算法笔记，完成第1章总结。</li>
+</ul>
+<h3 id="2月11日"><a href="#2月11日" class="headerlink" title="2月11日"></a>2月11日</h3><ul>
+<li>大年三十，摸鱼。</li>
+</ul>
+<h3 id="2月12日"><a href="#2月12日" class="headerlink" title="2月12日"></a>2月12日</h3><ul>
+<li>更新了算法第一章的部分习题解答</li>
+</ul>
+<h3 id="2月13日"><a href="#2月13日" class="headerlink" title="2月13日"></a>2月13日</h3><ul>
+<li>阅读文献：A Baseline for Detecting Misclassified and Out-of-Distribution Examples In Neural Networks，并整理了笔记。</li>
 </ul>
 
     </div>
@@ -265,13 +291,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/07/working-log-2021-2-7/" rel="prev" title="【工作日志】 2021-2-7">
-      <i class="fa fa-chevron-left"></i> 【工作日志】 2021-2-7
+    <a href="/2021/02/13/OoD-Baseline/" rel="prev" title="【阅读笔记】 A Baseline for Detecting Misclassified and Out-of-Distribution Examples In Neural Networks">
+      <i class="fa fa-chevron-left"></i> 【阅读笔记】 A Baseline for Detecting Misclassified and Out-of-Distribution Examples In Neural Networks
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/02/10/working-log-2021-2-10/" rel="next" title="【工作日志】 2021-2-10">
-      【工作日志】 2021-2-10 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -331,6 +354,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%884%E6%97%A5"><span class="nav-number">1.</span> <span class="nav-text">2月4日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%885%E6%97%A5"><span class="nav-number">2.</span> <span class="nav-text">2月5日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%886%E6%97%A5"><span class="nav-number">3.</span> <span class="nav-text">2月6日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%887%E6%97%A5"><span class="nav-number">4.</span> <span class="nav-text">2月7日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%888%E6%97%A5"><span class="nav-number">5.</span> <span class="nav-text">2月8日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%889%E6%97%A5"><span class="nav-number">6.</span> <span class="nav-text">2月9日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%8810%E6%97%A5"><span class="nav-number">7.</span> <span class="nav-text">2月10日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%8811%E6%97%A5"><span class="nav-number">8.</span> <span class="nav-text">2月11日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%8812%E6%97%A5"><span class="nav-number">9.</span> <span class="nav-text">2月12日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E6%9C%8813%E6%97%A5"><span class="nav-number">10.</span> <span class="nav-text">2月13日</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -346,7 +370,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
