@@ -155,6 +155,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/02/20/ODIN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/20/ODIN/" class="post-title-link" itemprop="url">【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-20 21:19:08 / 修改时间：21:45:29" itemprop="dateCreated datePublished" datetime="2021-02-20T21:19:08+08:00">2021-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OoD-Detection/" itemprop="url" rel="index"><span itemprop="name">OoD Detection</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/02/20/ODIN/" class="post-meta-item leancloud_visitors" data-flag-title="【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/02/20/ODIN/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/20/ODIN/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input processing</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>to be continued…</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/02/13/worklog-2021-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,7 +276,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-18 13:20:19" itemprop="dateModified" datetime="2021-02-18T13:20:19+08:00">2021-02-18</time>
+                <time title="修改时间：2021-02-20 21:22:21" itemprop="dateModified" datetime="2021-02-20T21:22:21+08:00">2021-02-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -746,7 +836,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
