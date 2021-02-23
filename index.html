@@ -186,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-21 23:20:19" itemprop="dateModified" datetime="2021-02-21T23:20:19+08:00">2021-02-21</time>
+                <time title="修改时间：2021-02-23 12:44:31" itemprop="dateModified" datetime="2021-02-23T12:44:31+08:00">2021-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,9 +230,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input processing</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
+          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input perturbation</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>现代神经网络在训练集和测试集样本来自同一个分布的时候效果很好。但现实世界部署的时候，往往测试集的分布是不受控制的。最近的工作表明，即使是输入不相关的数据，神经网络的预测结果也会偏高。对于分类器来说，遇到没见过的输入时给出一个不确定的反馈非常重要。因此，精确的检测OoD样本在视觉识别任务的实践中非常重要。</p>
-<p>to be continued…</p>
+<p>一个看上去比较直接的OoD检测方式就是扩大In-Distribution集合和Out-of-Distribution集合的规模。而OoD的数据往往是很有限的，这让再训练变得昂贵且难以处理。此外，为了确保神经网络在准确的给ID进行分类的同时，也能正确的检测出OoD,可能需要很大的神经网络架构，这使得训练过程更加复杂。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/02/20/ODIN/#more" rel="contents">
@@ -290,7 +290,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-20 21:22:21" itemprop="dateModified" datetime="2021-02-20T21:22:21+08:00">2021-02-20</time>
+                <time title="修改时间：2021-02-23 11:58:18" itemprop="dateModified" datetime="2021-02-23T11:58:18+08:00">2021-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">

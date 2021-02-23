@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input processing。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于bas">
+  <meta name="description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks">
 <meta property="og:url" content="https://wooziehang.github.io/2021/02/20/ODIN/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input processing。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于bas">
+<meta property="og:description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于b">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-20T13:19:08.000Z">
-<meta property="article:modified_time" content="2021-02-21T15:20:19.373Z">
+<meta property="article:modified_time" content="2021-02-23T04:44:31.177Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 
@@ -188,7 +188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-21 23:20:19" itemprop="dateModified" datetime="2021-02-21T23:20:19+08:00">2021-02-21</time>
+                <time title="修改时间：2021-02-23 12:44:31" itemprop="dateModified" datetime="2021-02-23T12:44:31+08:00">2021-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,9 +232,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input processing</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
+        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input perturbation</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>现代神经网络在训练集和测试集样本来自同一个分布的时候效果很好。但现实世界部署的时候，往往测试集的分布是不受控制的。最近的工作表明，即使是输入不相关的数据，神经网络的预测结果也会偏高。对于分类器来说，遇到没见过的输入时给出一个不确定的反馈非常重要。因此，精确的检测OoD样本在视觉识别任务的实践中非常重要。</p>
-<p>to be continued…</p>
+<p>一个看上去比较直接的OoD检测方式就是扩大In-Distribution集合和Out-of-Distribution集合的规模。而OoD的数据往往是很有限的，这让再训练变得昂贵且难以处理。此外，为了确保神经网络在准确的给ID进行分类的同时，也能正确的检测出OoD,可能需要很大的神经网络架构，这使得训练过程更加复杂。</p>
+<p>Hendrycks &amp; Gimpel提出一个baseline方法检测OoD,且不需要重训练网络。这个方法的提出基于一个观察，那就是训练好的网络倾向于给ID样本一个相对更高的softmax scores。在本文，工作进一步被开展。作者发现，使用temperature scaling在softmax函数中，并且给输入进行小的扰动，即input perturbation，那么ID和OoD的softmax分布就会增大差异。本文展示了，这两个方法可以提高检测性能。比如，对于训练好的DenseNet网络，用CIFAR-10作为ID,TinyImageNet作为OoD，本文的方法把<strong>FPR at 95% TPR</strong>这个指标从34.7%下降到4.3%。本文的主要贡献总结如下：</p>
+<ul>
+<li>提出一个简单而有效的方法，ODIN(<strong>O</strong>ut-of-<strong>Di</strong>stribution detector for <strong>N</strong>erual networks)，不需要重训练神经网络，且容易在任意现代网络结构中执行。</li>
+<li>在先进的网络结构(如DenseNet和Wide ResNet)中，用不同的数据集对作为ID和OoD。实验表明ODIN的方法可以显著的提高检测性能，并且始终比baseline的表现好得多。</li>
+<li>结合实证分析了参数的设置如何影响性能，并提供了简单的分析以帮助直观了解本文方法。</li>
+</ul>
+<p>本文的脉络大概是：第一部分为介绍；第二部分提供必要的定义和问题陈述；第三部分介绍ODIN方法；第四部分展示性能结果；第五部分实验性的分析ODIN方法并进行评估；第六部分总结相关工作和未来的方向；第七部分总结全文。</p>
+<h2 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h2><p>本文中，作者考虑了在训练好的神经网络中区分ID和OoD图片输入的问题。令$P_{\bf{X}}$和$Q_{\bf{X}}$表示定义在空间$\chi$上的两个不同的数据分布。假定神经网络$\bf{f}$的训练数据是抽样于$P_{\bf{X}}$的，那么$P_{\bf{X}}$就成为In-Distribution，而与之不同的$Q_{\bf{X}}$就是Out-of-Distribution。在测试中…</p>
+<p>未完待续…</p>
 
     </div>
 
@@ -328,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Statement"><span class="nav-number">3.</span> <span class="nav-text">Problem Statement</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
