@@ -28,8 +28,9 @@
 <meta property="og:description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于b">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Table1.jpg">
+<meta property="og:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Table2.jpg">
 <meta property="article:published_time" content="2021-02-20T13:19:08.000Z">
-<meta property="article:modified_time" content="2021-02-25T14:23:31.679Z">
+<meta property="article:modified_time" content="2021-02-26T03:42:55.574Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Table1.jpg">
@@ -190,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-25 22:23:31" itemprop="dateModified" datetime="2021-02-25T22:23:31+08:00">2021-02-25</time>
+                <time title="修改时间：2021-02-26 11:42:55" itemprop="dateModified" datetime="2021-02-26T11:42:55+08:00">2021-02-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,8 +255,27 @@
 <h3 id="Training-setup"><a href="#Training-setup" class="headerlink" title="Training setup"></a>Training setup</h3><h4 id="Architectures-and-training-configuration"><a href="#Architectures-and-training-configuration" class="headerlink" title="Architectures and training configuration"></a>Architectures and training configuration</h4><p>本文采用两个state-of-the-art的神经网络架构，分别为DenseNet和Wide ResNet。对于DenseNet，我们的模型设置为：层数$L=100$,growth rate $k=12$(Dense-BC),dropout rate=0。对于Wide ResNet，层数为28，宽度10，dropout rate为0。神经网络的超参数设置和原始的Wide ResNet (Zagoruyko &amp; Komodakis, 2016) and<br>DenseNet (Huang et al., 2016)实现完全相同。所有的网络都用带牛顿动量的SGD法(Duchi et al., 2011; Kingma &amp; Ba, 2014)优化。具体来说，作者训练Dense-BC轮次为300，batch size为64，momentum为0.9；训练Wide ResNet轮次为200，batch size为128，momentum为0.9。学习率起始为0.1，当训练进行到50%和75%时，再相对降低10倍。</p>
 <h4 id="Accuracy-of-pre-trained-networks"><a href="#Accuracy-of-pre-trained-networks" class="headerlink" title="Accuracy of pre-trained networks"></a>Accuracy of pre-trained networks</h4><p>两个网络结构的训练集都是CIFAR-10和CIFAR-100。CIFAR-10和CIFAR-100分别有10个类和100个类，都包括50000个训练集和10000个测试集。在CIFAR数据集上的测试错误率如下表(Table 1)：</p>
 <img src="/2021/02/20/ODIN/Table1.jpg" class title="this is table">
-<h3 id="Out-of-Distribution-Datasets"><a href="#Out-of-Distribution-Datasets" class="headerlink" title="Out-of-Distribution Datasets"></a>Out-of-Distribution Datasets</h3><p>未完待续…</p>
-
+<h3 id="Out-of-Distribution-Datasets"><a href="#Out-of-Distribution-Datasets" class="headerlink" title="Out-of-Distribution Datasets"></a>Out-of-Distribution Datasets</h3><p>在测试阶段，来自CIFAR-10(以及CIFAR-100)的图像数据集被看作是In-Distribution样本，对于OoD样本，按照(Hendrycks<br>&amp; Gimpel, 2017)的设置，测试了几个不同的自然图像数据集和合成噪声数据集。本文考虑了如下OoD测试数据集。</p>
+<ul>
+<li><p><strong>TinyImageNet</strong>  本数据集是 ImageNet images (Deng et al., 2009)的子集，包含10000个测试图像，200个类型。实验中构造两个数据集，crop版本和resize版本，方法分别为随机裁剪$32\times32$大小的子图、降像素采样至$32\times32$大小的子图。</p>
+</li>
+<li><p><strong>LSUN</strong>  本数据集为Large-scale Scene UNderstanding数据集，有10000个测试集图像，10个类，比如卧室、厨房、客厅。和TinyImageNet一样，构造两个数据集，分别为crop版本和resize版本。</p>
+</li>
+<li><p><strong>Gaussian Noise</strong>  本数据集为合成高斯噪声，包含10000个随机的二维高斯噪声图像，且RGB三个信道的值都从各自的独立同分布的高斯分布中采样，均值为0.5，方差为单位大小。本实验把像素映射到[0,1]区间。</p>
+</li>
+<li><p><strong>Uniform Noise</strong>  本数据集为合成均匀分布噪声，包含10000个图像，每个像素点的RGB都独立的、同等的从一个[0,1]均匀分布中采样。</p>
+</li>
+</ul>
+<p>对于超参数调优，使用iSUN(Xu et al., 2015)作为<strong>验证集</strong>。此数据集和前面四个测试集是独立的，由自然场景图像组成，包含8925个图像，每个图像也被降像素采样到$32\times 32$的大小。</p>
+<h3 id="Evaluation-metrics"><a href="#Evaluation-metrics" class="headerlink" title="Evaluation metrics"></a>Evaluation metrics</h3><p>本文采用下面的四个指标来度量一个神经网络区分ID和OoD的性能。</p>
+<ul>
+<li><strong>FPR at 95% TPR</strong>  即TPR为95%时，负样本(OoD样本)识别为正样本(ID样本)的概率</li>
+<li><strong>Detection Error</strong>  $P_e$为TPR为95%时的错误分类概率。具体可以定义为$P_e=0.5(1-TPR)+0.5FPR$，假定正例和反例在测试集中出现概率一样大。</li>
+<li><strong>AUROC</strong>  即ROC曲线的面积，是一个依赖于阈值的指标。本指标刻画了TPR和FPR的关系。可以看作是正例比反例能获得更高的detection score的概率。一个完美的检测器有着100%的AUROC。</li>
+<li><strong>AUPR</strong> 即PR曲线的面积，也是一个依赖于阈值的指标。具体来说，P就是$TP/(TP+FP)$,R就是$TP/(TP+FN)$，PR曲线就是P和R的关系图。而下表（Table 2）中，AUPR-In和AUPR-Out是当ID和OoD分别指定为正例时，PR曲线的面积。</li>
+</ul>
+<img src="/2021/02/20/ODIN/Table2.jpg" class title="this is table">
+<h3 id="Experimental-results"><a href="#Experimental-results" class="headerlink" title="Experimental results"></a>Experimental results</h3>
     </div>
 
     
@@ -348,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Statement"><span class="nav-number">3.</span> <span class="nav-text">Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ODIN-Out-of-Distribution-detector"><span class="nav-number">4.</span> <span class="nav-text">ODIN: Out-of-Distribution detector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Temperature-Scaling"><span class="nav-number">4.1.</span> <span class="nav-text">Temperature Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Preprocessing"><span class="nav-number">4.2.</span> <span class="nav-text">Input Preprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Distribution-detector"><span class="nav-number">4.3.</span> <span class="nav-text">Out-of-Distribution detector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-setup"><span class="nav-number">5.1.</span> <span class="nav-text">Training setup</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Architectures-and-training-configuration"><span class="nav-number">5.1.1.</span> <span class="nav-text">Architectures and training configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accuracy-of-pre-trained-networks"><span class="nav-number">5.1.2.</span> <span class="nav-text">Accuracy of pre-trained networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Distribution-Datasets"><span class="nav-number">5.2.</span> <span class="nav-text">Out-of-Distribution Datasets</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Statement"><span class="nav-number">3.</span> <span class="nav-text">Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ODIN-Out-of-Distribution-detector"><span class="nav-number">4.</span> <span class="nav-text">ODIN: Out-of-Distribution detector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Temperature-Scaling"><span class="nav-number">4.1.</span> <span class="nav-text">Temperature Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Preprocessing"><span class="nav-number">4.2.</span> <span class="nav-text">Input Preprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Distribution-detector"><span class="nav-number">4.3.</span> <span class="nav-text">Out-of-Distribution detector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-setup"><span class="nav-number">5.1.</span> <span class="nav-text">Training setup</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Architectures-and-training-configuration"><span class="nav-number">5.1.1.</span> <span class="nav-text">Architectures and training configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accuracy-of-pre-trained-networks"><span class="nav-number">5.1.2.</span> <span class="nav-text">Accuracy of pre-trained networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Distribution-Datasets"><span class="nav-number">5.2.</span> <span class="nav-text">Out-of-Distribution Datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-metrics"><span class="nav-number">5.3.</span> <span class="nav-text">Evaluation metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimental-results"><span class="nav-number">5.4.</span> <span class="nav-text">Experimental results</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
