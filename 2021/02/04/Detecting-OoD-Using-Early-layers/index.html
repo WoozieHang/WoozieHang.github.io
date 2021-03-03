@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared2.jpg">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared3.jpg">
 <meta property="article:published_time" content="2021-02-04T05:08:20.000Z">
-<meta property="article:modified_time" content="2021-02-10T13:11:37.438Z">
+<meta property="article:modified_time" content="2021-03-03T10:53:01.591Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wooziehang.github.io/2021/02/04/Detecting-OoD-Using-Early-layers/algo1.jpg">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 21:11:37" itemprop="dateModified" datetime="2021-02-10T21:11:37+08:00">2021-02-10</time>
+                <time title="修改时间：2021-03-03 18:53:01" itemprop="dateModified" datetime="2021-03-03T18:53:01+08:00">2021-03-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
 <li>结果是，四个OODL都选在第13层（这一层的检测误差最小）。</li>
 </ul>
 <p>作者认为OODL往往选在较低的层，因为高层特征往往是分类的特征，和ID内的分类有关；而较低层特征是整体大概的特征，用来表征ID分布本身。那么到目前为止，实验表明了用倒数第二层有利于做ID内的分类，而OODL有利于做OoD的检测。</p>
-<h3 id="Input-preprocessing"><a href="#Input-preprocessing" class="headerlink" title="Input preprocessing"></a>Input preprocessing</h3><p>这是源自ODIN的方法，是用来增大max-softmax类别概率的。在本文中，作者用这个方法来增强ID的特征，这样OSVM分类器就更容易检测出ID的输入。作者还提到，即使不用输入预处理的方式，本文的方法也比其他很多方法性能要好。具体的Input proprocessing的方法是：对于测试阶段的一个输入数据$x$，用如下公式计算$x’$<br>\begin{equation}<br>x’=x-\epsilon\cdot sign(-\bigtriangledown_{x}log(\max_{i}Q_{i}(x)))<br>\end{equation}<br>其中$\epsilon$是一个微扰程度，而微扰的大小由梯度(max-softmax关于x)反向传播计算。</p>
+<h3 id="Input-preprocessing"><a href="#Input-preprocessing" class="headerlink" title="Input preprocessing"></a>Input preprocessing</h3><p>这是源自ODIN的方法，是用来增大max-softmax类别概率的。在本文中，作者用这个方法来增强ID的特征，这样OSVM分类器就更容易检测出ID的输入。作者还提到，即使不用输入预处理的方式，本文的方法也比其他很多方法性能要好。具体的Input proprocessing的方法是：对于测试阶段的一个输入数据$x$，用如下公式计算$x’$<br>\begin{equation}<br>x’=x-\epsilon\cdot sign(-\nabla_{x}log(\max_{i}Q_{i}(x)))<br>\end{equation}<br>其中$\epsilon$是一个微扰程度，而微扰的大小由梯度(max-softmax关于x)反向传播计算。</p>
 <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>作者对几个ID和OoD dataset在不同的网络模型上运用了本文的方法。作者把性能和max-softmax,ODIN,MD进行了比较。正如前文所讨论的，本文的方法关注的是不用OoD数据参与分类器的训练，然而，为了遵守文献中的传统，作者还是使用了input preprocessing(需要访问OoD数据)的方法作为一个补充选项。和基于不确定度的方法的对比在附加材料中提到。作者的方法是开源可复现的。</p>
 <h3 id="ID-datasets-and-models"><a href="#ID-datasets-and-models" class="headerlink" title="ID datasets and models"></a>ID datasets and models</h3><ul>
 <li>ID datasets包括：MNIST, CIFAR-10, CIFAR-100</li>
