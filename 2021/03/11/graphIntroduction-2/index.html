@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="3月1日 开学报到注册 新学期的课程选择、事务计划规化等 核酸检测  3月2日 阅读文献：Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks，完成了全部内容的阅读并整理了笔记。  3月3日">
+  <meta name="description" content="割点和割边割点定义$v \in V(G):w(G-v)&gt;w(G)$ 割点的一个定理如果点v是简单图G的一个割点，则边集$E[G]$可划分为两个非空子集$E_1$和$E_2$，使得边导出子图$G[E_1]$和$G[E_2]$恰好有一个公共顶点v。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【工作日志】 2021年3月">
-<meta property="og:url" content="https://wooziehang.github.io/2021/03/01/worklog-2021-3/index.html">
+<meta property="og:title" content="【知识总结】 图的连通性">
+<meta property="og:url" content="https://wooziehang.github.io/2021/03/11/graphIntroduction-2/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="3月1日 开学报到注册 新学期的课程选择、事务计划规化等 核酸检测  3月2日 阅读文献：Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks，完成了全部内容的阅读并整理了笔记。  3月3日">
+<meta property="og:description" content="割点和割边割点定义$v \in V(G):w(G-v)&gt;w(G)$ 割点的一个定理如果点v是简单图G的一个割点，则边集$E[G]$可划分为两个非空子集$E_1$和$E_2$，使得边导出子图$G[E_1]$和$G[E_2]$恰好有一个公共顶点v。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-01T06:57:01.000Z">
-<meta property="article:modified_time" content="2021-03-13T12:41:07.696Z">
+<meta property="article:published_time" content="2021-03-11T08:09:20.000Z">
+<meta property="article:modified_time" content="2021-03-13T13:12:44.861Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/03/01/worklog-2021-3/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/03/11/graphIntroduction-2/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>【工作日志】 2021年3月 | 吴紫航</title>
+  <title>【知识总结】 图的连通性 | 吴紫航</title>
   
 
 
@@ -158,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/01/worklog-2021-3/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/11/graphIntroduction-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -171,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【工作日志】 2021年3月
+          【知识总结】 图的连通性
         </h1>
 
         <div class="post-meta">
@@ -181,14 +181,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-01 14:57:01" itemprop="dateCreated datePublished" datetime="2021-03-01T14:57:01+08:00">2021-03-01</time>
+              <time title="创建时间：2021-03-11 16:09:20" itemprop="dateCreated datePublished" datetime="2021-03-11T16:09:20+08:00">2021-03-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-13 20:41:07" itemprop="dateModified" datetime="2021-03-13T20:41:07+08:00">2021-03-13</time>
+                <time title="修改时间：2021-03-13 21:12:44" itemprop="dateModified" datetime="2021-03-13T21:12:44+08:00">2021-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -196,12 +196,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">工作日志</span></a>
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/03/01/worklog-2021-3/" class="post-meta-item leancloud_visitors" data-flag-title="【工作日志】 2021年3月" title="阅读次数">
+            <span id="/2021/03/11/graphIntroduction-2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 图的连通性" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -216,8 +216,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/03/01/worklog-2021-3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/01/worklog-2021-3/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/11/graphIntroduction-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/11/graphIntroduction-2/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -232,54 +232,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="3月1日"><a href="#3月1日" class="headerlink" title="3月1日"></a>3月1日</h3><ul>
-<li>开学报到注册</li>
-<li>新学期的课程选择、事务计划规化等</li>
-<li>核酸检测</li>
+        <h2 id="割点和割边"><a href="#割点和割边" class="headerlink" title="割点和割边"></a>割点和割边</h2><h3 id="割点定义"><a href="#割点定义" class="headerlink" title="割点定义"></a>割点定义</h3><p>$v \in V(G):w(G-v)&gt;w(G)$</p>
+<h3 id="割点的一个定理"><a href="#割点的一个定理" class="headerlink" title="割点的一个定理"></a>割点的一个定理</h3><p>如果点v是简单图G的一个割点，则边集$E[G]$可划分为两个非空子集$E_1$和$E_2$，使得边导出子图$G[E_1]$和$G[E_2]$恰好有一个公共顶点v。</p>
+<h3 id="连通图中割点的等价定义"><a href="#连通图中割点的等价定义" class="headerlink" title="连通图中割点的等价定义"></a>连通图中割点的等价定义</h3><ul>
+<li>v是G的割点</li>
+<li>G-v不连通</li>
+<li>存在$V(G)\setminus\{v\}$的一个划分：$V(G)\setminus\{v\}=U\cup W$,$U\cap W=\emptyset$,使得对$\forall u\in U$和$\forall w\in W$,v在每条u-w路上</li>
+<li>存在$u,w\in V(G)$,使得u,w异于v，且v在每条u-w路上</li>
 </ul>
-<h3 id="3月2日"><a href="#3月2日" class="headerlink" title="3月2日"></a>3月2日</h3><ul>
-<li>阅读文献：Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks，完成了全部内容的阅读并整理了笔记。</li>
+<h3 id="割边定义"><a href="#割边定义" class="headerlink" title="割边定义"></a>割边定义</h3><p>$e \in E(G):w(G-e)&gt;w(G)$</p>
+<h3 id="割边的等价定义"><a href="#割边的等价定义" class="headerlink" title="割边的等价定义"></a>割边的等价定义</h3><ul>
+<li>e是G的割边</li>
+<li>e不在G的任何圈中</li>
 </ul>
-<h3 id="3月3日"><a href="#3月3日" class="headerlink" title="3月3日"></a>3月3日</h3><ul>
-<li>组会</li>
+<h3 id="连通图中割边的等价定义"><a href="#连通图中割边的等价定义" class="headerlink" title="连通图中割边的等价定义"></a>连通图中割边的等价定义</h3><ul>
+<li>e是G的割边</li>
+<li>存在$V(G)$的一个划分：$V(G)=U\cup W$,$U\cap W=\emptyset$,使得对$\forall u\in U$和$\forall w\in W$,e在每条u-w路上</li>
+<li>存在$u,v\in V(G)$,使得e在每条u-v路上</li>
 </ul>
-<h3 id="3月4日"><a href="#3月4日" class="headerlink" title="3月4日"></a>3月4日</h3><ul>
-<li>上课</li>
+<h2 id="连通度和边连通度"><a href="#连通度和边连通度" class="headerlink" title="连通度和边连通度"></a>连通度和边连通度</h2><h3 id="点割集"><a href="#点割集" class="headerlink" title="点割集"></a>点割集</h3><p>$S \subset V(G): w(G-S)&gt;1$</p>
+<h3 id="极小点割集"><a href="#极小点割集" class="headerlink" title="极小点割集"></a>极小点割集</h3><p>任何真子集都不是点割集</p>
+<h3 id="最小点割集"><a href="#最小点割集" class="headerlink" title="最小点割集"></a>最小点割集</h3><p>图中含顶点数最少的点割集</p>
+<h3 id="连通度"><a href="#连通度" class="headerlink" title="连通度"></a>连通度</h3><ul>
+<li>G不是完全图：最小点割集的势</li>
+<li>G是完全图：v-1</li>
+<li>G不连通：0</li>
+<li>G是零图或平凡图：不讨论</li>
 </ul>
-<h3 id="3月5日"><a href="#3月5日" class="headerlink" title="3月5日"></a>3月5日</h3><ul>
-<li>上课</li>
+<h3 id="连通度性质（-kappa-G-kappa-）"><a href="#连通度性质（-kappa-G-kappa-）" class="headerlink" title="连通度性质（$\kappa(G)=\kappa$）"></a>连通度性质（$\kappa(G)=\kappa$）</h3><ul>
+<li>没有势为k-1或更小的点割集</li>
+<li>任意去掉k-1或更少的点，仍然连通</li>
 </ul>
-<h3 id="3月6日"><a href="#3月6日" class="headerlink" title="3月6日"></a>3月6日</h3><ul>
-<li>休息</li>
+<h3 id="k-连通"><a href="#k-连通" class="headerlink" title="k-连通"></a>k-连通</h3><p>即$\kappa(G)\geq k$</p>
+<h3 id="边割集"><a href="#边割集" class="headerlink" title="边割集"></a>边割集</h3><p>$S \subset E(G): w(G-S)&gt;1$</p>
+<h3 id="极小边割集"><a href="#极小边割集" class="headerlink" title="极小边割集"></a>极小边割集</h3><p>任何真子集都不是边割集</p>
+<h3 id="最小边割集"><a href="#最小边割集" class="headerlink" title="最小边割集"></a>最小边割集</h3><p>图中含边数最少的边割集</p>
+<h3 id="边连通度"><a href="#边连通度" class="headerlink" title="边连通度"></a>边连通度</h3><ul>
+<li>最小边割集的势</li>
+<li>G不连通：0</li>
+<li>G是零图或平凡图：不讨论</li>
 </ul>
-<h3 id="3月7日"><a href="#3月7日" class="headerlink" title="3月7日"></a>3月7日</h3><ul>
-<li>组内任务</li>
+<h3 id="连通度性质（-kappa’-G-k-）"><a href="#连通度性质（-kappa’-G-k-）" class="headerlink" title="连通度性质（$\kappa’(G)=k$）"></a>连通度性质（$\kappa’(G)=k$）</h3><ul>
+<li>没有势为k-1或更小的边割集</li>
+<li>任意去掉k-1或更少条边，仍然连通</li>
 </ul>
-<h3 id="3月8日"><a href="#3月8日" class="headerlink" title="3月8日"></a>3月8日</h3><ul>
-<li>写毕设实验代码</li>
-<li>整理图论第一章笔记</li>
-<li>初步完成图论第一章作业的解题思路</li>
-</ul>
-<h3 id="3月9日"><a href="#3月9日" class="headerlink" title="3月9日"></a>3月9日</h3><ul>
-<li>完成图论第一章作业</li>
-<li>整理组合数学第一章笔记</li>
-</ul>
-<h3 id="3月10日"><a href="#3月10日" class="headerlink" title="3月10日"></a>3月10日</h3><ul>
-<li>毕设代码</li>
-</ul>
-<h3 id="3月11日"><a href="#3月11日" class="headerlink" title="3月11日"></a>3月11日</h3><ul>
-<li>毕设代码</li>
-<li>图论课和笔记</li>
-<li>组会</li>
-</ul>
-<h3 id="3月12日"><a href="#3月12日" class="headerlink" title="3月12日"></a>3月12日</h3><ul>
-<li>上课</li>
-<li>毕设代码</li>
-</ul>
-<h3 id="3月13日"><a href="#3月13日" class="headerlink" title="3月13日"></a>3月13日</h3><ul>
-<li>毕设代码</li>
-<li>图论笔记整理+作业</li>
-</ul>
+<h3 id="k-边连通"><a href="#k-边连通" class="headerlink" title="k-边连通"></a>k-边连通</h3><p>即$\kappa’(G)\geq k$</p>
+<h3 id="一个重要的定理"><a href="#一个重要的定理" class="headerlink" title="一个重要的定理"></a>一个重要的定理</h3><p>$\kappa(G)\leq \kappa’(G)\leq \delta(G)$</p>
+<h3 id="kappa-G-的一个上界"><a href="#kappa-G-的一个上界" class="headerlink" title="$\kappa(G)$的一个上界"></a>$\kappa(G)$的一个上界</h3><p>$2\epsilon=\sum\limits_{u\in V(G)}d(u)\geq\delta(G)v\Rightarrow\delta(G)\leq \frac{2\epsilon}{v}\Rightarrow\kappa(G)\leq \delta(G)\leq \frac{2\epsilon}{v}\Rightarrow\kappa(G)$的一个上界$\lfloor\frac{2\epsilon}{v}\rfloor$</p>
+<h3 id="kappa-G-kappa’-G-的一个充分条件"><a href="#kappa-G-kappa’-G-的一个充分条件" class="headerlink" title="$\kappa(G)=\kappa’(G)$的一个充分条件"></a>$\kappa(G)=\kappa’(G)$的一个充分条件</h3><p>G是3-正则图</p>
 
     </div>
 
@@ -310,13 +310,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/20/ODIN/" rel="prev" title="【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks">
-      <i class="fa fa-chevron-left"></i> 【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks
+    <a href="/2021/03/09/combinatorics-1/" rel="prev" title="【知识总结】 Counting">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 Counting
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/08/graphIntroduction-1/" rel="next" title="【知识总结】 图的基本概念">
-      【知识总结】 图的基本概念 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -376,7 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%881%E6%97%A5"><span class="nav-number">1.</span> <span class="nav-text">3月1日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%882%E6%97%A5"><span class="nav-number">2.</span> <span class="nav-text">3月2日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%883%E6%97%A5"><span class="nav-number">3.</span> <span class="nav-text">3月3日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%884%E6%97%A5"><span class="nav-number">4.</span> <span class="nav-text">3月4日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%885%E6%97%A5"><span class="nav-number">5.</span> <span class="nav-text">3月5日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%886%E6%97%A5"><span class="nav-number">6.</span> <span class="nav-text">3月6日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%887%E6%97%A5"><span class="nav-number">7.</span> <span class="nav-text">3月7日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%888%E6%97%A5"><span class="nav-number">8.</span> <span class="nav-text">3月8日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%889%E6%97%A5"><span class="nav-number">9.</span> <span class="nav-text">3月9日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%8810%E6%97%A5"><span class="nav-number">10.</span> <span class="nav-text">3月10日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%8811%E6%97%A5"><span class="nav-number">11.</span> <span class="nav-text">3月11日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%8812%E6%97%A5"><span class="nav-number">12.</span> <span class="nav-text">3月12日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%8813%E6%97%A5"><span class="nav-number">13.</span> <span class="nav-text">3月13日</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%B2%E7%82%B9%E5%92%8C%E5%89%B2%E8%BE%B9"><span class="nav-number">1.</span> <span class="nav-text">割点和割边</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E7%82%B9%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">割点定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E7%82%B9%E7%9A%84%E4%B8%80%E4%B8%AA%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">割点的一个定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%9B%BE%E4%B8%AD%E5%89%B2%E7%82%B9%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.</span> <span class="nav-text">连通图中割点的等价定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E8%BE%B9%E5%AE%9A%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">割边定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E8%BE%B9%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="nav-number">1.5.</span> <span class="nav-text">割边的等价定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%9B%BE%E4%B8%AD%E5%89%B2%E8%BE%B9%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="nav-number">1.6.</span> <span class="nav-text">连通图中割边的等价定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%BA%A6%E5%92%8C%E8%BE%B9%E8%BF%9E%E9%80%9A%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">连通度和边连通度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%89%B2%E9%9B%86"><span class="nav-number">2.1.</span> <span class="nav-text">点割集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%B0%8F%E7%82%B9%E5%89%B2%E9%9B%86"><span class="nav-number">2.2.</span> <span class="nav-text">极小点割集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%82%B9%E5%89%B2%E9%9B%86"><span class="nav-number">2.3.</span> <span class="nav-text">最小点割集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%BA%A6"><span class="nav-number">2.4.</span> <span class="nav-text">连通度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%BA%A6%E6%80%A7%E8%B4%A8%EF%BC%88-kappa-G-kappa-%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">连通度性质（$\kappa(G)&#x3D;\kappa$）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-%E8%BF%9E%E9%80%9A"><span class="nav-number">2.6.</span> <span class="nav-text">k-连通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E5%89%B2%E9%9B%86"><span class="nav-number">2.7.</span> <span class="nav-text">边割集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%B0%8F%E8%BE%B9%E5%89%B2%E9%9B%86"><span class="nav-number">2.8.</span> <span class="nav-text">极小边割集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E8%BE%B9%E5%89%B2%E9%9B%86"><span class="nav-number">2.9.</span> <span class="nav-text">最小边割集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%BF%9E%E9%80%9A%E5%BA%A6"><span class="nav-number">2.10.</span> <span class="nav-text">边连通度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%BA%A6%E6%80%A7%E8%B4%A8%EF%BC%88-kappa%E2%80%99-G-k-%EF%BC%89"><span class="nav-number">2.11.</span> <span class="nav-text">连通度性质（$\kappa’(G)&#x3D;k$）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-%E8%BE%B9%E8%BF%9E%E9%80%9A"><span class="nav-number">2.12.</span> <span class="nav-text">k-边连通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E5%AE%9A%E7%90%86"><span class="nav-number">2.13.</span> <span class="nav-text">一个重要的定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kappa-G-%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8A%E7%95%8C"><span class="nav-number">2.14.</span> <span class="nav-text">$\kappa(G)$的一个上界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kappa-G-kappa%E2%80%99-G-%E7%9A%84%E4%B8%80%E4%B8%AA%E5%85%85%E5%88%86%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.15.</span> <span class="nav-text">$\kappa(G)&#x3D;\kappa’(G)$的一个充分条件</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -546,6 +543,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
