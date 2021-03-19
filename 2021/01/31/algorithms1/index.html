@@ -27,18 +27,10 @@
 <meta property="og:site_name" content="吴紫航">
 <meta property="og:description" content="RAM模型的引入计算的基本概念 计算的关键特征：基于有限种类操作的灵活组合完成复杂的计算任务 算法的宏观定义：一组计算机操作的序列，遵循算法的指示，计算机对任意合法输入执行一系列操作，并给出正确结果。  计算模型的基本概念 算法掌握的一种抽象原则，与编程语言和机器无关，假设在抽象机器上完成算法设计和分析。 在不同具体机器上实例化算法时，虽然底层提供的基本操作不同，但是总是常数倍的关系，本质相同。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_1.jpg">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_2.jpg">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_3.jpg">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_4_1.jpg">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_4_2.jpg">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_4_3.jpg">
-<meta property="og:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_5.jpg">
 <meta property="article:published_time" content="2021-01-31T14:43:26.000Z">
-<meta property="article:modified_time" content="2021-03-18T16:56:07.320Z">
+<meta property="article:modified_time" content="2021-03-19T12:27:34.461Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wooziehang.github.io/2021/01/31/algorithms1/1_1.jpg">
 
 <link rel="canonical" href="https://wooziehang.github.io/2021/01/31/algorithms1/">
 
@@ -196,7 +188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-19 00:56:07" itemprop="dateModified" datetime="2021-03-19T00:56:07+08:00">2021-03-19</time>
+                <time title="修改时间：2021-03-19 20:27:34" itemprop="dateModified" datetime="2021-03-19T20:27:34+08:00">2021-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,81 +278,6 @@
 <h3 id="平均情况时间复杂度分析"><a href="#平均情况时间复杂度分析" class="headerlink" title="平均情况时间复杂度分析"></a>平均情况时间复杂度分析</h3><p>假设输入服从一个分布，时间复杂度看作一个随机变量，它的期望值就是平均情况时间复杂度。定义为：$A(n)=\sum\limits_{I \in D_n}Pr(I)\cdot f(I)$</p>
 <h3 id="期望情况时间复杂度分析"><a href="#期望情况时间复杂度分析" class="headerlink" title="期望情况时间复杂度分析"></a>期望情况时间复杂度分析</h3><p>最坏输入情况下的期望时间复杂度，主要针对随机算法的随机数求期望。</p>
 <h3 id="平摊时间复杂度分析"><a href="#平摊时间复杂度分析" class="headerlink" title="平摊时间复杂度分析"></a>平摊时间复杂度分析</h3><p>详见第18章的笔记，大概理解就是<strong>用平摊分析法计算出的平均情况时间复杂度。</strong></p>
-<h2 id="习题解答"><a href="#习题解答" class="headerlink" title="习题解答"></a>习题解答</h2><p><strong><em>注：</em></strong> <em>本题解为个人完成，难免疏漏，请勿抄袭，仅供参考。</em></p>
-<h3 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h3><h4 id="1"><a href="#1" class="headerlink" title="(1)"></a>(1)</h4><p>算法设计<br><img src="/2021/01/31/algorithms1/1_1.jpg" class title="this is algorithms"></p>
-<h4 id="2"><a href="#2" class="headerlink" title="(2)"></a>(2)</h4><p>本问针对个人设计的算法，假设所有输入等可能出现，则：</p>
-<ul>
-<li>有$\frac{1}{3}$可能性, $D[2]$序最大, 进行第2、5行比较;</li>
-<li>有$\frac{2}{3}$可能性, $D[2]$序不为最大, 进行第2、5、7行比较;</li>
-</ul>
-<p><strong>最坏情况</strong> 需要进行3次比较。<br><strong>平均情况</strong> 需要进行$\frac{1}{3}\times 2 +\frac{2}{3} \times 3=\frac{8}{3}$次比较</p>
-<h4 id="3"><a href="#3" class="headerlink" title="(3)"></a>(3)</h4><p>本问求最坏情况(面向所有输入)比较次数的下界(面向所有算法)。<br>即$\min\limits_{method}\max\limits_{in} cost(method,in)$</p>
-<p>易得结果为3次，下面给出严格证明，分为两个步骤：</p>
-<ul>
-<li>存在一个可行算法，使得最坏输入情况的比较次数等于3;</li>
-<li>不存在一个可行的算法，最坏输入情况的比较次数都小于3。</li>
-</ul>
-<p>前者用举例证明：如第1小问设计的算法，最坏情况的比较次数就是3;<br>后者用反证法：假设某可行算法进行了不到3次比较，通过改变输入，可以使得3个整数中至少有1对整数之间的序关系是未知的，那么就需要进行3次比较，产生矛盾。因此后者得证。<br><strong>综合上述，最坏情况比较次数的下界为3次。</strong></p>
-<h3 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h3><p><em>本题和1.1非常类似，只需要进行略微的修改即可。</em></p>
-<h4 id="1-1"><a href="#1-1" class="headerlink" title="(1)"></a>(1)</h4><p>算法设计<br><img src="/2021/01/31/algorithms1/1_2.jpg" class title="this is algorithms"></p>
-<h4 id="2-1"><a href="#2-1" class="headerlink" title="(2)"></a>(2)</h4><p>本问针对个人设计的算法，假设所有输入等可能出现，则：</p>
-<ul>
-<li>有$\frac{1}{3}$可能性, $D[2]$序最大, 进行第2、5行比较;</li>
-<li>有$\frac{2}{3}$可能性, $D[2]$序不为最大, 进行第2、5、7行比较;</li>
-</ul>
-<p><strong>最坏情况</strong> 需要进行3次比较。<br><strong>平均情况</strong> 需要进行$\frac{1}{3}\times 2 +\frac{2}{3} \times 3=\frac{8}{3}$次比较</p>
-<h4 id="3-1"><a href="#3-1" class="headerlink" title="(3)"></a>(3)</h4><p>本问求最坏情况(面向所有输入)比较次数的下界(面向所有算法)。<br>即$\min\limits_{method}\max\limits_{in} cost(method,in)$</p>
-<p>易得结果为3次，下面给出严格证明，分为两个步骤：</p>
-<ul>
-<li>存在一个可行算法，使得最坏输入情况的比较次数等于3;</li>
-<li>不存在一个可行的算法，最坏输入情况的比较次数都小于3。</li>
-</ul>
-<p>前者用举例证明：如第1小问设计的算法，最坏情况的比较次数就是3;<br>后者用反证法：假设某可行算法进行了不到3次比较，通过改变输入，可以使得<strong>3个整数中至少有1对整数之间的序关系是未知的</strong>，那么不能确定中位数。<br>具体而言对于a、b、c三个数：<br>(i) 若已知1对序关系(a,b)，那么不能确定中位数；<br>(ii) 若已知2对序关系(a,b)和(a,c)，这两对序关系必然相同,否则(b,c)的序关系就可知,故不能确定中位数。<br>那么就需要进行3次比较，产生矛盾。因此后者得证。<br><strong>综合上述，最坏情况比较次数的下界为3次。</strong></p>
-<h3 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h3><h4 id="1-2"><a href="#1-2" class="headerlink" title="(1)"></a>(1)</h4><p>答：例如全集$U=\{1,2,3,4,5,6\}$，子集$S_1=\{1,2,3,4\}$、$S_2=\{1,2,3\}$、$S_3=\{4,5,6\}$、$S_4=\{5\}$、$S_5=\{6\}$。按这个算法最后找到的最小覆盖是$\{S_1,S_4,S_5\}$。但正确的最小覆盖是$\{S_2,S_3\}$。</p>
-<h4 id="2-2"><a href="#2-2" class="headerlink" title="(2)"></a>(2)</h4><p><em>最小集合覆盖是一个NP问题，这里就简单给出一种集合覆盖的求法，答案不唯一</em><br><img src="/2021/01/31/algorithms1/1_3.jpg" class title="this is algorithms"></p>
-<p><strong>正确性证明</strong>：<br>如果集合族$S$是$U$的一个覆盖，即$\bigcup\limits_{S_i\in S}S_i=U$，那么算法中的if语句满足，那么将会返回S，显然求得了一个集合覆盖;</p>
-<p>如果集合族$S$不是$U$的一个覆盖，那么算法中的if语句不满足，else块将被运行,同时找不到满足条件的$T\subseteq S$，使得$\bigcup\limits_{S_i\in T}S_i=U$(否则$S$是$U$的覆盖，产生矛盾)。因此不存在集合覆盖，算法将报错退出，符合预期。</p>
-<h4 id="3-2"><a href="#3-2" class="headerlink" title="(3)"></a>(3)</h4><p>答：不能保证得到最小覆盖，例如全集$U=\{1,2,3,4,5\}$，子集$S_1=\{1,3,5\}$、$S_2=\{2,4\}$、$S_3=\{1,4\}$、$S_4=\{2,5\}$。按这个算法最后找到的覆盖是$\{S_1,S_2,S_3,S_4\}$。但最小覆盖是$\{S_1,S_2\}$。</p>
-<h3 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h3><p>1)的算法描述<br><img src="/2021/01/31/algorithms1/1_4_1.jpg" class title="this is algorithms"><br>2)的算法描述<br><img src="/2021/01/31/algorithms1/1_4_2.jpg" class title="this is algorithms"><br>3)的算法描述<br><img src="/2021/01/31/algorithms1/1_4_3.jpg" class title="this is algorithms"></p>
-<p><strong>反例</strong>：<br>例如$n=4$,$S=\{5,1,10,100\}$,T=101，上述三个算法都找不到满足要求的硬币集合，但是存在集合{1,100}满足要求。</p>
-<h3 id="1-5"><a href="#1-5" class="headerlink" title="1.5"></a>1.5</h3><p><em>本题很经典，可以考虑如果用状态机来解决，要怎么画</em><br>算法设计<br><img src="/2021/01/31/algorithms1/1_5.jpg" class title="this is algorithms"><br><strong>正确性证明</strong><br>(1)当$N=8$的时候，程序返回第三个return，即a=1和b=1，算法正确工作。</p>
-<p>(2)设当$N=5+3k(k\in N+)$的时候，程序正确，即从第三个return中返回了a=k和b=1,那么当$N=5+3k+3$的时候，程序还是返回第三个return，返回值是a=k+1,b=1，程序正确。</p>
-<p>(3)故对于任意$N=5+3n(n\in N+)$，程序都正确</p>
-<p>以上证明了模3等于2的所有正整数$N(N\geq 8)$的正确性，模3等于1和0的情况同理，从略。</p>
-<p>本题证明核心是使用<strong>数学归纳法</strong>。</p>
-<h3 id="1-6"><a href="#1-6" class="headerlink" title="1.6"></a>1.6</h3><p><em>注意本题并不是指KMP算法的next，而是在下一页附上了算法的内容。</em><br>证明：<br>(1)当$n=0$时，后继是1显然算法正确；</p>
-<p>(2)当$n=2k(k\geq 0,k\in Z)$时,算法返回2n+1,显然也正确；</p>
-<p>(3)若$n=2k(k\geq 0,k\in Z)$时算法正确，则$n=2k+1$时,算法返回$2\times(1+\lfloor\frac{2k+1}{2}\rfloor)$,也就是$2\times(1+k)=2k+2$,故此时算法正确</p>
-<p>(4)故对任意非负整数$n$，显然算法都正确。</p>
-<h3 id="1-7"><a href="#1-7" class="headerlink" title="1.7"></a>1.7</h3><p><em>本题证明的核心还是归纳推理，但是和数学归纳法不同，本题的推理是有限回合的，也就是利用循环不变式进行证明</em><br>我们先观察一下每次循环的结果(<strong>注意! 我们要通过观察找循环不变式！</strong>)：</p>
-<ul>
-<li>当3-4行的for循环第1次执行的开始，$p=a_n$</li>
-<li>当3-4行的for循环第2次执行的开始，$p=a_nx+a_{n-1}$</li>
-<li>当3-4行的for循环第3次执行的开始，$p=a_nx^2+a_{n-1}x+a_{n-2}$<br>那么通过观察归纳，for循环第j次执行(j=1,2,3…,n)的开始时：</li>
-</ul>
-<p>$p=a_nx^{j-1}+a_{n-1}x^{j-2}+\cdots+a_{n-j+1}x^0$，</p>
-<p>而j=n-i (i是循环变量，i=n-1,n-2,..,0)，那么用i来替换j以表示p，我们就知道了循环不变式是</p>
-<p>$p=a_nx^{n-i-1}+a_{n-1}x^{n-i-2}+\cdots+a_{i+1}x^0=\sum\limits_{k=0}^{n-(i+1)}a_{k+i+1}x^k$</p>
-<p>也就是说循环开始时，根据循环变量i，循环不变式p都是上述的形式，<strong>上述都是心里活动，下面就是用循环不变式证明算法正确性的标准三步走格式</strong>。</p>
-<p>(1)<strong>初始化</strong>：$i=n-1,p=a_n=\sum\limits_{k=0}^{0}a_{k+n}x^k$，显然正确</p>
-<p>(2)<strong>保持</strong>：当前循环开始时满足循环不变式$p=\sum\limits_{k=0}^{n-(i+1)}a_{k+i+1}x^k$，</p>
-<p>经过循环体运算后，$p=x[\sum\limits_{k=0}^{n-(i+1)}a_{k+i+1}x^k]+a_i=\sum\limits_{k=0}^{n-[(i-1)+1]}a_{k+(i-1)+1}x^k$</p>
-<p>那么下一轮刚开始的时候，i会自减1，故循环不变式$p=\sum\limits_{k=0}^{n-(i+1)}a_{k+i+1}x^k$仍然满足。</p>
-<p>(3)<strong>终止</strong>：当i为0，最后一次循环开始时，有循环不变式$p=\sum\limits_{k=0}^{n-1}a_{k+1}x^k$，故最后一次循环结束后，$p=x[\sum\limits_{k=0}^{n-1}a_{k+1}x^k]+a_0=\sum\limits_{k=0}^{n}a_{k}x^k$，显然返回值p就是我们希望的值。</p>
-<p>故算法正确。</p>
-<p><em>注：关于循环不变式的内容，可以参考算法导论第二章2.1的内容，本题是算导原题，即习题2.3</em></p>
-<h3 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h3><p>不妨直接证第二问，也就是说当$c\geq2,c\in Z$，证明算法正确。那么考虑对$z$进行<strong>强数学归纳法</strong>。</p>
-<p>(1)当$z=0$，显然返回$y\times z=0$正确</p>
-<p>(2)假设$z=0,1,2..,k$($k$是非负整数)时，算法正确</p>
-<p>则对于$z=k+1$，因为$\lfloor\frac{z}{c}\rfloor&lt; z$,则子调用INT-MULT正确，则返回$c\times y\times(\lfloor\frac{z}{c}\rfloor)+y\times(z\ mod\ c)=y\times [(c\times\lfloor\frac{z}{c}\rfloor)+(z\ mod\ c)]$,又由数学知识，$(c\times\lfloor\frac{z}{c}\rfloor)+(z\ mod\ c)=z$。故此时返回值为$y\times z$，也是正确的。</p>
-<p>(3)因此对任意$z=n$,$n$是非负整数，算法都正确。</p>
-<h3 id="1-9"><a href="#1-9" class="headerlink" title="1.9"></a>1.9</h3><p>题干给的是输入r的概率密度函数，利用积分可以得到：<br>$Pr(r\leq \frac{n}{4})=\frac{1}{4}$，$Pr(\frac{n}{4} &lt; r\leq \frac{n}{2})=\frac{1}{2}$，$Pr(\frac{n}{2} &lt; r\leq \frac{3n}{4})=\frac{1}{8}$，$Pr(\frac{3n}{4} &lt; r\leq \frac{n})=\frac{1}{8}$</p>
-<p>故平均情况时间复杂度就是$\frac{1}{4}\times10+\frac{1}{2}\times20+\frac{1}{8}\times30+\frac{1}{8}\times n=\frac{n}{8}+\frac{65}{4}=O(n)$</p>
-<h3 id="1-10"><a href="#1-10" class="headerlink" title="1.10"></a>1.10</h3><p>该算法判断数组中元素是不是没有重复的，没有重复则返回TRUE，有重复返回FALSE。</p>
-<p>(1) 当数组没有重复元素，两层循环全部跑完，返回TRUE的情况，就是最坏情况。复杂度是</p>
-<p>$\sum\limits_{i=0}^{n-2}(n-1-i)=\frac{n(n-1)}{2}=O(n^2)$。</p>
-<p>(2) 在给定条件下，两个元素等可能的取n个位置中的两个，每种情况也就是$\frac{1}{C_{n}^2}$的概率，也可以理解成两层循环的中的每个if生效的概率是相等的。因此平均情况时间复杂度为：</p>
-<p>$\sum\limits_{k=1}^{C_{n}^2}(\frac{1}{C_{n}^2})k=\frac{n^2}{4}-\frac{n}{4}+\frac{1}{2}=O(n^2)$</p>
 
     </div>
 
@@ -457,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RAM%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">RAM模型的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">计算的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">计算模型的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAM%E6%A8%A1%E5%9E%8B-Random-Access-Machine"><span class="nav-number">1.3.</span> <span class="nav-text">RAM模型(Random Access Machine)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A%E6%98%93%E7%94%A8%E6%80%A7%E4%B8%8E%E7%B2%BE%E7%A1%AE%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">计算模型的选择：易用性与精确性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">抽象算法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98%E8%A7%84%E7%BA%A6"><span class="nav-number">2.1.</span> <span class="nav-text">算法问题规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A3%E7%A1%AE%E6%80%A7%E8%AF%81%E6%98%8E%EF%BC%9A%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">算法正确性证明：数学归纳法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">抽象算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">3.1.</span> <span class="nav-text">抽象算法的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">最坏情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">平均情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.4.</span> <span class="nav-text">期望情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.5.</span> <span class="nav-text">平摊时间复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98%E8%A7%A3%E7%AD%94"><span class="nav-number">4.</span> <span class="nav-text">习题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1"><span class="nav-number">4.1.</span> <span class="nav-text">1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1"><span class="nav-number">4.1.1.</span> <span class="nav-text">(1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2"><span class="nav-number">4.1.2.</span> <span class="nav-text">(2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3"><span class="nav-number">4.1.3.</span> <span class="nav-text">(3)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2"><span class="nav-number">4.2.</span> <span class="nav-text">1.2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">(1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">(2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1"><span class="nav-number">4.2.3.</span> <span class="nav-text">(3)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3"><span class="nav-number">4.3.</span> <span class="nav-text">1.3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2"><span class="nav-number">4.3.1.</span> <span class="nav-text">(1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">(2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2"><span class="nav-number">4.3.3.</span> <span class="nav-text">(3)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4"><span class="nav-number">4.4.</span> <span class="nav-text">1.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5"><span class="nav-number">4.5.</span> <span class="nav-text">1.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6"><span class="nav-number">4.6.</span> <span class="nav-text">1.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7"><span class="nav-number">4.7.</span> <span class="nav-text">1.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8"><span class="nav-number">4.8.</span> <span class="nav-text">1.8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9"><span class="nav-number">4.9.</span> <span class="nav-text">1.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10"><span class="nav-number">4.10.</span> <span class="nav-text">1.10</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RAM%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">RAM模型的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">计算的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">计算模型的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAM%E6%A8%A1%E5%9E%8B-Random-Access-Machine"><span class="nav-number">1.3.</span> <span class="nav-text">RAM模型(Random Access Machine)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A%E6%98%93%E7%94%A8%E6%80%A7%E4%B8%8E%E7%B2%BE%E7%A1%AE%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">计算模型的选择：易用性与精确性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">抽象算法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98%E8%A7%84%E7%BA%A6"><span class="nav-number">2.1.</span> <span class="nav-text">算法问题规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A3%E7%A1%AE%E6%80%A7%E8%AF%81%E6%98%8E%EF%BC%9A%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">算法正确性证明：数学归纳法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">抽象算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">3.1.</span> <span class="nav-text">抽象算法的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">最坏情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">平均情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.4.</span> <span class="nav-text">期望情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.5.</span> <span class="nav-text">平摊时间复杂度分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -473,7 +390,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
