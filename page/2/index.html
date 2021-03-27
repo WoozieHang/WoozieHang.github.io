@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.3.0">
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://chenjiabing666.github.io/"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -186,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-01 14:56:28" itemprop="dateModified" datetime="2021-03-01T14:56:28+08:00">2021-03-01</time>
+                <time title="修改时间：2021-03-27 17:29:02" itemprop="dateModified" datetime="2021-03-27T17:29:02+08:00">2021-03-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -972,7 +986,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
     });
     new Valine({
       el         : '#valine-comments',
-      verify     : false,
+      verify     : true,
       notify     : false,
       appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
       appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
