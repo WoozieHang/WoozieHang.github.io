@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="RAM模型的引入计算的基本概念 计算的关键特征：基于有限种类操作的灵活组合完成复杂的计算任务 算法的宏观定义：一组计算机操作的序列，遵循算法的指示，计算机对任意合法输入执行一系列操作，并给出正确结果。  计算模型的基本概念 算法掌握的一种抽象原则，与编程语言和机器无关，假设在抽象机器上完成算法设计和分析。 在不同具体机器上实例化算法时，虽然底层提供的基本操作不同，但是总是常数倍的关系，本质相同。">
+  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【知识总结】 抽象算法设计与分析">
-<meta property="og:url" content="https://wooziehang.github.io/2021/01/31/algorithms1/index.html">
+<meta property="og:title" content="【习题解答】 蛮力算法设计">
+<meta property="og:url" content="https://wooziehang.github.io/2021/03/29/algorithms3-hw/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="RAM模型的引入计算的基本概念 计算的关键特征：基于有限种类操作的灵活组合完成复杂的计算任务 算法的宏观定义：一组计算机操作的序列，遵循算法的指示，计算机对任意合法输入执行一系列操作，并给出正确结果。  计算模型的基本概念 算法掌握的一种抽象原则，与编程语言和机器无关，假设在抽象机器上完成算法设计和分析。 在不同具体机器上实例化算法时，虽然底层提供的基本操作不同，但是总是常数倍的关系，本质相同。">
+<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-31T14:43:26.000Z">
-<meta property="article:modified_time" content="2021-03-19T12:27:34.461Z">
+<meta property="article:published_time" content="2021-03-29T14:59:05.000Z">
+<meta property="article:modified_time" content="2021-03-29T16:39:48.202Z">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/01/31/algorithms1/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/03/29/algorithms3-hw/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>【知识总结】 抽象算法设计与分析 | 吴紫航</title>
+  <title>【习题解答】 蛮力算法设计 | 吴紫航</title>
   
 
 
@@ -158,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/01/31/algorithms1/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/29/algorithms3-hw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -171,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【知识总结】 抽象算法设计与分析
+          【习题解答】 蛮力算法设计
         </h1>
 
         <div class="post-meta">
@@ -181,14 +181,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-31 22:43:26" itemprop="dateCreated datePublished" datetime="2021-01-31T22:43:26+08:00">2021-01-31</time>
+              <time title="创建时间：2021-03-29 22:59:05" itemprop="dateCreated datePublished" datetime="2021-03-29T22:59:05+08:00">2021-03-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-19 20:27:34" itemprop="dateModified" datetime="2021-03-19T20:27:34+08:00">2021-03-19</time>
+                <time title="修改时间：2021-03-30 00:39:48" itemprop="dateModified" datetime="2021-03-30T00:39:48+08:00">2021-03-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -201,7 +201,7 @@
             </span>
 
           
-            <span id="/2021/01/31/algorithms1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 抽象算法设计与分析" title="阅读次数">
+            <span id="/2021/03/29/algorithms3-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 蛮力算法设计" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -216,8 +216,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/01/31/algorithms1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/31/algorithms1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/29/algorithms3-hw/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/29/algorithms3-hw/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -232,53 +232,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="RAM模型的引入"><a href="#RAM模型的引入" class="headerlink" title="RAM模型的引入"></a>RAM模型的引入</h2><h3 id="计算的基本概念"><a href="#计算的基本概念" class="headerlink" title="计算的基本概念"></a>计算的基本概念</h3><ul>
-<li>计算的关键特征：基于有限种类操作的灵活组合完成复杂的计算任务</li>
-<li>算法的宏观定义：一组计算机操作的序列，遵循算法的指示，计算机对任意合法输入执行一系列操作，并给出正确结果。</li>
-</ul>
-<h3 id="计算模型的基本概念"><a href="#计算模型的基本概念" class="headerlink" title="计算模型的基本概念"></a>计算模型的基本概念</h3><ul>
-<li>算法掌握的一种抽象原则，与编程语言和机器无关，假设在抽象机器上完成算法设计和分析。</li>
-<li>在不同具体机器上实例化算法时，虽然底层提供的基本操作不同，但是总是常数倍的关系，本质相同。</li>
-<li>上述的抽象机器就是计算模型，是抽象算法设计与分析的基础。图灵机是描述能力很强的计算模型，对于算法设计分析的基础知识来说，RAM模型更简单易用。</li>
-</ul>
-<h3 id="RAM模型-Random-Access-Machine"><a href="#RAM模型-Random-Access-Machine" class="headerlink" title="RAM模型(Random Access Machine)"></a>RAM模型(Random Access Machine)</h3><ul>
-<li>组成：输入纸带、输出纸带、存储寄存器、程序指令、位置计数器。</li>
-<li>指令的分类：简单操作、复杂操作、存储访问</li>
-<li>单位代价RAM和对数代价RAM：前者不管操作数多大都认为单位时间完成，后者认为操作代价和比特数成正比。未说明的情况都是单位代价RAM，特定问题（如背包问题）会显示指出对数代价RAM。</li>
-</ul>
-<h3 id="计算模型的选择：易用性与精确性"><a href="#计算模型的选择：易用性与精确性" class="headerlink" title="计算模型的选择：易用性与精确性"></a>计算模型的选择：易用性与精确性</h3><ul>
-<li>RAM模型：具有易用性，不会给出原则错误，但细节不精确。</li>
-<li>外部存储模型：对不同存储介质的不同访问代价精细建模，不像RAM模型认为存储空间是无穷的。</li>
-<li>PRAM（Parallel Random Access Machine）模型：刻画并行计算</li>
-</ul>
-<p>有了RAM模型，我们清楚了需要完成的计算任务（<strong>算法问题</strong>），论证需要何种顺序执行哪些操作才能完成指定任务（<strong>算法设计</strong>），还可以统计完成任务需要的开销（<strong>算法分析</strong>）。</p>
-<h2 id="抽象算法设计"><a href="#抽象算法设计" class="headerlink" title="抽象算法设计"></a>抽象算法设计</h2><h3 id="算法问题规约"><a href="#算法问题规约" class="headerlink" title="算法问题规约"></a>算法问题规约</h3><ul>
-<li>输入：明确算法的所有合法输入</li>
-<li>输出：明确规定对于每个合法输入，相应的输出是什么</li>
-</ul>
-<h3 id="算法正确性证明：数学归纳法"><a href="#算法正确性证明：数学归纳法" class="headerlink" title="算法正确性证明：数学归纳法"></a>算法正确性证明：数学归纳法</h3><p>要证明算法正确性，就是证明对于每个合法输入，算法的输出都满足规约的要求。其中的难点往往是合法的输入是无穷的，无法测试穷举来证明正确性（测试只能证明算法是错的）。证明的手段是数学归纳法。</p>
-<p><strong>定义 (弱数学归纳法)</strong> 假设P是一个定义在正整数集合N上的命题。如果：</p>
-<ul>
-<li>$P(1)$为TRUE。</li>
-<li>$\forall k \in N$, $P(k) \to P(k+1)$。<br>则对所有自然数$n$,$P(n)$为TRUE。</li>
-</ul>
-<p><strong>定义 (强数学归纳法)</strong> 假设P是一个定义在正整数集合N上的命题。如果：</p>
-<ul>
-<li>$P(1)$为TRUE。</li>
-<li>$\forall k \in N$, $P(1)\wedge P(2)\wedge…\wedge P(k) \to P(k+1)$。<br>则对所有自然数$n$, $P(n)$为TRUE。</li>
-</ul>
-<p><strong>定义(良序原理)</strong> 任意非空正整数集合必然有最小元素。</p>
-<p>数学归纳法和良序原理本质是等价的。在各自的场景下更加便捷。</p>
-<h2 id="抽象算法分析"><a href="#抽象算法分析" class="headerlink" title="抽象算法分析"></a>抽象算法分析</h2><p>正确设计算法后，下一步就是分析算法的性能。</p>
-<h3 id="抽象算法的性能指标"><a href="#抽象算法的性能指标" class="headerlink" title="抽象算法的性能指标"></a>抽象算法的性能指标</h3><ul>
-<li>时间复杂度：在RAM模型上执行简单操作的个数, 可以精炼为关键操作的个数</li>
-<li>空间复杂度：在RAM模型中需要的寄存器的个数</li>
-</ul>
-<h3 id="最坏情况时间复杂度分析"><a href="#最坏情况时间复杂度分析" class="headerlink" title="最坏情况时间复杂度分析"></a>最坏情况时间复杂度分析</h3><p>对于不同的输入，时间代价不同。给定输入规模，最坏的输入对应最高的时间代价。假设规模为n, 则最坏情况时间复杂度定义为$W(n)=\max\limits_{I \in D_n}f(I)$。最坏情况空间复杂度的定义类似。</p>
-<h3 id="平均情况时间复杂度分析"><a href="#平均情况时间复杂度分析" class="headerlink" title="平均情况时间复杂度分析"></a>平均情况时间复杂度分析</h3><p>假设输入服从一个分布，时间复杂度看作一个随机变量，它的期望值就是平均情况时间复杂度。定义为：$A(n)=\sum\limits_{I \in D_n}Pr(I)\cdot f(I)$</p>
-<h3 id="期望情况时间复杂度分析"><a href="#期望情况时间复杂度分析" class="headerlink" title="期望情况时间复杂度分析"></a>期望情况时间复杂度分析</h3><p>最坏输入情况下的期望时间复杂度，主要针对随机算法的随机数求期望。</p>
-<h3 id="平摊时间复杂度分析"><a href="#平摊时间复杂度分析" class="headerlink" title="平摊时间复杂度分析"></a>平摊时间复杂度分析</h3><p>详见第18章的笔记，大概理解就是<strong>用平摊分析法计算出的平均情况时间复杂度。</strong></p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
+  <script id="hbeData" type="hbeData" data-hmacdigest="07cafdd1c60f8c26dc8df83689d934727fcf970567ff1941f4a82b61e81bb5e1">757ff964fcfd9532ba69fc6fadfc1252ecfa91f5d7837b28cb81f3786fadb42a3e123510686071591261c8eafaf93d725b46790797babcf55d73151d48891177a07cbbeb13271e945a6498790ccaa48b85260017d4b5ea240a6aada014eb4b57beb1c821c0877358c20281eef3efaf54517b9611bc74a8a85fad2d7f43a9caebab6cfae43e006ae7a7efa57d1b9504a0c431e41c399d05b6b3ff8b0e8d7a8837f92d9efe345362cb71982de50e944110cf59026b4a7489cad526122d38a72ffe829b8fe96f5a4d54fe355b9985b7ea7a25067df2636ba1700fec2b1b1d15acd491eebc81576347e2840faf5a8ff3cbf97fffe4b0ae8b6c1555bb659cf4e7fa765bec1f07580195f93d99235799b5d281b41c339167e730ed9a389ca58866484bd49ea3e722477549d39795ece0a94b7552668fe7b14742ec4928404e9f2edcc6894a00278e09ab51375151b8aadfa36e5d197b1054dbdb6a42ac6613b3a9612222883734e835de75498e5b32dfd6d6b40e4deb8323baaea52cbb6b9f96027fdb6b81a296ea63865c7c4b60924f6541f3d5d9c0ad36f4dcb02f12bb182b25b608d2b1c160d6214ee623c34266b4096903ec66b5185944ec075f0b8cce651c4b952742bcbd7c4a6611eb981134dc05273de193c1691e4ee7eb00b80246568cd56281dfd49fba0cbbcc526cc14e5d8b7719738aa1932f0ab1344b95115210cbe5b4fc350a25ae41e5a824f76a17997b6e6614d0a6e7e0d2e2e03a125f356536aea3590e324890223dad10c18508969c02fe7d31f0f4c2f245b6ea9f490c0c4433df4bf57e85afe732af5e9b8fd6f4ecc232e68943bdbac56e60a0f028d8b5a9fe3a2cc94100e47aee3bcf27d15983f4103b3d6f77f3c853d3fbdd09bf20c60043f5edd6a91d7233b01d50ef2195dadfd8f27fab7b47afe0c992829705d954184c4bcf85227a1ac07bd4fc9fb47ac675c0b948150df7a4c8874ae30af26a1f9a500473a7943da80c7c226dae284d4c757aebeab58730bc326e0f9d3fdb6670de0f06b0e6379995f7b53825cf79ca3d0d4d13d1fe69c04dc41379fed81d61402ab86436a3caafd6c1f21e841b76313e757e88fa14009d07768efe04710c5dbb4f54ae1cf5edd2d186fe099c7300cb5335f35649b1f30385ad835a9f8e54316a0b7c888aa711214142661591da6f2b3b80ef5d30e513be9eee2072f3318d8273364669a8ebeb9c1aff1a988bbb7d36fe4f7293891116f539dc06478880b71e02cc4f99df6ff04265fcebffdc8654ee49f913a29b6724c5b29b89bdfdbfbea337ca088fd3f87f537dc6dee4f2080eab1af7cdcab69f75c9955772f834500fa03d76ba83f9444e548de1e0cd81a4724bfddc886b063bbe0e098a2eb00b17ca5c566aa59ff615ef247e2c363fafdea51070f434661b315d746ba5993f115571f6d6a514566565d33ba9ea4709f088049ac61993f562ad6060a905d122943c58d511042c318010d0bc35a5cd1e143a1b45201462456ec158fcd7c540e8261f4688de607fd221fdec3e106cf0c501f68f1efeb53a0ca4dce07da9e0bef190e21f2ab960a733f0917210ac7d338468290079499a210c5fba83a2c0c8488757966d87edec30503fc9eabfde2a4f5db839ba294730425d866ab937ab1b09dacc60f5555a0f1abec3e988e0988f469aba5618f6de61e0bbd36b9d92da08ee0513ac43643033d7d9ff99720bc6fea36ab057250f5d1fb1622469b4753ce59fbfabeab2348abca82b6d226fa7fa9f78e15d90123142d7ad44236dfa65998c608fc83e25f0bc6986dcf86273db11ff409e4ea8e16df6bf1d11194d2a6880c95c26f1611657f78fd9ba6ad80e974399695d50495c11d7177f45ccbe9756ed78b3028499c7d293137232eb43340be818657307e3accfae1b588b7148a6b4eff05469d0937b3417d7aa2a36faaf121a1ca85468cc8012b0aa203d2614032d3286448e3fdd47cf02798490c786aa992f8df96eb6fa1656254b5e8b9d3a178c6ce3a62df8db0df64f5681493a826c38d362d08a0f7e3389618e76613801c0a712300b6c6170c585ad34e04b67f29f049fd52deb581eb877e3edfeb693d3b3c68256c90b41371deb2bc7f6d8f3d6edc75de5d652595fcd89b554b96dbbfd1df780e552034e8aef06bb004481f465a24d19ae3ed104f6f3ec991d2f47e784d95237392088a805b44b5115f7a00435aa65963f12edfa60a6a389f613e9be3800b9b14d97827657a19540ed625e97b65139924763ff0436e3265828c009da87af772d4204fac8b979fe2976b373272b69423de64c9b6dcca7547c9d2116900ac1cf3a43d819b3d92b8b6974267d2b70ff74493e814bb880a335e7781ec8096b70c5e55791ba0d369d5773a3f577f8f38164cb771f39d767b82b648fa6517cf3efa21e1c952707298a8413095dff1d3013e666b75e03843725d635caca1df9af5a6b078c55ac1c7b11d2fc9b4a0f38a04e5b929c8924ffd79cde22a98f9b89ffe1738a4a3fda7be222568e081cfd43115502ff6f94001340d66cdc0729ae861dee699f33623008c8dbc051669a90f9047af7531918d13ce1f722fc7de749b1e7be6601d0c6bba3997714eebc0f06d97dbfcda24c48a1ef2f0a5801a7eb6f19d087232e27b90de96505bb491200376526a928624f8caa8f574204b88ae98443d07742c129ba64bddd2cf55957ab8f2bbad8a47299699a8eece35af178e6cf6cad3edbca65a5580767b534ef93c1e0f33b61e94f48b569d9fb06c37f72d7f3ff5e875bcdc10e0daac530b701abe3025ee4d7b495ec81fc2e9204dd4aa870467bb1208905763c5a0472edac6cf20f62b874b965c5df414aae35a9641eef36902c6c3de655be7c71524971b0fdf2e8060efda1aafee1a94566266b15722037ab3bfdcd037bafab2b8faceb84ceec5f037c0358d17c3d7a772e4e7bd695b15b990f243e948da9200f76e755ea4ce3bad18ad1a923da6aa15ae875c451e0530c509d54bff374cf50b8792e490adb6ae09f47504c84a5836b97505a2cd4d0118a3072024cb90fa8fa91d3159a1efc93d98fb4c853023cbc682cc15669a503bd3c22ade841f45416e0deb76b2de261b535b8d54dad4fdba3876a5955fe998e6a10dc658adbf6a6ca1ea6f382b2eddf01cdc4e8ef04263314a627e672fe7efddffa3597dcd6071a40e51731adaf1f69d8ba14e1a9b259270093ead44d18eb89b161eb2de2ab726b0393df58bb17ccd34b7d7b9e63b764c066f83ffc8d29bc857fb3c3a58d15ec57cb82641fda0fadcd6e5ffc77c073fb15e49c094d6b17ce2856f8fdef5cd3b331b589b6008db6de15feeefd5a7731b394c39039c74bd204c038beb95f3790d96e49bfd87c14fde47f0bd4776a98feac1a309ab73bc801c4b06ab78acce1a76e5789898d48888d0975bf7cbc6164141d4eb955d41654426152937ffc4e1ab6d0e4016e5ed7dd8f6c5da056bfced8480f20f11d1bb902277be964d5b35e786fef9a4d751258292057f4e36e5f5eea0bad0192357df39d07415734522921aed7fdf5ea3a9764ccd55341ce16ee2a07b7517a112b54b935603fb45b5c72f39ea338af7a1816223bdec863767461b87a3823e40343f95ad4a4706a9a4ca8851fed54c4925c41866bf57ebed61e85c1872ca527d3c82bff1c8f857c4004bbb879b43e07ef99d83d21ee231973b43ce8dcc2af713c831ac1fe5d919b484b3e63165c37599c35c4481e91b127ab3f40b05a2324a72f46366e848227f772112d4475cf9d9831f827d30b6b57a5fe4b054eba24c3f6e7fc3e4aa02df354586192bac37e83ff8420103554032deacad04e3167129fcaab68915986ceeee42e449a51e237e9d1d980a33455c1890ca9f10d3e17eac43adb13033c3f757334b01f78e04e362b08917792cd5d74c58896281febdbc9c2f391ec2383421a9b280425e1ba688d4a740467e77acf4fa4255f74ea06346ee387431926e0873e8957125c9776de6f20842d9b9ef704ee7b10c910904c25541d9851c7dec7be500df7a8b057b751fe30a380be86e476012737ae955e0ffb9f9c68e55458f84bb2ed15d8f6fc2ef22431595fcfc878583cef175ebd264ffd2abae0d314304f1b839e30b29e10387afaa6505233dfad1f56a575c60f97b82e11a3edaae405f56b6f11471f767c38f1507e3920233359ed979fdc229bccd499cd0a6c11e63d0c48c2eed8b24ab92e3c09d2d5c9538716020e3821ba78821bc60d44d27b5f802d99664da50d6aed0460fe29dce4decbe17658da43c4808bddb7aef4b0914b3c4d31a85a073f48b5360d15fb4b931c0b2598874aefdc80e5bcbb43f971a1625ee1d7fe60ff48c7768ccaedda5fe357da3846f1dbf9600dd8b432afce644de47d72dbf9f14f9544c9ebd856dd6f079465544f1f560c910750b11e9b57b9f881c4533b0d983c8e734bb1df9d01a1efa2790164539ddcc379fc134df29a143250194b921a13441370ea53757572bcf64efbe554ffc36b9bdaf2af6aa7851fad61787432511b326eaba2a81f75497d3c418d49cb9279f881a87bf8a1bf601dcf59bbeea3cd30175841c51ca554004dc6a7b595ff22c07db9305b18d9aff63f4cf17a656834edbae6e9616dbfed438eef5d8b51b3327a2b6bb467660ffadd0b144b3249722b09a0872bed9f7e8f8e888eb4772b8b6997b9442289c123bf32cb44459ca23ba3e11c2987afb2520058af4060bc78623ca13363106810252921c4eb03f0188fb158c588cd9a79e725d8a37159a7a4259f021cb821a2547ff04b03d059485645e48ef8119f72b0f318b5784641d00fc8aa548a5d2aa4f88760ce2cd9d04e4daa39a0f45b7d0d34acc69cf3fb4e65b66cf5c1e1e13cab3100269fd8c1d1ede2eaa059deed5cb866174c3ecb0d3007055316d7b1e7bd8a9538776ae6e04e3f796597e23a502d4b9ffbfebd9672741bfa85ce50bbf31ca4b9dd7fa5799bc3fec1200a5fc55bf7e56a57271df5bfbecb552900d7cbee16526cf983fcc4cebdf05fec5515d5aa2809ff96d55dff3b06a1a8e8d8a2d8a95d7a520fee188dd6239ad073f6fcd22960a6044e7d6cbedfc8e76dc346b528827f5dedf0ac76ab6bfcd827d3ea57660a52d731539d71ac58f3c584046919a1da4da0016104fe4d58a1ec0510107f6ce4f5fbd9eb1a5ce83256ce111ed2717cb5f3e4d7338225a887d60930b9b974f2334f69ec0d48f8a4202fba970a1d2149320b5804bebac5dc13f7ccd91dcb075ba99495f970d84c954edc3be831f63875fbd958f3441540ada66861461e3fe67fae2237f2dbe023d6aa0a822bdc4166808c4513</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -308,13 +277,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/21/first%20blogs/" rel="prev" title="【工作日志】 第一篇博客">
-      <i class="fa fa-chevron-left"></i> 【工作日志】 第一篇博客
+    <a href="/2021/03/25/graphIntroduction-4/" rel="prev" title="【知识总结】 匹配的概念">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 匹配的概念
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/02/04/Detecting-OoD-Using-Early-layers/" rel="next" title="【阅读笔记】 Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output">
-      【阅读笔记】 Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -374,7 +340,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RAM%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">RAM模型的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">计算的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">计算模型的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAM%E6%A8%A1%E5%9E%8B-Random-Access-Machine"><span class="nav-number">1.3.</span> <span class="nav-text">RAM模型(Random Access Machine)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A%E6%98%93%E7%94%A8%E6%80%A7%E4%B8%8E%E7%B2%BE%E7%A1%AE%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">计算模型的选择：易用性与精确性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">抽象算法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98%E8%A7%84%E7%BA%A6"><span class="nav-number">2.1.</span> <span class="nav-text">算法问题规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A3%E7%A1%AE%E6%80%A7%E8%AF%81%E6%98%8E%EF%BC%9A%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">算法正确性证明：数学归纳法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">抽象算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">3.1.</span> <span class="nav-text">抽象算法的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">最坏情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">平均情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E6%83%85%E5%86%B5%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.4.</span> <span class="nav-text">期望情况时间复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.5.</span> <span class="nav-text">平摊时间复杂度分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
