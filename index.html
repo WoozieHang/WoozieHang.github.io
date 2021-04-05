@@ -17,15 +17,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+  <meta name="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
 <meta property="og:type" content="website">
 <meta property="og:title" content="吴紫航">
 <meta property="og:url" content="https://wooziehang.github.io/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+<meta property="og:description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Woozie Hang">
 <meta name="twitter:card" content="summary">
@@ -97,11 +97,12 @@
       <h1 class="site-title">吴紫航</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">an undergraduate of cs in NJU</p>
+      <p class="site-subtitle" itemprop="description">责任、智慧、真诚、专注、果敢</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -116,6 +117,16 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -126,11 +137,43 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -160,7 +203,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -178,10 +221,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-04 17:19:16 / 修改时间：17:30:26" itemprop="dateCreated datePublished" datetime="2021-04-04T17:19:16+08:00">2021-04-04</time>
+              <time title="创建时间：2021-04-04 17:19:16" itemprop="dateCreated datePublished" datetime="2021-04-04T17:19:16+08:00">2021-04-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-05 13:35:34" itemprop="dateModified" datetime="2021-04-05T13:35:34+08:00">2021-04-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -224,8 +273,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。</p>
-
+          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。因此，检测一个样本是不是OoD对于能拒绝或警示这种样本的系统是重要的。包含 一些小数据集的OoD benchmarks下的工作在近期已经取得了巨大的进展。然而，这些方法很多都需要神经网络训练、调参的时候同时有in-distribution和out-of-distribution的数据。后者是难以先验定义的，不同的OoD数据会产生不同的学习效果。本文的工作基于一个流行的方法：ODIN。这个方法提出两个重要的策略，不需要OoD的数据，同时改进了OoD的检测性能。本文具体的提出了<strong>分解置信度</strong>的方法以及<strong>改进input preprocessing</strong>的方法。本文展示了这两者都得能显著提高检测OoD的性能。并且，作者在更大规模的图像数据集上进行了分析，表明数据的分布迁移有两种：语义迁移和非语义迁移。这两者会让问题的难度变得非常不同，这提供了一个关于ODIN-like的策略何时能有效的分析。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>
       
     </div>
 
@@ -249,7 +298,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -275,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-03 17:01:24" itemprop="dateModified" datetime="2021-04-03T17:01:24+08:00">2021-04-03</time>
+                <time title="修改时间：2021-04-05 13:42:00" itemprop="dateModified" datetime="2021-04-05T13:42:00+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -362,7 +411,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -388,7 +437,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-30 16:46:32" itemprop="dateModified" datetime="2021-03-30T16:46:32+08:00">2021-03-30</time>
+                <time title="修改时间：2021-04-05 13:47:49" itemprop="dateModified" datetime="2021-04-05T13:47:49+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -464,7 +513,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -490,7 +539,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-29 16:00:28" itemprop="dateModified" datetime="2021-03-29T16:00:28+08:00">2021-03-29</time>
+                <time title="修改时间：2021-04-05 13:42:38" itemprop="dateModified" datetime="2021-04-05T13:42:38+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -576,7 +625,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -602,7 +651,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-29 23:42:46" itemprop="dateModified" datetime="2021-03-29T23:42:46+08:00">2021-03-29</time>
+                <time title="修改时间：2021-04-05 13:47:48" itemprop="dateModified" datetime="2021-04-05T13:47:48+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -678,7 +727,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -696,10 +745,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-19 20:15:57 / 修改时间：20:27:34" itemprop="dateCreated datePublished" datetime="2021-03-19T20:15:57+08:00">2021-03-19</time>
+              <time title="创建时间：2021-03-19 20:15:57" itemprop="dateCreated datePublished" datetime="2021-03-19T20:15:57+08:00">2021-03-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-05 13:47:35" itemprop="dateModified" datetime="2021-04-05T13:47:35+08:00">2021-04-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -766,7 +821,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -792,7 +847,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-31 14:44:54" itemprop="dateModified" datetime="2021-03-31T14:44:54+08:00">2021-03-31</time>
+                <time title="修改时间：2021-04-05 13:53:32" itemprop="dateModified" datetime="2021-04-05T13:53:32+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -868,7 +923,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -894,7 +949,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-21 18:27:18" itemprop="dateModified" datetime="2021-03-21T18:27:18+08:00">2021-03-21</time>
+                <time title="修改时间：2021-04-05 13:46:25" itemprop="dateModified" datetime="2021-04-05T13:46:25+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -979,7 +1034,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1005,7 +1060,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-13 21:12:44" itemprop="dateModified" datetime="2021-03-13T21:12:44+08:00">2021-03-13</time>
+                <time title="修改时间：2021-04-05 13:46:13" itemprop="dateModified" datetime="2021-04-05T13:46:13+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1082,7 +1137,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
       <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly share personal knowledge summary, reading notes, work logs, etc">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1100,10 +1155,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-09 18:19:40 / 修改时间：21:04:46" itemprop="dateCreated datePublished" datetime="2021-03-09T18:19:40+08:00">2021-03-09</time>
+              <time title="创建时间：2021-03-09 18:19:40" itemprop="dateCreated datePublished" datetime="2021-03-09T18:19:40+08:00">2021-03-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-05 13:48:27" itemprop="dateModified" datetime="2021-04-05T13:48:27+08:00">2021-04-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1234,7 +1295,7 @@
     <img class="site-author-image" itemprop="image" alt="Woozie Hang"
       src="/images/avatar.png#/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Woozie Hang</p>
-  <div class="site-description" itemprop="description">This blog mainly share personal knowledge summary, reading notes, work logs, etc</div>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -1250,6 +1311,12 @@
           
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -1378,6 +1445,10 @@ window.addEventListener('pjax:success', () => {
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
