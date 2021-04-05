@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data</title>
-    <url>/2021/04/04/Generalized-ODIN/</url>
-    <content><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。因此，检测一个样本是不是OoD对于能拒绝或警示这种样本的系统是重要的。包含 一些小数据集的OoD benchmarks下的工作在近期已经取得了巨大的进展。然而，这些方法很多都需要神经网络训练、调参的时候同时有in-distribution和out-of-distribution的数据。后者是难以先验定义的，不同的OoD数据会产生不同的学习效果。本文的工作基于一个流行的方法：ODIN。这个方法提出两个重要的策略，不需要OoD的数据，同时改进了OoD的检测性能。本文具体的提出了<strong>分解置信度</strong>的方法以及<strong>改进input preprocessing</strong>的方法。本文展示了这两者都得能显著提高检测OoD的性能。并且，作者在更大规模的图像数据集上进行了分析，表明数据的分布迁移有两种：语义迁移和非语义迁移。这两者会让问题的难度变得非常不同，这提供了一个关于ODIN-like的策略何时能有效的分析。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>]]></content>
-      <categories>
-        <category>OoD Detection</category>
-      </categories>
-      <tags>
-        <tag>Reading Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【阅读笔记】 Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output</title>
     <url>/2021/02/04/Detecting-OoD-Using-Early-layers/</url>
     <content><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。</p>
@@ -103,6 +91,18 @@
 <p>3.对于作者的方法，不使用输入预处理和其他使用输入预处理的方法比较，结果如下图：<br><img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared3.jpg" class title="this is performance_compared"><br>可以看到除了TinyImageNet for CIFAR-100,本文的方法性能都胜出。作者的方法有明显更优秀的AUROC，但detection error 和FPR at 95% TPR仅仅比ODIN的方法略好一点。有趣的是，MD的方法有时候比max-softmax更差。</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>检测DNN中的OoD inputs在安全相关的领域非常重要，比如自动驾驶和医疗领域。大部分OoD检测的方法都是基于DNN的倒数第二层提取的特征，这样的层用来区别ID的分类比较适合。与这些方法相反，本文提出的依赖于一个关键的思想，那就是寻找最适合的中间较低层作为OODL，来提供了一个容易分离ID和OoD的隐藏空间。结果指导我们训练一个单分类器检测OoD输入，不需要OoD的样本参与训练。当然，如果允许使用OoD的样本，本文的方法可以补充拓展为使用input preprocessing的改进版本。作者用几个低维和高维的数据集在不同的深度网络模型上评估了本文的方法。结果表明对于baseline和state-of-the-art的一些方法，在很多指标上都有明显进步。作者提出，他们未来的工作主要是使用一个专用的损失函数去改进OODL层提取的特征，以便更好地进行OoD检测和ID的类别的划分。</p>
 ]]></content>
+      <categories>
+        <category>OoD Detection</category>
+      </categories>
+      <tags>
+        <tag>Reading Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data</title>
+    <url>/2021/04/04/Generalized-ODIN/</url>
+    <content><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。因此，检测一个样本是不是OoD对于能拒绝或警示这种样本的系统是重要的。包含 一些小数据集的OoD benchmarks下的工作在近期已经取得了巨大的进展。然而，这些方法很多都需要神经网络训练、调参的时候同时有in-distribution和out-of-distribution的数据。后者是难以先验定义的，不同的OoD数据会产生不同的学习效果。本文的工作基于一个流行的方法：ODIN。这个方法提出两个重要的策略，不需要OoD的数据，同时改进了OoD的检测性能。本文具体的提出了<strong>分解置信度</strong>的方法以及<strong>改进input preprocessing</strong>的方法。本文展示了这两者都得能显著提高检测OoD的性能。并且，作者在更大规模的图像数据集上进行了分析，表明数据的分布迁移有两种：语义迁移和非语义迁移。这两者会让问题的难度变得非常不同，这提供了一个关于ODIN-like的策略何时能有效的分析。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>]]></content>
       <categories>
         <category>OoD Detection</category>
       </categories>
@@ -231,21 +231,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【知识总结】 Counting</title>
-    <url>/2021/03/09/combinatorics-1/</url>
-    <content><![CDATA[<h2 id="Double-Counting-Principle"><a href="#Double-Counting-Principle" class="headerlink" title="Double Counting Principle"></a>Double Counting Principle</h2><h3 id="数学含义"><a href="#数学含义" class="headerlink" title="数学含义"></a>数学含义</h3><p>$\sum_{i=1}^m\sum_{j=1}^n A[i][j]=\sum_{j=1}^n\sum_{i=1}^m A[i][j]$</p>
-<h3 id="lemma定理："><a href="#lemma定理：" class="headerlink" title="lemma定理："></a>lemma定理：</h3><p>$\sum\limits_{v\in V}deg(v)=2|E|$</p>
-<p><strong>lemma定理的证明</strong>:定义一个矩阵，行是顶点，列是边，当一个顶点是边的端点，则矩阵对应位置为1。使用double counting principle即可证得lemma定理。</p>
-<p><strong>lemma定理的推论</strong>：奇度顶点有偶数个</p>
-]]></content>
-      <categories>
-        <category>组合数学</category>
-      </categories>
-      <tags>
-        <tag>Knowledge Summary</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【习题解答】 蛮力算法设计</title>
     <url>/2021/03/29/algorithms3-hw/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
@@ -284,6 +269,21 @@
       </categories>
       <tags>
         <tag>Working Logs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【知识总结】 Counting</title>
+    <url>/2021/03/09/combinatorics-1/</url>
+    <content><![CDATA[<h2 id="Double-Counting-Principle"><a href="#Double-Counting-Principle" class="headerlink" title="Double Counting Principle"></a>Double Counting Principle</h2><h3 id="数学含义"><a href="#数学含义" class="headerlink" title="数学含义"></a>数学含义</h3><p>$\sum_{i=1}^m\sum_{j=1}^n A[i][j]=\sum_{j=1}^n\sum_{i=1}^m A[i][j]$</p>
+<h3 id="lemma定理："><a href="#lemma定理：" class="headerlink" title="lemma定理："></a>lemma定理：</h3><p>$\sum\limits_{v\in V}deg(v)=2|E|$</p>
+<p><strong>lemma定理的证明</strong>:定义一个矩阵，行是顶点，列是边，当一个顶点是边的端点，则矩阵对应位置为1。使用double counting principle即可证得lemma定理。</p>
+<p><strong>lemma定理的推论</strong>：奇度顶点有偶数个</p>
+]]></content>
+      <categories>
+        <category>组合数学</category>
+      </categories>
+      <tags>
+        <tag>Knowledge Summary</tag>
       </tags>
   </entry>
   <entry>
@@ -339,6 +339,49 @@
 <p>G和H的和：仅当$V(G) \cap V(H)$交集为空时，$G+H=\langle V(G)\cup V(H),E(G)\cup E(H)\rangle$</p>
 <p>G和H的联：$V(G)\vee V(H)$是在和的基础上连接$V(G)$和$V(H)$中的一些点对，即添加一些边</p>
 <p>G和H的对称差：当$V(G)=V(H)=V$，$G\oplus H=\langle V,(E(G)\cup E(H))\setminus(E(G)\cap E(H))\rangle$</p>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>Knowledge Summary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【知识总结】 匹配的概念</title>
+    <url>/2021/03/25/graphIntroduction-4/</url>
+    <content><![CDATA[<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><ul>
+<li>匹配：M是G的匹配：G中两两不相邻边构成的集合</li>
+<li>被饱和的顶点：M中边的端点被M饱和</li>
+</ul>
+<h2 id="完美匹配"><a href="#完美匹配" class="headerlink" title="完美匹配"></a>完美匹配</h2><ul>
+<li>所有顶点都被饱和的匹配</li>
+<li>阶是偶数</li>
+<li>包含阶数的一半的边数</li>
+<li>$K_{2n}$ 包含 $2n-1$ 个不重的完美匹配</li>
+</ul>
+<h2 id="最大匹配"><a href="#最大匹配" class="headerlink" title="最大匹配"></a>最大匹配</h2><ul>
+<li>极大匹配：势极大的匹配，不是任何匹配的真子集</li>
+<li>最大匹配：势最大的匹配</li>
+</ul>
+<h2 id="匹配的增光路"><a href="#匹配的增光路" class="headerlink" title="匹配的增光路"></a>匹配的增光路</h2><ul>
+<li>M交错路：边交替属于$M$和$E(G)\setminus M$的路</li>
+<li>M增广路：起点和终点未被$M$饱和的$M$交错路</li>
+</ul>
+<h2 id="最大匹配的充要条件"><a href="#最大匹配的充要条件" class="headerlink" title="最大匹配的充要条件"></a>最大匹配的充要条件</h2><p>图$G$的一个匹配$M$是最大匹配 $\Leftrightarrow$ $G$中不存在$M$的增广路</p>
+<h2 id="奇分支"><a href="#奇分支" class="headerlink" title="奇分支"></a>奇分支</h2><ul>
+<li>阶为奇数的连通分支</li>
+<li>图G的奇分支的数量记作$o(G)$</li>
+<li>向图中增加边不会增加奇分支的数量</li>
+</ul>
+<h2 id="完美匹配的充要条件"><a href="#完美匹配的充要条件" class="headerlink" title="完美匹配的充要条件"></a>完美匹配的充要条件</h2><p>图$G$有完美匹配 $\Leftrightarrow \forall S\subset V(G), o(G-S)\leq |S|$</p>
+<h2 id="因子"><a href="#因子" class="headerlink" title="因子"></a>因子</h2><ul>
+<li>$k$-因子：图$G$的$k$-正则生成子图</li>
+<li>$1$-因子：完美匹配</li>
+<li>可$k$-因子分解的：图G有一组$k$-因子的边集构成$E(G)$的一个划分</li>
+<li>$k_{2n}$ 是可$1$-因子分解的</li>
+<li>$\forall n&gt;0$, $k_{2n+1}$是可$2$-因子分解的</li>
+</ul>
 ]]></content>
       <categories>
         <category>图论</category>
@@ -444,49 +487,6 @@
 <h3 id="一个困惑"><a href="#一个困惑" class="headerlink" title="一个困惑"></a>一个困惑</h3><p>$v\geq k+1$的图G是k-连通图</p>
 <p>$\Leftrightarrow$ G中任二不相邻的顶点至少被k条两两内部无公共顶点的路所连</p>
 <p>是否成立呢？</p>
-]]></content>
-      <categories>
-        <category>图论</category>
-      </categories>
-      <tags>
-        <tag>Knowledge Summary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【知识总结】 匹配的概念</title>
-    <url>/2021/03/25/graphIntroduction-4/</url>
-    <content><![CDATA[<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><ul>
-<li>匹配：M是G的匹配：G中两两不相邻边构成的集合</li>
-<li>被饱和的顶点：M中边的端点被M饱和</li>
-</ul>
-<h2 id="完美匹配"><a href="#完美匹配" class="headerlink" title="完美匹配"></a>完美匹配</h2><ul>
-<li>所有顶点都被饱和的匹配</li>
-<li>阶是偶数</li>
-<li>包含阶数的一半的边数</li>
-<li>$K_{2n}$ 包含 $2n-1$ 个不重的完美匹配</li>
-</ul>
-<h2 id="最大匹配"><a href="#最大匹配" class="headerlink" title="最大匹配"></a>最大匹配</h2><ul>
-<li>极大匹配：势极大的匹配，不是任何匹配的真子集</li>
-<li>最大匹配：势最大的匹配</li>
-</ul>
-<h2 id="匹配的增光路"><a href="#匹配的增光路" class="headerlink" title="匹配的增光路"></a>匹配的增光路</h2><ul>
-<li>M交错路：边交替属于$M$和$E(G)\setminus M$的路</li>
-<li>M增广路：起点和终点未被$M$饱和的$M$交错路</li>
-</ul>
-<h2 id="最大匹配的充要条件"><a href="#最大匹配的充要条件" class="headerlink" title="最大匹配的充要条件"></a>最大匹配的充要条件</h2><p>图$G$的一个匹配$M$是最大匹配 $\Leftrightarrow$ $G$中不存在$M$的增广路</p>
-<h2 id="奇分支"><a href="#奇分支" class="headerlink" title="奇分支"></a>奇分支</h2><ul>
-<li>阶为奇数的连通分支</li>
-<li>图G的奇分支的数量记作$o(G)$</li>
-<li>向图中增加边不会增加奇分支的数量</li>
-</ul>
-<h2 id="完美匹配的充要条件"><a href="#完美匹配的充要条件" class="headerlink" title="完美匹配的充要条件"></a>完美匹配的充要条件</h2><p>图$G$有完美匹配 $\Leftrightarrow \forall S\subset V(G), o(G-S)\leq |S|$</p>
-<h2 id="因子"><a href="#因子" class="headerlink" title="因子"></a>因子</h2><ul>
-<li>$k$-因子：图$G$的$k$-正则生成子图</li>
-<li>$1$-因子：完美匹配</li>
-<li>可$k$-因子分解的：图G有一组$k$-因子的边集构成$E(G)$的一个划分</li>
-<li>$k_{2n}$ 是可$1$-因子分解的</li>
-<li>$\forall n&gt;0$, $k_{2n+1}$是可$2$-因子分解的</li>
-</ul>
 ]]></content>
       <categories>
         <category>图论</category>
