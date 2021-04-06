@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://wooziehang.github.io/2021/04/04/Generalized-ODIN/Figure1.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/04/04/Generalized-ODIN/Figure2.png">
 <meta property="article:published_time" content="2021-04-04T09:19:16.000Z">
-<meta property="article:modified_time" content="2021-04-05T17:06:00.299Z">
+<meta property="article:modified_time" content="2021-04-06T08:27:28.368Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Reading Notes">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-06 01:06:00" itemprop="dateModified" datetime="2021-04-06T01:06:00+08:00">2021-04-06</time>
+                <time title="修改时间：2021-04-06 16:27:28" itemprop="dateModified" datetime="2021-04-06T16:27:28+08:00">2021-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,8 +285,9 @@
 <p>ODIN，基于训练好的神经网络分类器，提供两个策略，temperature scaling和input preprocessing，使得用最大的输出概率检测OoD变的更有效。这个方法的性能已经深入的确认了，并且和很多其他的OoD检测方法都在相同的评估准则下进行了比较。ODIN的方法，比很多流行策略都要好，例如MC-Dropout，DeepEnsemble，PixelCNN++，OpenMax等等。</p>
 <p>尽管ODIN的方法非常高效，它仍需要OoD的数据集来调超参。这样做的问题是，用一个OoD数据集调好的最佳超参数，换一个OoD数据集可能就不再理想。事实上，其他的基于神经网络的方法，在同样的问题设置下，都有同样的要求，观点上都是通过精挑细选OoD数据集来规范后验学习概率，这样就使得OoD的数据置信度比In-Distribution的置信度要低。最近，还有文章使用生成式模型来建模OoD相对于In-Distribution的边界。</p>
 <p>尽管上面的工作展示了OoD数据参与学习是有效的，但其实OoD范围在高维空间是很宽泛的，比如说像素空间，因此很难被完美覆盖，潜在的导致了学习的选择偏差。一些以往的工作也尝试了不用OoD数据集参与学习，例如用单词嵌入作为额外的监督；或者使用度量学习的标准。然而这俩方法的报告性能都和ODIN差不多，表明不用OoD数据集参与训练是一个有挑战的设置。</p>
-<p>在本文的工作中，作者遵循着ODIN的设置，采用两个相应的策略，不需要OoD数据来解决问题。首先，作者提出一个新的概率的视角来分解网络预测的置信度。增加了一个明确采用封闭世界假设的变量来表示数据是不是in-distribution的，然后讨论它在分解后的概率的角色。收到概率观点的启发，我们使用除数结构作为分类器，这鼓励了神经网络的行为更像分解后的置信度效果。如下图(Figure1)所示，我们注意到这个除法结构和temperature scaling紧密联系，且scaling依赖于输入而不是调好的超参数；第二，作者构建了ODIN中输入预处理的方法，然后研究出一个有效的策略去调节到微扰级别这个超参数，并且只需要in-distribution的数据。</p>
+<p>在本文的工作中，作者遵循着ODIN的设置，采用两个相应的策略，不需要OoD数据来解决问题。首先，作者提出一个新的概率的视角来分解网络预测的置信度。增加了一个明确采用封闭世界假设的变量来表示数据是不是in-distribution的，然后讨论它在分解后的概率的角色。收到概率观点的启发，我们使用除数结构作为分类器，这鼓励了神经网络的行为更像分解后的置信度效果。如下图(Figure1)所示。</p>
 <img src="/2021/04/04/Generalized-ODIN/Figure1.png" class title="this is Figure1">
+<p>我们注意到这个除法结构和temperature scaling紧密联系，且scaling依赖于输入而不是调好的超参数；第二，作者构建了ODIN中输入预处理的方法，然后研究出一个有效的策略去调节到微扰级别这个超参数，并且只需要in-distribution的数据。</p>
 <p>接着，作者对基准图像数据集(如CIFAR10/100、TinyImageNet、LSUN、SVHN以及更大规模的数据集DomainNet)进行广泛的评估，以调查所提议的策略有用或没用。结果表明，这两种策略可以显著提高ODIN的性能，其性能接近甚至在某些情况下超过使用OoD数据调优的最先进方法。最后，我们在DomainNet上的系统评估揭示了两种分布迁移类型检测的相对难度:语义迁移和非语义迁移。这两者的区别是，迁移中是否包含新的类别。</p>
 <p>综上所述，本文的贡献有三个方面:</p>
 <ul>
@@ -299,7 +300,42 @@
 <img src="/2021/04/04/Generalized-ODIN/Figure2.png" class title="this is Figure2">
 <p>对于开方世界的模型，上述的差异引出了两个自然需要解决的问题：模型在遇到$\pmb{x} \sim p_{out}(x,\overline{y})$时，怎么能避免进行预测；当模型遇到$\pmb{x} \sim p_{out}(x,y)$时拒绝低置信度的预测。在本文中，作者提出了一个明确的二值域变量$d \in {d_{in},d_{out}}$来表达决定。前者表示$\pmb{x}\sim p_{in}$，后者表示$\pmb{x}\sim p_{out}$。注意到模型通常是无法区分这两种情况的，我们仍然可以说以上的问题都可以通过估计变量$d$来回答。</p>
 <p>最后的目标也就是发现一个评分函数$S(\pmb{x})$，其与后验概率$p(d|\pmb{x})$相关。较高的评分$S(\pmb{x})$表明一个较高的后验概率$p(d|\pmb{x})$。最后二值的决定可以用一个阈值来处理。选择的阈值受限于应用需求和性能度量计算。有了上面的标注，我们可以把baseline方法当作是一个特例$S_{Base}(\pmb{x})=\max_{y}p(y|\pmb{x})$，其中$p(y|\pmb{x})$从一个标准的从交叉熵训练的神经网络分类器中获取。然而，$S(\pmb{x})$可以是一个可学习的带参函数，不同的OoD方法可以按具体的参数和学习步骤来归类。方法间一个最关键的差异是，是否用OoD的数据参与$S(\pmb{x})$训练过程。</p>
-<h3 id="Related-Methods"><a href="#Related-Methods" class="headerlink" title="Related Methods"></a>Related Methods</h3><h4 id="ODIN"><a href="#ODIN" class="headerlink" title="ODIN"></a>ODIN</h4><h4 id="Mahalanobis"><a href="#Mahalanobis" class="headerlink" title="Mahalanobis"></a>Mahalanobis</h4><h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="The-Decomposed-Confidence"><a href="#The-Decomposed-Confidence" class="headerlink" title="The Decomposed Confidence"></a>The Decomposed Confidence</h3><h4 id="Design-Choices"><a href="#Design-Choices" class="headerlink" title="Design Choices"></a>Design Choices</h4><h4 id="Temperature-Scaling"><a href="#Temperature-Scaling" class="headerlink" title="Temperature Scaling"></a>Temperature Scaling</h4><h3 id="A-Modified-Input-Preprocessing-Strategy"><a href="#A-Modified-Input-Preprocessing-Strategy" class="headerlink" title="A Modified Input Preprocessing Strategy"></a>A Modified Input Preprocessing Strategy</h3><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><h3 id="Experimental-Settings"><a href="#Experimental-Settings" class="headerlink" title="Experimental Settings"></a>Experimental Settings</h3><h3 id="Results-and-Discussion"><a href="#Results-and-Discussion" class="headerlink" title="Results and Discussion"></a>Results and Discussion</h3><h3 id="Semantic-Shift-versus-Non-semantic-Shift"><a href="#Semantic-Shift-versus-Non-semantic-Shift" class="headerlink" title="Semantic Shift versus Non-semantic Shift"></a>Semantic Shift versus Non-semantic Shift</h3><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2>
+<h3 id="Related-Methods"><a href="#Related-Methods" class="headerlink" title="Related Methods"></a>Related Methods</h3><p>本节描述了和本文最相关的两个方法：<strong>ODIN</strong> 和 <strong>Mahalanobis</strong>。这两个方法将作为评估时两个很强的baseline进行比较，而且马氏距离是比ODIN更有优势的。注意到，这个两个方法都是用$D_{in}$训练一个普通的分类器$f_{\theta}$(单入口单出口)，然后有一个打分函数$S(\pmb{x},f_{theta})$，有额外的超参数需要调。按两个方法原本的工作，打分函数里的超参数都是需要OoD的数据去调的。本文将会描述不需要OoD去调超参数的方法。</p>
+<h4 id="ODIN"><a href="#ODIN" class="headerlink" title="ODIN"></a>ODIN</h4><p>该方法包含两个策略，即temperture scaling和input preprocessing。前者是把打分函数设置如下：<br>\begin{equation}<br>S_{ODIN}(\pmb{x})=\max\limits_{i}\frac{exp(f_i(\pmb{x})/T)}{\sum_{j=1}^{N}exp(f_j(\pmb{x})/T)}<br>\end{equation}</p>
+<p>尽管ODIN的原始方法需要用OoD数据集调超参数$T$，但其也展示了$T$很大的时候通常是效果很好的，并且建议$T$设置超过1000。因此本文遵循建议，在实验中把$T$设置为1000。</p>
+<h4 id="Mahalanobis"><a href="#Mahalanobis" class="headerlink" title="Mahalanobis"></a>Mahalanobis</h4><p>马氏距离同样包含了两个部分：马氏距离的计算和输入预处理。马氏距离的打分函数如下：<br>\begin{equation}<br>S^{l}_{Maha}(\pmb{x})=\max\limits_{i}\{-[f^l(\pmb{x})-\mu_i^l]^T\Sigma_{l}^{-1}[f^l(\pmb{x})-\mu_i^l]\}<br>\end{equation}</p>
+<p>\begin{equation}<br>S_{Maha}(\pmb{x})=\sum\limits_{l}\alpha_lS_{Maha}^l(\pmb{x})<br>\end{equation}</p>
+<ul>
+<li>$f^l(\pmb{x})$：网络的第$l$层输出特征</li>
+<li>$\mu_i$：第i个类的特征均值</li>
+<li>$\Sigma$：N个类的特征的协方差矩阵</li>
+<li>$\alpha_l$：超参数，每个层参与集成的权重</li>
+</ul>
+<p>原文的马氏距离需要OoD数据调优，本文就采用基础情况，即$S_{Maha}(\pmb{x})=\sum\limits_{l}\S_{Maha}^l(\pmb{x})$</p>
+<p>我们注意到马氏距离和ODIN一样也都用到了input preprocessing的策略，又会引入需要OoD调优的超参数。因此本文还会给出一个不需要OoD调参的input preprocessing方法。</p>
+<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="The-Decomposed-Confidence"><a href="#The-Decomposed-Confidence" class="headerlink" title="The Decomposed Confidence"></a>The Decomposed Confidence</h3><p>我们知道softmax分类器倾向于输出一个较高置信度的预测结果，比如把高斯噪声放到MNIST图像分类器中会给出高达91%的预测概率。这是因为softmax是高度平滑的指示函数，会给出一个很陡的概率分布结果而不是一个类之间概率平缓的结果。我们也承让这个观点，并更深远的考虑把这个当作是softmax设计中的缺陷。为了解决这个限制，我们的启发是重新思考输出的形式，也就是后验概率$p(y|\pmb{x})$，这个概率没有考虑到$d$的域。换句话说，目前的方法是建立在封闭世界假设$d=d_in$的情况下的。因此，作者在分类器中使用明确的变量$d_{in}$，用条件概率的规则将其改写为商的形式如下：<br>\begin{equation}<br>p(y|d_{in},\pmb{x})=\frac{p(y,d_{in}|\pmb{x})}{p(d_{in}|\pmb{x})}<br>\end{equation}</p>
+<p>上面的公式提供了一个概率的视角解释为什么分类器会过度自信。考虑到$\pmb{x}\sim p_{out}$，很自然的想到，C个类中的最大的联合概率$p(y,d_{in}|\pmb{x})$是比较小的(如0.09)，同时期望对应的$p(d_{in}|\pmb{x})$也是比较小的(如0.1)。因此，计算条件概率$p(y|d_{in},\pmb{x})$以后还是可能会给出一个比较高的概率结果(0.9)。这展示了高度的自信是怎么导致的。基于公式4，作者把$p(y,d_{in}|\pmb{x})$和$p(d_{in}|\pmb{x})$叫做已分解的置信度。</p>
+<p>一个直接的解决方案来解决上述问题，就是学习一个分类器来预测联合概率分布$p(y,d_{in}|\pmb{x})$，这样既考虑了标签$y$又考虑了变量$d$。而获取一个联合概率分布的分类器比获得一个OoD的检测器要好，这是因为前者既能通过$arg \max_{y_{in}}p(y,d_{in}|\pmb{x})$来进行分类，又可以通过给定阈值来拒绝预测(博主个人理解是找个合适的阈值和$\sum_{y_{in}}p(y,d_{in}|\pmb{x})$进行比较)。这样的观点和有些工作相关，比如添加额外的损失惩罚项到预测OoD概率不均匀的分类器中。然而这样的策略还是需要OoD去参与和调节训练的。</p>
+<p>不使用OoD的数据集，没有一个主流的方法能够学到$p(y,d_{in}|\pmb{x})$和$p(d_{in}|\pmb{x})$。这个场景非常像无监督学习，需要插入关于学习的假设和先验知识。在本文中，作者使用了公式4的除法结构作为先验知识来设置分类器，提供分类器分解概率置信度的能力。</p>
+<p>对于分类器的除法结构，作者定义第i个类的输出logit为$f_i(\pmb{x})$，并且可以写成除法的形式：</p>
+<p>\begin{equation}<br>f_i(\pmb{x})=\frac{h_i(\pmb{x})}{g(\pmb{x})}<br>\end{equation}</p>
+<p>这个商$f_i(\pmb{x})$然后用指数函数归一化，变成softmax，然后被当成条件概率$p(y|d_{in},\pmb{x})$，这个条件概率受限于交叉熵损失。</p>
+<p>在softmax指数归一化的影响下，交叉熵损失将会以两种方式减小，增加$h_i(\pmb{x})$或者减小$g(\pmb{x})$。换句话说，当数据不是in-distribution总的高密度区域时，$h_i(\pmb{x})$趋向于比较小的值。这样，$g(\pmb{x})$也会比较小以最小化交叉熵损失。其他的情况，也就是数据在高密度区域，$h_i(\pmb{x})$会很容易变大，因此$g(\pmb{x})$不鼓励变小。这些对分子分母的讨论和条件概率分解后的分子分母有着相似性，这样单独看分子分母的分布，OoD和ID是有较小的重叠的，这也是$p(y,d_{in}|\pmb{x})$和$p(d_{in}|\pmb{x})$的本质性质，如之前图1所展示的那样。</p>
+<h4 id="Design-Choices"><a href="#Design-Choices" class="headerlink" title="Design Choices"></a>Design Choices</h4><p>尽管除法结构提供了一个趋势，但它不能保证分解置信度的效果一定发生。$h_i(\pmb{x})$和$g(\pmb{x})$的特点可以极大的影响分解发生的可能性。因此我们讨论了一系列简单的设计选择，来考察分解通常是不是能够获得的。</p>
+<p>具体而言，使用$g(\pmb{x})=\sigma[BN(\pmb{\omega}_gf^p(\pmb{x})+b_g)]$，其中：</p>
+<ul>
+<li>$f^p(\pmb{x})$：网络倒数第二层，后面还要套上线性层、BN、sigmoid函数</li>
+<li>$\sigma$：sigmoid函数</li>
+<li>$\pmb{\omega}$和$b$表示可学习的权重</li>
+</ul>
+<p>对于$h_i(\pmb{x})$，我们研究了三个相似性的度量：</p>
+<ul>
+<li>内积：$h_i^I(\pmb{x})=\pmb{\omega}_i^Tf^p(\pmb{x})+b_i$</li>
+<li>欧氏距离的相反数：$h_i^E(\pmb{x})=-||f^p(\pmb{x})-\pmb{\omega}_i||^2$</li>
+<li>余弦相似性：$h_i^C(\pmb{x})=\frac{\pmb{\omega}_i^Tf^p(\pmb{x})}{||\pmb{\omega}_i||||f^p(\pmb{x})||}$</li>
+</ul>
+<p>因此整个网络$f_{\theta}$在倒数第二层后分为两个分支$h_i$和$g$。在训练时，模型计算softmax函数处理后的logit的交叉熵；在测试阶段，类别的预测将由$arg \max_if_i(\pmb{x})$或$arg \max_ih_i(\pmb{x})$来给出，俩者预测结果是一样的。对于OoD检测，score函数是$S_{DeConf}(\pmb{x})=\max_ih_i(\pmb{x})$或$g(\pmb{x})$。如果令$h_i(\pmb{x})=h_i^I(\pmb{x})$且$g(\pmb{x})=1$那么将退化为baseline。本文把三个变量的方法分别成为Deconf-I,Deconf-E和DeConf-C。为了简单起见，用$h_i(\pmb{x})$作为scores，而$g(\pmb{x})$的使用之后会具体说明。</p>
+<h4 id="Temperature-Scaling"><a href="#Temperature-Scaling" class="headerlink" title="Temperature Scaling"></a>Temperature Scaling</h4><h3 id="A-Modified-Input-Preprocessing-Strategy"><a href="#A-Modified-Input-Preprocessing-Strategy" class="headerlink" title="A Modified Input Preprocessing Strategy"></a>A Modified Input Preprocessing Strategy</h3><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><h3 id="Experimental-Settings"><a href="#Experimental-Settings" class="headerlink" title="Experimental Settings"></a>Experimental Settings</h3><h3 id="Results-and-Discussion"><a href="#Results-and-Discussion" class="headerlink" title="Results and Discussion"></a>Results and Discussion</h3><h3 id="Semantic-Shift-versus-Non-semantic-Shift"><a href="#Semantic-Shift-versus-Non-semantic-Shift" class="headerlink" title="Semantic Shift versus Non-semantic Shift"></a>Semantic Shift versus Non-semantic Shift</h3><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2>
     </div>
 
     
