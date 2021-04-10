@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吴紫航">
-<meta property="og:url" content="https://wooziehang.github.io/archives/2021/index.html">
+  <meta name="description" content="中国邮递员问题最优邮路求赋权连通图中含有所有边且权和最小的闭途径 Euler图 Euler迹：经过每条边恰好一次的迹 Euler闭迹：经过每条边恰好一次的闭迹 Euler图：有Euler闭迹的图 Euler图的最优邮路：即Euler闭迹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 中国邮递员问题和旅行商问题">
+<meta property="og:url" content="https://wooziehang.github.io/2021/04/08/graphIntroduction-6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+<meta property="og:description" content="中国邮递员问题最优邮路求赋权连通图中含有所有边且权和最小的闭途径 Euler图 Euler迹：经过每条边恰好一次的迹 Euler闭迹：经过每条边恰好一次的闭迹 Euler图：有Euler闭迹的图 Euler图的最优邮路：即Euler闭迹">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-08T08:11:47.000Z">
+<meta property="article:modified_time" content="2021-04-08T09:33:35.549Z">
 <meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/archives/2021/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/04/08/graphIntroduction-6/">
 
 
 <script id="page-configurations">
@@ -38,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 吴紫航</title>
+  <title>【知识总结】 中国邮递员问题和旅行商问题 | 吴紫航</title>
   
 
 
@@ -192,239 +195,160 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/08/graphIntroduction-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 中国邮递员问题和旅行商问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-08 16:11:47 / 修改时间：17:33:35" itemprop="dateCreated datePublished" datetime="2021-04-08T16:11:47+08:00">2021-04-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/04/08/graphIntroduction-6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 中国邮递员问题和旅行商问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 20 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/04/08/graphIntroduction-6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/08/graphIntroduction-6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h2 id="中国邮递员问题"><a href="#中国邮递员问题" class="headerlink" title="中国邮递员问题"></a>中国邮递员问题</h2><h3 id="最优邮路"><a href="#最优邮路" class="headerlink" title="最优邮路"></a>最优邮路</h3><p>求赋权连通图中含有所有边且权和最小的闭途径</p>
+<h3 id="Euler图"><a href="#Euler图" class="headerlink" title="Euler图"></a>Euler图</h3><ul>
+<li>Euler迹：经过每条边恰好一次的迹</li>
+<li>Euler闭迹：经过每条边恰好一次的闭迹</li>
+<li>Euler图：有Euler闭迹的图</li>
+<li>Euler图的最优邮路：即Euler闭迹</li>
+</ul>
+<h3 id="非Euler图的最优邮路"><a href="#非Euler图的最优邮路" class="headerlink" title="非Euler图的最优邮路"></a>非Euler图的最优邮路</h3><ul>
+<li>必然要重复经过一些边</li>
+<li>重复走过的边作为重边添加到图中 $\Rightarrow$ 新图一定是Euler图</li>
+<li>原图的最优邮路和新图的Euler闭迹一一对应</li>
+</ul>
+<h3 id="问题转换"><a href="#问题转换" class="headerlink" title="问题转换"></a>问题转换</h3><ul>
+<li>添加重边成为Euler图（如果本身不是的话）</li>
+<li>使添加的边权和最小</li>
+</ul>
+<h4 id="添加重边成为Euler图"><a href="#添加重边成为Euler图" class="headerlink" title="添加重边成为Euler图"></a>添加重边成为Euler图</h4><h5 id="Euler图的充要条件"><a href="#Euler图的充要条件" class="headerlink" title="Euler图的充要条件"></a>Euler图的充要条件</h5><p>一个非空连通图是Euler图当且仅当它没有奇度顶点</p>
+<h5 id="添加重边的方案"><a href="#添加重边的方案" class="headerlink" title="添加重边的方案"></a>添加重边的方案</h5><ul>
+<li>奇度顶点 $\rightarrow$ 偶度顶点</li>
+<li>偶度顶点 $\rightarrow$ 偶度顶点</li>
+</ul>
+<h4 id="使添加的边权和最小"><a href="#使添加的边权和最小" class="headerlink" title="使添加的边权和最小"></a>使添加的边权和最小</h4><p>定理：设$G$是赋权连通图，$G$中有$2k$个奇度顶点。$G^\star$是$G$的最优邮路对应的Euler图，令$E’=E(G^\star) \\ E(G)$</p>
+<h5 id="重边的添加方法"><a href="#重边的添加方法" class="headerlink" title="重边的添加方法"></a>重边的添加方法</h5><ul>
+<li>连接k对奇度顶点的k条无公共边的最短路</li>
+<li>且边权和最小</li>
+</ul>
+<h2 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h2>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-10T21:37:26+08:00"
-              content="2021-04-10">
-          04-10
-        </time>
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/10/algorithms4-hw/" itemprop="url">
-            <span itemprop="name">【习题解答】 分治排序</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-08T16:11:47+08:00"
-              content="2021-04-08">
-          04-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/08/graphIntroduction-6/" itemprop="url">
-            <span itemprop="name">【知识总结】 中国邮递员问题和旅行商问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-04T17:19:16+08:00"
-              content="2021-04-04">
-          04-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/04/Generalized-ODIN/" itemprop="url">
-            <span itemprop="name">【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-01T16:10:56+08:00"
-              content="2021-04-01">
-          04-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/01/graphIntroduction-5/" itemprop="url">
-            <span itemprop="name">【知识总结】 最大匹配算法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-29T22:59:05+08:00"
-              content="2021-03-29">
-          03-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/29/algorithms3-hw/" itemprop="url">
-            <span itemprop="name">【习题解答】 蛮力算法设计</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-25T16:09:27+08:00"
-              content="2021-03-25">
-          03-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/25/graphIntroduction-4/" itemprop="url">
-            <span itemprop="name">【知识总结】 匹配的概念</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-19T20:23:07+08:00"
-              content="2021-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/19/algorithms2-hw/" itemprop="url">
-            <span itemprop="name">【习题解答】 从算法视角重审数学概念</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-19T20:15:57+08:00"
-              content="2021-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/19/algorithms2/" itemprop="url">
-            <span itemprop="name">【知识总结】 从算法视角重审数学概念</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-19T20:10:49+08:00"
-              content="2021-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/19/algorithms1-hw/" itemprop="url">
-            <span itemprop="name">【习题解答】 抽象算法设计与分析</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-18T16:06:48+08:00"
-              content="2021-03-18">
-          03-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/18/graphIntroduction-3/" itemprop="url">
-            <span itemprop="name">【知识总结】 k-连通图</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/04/Generalized-ODIN/" rel="prev" title="【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data">
+      <i class="fa fa-chevron-left"></i> 【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/10/algorithms4-hw/" rel="next" title="【习题解答】 分治排序">
+      【习题解答】 分治排序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -471,6 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E9%82%AE%E9%80%92%E5%91%98%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">中国邮递员问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E9%82%AE%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">最优邮路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Euler%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">Euler图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9EEuler%E5%9B%BE%E7%9A%84%E6%9C%80%E4%BC%98%E9%82%AE%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">非Euler图的最优邮路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">问题转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%87%8D%E8%BE%B9%E6%88%90%E4%B8%BAEuler%E5%9B%BE"><span class="nav-number">1.4.1.</span> <span class="nav-text">添加重边成为Euler图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Euler%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Euler图的充要条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%87%8D%E8%BE%B9%E7%9A%84%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">添加重边的方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E6%B7%BB%E5%8A%A0%E7%9A%84%E8%BE%B9%E6%9D%83%E5%92%8C%E6%9C%80%E5%B0%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">使添加的边权和最小</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%87%8D%E8%BE%B9%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">重边的添加方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">旅行商问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -650,6 +575,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
