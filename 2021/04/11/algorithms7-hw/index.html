@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="基本概念图定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为顶点集，集合E是V中元素组成的某些无序对的集合，称为边集，顶点的数目$|V|$称为图的阶，边的数目$|E|$称为图的边数。 图示定义：点表示顶点，线段表示边，绘制出平面表示图。">
+  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【知识总结】 图的基本概念">
-<meta property="og:url" content="https://wooziehang.github.io/2021/03/08/graphIntroduction-1/index.html">
+<meta property="og:title" content="【习题解答】 分治算法设计要素">
+<meta property="og:url" content="https://wooziehang.github.io/2021/04/11/algorithms7-hw/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="基本概念图定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为顶点集，集合E是V中元素组成的某些无序对的集合，称为边集，顶点的数目$|V|$称为图的阶，边的数目$|E|$称为图的边数。 图示定义：点表示顶点，线段表示边，绘制出平面表示图。">
+<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-08T11:52:02.000Z">
-<meta property="article:modified_time" content="2021-04-05T05:46:04.641Z">
+<meta property="article:published_time" content="2021-04-11T05:35:31.000Z">
+<meta property="article:modified_time" content="2021-04-11T06:29:10.050Z">
 <meta property="article:author" content="Woozie Hang">
-<meta property="article:tag" content="Knowledge Summary">
+<meta property="article:tag" content="Problem Set Solutions">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/03/08/graphIntroduction-1/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/04/11/algorithms7-hw/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>【知识总结】 图的基本概念 | 吴紫航</title>
+  <title>【习题解答】 分治算法设计要素 | 吴紫航</title>
   
 
 
@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/08/graphIntroduction-1/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/11/algorithms7-hw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -215,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【知识总结】 图的基本概念
+          【习题解答】 分治算法设计要素
         </h1>
 
         <div class="post-meta">
@@ -224,28 +224,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-03-08 19:52:02" itemprop="dateCreated datePublished" datetime="2021-03-08T19:52:02+08:00">2021-03-08</time>
+              <time title="创建时间：2021-04-11 13:35:31 / 修改时间：14:29:10" itemprop="dateCreated datePublished" datetime="2021-04-11T13:35:31+08:00">2021-04-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:46:04" itemprop="dateModified" datetime="2021-04-05T13:46:04+08:00">2021-04-05</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/03/08/graphIntroduction-1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 图的基本概念" title="阅读次数">
+            <span id="/2021/04/11/algorithms7-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 分治算法设计要素" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -260,8 +254,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/03/08/graphIntroduction-1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/08/graphIntroduction-1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/04/11/algorithms7-hw/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/11/algorithms7-hw/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,57 +270,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为<strong>顶点集</strong>，集合E是V中元素组成的某些无序对的集合，称为<strong>边集</strong>，顶点的数目$|V|$称为图的<strong>阶</strong>，边的数目$|E|$称为图的边数。</p>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p>定义：点表示顶点，线段表示边，绘制出平面表示图。</p>
-<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
-<li><strong>关联</strong>：   点是边的端点，则点和边在图中相关联。</li>
-<li><strong>相邻</strong>：   两个点有边相连，则点相邻；两个边至少有一个公共端点，则边相邻。</li>
-<li><strong>环边</strong>：   两个端点都重合的两个边。</li>
-<li><strong>重边</strong>：   给定顶点u、v。则图中连接u、v的两条或以上的边称为图中u、v的重边。</li>
-<li><strong>简单图</strong>：  无环边也无重边的图为简单图。</li>
-<li><strong>完全图</strong>：  所有点对之间都有边的图。</li>
-<li><strong>空图</strong>：   边集为空的图。</li>
-<li><strong>平凡图</strong>：  只有一个顶点的空图。</li>
-<li><strong>零图</strong>：   边集和点集都为空的图。（顶点集为空则边集肯定为空）。</li>
-<li><strong>顶点的度</strong>： 图中顶点关联的边数，记为$d_G(v)$或$d(v)$。</li>
-<li><strong>最大度</strong>：  $\Delta(G)=max\{d(v)|v \in V(G)\}$。</li>
-<li><strong>最小度</strong>：  $\delta(G)=min\{d(v)|v \in V(G)\}$。</li>
-<li><strong>正则图</strong>：  各个顶点度都一样（设度为k）的图，称为k-正则图。</li>
-<li><strong>图的补图</strong>： 补图和原图的点集相同；补图和原图的边集互为补集(设完全图的边集为全集)。</li>
-</ul>
-<h3 id="lemma定理"><a href="#lemma定理" class="headerlink" title="lemma定理"></a>lemma定理</h3><p>图中各顶点度数之和是边数的两倍，即$\sum\limits_{v \in V(G)}d(v)=2|E|$  </p>
-<p><strong>推论：图中奇度顶点的数目一定是偶数。</strong> </p>
-<h3 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h3><ul>
-<li>子图：对于图G和H，若$V(H)\subset V(G)$且$E(H)\subset E(G)$，则H是G的子图，记为$H\subset G$。</li>
-<li>生成子图：H是G的子图且$V(H)=V(G)$，则H是G的生成子图。 </li>
-<li>点导出子图：$\forall v_i,v_j \in V’=V(H),((v_i,v_j)\in E(G)\rightarrow(v_i,v_j)\in E(H))$，记为$H=G[V’]$。</li>
-<li>边导出子图： $V(H)=\bigcup\limits_{e\in E(H)}e$，记为$H=G[E’]$。</li>
-<li>$G-V’$：从$G$中删除顶点$V’$，包括删除顶点的边，从而获得子图。</li>
-<li>$G-E’$：从$G$中删除边$E’$，不删除顶点，从而获得子图。</li>
-</ul>
-<h3 id="路和圈"><a href="#路和圈" class="headerlink" title="路和圈"></a>路和圈</h3><p>途径：图G中一个点边交替出现的序列<br>迹：边不重复的途径<br>路：顶点不重复的迹<br>闭途径：起点终点相同的途径<br>闭迹：边不重复的闭途径。<br>圈：中途点不重复的闭迹。</p>
-<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><p>途径的长度：边的数量<br>最短路的长度：即距离，两个点之间长度最小的路<br>奇圈：长度为奇数的圈<br>偶圈：长度为偶数的圈</p>
-<h3 id="二部图"><a href="#二部图" class="headerlink" title="二部图"></a>二部图</h3><p>定义：若G的顶点可以划分为两个非空子集X和Y，且单个子集内部没有边，则G为二部图。记为$G=(X\cup Y,E)$。</p>
-<p><strong>完全二部图</strong>：若二部图G的两个子集为X和Y，且X的每个顶点和Y的每个顶点之间都有边，则G为完全二部图。</p>
-<p>定理:一个图是二部图当且仅当它不含奇圈。</p>
-<h3 id="连通性"><a href="#连通性" class="headerlink" title="连通性"></a>连通性</h3><ul>
-<li>点连通：两个点间有路相同。</li>
-<li>连通图：任意两顶点连通。</li>
-<li>图的连通分支：把图的顶点划分为一系列非空子集，使得两顶点在同一个子集中当且仅当它们连通。通过这些子集得到的一系列点导出子图就是原图的一个个连通分支。连通分支的个数为连通分支数。</li>
-<li>点的离心率e(v)：点v到图上距离该点最远的点的距离</li>
-<li>中心：离心率最小的点</li>
-<li>半径rad(G)：离心率的最小值</li>
-<li>直径diam(G)：离心率的最大值</li>
-</ul>
-<p>定理：若图G(V,E)连通，则$|E|\geq |V|-1$</p>
-<h3 id="图的同构"><a href="#图的同构" class="headerlink" title="图的同构"></a>图的同构</h3><p>定义：在图$G=(V(G),E(G))$和图$H=(V(H),E(H))$中，存在一一映射：$\alpha:V(G)\rightarrow V(H)$和$\beta: E(G)\rightarrow E(H)$,使得对任意$e=(u,v)\in E(G)$，都有$(\alpha(u),\alpha(v))\in E(H)$，且$\beta(e)=(\alpha(u),\alpha(v))$，则G和H同构，记为$G\cong H$</p>
-<p>注：同构关系是一个等价关系（自反、对称、传递）。同构的判断属于NP问题。</p>
-<h3 id="图的运算"><a href="#图的运算" class="headerlink" title="图的运算"></a>图的运算</h3><p>G的补图：$\overline{G}=\langle V(G),\{(x,y)\notin E(G)\}\rangle$</p>
-<p>G和H的并：$G \cup H=\langle V(G)\cup V(H),E(G)\cup E(H)\rangle$</p>
-<p>G和H的和：仅当$V(G) \cap V(H)$交集为空时，$G+H=\langle V(G)\cup V(H),E(G)\cup E(H)\rangle$</p>
-<p>G和H的联：$V(G)\vee V(H)$是在和的基础上连接$V(G)$和$V(H)$中的一些点对，即添加一些边</p>
-<p>G和H的对称差：当$V(G)=V(H)=V$，$G\oplus H=\langle V,(E(G)\cup E(H))\setminus(E(G)\cap E(H))\rangle$</p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
+  <script id="hbeData" type="hbeData" data-hmacdigest="64759bdd34d765fa9516f48f38b2b31066db1182b6ff4bb30bd9d68640e36b3b">757ff964fcfd9532ba69fc6fadfc1252ecfa91f5d7837b28cb81f3786fadb42a3e123510686071591261c8eafaf93d725b46790797babcf55d73151d48891177a07cbbeb13271e945a6498790ccaa48b85260017d4b5ea240a6aada014eb4b57beb1c821c0877358c20281eef3efaf54517b9611bc74a8a85fad2d7f43a9caebab6cfae43e006ae7a7efa57d1b9504a0c431e41c399d05b6b3ff8b0e8d7a8837f92d9efe345362cb71982de50e944110be727f66b5137facbb203a27965e8fe62d0dce7dc9a2c4164b1f2509b7667262ee3e0898a0a5e4cfae299bca078c4618fa75f897e455d2b68d7afb7d3454762e20c8fef662cd60232ad02773df1dbbbffb9e2144478fb16f6fef98fc9a8d03308240541f7b06e44187d5af097c71850c99b6681913608528f73428766c3912e071b042b30aba33a5b64363397e019bde4c2b63dc32fb788e7133180ae05a989aa6c4cf9101ed4633684d0e0600731abbe4b6a00e9d5918f0dd75cc0ffd09fb6c5c52704bcec97d08485e2b2271556a0febdf9ba910e94219352bf244834f064bfcc542fc470c8bd2268527163d370d8871e0283e3e6cb6d09898664560730a20ff8e65d000b31678afc345a01d45f8935c874cc621ecc8dd417036fe6ab48b3c5a718e3d3786ed13a686912e6de41e719b7fd077a90865c3702c5f1feba02305559009e2170acd581ff4a0ea8e6d8901654e2043675041f0d886e7d2d8e4a4aa46cc00f0ae7fc065d0f3d11804100d2ed003bab4531f5cf18a5f84670e467e0e986613ad2e7ca5c07c07f930d14c04d7d66ca2dbc6805e9f47ce6e7302d37a26f13f31c08d01e7a56dc49b096de01fd4a4dd26a0189745ae74358aa7f4651ef8f26e6aee43a0b7c032d170996dede7c41c4696ea57313e57a403e3f618fac33bcb6d9556f0b19f31f40f67d6882a39db402e942a87072440c65f3ca1902ddcc2cf9665429b9a1290fe6f628f49c6941f09a5182c44c1c2490ec2aa8a1cfecfd2cd774c2509156af9d1bbef8d4d6ce7ed53ee5b7404f5c6c35b23f367867f9b6adcfd95456ed2754667475a88c33c0310a4561557bbce95de1f9957ad9e6c3f19bc13dcd3144845e1f30650894be92f390d80dffb04e2c6a7f6daa6094e386d31c672631b1b8eeb38ca4a1fe7f4e3da4335d2f842374bee9883fcd293392172590bb169f6999c81b7c508a769cea51719618fb29df74f2142928a593d054b1de9aa16404a4f10d81075906ac5752f54271fc0111017b8a2f71e4e3606d07d0e07ed3b21bac04f06959946abb477af2c8d29c85e9e3a5d53b27ad3ffd7e49d2f9ef7d3c47a388400d7bc7e71844eac22db78eb3fff4af150f7a8ee55d8e6b357f447e394b97077ba9d7519b5b714042e15e292b6769f6704c9d140660edd733a477c47d45277c5b0eb03d0b6158cb31a7b743e2493fd1c38fc39a6c360d69d2d4b1a861acd4d2155d24cc3ed572debcd90163b5ef7dada2b187e1e7d1005d15c19967ab1995cc8a37091a9b52ee02c5bb0a67c8a72b025d91b2610bf53dec7362ae7c48d8ed25684f558f771fa2e06501cb19dd042cf007c08ba623f4d47210fa7806fb0a1f9d1314dceb591516667056e4102541014fc3d411ed1f0b6280d38fd606ec520f8cff20e99e0da07e8a5fe46f1ce9b286cacbb94b4fbf91d0ea9965d1f199b406b750aff5a562d8a7a86bf23cf63d91af5da58ffd4c9b63924a4d081ee50975d99dcf6242a58fbd6c92f812ca8002570b9ab9997fcbd8dca251caf832b58a1f38805736836bbbc0375b82ab641c7c4c0fcd38d9800dc59ac2ec866a9d96e75e4ad4a7d8a2e6fabf39605ef044513d0b745f2f8f6f5c76fe1ba70560ae9a16acce2d36c9bd37d8254117fd611e1b2e4769392ac35193e42065febf588c0f8f56c89e9d14d6b0a88f69260271150e90c7fb04c761191884a7d743ae6342f84fcef2b94f8de4a626dc7dbd50853f9b35cdc7ecdb2f230500a6e2197b938dd316bb5330cf07fe0fd430bc7be131abb875c2e4b81c3504fb089e66253c5d4df33f15eeab368919bc77796db6507de215b93c9f6a477b0e76657fc4175e1e2cec95a2b54b993a7cd35512c7e26094c12950f4501026fac6e25e79a390c6e3f83aa002d1b2aaf6c2583b90c5d9053f6e8413a5bafc9b35fd367afc406c5007f0483b25d1c2a79d402696265dcdd2f1d0ababb92f3e5c2591488a31c25b69a092374902596ab78c9f8c9c72d4ef76fc0840e74e4544d4715fc7ef69a550c310321c03ee01ce1c412a669990e14c065410422fc696ef27ff9e4ef53785aa16ba1d42a9ab1a640636dca7b99f76ee40c4aee601bcb06db75ec25c7139bbb53e2c4486118c9e2c5e8f4e62343ff24288c65e1118b24b327309ae499e4a5bd996f99a5871a05fa1ab0eb62cbf90411351d391c10f88ed14f1df887cc249e39cfcca1d704df30f01116bafd01a5388ca22294d85bf233cb0237d85ec024f41fa579219f29ca76034e1de279282284321a5862a9c74adbce02060a21bad8a23d86bc4ad77ed9b10a8371d33ac7194e526a16bb7ca620c07452aa96d0af3eec98c796fb913803668f59e619eff1aed443d2e386712757a184b1f8f3b6f0074f57e2dd88b0b465d9c1fbb8dbc70dfd96c93e9a912cc3b8f9bfbf996634ac24f5f40fe4b6d7c2b4ba27263129d61912b5af8729542e144d26d1ef6abbe5e869ca00016de90fecfae676082c7fa6dd105ed871bfb0dd30e9c2de23a49e95f7060c7f8cfa4cc492a7331cee0043d236a9f44af952416b64c6b27233896ee58157ff5636c8ca858dc75b88e2b624099f554b68c24ba7482c9c691f2aa14bc57f41c9788d607c3e49cddadd3386f9b382f84b11218e281cf8131fc760be01355dff565bd37281fafe766f3403faceee0b1cb25312520ae8ca81a298326372de4e98680bf38d412072aa0b5fadbbb595a2c1fae5aa87f40bfdef768c5e02c7ef77490e40ff43d2ce36caa43070f17f05d4b8ce24fe70309348eea7adb678dc6fb7a0fdfb93de78e6be7ee32b118ccdd74afcc5336f16750a48158c08598a321a0b87000c5902889379ffa077a9b5dbaead37ae0635f764d22c2c79470a10e743047829bd6e26baddbc345c80f838a687175f870d3d48bf5249167c1dbde199b6ccb5352e8a23ba88050f4b02e9856e130c7b8b15ea2641159607c50f465da94e082656dee76c57c0c71437d77acb8bf9306d7b06c15f45bcff3799e119fe16a1b9dfc16c53c4b86a733087c58afb69b0bd2084fe7a63c4d4fb1fdcc75efd9c4ca98c6475a5c86e0429128bbd729fcb96f228a76a5d64066b3ef5cf81a477bcd2eb1a4480af2fb105fdecd0fd27b489cf28e7f256ce130e74318e2fd2075a3dc9be513eea2cad7a93788ac1afc5072ad09c28c3b4d457ded4d0177dc2e694d3dbd0349b0f4206ff49ac8fd43f123157f86d4113a07fd60abb37190c919ea1e6818efbd4f62772f51f8baa29ccf3853922d4b1d3736b59aa096d2caa03ce0ac7444aa63ad56387702707b67dbacdfc2b61eefbb27d3a7285625dbeb5c8feade558541a507c1e4b80806ae05890c2df9102e302b342963a9d511519f79dc4713ff462aee7c95cb1326c5b0d7cea6d42e05afbd1d682b44b79a9e499eb8d583185f10cb886e3d3c0f4eddfdf3cb6328b02afa2f8bd0d6e0b74dbb066700f77d16a53a3963d9cfb6954b8e68799f7cf6494d5562fdfcb33cf047c2989fd5d8734e8c167824c221d68e362125bc66d75bec63baeb1b9539396163a7bad237b6be523999f3f1949a934b187bcd2f926f6aa6249bd06431be55874e029006a7466a78d94dbcae79baf4600cc9940e6a4da25f1738782ab24052aae3af94a2ad085a153e35fb6996809baacc9d66d999d989ecdc0d6fb11bdabfd1846b0240aa829de83ba48bb60acbf53c813b86b59e8489978618dfafc484f349afd99859e80cc4aa3fcf1d427998a2af45ca2f787eb6141be751d334ea3bbc3959a1d36d77a2b5bff7dcafecebeb7f2e2cff3665a1a8eb6ce3367b1f10953aadeb472e0370c3a3f7697a1c708ddb188b3944172b78ccd015ddd6d23c16ccb5feeedb0d95ff7ebea549a4dc2ffdf8875a941c3e759a5146b037842f7d4ee88543c217a78a80e5e0d73735574a76514a1b06ab5b2d86d772ed4800cc79abbc88a9f42beeb8a24fe25016a0893c47aee4cade440883f5a43923514fc7a0be3ea8ac2f106c566b5db7989dc57e53dee661e996240146838e3aca53d81ea49d06467a87924c05b306f017b3befd2c5c85170d44bfc780a90d93dca15d4b08f054cb6a3e40a7a3d8645dfdae9d05c87473d9fe78b79e06c10c5fff2e28be991e765e49c8b671abe5ed9e783beb7fa636bb64cc8fbda377b5395af3c9d1db3ec2992fb98d502d9a43a0c74b5dba76c6f6ec6da0b4b9ccd9337ff91bf1076bc70f4639251dd31b2cc24748fea08e976a4cc8fe8702d99b1ce6275e81d5519209b11b009640a35e7690edc121710d4a9dd257695bff02dccdd838966f6f16b07315bf7ce87995e993e2671e45901c452bfa687cd921f5242f5b55be9643fbe578d7134478d2bd019abe74072ec2a28dcdc15974c9d045f05f6b677ad5dcceb8c055df52ef9c5d583cf49eaac213bd4ec0b785c27cd6346e2f253ec293aaf4ed157afc762bb60d2a3f611dae0374120cf265afb034c0468fece011873c831c1b415106ecb8edc15df34b8bc129e90baa6d4244f1ce3ceea6db8ae915bf97d23cffb4c29829bfc8e6906aa179ae55ee9b6c854fe184a6feb496dcf1d61849c1b345a583a325e2f5c8814b4810ba11c845b9b5be9489fb7c6ac6f21d5815032975c7879bdbd3e1adeb1bf4c12142fbd02436ef82ddb1f2666472465c77143b71db52a05cd246012c804b3460108c753a0e4ccb61b4aad96ede781ed258e8c8e62691ef9c27137cb8f58169aaa4d09eea087274c679dafa0752a7c45cfa89b61867176a5cfe69ba1d203d33fc284ec56557d8c463ac56f965d92082a78860ad939bceaf65bd09a0d0cf5181d42b7575bce496dd36f2bb5b3cdd991b46ef6c0523679413a1a0b062268d8437bffe0adbf743a453176cf8579e0dd28c9a39c02eb7270781eb30a80fa25456cec08a63da4fe65f5d4c82d70d049b555653b2569d8aff361ae95faf7c47a82ac370635dbd87dd1a73a10439b166f176f5ccbf3a34603481a85129fde2a2dd0e3ff9fff04f5bba03ecf8d9fac</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -350,7 +309,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+              <a href="/tags/Problem-Set-Solutions/" rel="tag"># Problem Set Solutions</a>
           </div>
 
         
@@ -359,12 +318,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/01/worklog-2021-3/" rel="prev" title="【工作日志】 2021年3月">
-      <i class="fa fa-chevron-left"></i> 【工作日志】 2021年3月
+    <a href="/2021/04/10/algorithms4-hw/" rel="prev" title="【习题解答】 分治排序">
+      <i class="fa fa-chevron-left"></i> 【习题解答】 分治排序
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/03/09/combinatorics-1/" rel="next" title="【知识总结】 Counting">
-      【知识总结】 Counting <i class="fa fa-chevron-right"></i>
+    <a href="/2021/04/11/algorithms14-hw/" rel="next" title="【习题解答】 堆与偏序关系">
+      【习题解答】 堆与偏序关系 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -425,7 +384,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.3.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lemma%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">lemma定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%9B%BE"><span class="nav-number">1.5.</span> <span class="nav-text">子图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%92%8C%E5%9C%88"><span class="nav-number">1.6.</span> <span class="nav-text">路和圈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6"><span class="nav-number">1.7.</span> <span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%83%A8%E5%9B%BE"><span class="nav-number">1.8.</span> <span class="nav-text">二部图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">1.9.</span> <span class="nav-text">连通性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%90%8C%E6%9E%84"><span class="nav-number">1.10.</span> <span class="nav-text">图的同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.11.</span> <span class="nav-text">图的运算</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
