@@ -28,7 +28,7 @@
 <meta property="og:description" content="中国邮递员问题最优邮路求赋权连通图中含有所有边且权和最小的闭途径 Euler图 Euler迹：经过每条边恰好一次的迹 Euler闭迹：经过每条边恰好一次的闭迹 Euler图：有Euler闭迹的图 Euler图的最优邮路：即Euler闭迹">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-08T08:11:47.000Z">
-<meta property="article:modified_time" content="2021-04-08T09:33:35.549Z">
+<meta property="article:modified_time" content="2021-04-13T10:05:36.084Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-08 16:11:47 / 修改时间：17:33:35" itemprop="dateCreated datePublished" datetime="2021-04-08T16:11:47+08:00">2021-04-08</time>
+              <time title="创建时间：2021-04-08 16:11:47" itemprop="dateCreated datePublished" datetime="2021-04-08T16:11:47+08:00">2021-04-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-13 18:05:36" itemprop="dateModified" datetime="2021-04-13T18:05:36+08:00">2021-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -285,18 +291,66 @@
 <h3 id="问题转换"><a href="#问题转换" class="headerlink" title="问题转换"></a>问题转换</h3><ul>
 <li>添加重边成为Euler图（如果本身不是的话）</li>
 <li>使添加的边权和最小</li>
+<li>找Euler闭迹</li>
 </ul>
-<h4 id="添加重边成为Euler图"><a href="#添加重边成为Euler图" class="headerlink" title="添加重边成为Euler图"></a>添加重边成为Euler图</h4><h5 id="Euler图的充要条件"><a href="#Euler图的充要条件" class="headerlink" title="Euler图的充要条件"></a>Euler图的充要条件</h5><p>一个非空连通图是Euler图当且仅当它没有奇度顶点</p>
-<h5 id="添加重边的方案"><a href="#添加重边的方案" class="headerlink" title="添加重边的方案"></a>添加重边的方案</h5><ul>
+<h3 id="添加重边成为Euler图"><a href="#添加重边成为Euler图" class="headerlink" title="添加重边成为Euler图"></a>添加重边成为Euler图</h3><h4 id="Euler图的充要条件"><a href="#Euler图的充要条件" class="headerlink" title="Euler图的充要条件"></a>Euler图的充要条件</h4><p>一个非空连通图是Euler图当且仅当它没有奇度顶点</p>
+<h4 id="添加重边的方案"><a href="#添加重边的方案" class="headerlink" title="添加重边的方案"></a>添加重边的方案</h4><ul>
 <li>奇度顶点 $\rightarrow$ 偶度顶点</li>
 <li>偶度顶点 $\rightarrow$ 偶度顶点</li>
 </ul>
-<h4 id="使添加的边权和最小"><a href="#使添加的边权和最小" class="headerlink" title="使添加的边权和最小"></a>使添加的边权和最小</h4><p>定理：设$G$是赋权连通图，$G$中有$2k$个奇度顶点。$G^\star$是$G$的最优邮路对应的Euler图，令$E’=E(G^\star) \\ E(G)$</p>
-<h5 id="重边的添加方法"><a href="#重边的添加方法" class="headerlink" title="重边的添加方法"></a>重边的添加方法</h5><ul>
+<h3 id="使添加的边权和最小"><a href="#使添加的边权和最小" class="headerlink" title="使添加的边权和最小"></a>使添加的边权和最小</h3><h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>设$G$是赋权连通图，$G$中有$2k$个奇度顶点。$G^\star$是$G$的最优邮路对应的Euler图，令$E’=E(G^\star) \setminus E(G)$。则$H=G[E’]$是以$G$的奇度顶点为起点和终点的k条无公共边的最短路之并。</p>
+<h4 id="重边的添加方法"><a href="#重边的添加方法" class="headerlink" title="重边的添加方法"></a>重边的添加方法</h4><ul>
 <li>连接k对奇度顶点的k条无公共边的最短路</li>
 <li>且边权和最小</li>
 </ul>
-<h2 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h2>
+<h2 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h2><h3 id="Hamilton图"><a href="#Hamilton图" class="headerlink" title="Hamilton图"></a>Hamilton图</h3><ul>
+<li>Hamilton路：经过每个顶点恰一次的路</li>
+<li>Hamilton圈：经过每个顶点恰一次的圈</li>
+<li>Hamilton图：有Hamilton圈的图</li>
+</ul>
+<h3 id="旅行商问题的难度"><a href="#旅行商问题的难度" class="headerlink" title="旅行商问题的难度"></a>旅行商问题的难度</h3><ul>
+<li>找Hamilton圈：NP-complete</li>
+<li>找权和最小的Hamilton圈：NP-hard</li>
+</ul>
+<h3 id="旅行商问题的近似算法"><a href="#旅行商问题的近似算法" class="headerlink" title="旅行商问题的近似算法"></a>旅行商问题的近似算法</h3><ul>
+<li>邻近点法</li>
+<li>最小生成树法</li>
+<li>最小权匹配法</li>
+<li>Kernighan-Lin</li>
+</ul>
+<h3 id="邻近点法"><a href="#邻近点法" class="headerlink" title="邻近点法"></a>邻近点法</h3><h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>贪心的选择最近的未访问的邻点前行</p>
+<h4 id="算法性能"><a href="#算法性能" class="headerlink" title="算法性能"></a>算法性能</h4><ul>
+<li>近似比$w(H)\setminus w(H^\star)\leq (\lceil log_2v\rceil)$</li>
+<li>最终结果只和初始点的选取有关</li>
+<li>时间复杂度：$O(v^2)$</li>
+</ul>
+<h3 id="最小生成树法"><a href="#最小生成树法" class="headerlink" title="最小生成树法"></a>最小生成树法</h3><h4 id="基本思路-1"><a href="#基本思路-1" class="headerlink" title="基本思路"></a>基本思路</h4><ul>
+<li>找$K_n$的一颗最小生成树</li>
+<li>为$T$中的每条边添加重边成为$T^\star$</li>
+<li>找$T^\star$的一条Euler闭迹$C$</li>
+<li>沿$C$前行，跳过已访问过的顶点，直至访问完所有顶点</li>
+</ul>
+<h4 id="算法性能-1"><a href="#算法性能-1" class="headerlink" title="算法性能"></a>算法性能</h4><ul>
+<li>近似比$w(H)\setminus w(H^\star)\leq 2$</li>
+<li>最终结果和最小生成树、闭迹、闭迹初始点有关</li>
+<li>时间复杂度：找最小生成树$O(\epsilon+vlog v)$，添加重边$O(v)$，找Euler闭迹$O(v)$，沿Euler闭迹前行$O(v)$</li>
+<li>本算法可以进一步优化</li>
+</ul>
+<h3 id="最小权匹配法"><a href="#最小权匹配法" class="headerlink" title="最小权匹配法"></a>最小权匹配法</h3><h4 id="基本思路-2"><a href="#基本思路-2" class="headerlink" title="基本思路"></a>基本思路</h4><ul>
+<li>找$K_n$的一颗最小生成树</li>
+<li>找$T$中奇度顶点在$K_n$中异于导出子图$G’$的最小权完美匹配$M$</li>
+<li>将$M$添加到$T$中成为$T^\star$</li>
+<li>找$T^\star$的一条Euler闭迹$C$</li>
+<li>沿$C$前行，跳过已访问过的顶点，直至访问完所有顶点</li>
+</ul>
+<h4 id="算法性能-2"><a href="#算法性能-2" class="headerlink" title="算法性能"></a>算法性能</h4><ul>
+<li>近似比$w(H)\setminus w(H^\star)\leq \frac{3}{2}$</li>
+<li>最终结果和最小生成树、最小权完美匹配、闭迹、闭迹初始点有关</li>
+<li>时间复杂度：找最小生成树$O(\epsilon+vlog v)$，找最小权完美匹配$O(\sqrt{v}\epsilon)，$添加边$O(v)$，找Euler闭迹$O(v)$，沿Euler闭迹前行$O(v)$</li>
+<li>本算法可以进一步优化</li>
+</ul>
+<h3 id="Kernighan-Lin"><a href="#Kernighan-Lin" class="headerlink" title="Kernighan-Lin"></a>Kernighan-Lin</h3><p>理论近似比差，实际效果好的算法，详略。</p>
+
     </div>
 
     
@@ -395,7 +449,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E9%82%AE%E9%80%92%E5%91%98%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">中国邮递员问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E9%82%AE%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">最优邮路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Euler%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">Euler图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9EEuler%E5%9B%BE%E7%9A%84%E6%9C%80%E4%BC%98%E9%82%AE%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">非Euler图的最优邮路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">问题转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%87%8D%E8%BE%B9%E6%88%90%E4%B8%BAEuler%E5%9B%BE"><span class="nav-number">1.4.1.</span> <span class="nav-text">添加重边成为Euler图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Euler%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Euler图的充要条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%87%8D%E8%BE%B9%E7%9A%84%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">添加重边的方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E6%B7%BB%E5%8A%A0%E7%9A%84%E8%BE%B9%E6%9D%83%E5%92%8C%E6%9C%80%E5%B0%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">使添加的边权和最小</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%87%8D%E8%BE%B9%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">重边的添加方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">旅行商问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E9%82%AE%E9%80%92%E5%91%98%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">中国邮递员问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E9%82%AE%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">最优邮路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Euler%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">Euler图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9EEuler%E5%9B%BE%E7%9A%84%E6%9C%80%E4%BC%98%E9%82%AE%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">非Euler图的最优邮路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">问题转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%87%8D%E8%BE%B9%E6%88%90%E4%B8%BAEuler%E5%9B%BE"><span class="nav-number">1.5.</span> <span class="nav-text">添加重边成为Euler图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Euler%E5%9B%BE%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">Euler图的充要条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%87%8D%E8%BE%B9%E7%9A%84%E6%96%B9%E6%A1%88"><span class="nav-number">1.5.2.</span> <span class="nav-text">添加重边的方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E6%B7%BB%E5%8A%A0%E7%9A%84%E8%BE%B9%E6%9D%83%E5%92%8C%E6%9C%80%E5%B0%8F"><span class="nav-number">1.6.</span> <span class="nav-text">使添加的边权和最小</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">1.6.1.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E8%BE%B9%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.6.2.</span> <span class="nav-text">重边的添加方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">旅行商问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamilton%E5%9B%BE"><span class="nav-number">2.1.</span> <span class="nav-text">Hamilton图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%E7%9A%84%E9%9A%BE%E5%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">旅行商问题的难度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%E7%9A%84%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">旅行商问题的近似算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E8%BF%91%E7%82%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">邻近点法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">2.4.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD"><span class="nav-number">2.4.2.</span> <span class="nav-text">算法性能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">最小生成树法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-1"><span class="nav-number">2.5.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD-1"><span class="nav-number">2.5.2.</span> <span class="nav-text">算法性能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E6%9D%83%E5%8C%B9%E9%85%8D%E6%B3%95"><span class="nav-number">2.6.</span> <span class="nav-text">最小权匹配法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-2"><span class="nav-number">2.6.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD-2"><span class="nav-number">2.6.2.</span> <span class="nav-text">算法性能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kernighan-Lin"><span class="nav-number">2.7.</span> <span class="nav-text">Kernighan-Lin</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
