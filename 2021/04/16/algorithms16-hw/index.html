@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="注： 本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。 16.1这是一个概率论的问题  总的样本空间是$n^n$ 符合要求的子样本空间是$\tbinom{n}{k}(n-1)^{n-k}$ 故概率是两者的商  16.4">
+  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【习题解答】 哈希表与查找">
 <meta property="og:url" content="https://wooziehang.github.io/2021/04/16/algorithms16-hw/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="注： 本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。 16.1这是一个概率论的问题  总的样本空间是$n^n$ 符合要求的子样本空间是$\tbinom{n}{k}(n-1)^{n-k}$ 故概率是两者的商  16.4">
+<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-16T10:52:16.000Z">
-<meta property="article:modified_time" content="2021-04-19T16:34:44.382Z">
+<meta property="article:modified_time" content="2021-04-23T11:59:24.898Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Problem Set Solutions">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-20 00:34:44" itemprop="dateModified" datetime="2021-04-20T00:34:44+08:00">2021-04-20</time>
+                <time title="修改时间：2021-04-23 19:59:24" itemprop="dateModified" datetime="2021-04-23T19:59:24+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,79 +276,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong><em>注：</em></strong> <em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em></p>
-<h2 id="16-1"><a href="#16-1" class="headerlink" title="16.1"></a>16.1</h2><p>这是一个概率论的问题</p>
-<ul>
-<li>总的样本空间是$n^n$</li>
-<li>符合要求的子样本空间是$\tbinom{n}{k}(n-1)^{n-k}$</li>
-<li>故概率是两者的商</li>
-</ul>
-<h2 id="16-4"><a href="#16-4" class="headerlink" title="16.4"></a>16.4</h2><h3 id="1"><a href="#1" class="headerlink" title="(1)"></a>(1)</h3><p>采用封闭寻址时，哈希表的存储消耗考虑：</p>
-<ul>
-<li>$h_c$个表头，每个表头1个单位空间</li>
-<li>$h_c\times \alpha$个节点，每个节点2个单位空间</li>
-<li>空间消耗为$(1+2\alpha)h_c$，即$1.5h_c,2_hc,3h_c,5h_c$</li>
-</ul>
-<p>同样的空间，即$(1+2\alpha)h_c$，用于开放寻址哈希表，节点还是$h_c\times \alpha$个，每个节点需要1个单位空间，则位置个数为$(1+2\alpha)h_c$。故负载因子是$\frac{h_c\times \alpha}{(1+2\alpha)h_c}$，即$\frac{1}{6},\frac{1}{4},\frac{1}{3},\frac{2}{5}$</p>
-<h3 id="2"><a href="#2" class="headerlink" title="(2)"></a>(2)</h3><p>采用封闭寻址时，哈希表的存储消耗考虑：</p>
-<ul>
-<li>$h_c$个表头，每个表头1个单位空间</li>
-<li>$h_c\times \alpha$个节点，每个节点5个单位空间</li>
-<li>空间消耗为$(1+5\alpha)h_c$，即$\frac{9h_c}{4},\frac{7h_c}{2},6h_c,11h_c$</li>
-</ul>
-<p>同样的空间，即$(1+5\alpha)h_c$，用于开放寻址哈希表，节点还是$h_c\times \alpha$个，每个节点需要4个单位空间，则位置个数为$\frac{(1+5\alpha)h_c}{4}$。故负载因子是$\frac{4h_c\times \alpha}{(1+5\alpha)h_c}$，即$\frac{4}{9},\frac{4}{7},\frac{2}{3},\frac{8}{11}$</p>
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
+  <script id="hbeData" type="hbeData" data-hmacdigest="5aa09818876b6726b2a2b317c78294f6bf6b5586654d5a6f17f6eb11279b6120">757ff964fcfd9532ba69fc6fadfc1252ecfa91f5d7837b28cb81f3786fadb42a3e123510686071591261c8eafaf93d725b46790797babcf55d73151d48891177a07cbbeb13271e945a6498790ccaa48b85260017d4b5ea240a6aada014eb4b57beb1c821c0877358c20281eef3efaf54517b9611bc74a8a85fad2d7f43a9caebab6cfae43e006ae7a7efa57d1b9504a0c431e41c399d05b6b3ff8b0e8d7a8837f92d9efe345362cb71982de50e944110e63653a6af12bfb2d614d746d9991f182dda9915252c4ea7e24e232eb73c9816315f5373e59a33797062c7d9b4e52b5032a3d4b9bee102113d5ddad7ab0af3b8908b60f110e9d404a815870e00146164e639037fa43b3e146c3261845ab9d9e45d31caf7da7d88bf262a49009e7353a773d3b11b9f33bc4adbc2c033fdbbe698be0fd6a06cca500d3b831eb94776d433892c04618464d31222c69bed83a8e5c7d9d3e5b87f561ae2bbcbc9f3f773bf32572f8d082dde0306b8a8121c73b7d87a07c4ffd652d14788f1593d18f5efd8d14c6ed486c690b2c11dbdab76e6e912c4155862700e44a37f6dc07da031a12c34dcbbf87b77dbffd567064f379764766206c7767f75ee2aab15507d03d069bd27efc69a4b8ab9a4fec344929b874621cb7a9d65a20cd019ebc475a97cc9f0d7ed37fdf0c37c0cf5ee9131f880d2e91b77178ea5415cf81723fd4aaa4acdfbb3a6efe1375e3a4608d5e7afa9dec96c35feac683fd10ed32694ec4cbb81a1a62bdc15aa558c1269921afbc9234198c59ac314e23a043278ee7ef1ab02837528b75a86596ecb0672bc0a245e41e9f4ddbd0be11ff46788a94aae6c2ca1fa4e2e7c572ac7f58b289267d7c98b5f322d877e8cf4dc8868f8898f6b5b5a533fe70842852b465aff7dde029b3db75b0dbba075146682b73c3a7158f24035cb9fdd26d3d5b9da3c9f4dc713a35bc7f894a178d3d14f76851ec150af48605583b6344d7544a6c9b4ce7321104b5e2715009fafdd22885c48eecec479dccbf2645746adca3987fa445f2555958e0903ae54f0e80b09a6e6f87afc0b1b41ed31b770864e71b459cbbb344df5be93b1caa8b49506e7dd856b512f15a10994ddfda31c00f052e2a6e72eb55ffdb33195934a9533cd2b4109386a564ddb8821c9010fe8b0eb8e1f62dbdc4aa33bc122533a54d91533b791f98de8978f84d7f74c23e39f93598248e9beb6fff7b3cdcda4b314bda63af6e37ca6d579f78cce4b916a7238de8f13a4f60b87a30ab15b271d70c6da941ed2550b1cabb8e30ccad344d5977ba04b9331c79d6eed0f67f2d78c2fbc2b1a9befc39b4856f17a8369b27c2d558216ef58320ebeda03fcb76e21155783a7a787e9637362866a507674cdf9c67053eca95867de091bb57673950804b78fdea007a37818fd25970e601d9e6f3311c0431051d1eee819d564929ed0870cd7ea88d2f8750262c4b537e25bb1f8af13c5877cb540caf8615f13aa6ffbea1740f2f0f9174fd3e54c614b6940a904feb04a83f99daa3ba9b1c8adb9f54561a674109d959b636c97d0408b5226a3f399f61bf104df0a199b86692d7ccf5ddec36e8a47ddc4b6c2e5f7812e40f4933213f0fbe97d5679189158c0414b855255310316314ca9d2321ec0d38d00f7841a6025272d0652c28c4882d9d39cf598a40b35021494fb44e1752b96417f0aaf1e31cdac0d30b3b565877d042e60defd9c7f60c2d82946f305d6a669fa01c389f6795c8edef0a1fb9f36109ad42b7eee4a7622653b3eab5bcf20773726dfc0a4a3ebd3e18652e666a7304f96013bdfeecef98870bfb7f327371c8bec6139f4c72cbb5a5c50e76cbad28f8446bb23d03fe9181d80338f37c22cd0d8ab533f3a84fd5a2ae9e1c3f5f4483e9635c27e76a9599a1d7a4391207111588619cebdd8c2c76a14493d503ed590a32f84ae2a6b388e120ab61a6ccdd7a868830f565557ea1a62415a14b289cc675af03b77d7b0257875e524deeeb216f22b9b46e4a4f5a174cb9345314accf9c99df0b03f10c1a090ca660a3a843d5e02fa4ca621ef73b3415b9e1351359c2393d16c6267b151e33cd1df42d2e63d9751315e0760e3a55b56a38647b103bae857e7a14e83ff5bfd8105ddabc863c90cd4e3d0d7f396b2b581322331e803e10771c3dbdbe9b520b3c26797ba383966561115dc130ee3cfe373ad99ddb25fe808dbec3ea36ce31f5ffc63d077efd05d5d75a217dfbd43e311102f4e2a5d6d0c8a9a810b8050a719baeb0d3bd50e6820d381ec23f5d14fc0af07b719dd4059902b5e47498d6b4f0e59a00e1db3a76ca13edb3e87ac5e88e1f756031d2ac3d134a4fdfeca7c900109b213873375f51fe5804386b3beffb155dad2d35f430c850b9bb4bc9bde321c0a20980f273129e06c2483f6f5ab5ddfd97f4cacfc45475319a1fc9168162af54057dfcb9066d0aefcad07379889dd13092a7d7ae23a2e5436d14be1076174eae5bd5feb6a734d0255c8f42a9c329dcf8fc16dfad70df74efd64b65072acaa35685b27079527a22a6852a262b492da4c362bbd1af52eed9936cf4db3536996600d677e0998b2db97ee3c09d8f7a153573d7e224edb742297a6d522b44b24151855077a75103d3ea92695f33c3180f3adea28ec2670a22b77fb27295455099570ee70e5773d033404332ce64f16718c5f31b0894963ac370aa253b55848b9928cefa2382094307e83e1acfd874ba1b0d567e922e3e5da9c83c94c04b254c19b7b3bcce48e32c2849c05cbed8dc2717a3e7192870c7db1d8f256f8b054d1e34ecf3689f8667681df4515e517234b0b694cf8af6b8e007cf980d8ec18e444ba68fa8043c5ba1289d89e9d0177996eb9f168c96f25ee4d466d5b35202cfcbac89ddac53572645da40a0051cc11a1fc4ec7fd9510e9e23ed34e66bcbbd3227d8e18f7145509fa4e2e83e3ccd5ea483751825e74fabd90b20bf13c86bea0ede453829284a6fa1d5aa27a0893936481405c5e49f6df9931ee269f0d03646a0443a1ca098158d2ae8161725f591ed3a202fb61eee41863085c3bb5d3a3ad707ed3370406f93e759a023f1747c89560e00ebf8aaac0ead22e665230430f7a1f47d5999d33a458d3baf1f2a6c0f2ce9a8b70ace10c2b87e407e51b76b1eafeb74e866224471ef7e5401fc3a2586e2f57c60241132f961880cadba8297cecb1b2a542b66c5078952afa37035fc4f19c2ded1194207bdd90943f3c33688608a93425c9983605439e2b6c03a7bd2bad8091b2a2c04a0542d87fdbbcb8b6e1a8d4360a9d8fe4ca93853681b21aee6854fc7092d1d94eda9219e74ccaedc50a16bf1a98a9cd169b2600e0f965241a9e36e2575b21377cccf6c993b34b48e6c1f75335357c1c89826554ee850eeacab8864e677dc3ca0062cf2e834555d34ce8d0d00f4b8c12e85f515ef0ec5e625bd1b36409bce22101023e81f089ecf2b39808625e032d2081dd7e3ac4c75293627069ec10edb7c9b8f1eea392829a54c11ce1a408f96d632881f2b04d44707617e53363dfc7aceadf1cb8a5135d02c67891bf9bf69580062f8391add929fe90ad05a802cc6f44e9a7b78799b42356522d959a36feb9e3373fae27dc44deb4bd6230eb9f3ea2aa8f920431f33a2612d547ad092a14cd028b69ae92626082ca20c30343a12d13d6c4bfa9f9142a5fb2c4504d2875eeb168eaef726fb95ec3a42d3ea46cebc524459cfb03382784eb8e2ce17db7e5c4d1bd2c5932779ce2e272694ef9463ebea8a4789a45a4d78413ab5965dc293b7d22f7893b1df84ada100a53ced03a61578dd032ff06014d6ecaefc93c7d8f2b8962d3e2fa18aae22a9cb04e6197685dacde35d4a3029b83e75bd92ddca6be9f873c9033b7c5857cbb0d7b0b349c77ed762d5812e1414c223f174e6135c513b44e63bbbda9bf692e8092b57064f46ac8589e749d7d384d6929fdfc650909f024445677669a55e2636d7c4c54f4c8bd6e0b90b40a06290608b0d35895ff4eb39101894318d7a9b20f892bbbf457e365a00e2d94069a5b066089d526f4e98b799c72a4b91cbfe92855cdc00da1ccb480b9f1ef43c37052273c6428971edf4d50d0ac1a15b0772c881255938cb0484e5f15ad2f5ab13e28d267c64031db5146ec4e49c7c4eb9cad38ad5b6b1820a4b5a9ab356b90606569fd455169f4b68a261d32b93f0678c122390261f4fbbe11d3668a82622ed03bc64dd46a59c10b2bdfef6226d47eeb8a032ab0990a3b42fd2bb519615deff5fc5df47fc9b2f9d79097abd5d816ff9684b4ea385f36b03ce24d49a4ffb1f98c66da1ae30fbb95eff3c2a20a4984af8c6c2e8cb9b884290144631642fe5ac9531dfcbc875a73990cdd969d017a7111e78ffa9226af955006c6f411d13ad0f1fe2c781c2c91f48ccb84d4c0c17b4e6e77b10c59c656abadf88d48462d95ab8ba25b7496c6060d7fa21cc82b56dcc4f6a35993d0f6491e929e93c8c57fb887a0e29309e7cde04b790427cca22185a7ec0fd413d64536585494f0f5c2940d557ed0997077efd4ee62054f275d9b3b7b420887db89135af6d9082506f59406942fdc5a01cf6bc6ac1e068ef9fc72956ebfec3a756935f9dc70d670489f81592338832553359f35ae5fa0347b4e64fece24ef2966504b67db66fac3e129d1e11ed7c74660e90080be989bc46ffb99c52a5ae6cd5fc4242edd3397c74d3e0fe3f4296a88c118d6f358115c2b525ea781d31788360faf5f88606ac2bdcc2a1c10cddb85e51061576d52ba4a8c84d3698caa6973cfef9e7f61004760d05dd600bdc2cb9b8c06de1ccdfd03e6c7b5fb55d79169b6e59c5e8d73cc3651ddc083e762862c299f5760c2cff04deb65630d54b6167c7707b3ee3000c988b990b1172c89899bbbe6dc1cf90f10f3d70817cf7f851ff6e0edf36df5cff2f641ce8f2d8410a354ed2ec5f15e23bd13b3205d6df8</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -447,7 +390,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1"><span class="nav-number">1.</span> <span class="nav-text">16.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-4"><span class="nav-number">2.</span> <span class="nav-text">16.4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">2.1.</span> <span class="nav-text">(1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.2.</span> <span class="nav-text">(2)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -463,7 +405,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
