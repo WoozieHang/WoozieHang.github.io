@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="边独立集边独立集 边独立集（匹配）：两两不相邻的边 极大边独立集（极大匹配）：不是任何边独立集的真子集 最大边独立集（最大匹配）：边数最多 边独立数$\alpha’(G)$：最大边独立集的势  边独立集与点覆盖集 对任何无环边的图$G$ 二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|$ 二部图$G$，$\alpha’(G)&#x3D;\beta">
+  <meta name="description" content="边独立集边独立集 边独立集（匹配）：两两不相邻的边 极大边独立集（极大匹配）：不是任何边独立集的真子集 最大边独立集（最大匹配）：边数最多 边独立数$\alpha’(G)$：最大边独立集的势  边独立集与点覆盖集 对任何无环边的图$G$，$\alpha’(G)\leq \beta(G)$ 二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 边独立集和边覆盖集">
 <meta property="og:url" content="https://wooziehang.github.io/2021/04/22/graphIntroduction-8/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="边独立集边独立集 边独立集（匹配）：两两不相邻的边 极大边独立集（极大匹配）：不是任何边独立集的真子集 最大边独立集（最大匹配）：边数最多 边独立数$\alpha’(G)$：最大边独立集的势  边独立集与点覆盖集 对任何无环边的图$G$ 二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|$ 二部图$G$，$\alpha’(G)&#x3D;\beta">
+<meta property="og:description" content="边独立集边独立集 边独立集（匹配）：两两不相邻的边 极大边独立集（极大匹配）：不是任何边独立集的真子集 最大边独立集（最大匹配）：边数最多 边独立数$\alpha’(G)$：最大边独立集的势  边独立集与点覆盖集 对任何无环边的图$G$，$\alpha’(G)\leq \beta(G)$ 二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-22T08:11:49.000Z">
-<meta property="article:modified_time" content="2021-04-23T11:59:24.527Z">
+<meta property="article:modified_time" content="2021-04-23T12:39:24.248Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-23 19:59:24" itemprop="dateModified" datetime="2021-04-23T19:59:24+08:00">2021-04-23</time>
+                <time title="修改时间：2021-04-23 20:39:24" itemprop="dateModified" datetime="2021-04-23T20:39:24+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,14 +283,64 @@
 <li>边独立数$\alpha’(G)$：最大边独立集的势</li>
 </ul>
 <h3 id="边独立集与点覆盖集"><a href="#边独立集与点覆盖集" class="headerlink" title="边独立集与点覆盖集"></a>边独立集与点覆盖集</h3><ul>
-<li>对任何无环边的图$G$</li>
+<li>对任何无环边的图$G$，$\alpha’(G)\leq \beta(G)$</li>
 <li>二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|$</li>
 <li>二部图$G$，$\alpha’(G)=\beta(G)$</li>
 </ul>
-<h3 id="边独立数的估计"><a href="#边独立数的估计" class="headerlink" title="边独立数的估计"></a>边独立数的估计</h3><ul>
-<li>设图$G$无孤立点，则$\lceil\frac{v}{1+\Delta(G)}\rceil\leq \alpha’(G)\leq \lfloor\frac{v}{2}\rfloor$</li>
+<h4 id="求最小点覆盖的算法"><a href="#求最小点覆盖的算法" class="headerlink" title="求最小点覆盖的算法"></a>求最小点覆盖的算法</h4><ul>
+<li>一般图：不存在近似比好于1.3606的多项式时间算法（除非P=NP）</li>
+<li>二部图：存在精确的多项式时间算法</li>
 </ul>
-<h2 id="边覆盖集"><a href="#边覆盖集" class="headerlink" title="边覆盖集"></a>边覆盖集</h2>
+<h4 id="二部图最小点覆盖算法细节"><a href="#二部图最小点覆盖算法细节" class="headerlink" title="二部图最小点覆盖算法细节"></a>二部图最小点覆盖算法细节</h4><ul>
+<li>求最大匹配</li>
+<li>未饱和顶点作为第0层</li>
+<li>根据交错路的距离对其他顶点分层</li>
+<li>每条边都有一个端点在奇层</li>
+<li>奇层顶点恰根据匹配中一条边引出一个新的偶层顶点</li>
+</ul>
+<h3 id="边独立数的估计"><a href="#边独立数的估计" class="headerlink" title="边独立数的估计"></a>边独立数的估计</h3><p>设图$G$无孤立点，则$\lceil\frac{v}{1+\Delta(G)}\rceil\leq \alpha’(G)\leq \lfloor\frac{v}{2}\rfloor$</p>
+<h2 id="边覆盖集"><a href="#边覆盖集" class="headerlink" title="边覆盖集"></a>边覆盖集</h2><h3 id="边覆盖集-1"><a href="#边覆盖集-1" class="headerlink" title="边覆盖集"></a>边覆盖集</h3><ul>
+<li>$L$是$G$（$G$无孤立点即$\delta(G)&gt;0$）的边覆盖集：$\forall u\in V(G),\exists v\in V(G),(u,v)\in L$</li>
+<li>极小边覆盖集：任何一个真子集都不再是边覆盖集</li>
+<li>最小边覆盖集：边数最少</li>
+<li>边覆盖数$\beta’(G)$：最小边覆盖集的势</li>
+</ul>
+<h3 id="边覆盖集与边独立集"><a href="#边覆盖集与边独立集" class="headerlink" title="边覆盖集与边独立集"></a>边覆盖集与边独立集</h3><ul>
+<li>若$\delta(G)&gt;0$，则$\alpha’(G)+\beta’(G)=v(G)$</li>
+<li>设$\delta(G)&gt;0$，则$\alpha’(G)\leq \beta’(G)$，等号成立当且仅当$G$有完美匹配</li>
+</ul>
+<h3 id="边覆盖集与点独立集"><a href="#边覆盖集与点独立集" class="headerlink" title="边覆盖集与点独立集"></a>边覆盖集与点独立集</h3><ul>
+<li>$\alpha(G)\leq \beta’(G)$</li>
+<li>设$G$是二部图且$\delta(G)\geq 0$，则$\alpha(G)=\beta’(G)$</li>
+</ul>
+<h3 id="边覆盖数的估计"><a href="#边覆盖数的估计" class="headerlink" title="边覆盖数的估计"></a>边覆盖数的估计</h3><p>设$G$无孤立点，则$\lceil\frac{v}{2}\rceil\leq\beta’(G)\leq\lceil v\frac{\Delta(G)}{1+\Delta(G)}\rceil$</p>
+<h3 id="无孤立点图中更一般的关系"><a href="#无孤立点图中更一般的关系" class="headerlink" title="无孤立点图中更一般的关系"></a>无孤立点图中更一般的关系</h3><ul>
+<li>边独立集小于等于边覆盖集，当边独立集为完美匹配，边覆盖集为最小时取等号</li>
+<li>边独立集小于等于点覆盖集，当边独立集为最大匹配，点覆盖集为最小时取等号</li>
+<li>点独立集小于等于边覆盖集，当点独立集为最大，边覆盖集为最小时取等号</li>
+<li>$\gamma(G)\leq \min\{\alpha(G),\beta(G),\alpha’(G),\beta’(G)\}$</li>
+</ul>
+<h3 id="求最小边覆盖集的算法"><a href="#求最小边覆盖集的算法" class="headerlink" title="求最小边覆盖集的算法"></a>求最小边覆盖集的算法</h3><ul>
+<li>原理是$\beta’(G)=v(G)-\alpha’(G)=\alpha’(G)+[v(G)-2\alpha’(G)]$</li>
+<li>最大匹配</li>
+<li>每个未饱和点任取一边</li>
+</ul>
+<h2 id="关系小节"><a href="#关系小节" class="headerlink" title="关系小节"></a>关系小节</h2><ul>
+<li>$\gamma(G)\leq \min\{\alpha(G),\beta(G),\alpha’(G),\beta’(G)\}$</li>
+<li>$\alpha(G)\leq \beta’(G)$</li>
+<li>$\alpha’(G)\leq \beta(G)$</li>
+<li>$\alpha’(G)\leq \beta’(G)$</li>
+<li>$\alpha(G)+ \beta(G)=v(G)$</li>
+<li>$\alpha’(G)+ \beta’(G)=v(G)$</li>
+</ul>
+<h2 id="求解算法小节"><a href="#求解算法小节" class="headerlink" title="求解算法小节"></a>求解算法小节</h2><ul>
+<li>最小支配集：近似算法，贪心</li>
+<li>最大点独立集：最小点覆盖集的补集</li>
+<li>最小点覆盖集：一般图用近似算法，基于极大匹配；二部图基于最大匹配</li>
+<li>最大边独立集：即最大匹配求解算法，一般图用Edmonds，二部图用Hopcroft-Karp</li>
+<li>最小边覆盖集：基于最大匹配</li>
+</ul>
+
     </div>
 
     
@@ -386,7 +436,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">边独立集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86-1"><span class="nav-number">1.1.</span> <span class="nav-text">边独立集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86%E4%B8%8E%E7%82%B9%E8%A6%86%E7%9B%96%E9%9B%86"><span class="nav-number">1.2.</span> <span class="nav-text">边独立集与点覆盖集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E6%95%B0%E7%9A%84%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.3.</span> <span class="nav-text">边独立数的估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">边覆盖集</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">边独立集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86-1"><span class="nav-number">1.1.</span> <span class="nav-text">边独立集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86%E4%B8%8E%E7%82%B9%E8%A6%86%E7%9B%96%E9%9B%86"><span class="nav-number">1.2.</span> <span class="nav-text">边独立集与点覆盖集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E6%9C%80%E5%B0%8F%E7%82%B9%E8%A6%86%E7%9B%96%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">求最小点覆盖的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E9%83%A8%E5%9B%BE%E6%9C%80%E5%B0%8F%E7%82%B9%E8%A6%86%E7%9B%96%E7%AE%97%E6%B3%95%E7%BB%86%E8%8A%82"><span class="nav-number">1.2.2.</span> <span class="nav-text">二部图最小点覆盖算法细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%8B%AC%E7%AB%8B%E6%95%B0%E7%9A%84%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.3.</span> <span class="nav-text">边独立数的估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">边覆盖集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96%E9%9B%86-1"><span class="nav-number">2.1.</span> <span class="nav-text">边覆盖集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96%E9%9B%86%E4%B8%8E%E8%BE%B9%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="nav-number">2.2.</span> <span class="nav-text">边覆盖集与边独立集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96%E9%9B%86%E4%B8%8E%E7%82%B9%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="nav-number">2.3.</span> <span class="nav-text">边覆盖集与点独立集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96%E6%95%B0%E7%9A%84%E4%BC%B0%E8%AE%A1"><span class="nav-number">2.4.</span> <span class="nav-text">边覆盖数的估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%AD%A4%E7%AB%8B%E7%82%B9%E5%9B%BE%E4%B8%AD%E6%9B%B4%E4%B8%80%E8%88%AC%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.5.</span> <span class="nav-text">无孤立点图中更一般的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E6%9C%80%E5%B0%8F%E8%BE%B9%E8%A6%86%E7%9B%96%E9%9B%86%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">2.6.</span> <span class="nav-text">求最小边覆盖集的算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%B0%8F%E8%8A%82"><span class="nav-number">3.</span> <span class="nav-text">关系小节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E7%AE%97%E6%B3%95%E5%B0%8F%E8%8A%82"><span class="nav-number">4.</span> <span class="nav-text">求解算法小节</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
