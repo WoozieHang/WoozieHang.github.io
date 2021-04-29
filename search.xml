@@ -696,49 +696,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【知识总结】 匹配的概念</title>
-    <url>/2021/03/25/graphIntroduction-4/</url>
-    <content><![CDATA[<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><ul>
-<li>匹配：M是G的匹配：G中两两不相邻边构成的集合</li>
-<li>被饱和的顶点：M中边的端点被M饱和</li>
-</ul>
-<h2 id="完美匹配"><a href="#完美匹配" class="headerlink" title="完美匹配"></a>完美匹配</h2><ul>
-<li>所有顶点都被饱和的匹配</li>
-<li>阶是偶数</li>
-<li>包含阶数的一半的边数</li>
-<li>$K_{2n}$ 包含 $2n-1$ 个不重的完美匹配</li>
-</ul>
-<h2 id="最大匹配"><a href="#最大匹配" class="headerlink" title="最大匹配"></a>最大匹配</h2><ul>
-<li>极大匹配：势极大的匹配，不是任何匹配的真子集</li>
-<li>最大匹配：势最大的匹配</li>
-</ul>
-<h2 id="匹配的增光路"><a href="#匹配的增光路" class="headerlink" title="匹配的增光路"></a>匹配的增光路</h2><ul>
-<li>M交错路：边交替属于$M$和$E(G)\setminus M$的路</li>
-<li>M增广路：起点和终点未被$M$饱和的$M$交错路</li>
-</ul>
-<h2 id="最大匹配的充要条件"><a href="#最大匹配的充要条件" class="headerlink" title="最大匹配的充要条件"></a>最大匹配的充要条件</h2><p>图$G$的一个匹配$M$是最大匹配 $\Leftrightarrow$ $G$中不存在$M$的增广路</p>
-<h2 id="奇分支"><a href="#奇分支" class="headerlink" title="奇分支"></a>奇分支</h2><ul>
-<li>阶为奇数的连通分支</li>
-<li>图G的奇分支的数量记作$o(G)$</li>
-<li>向图中增加边不会增加奇分支的数量</li>
-</ul>
-<h2 id="完美匹配的充要条件"><a href="#完美匹配的充要条件" class="headerlink" title="完美匹配的充要条件"></a>完美匹配的充要条件</h2><p>图$G$有完美匹配 $\Leftrightarrow \forall S\subset V(G), o(G-S)\leq |S|$</p>
-<h2 id="因子"><a href="#因子" class="headerlink" title="因子"></a>因子</h2><ul>
-<li>$k$-因子：图$G$的$k$-正则生成子图</li>
-<li>$1$-因子：完美匹配</li>
-<li>可$k$-因子分解的：图G有一组$k$-因子的边集构成$E(G)$的一个划分</li>
-<li>$k_{2n}$ 是可$1$-因子分解的</li>
-<li>$\forall n&gt;0$, $k_{2n+1}$是可$2$-因子分解的</li>
-</ul>
-]]></content>
-      <categories>
-        <category>图论</category>
-      </categories>
-      <tags>
-        <tag>Knowledge Summary</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【知识总结】 k-连通图</title>
     <url>/2021/03/18/graphIntroduction-3/</url>
     <content><![CDATA[<h2 id="2-连通图的性质"><a href="#2-连通图的性质" class="headerlink" title="2-连通图的性质"></a>2-连通图的性质</h2><h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><p>G是块：G是无割点的连通图<br>H是G的块：H是G中极大无割点连通子图</p>
@@ -776,6 +733,49 @@
 <h3 id="一个困惑"><a href="#一个困惑" class="headerlink" title="一个困惑"></a>一个困惑</h3><p>$v\geq k+1$的图G是k-连通图</p>
 <p>$\Leftrightarrow$ G中任二不相邻的顶点至少被k条两两内部无公共顶点的路所连</p>
 <p>是否成立呢？</p>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>Knowledge Summary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【知识总结】 匹配的概念</title>
+    <url>/2021/03/25/graphIntroduction-4/</url>
+    <content><![CDATA[<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><ul>
+<li>匹配：M是G的匹配：G中两两不相邻边构成的集合</li>
+<li>被饱和的顶点：M中边的端点被M饱和</li>
+</ul>
+<h2 id="完美匹配"><a href="#完美匹配" class="headerlink" title="完美匹配"></a>完美匹配</h2><ul>
+<li>所有顶点都被饱和的匹配</li>
+<li>阶是偶数</li>
+<li>包含阶数的一半的边数</li>
+<li>$K_{2n}$ 包含 $2n-1$ 个不重的完美匹配</li>
+</ul>
+<h2 id="最大匹配"><a href="#最大匹配" class="headerlink" title="最大匹配"></a>最大匹配</h2><ul>
+<li>极大匹配：势极大的匹配，不是任何匹配的真子集</li>
+<li>最大匹配：势最大的匹配</li>
+</ul>
+<h2 id="匹配的增光路"><a href="#匹配的增光路" class="headerlink" title="匹配的增光路"></a>匹配的增光路</h2><ul>
+<li>M交错路：边交替属于$M$和$E(G)\setminus M$的路</li>
+<li>M增广路：起点和终点未被$M$饱和的$M$交错路</li>
+</ul>
+<h2 id="最大匹配的充要条件"><a href="#最大匹配的充要条件" class="headerlink" title="最大匹配的充要条件"></a>最大匹配的充要条件</h2><p>图$G$的一个匹配$M$是最大匹配 $\Leftrightarrow$ $G$中不存在$M$的增广路</p>
+<h2 id="奇分支"><a href="#奇分支" class="headerlink" title="奇分支"></a>奇分支</h2><ul>
+<li>阶为奇数的连通分支</li>
+<li>图G的奇分支的数量记作$o(G)$</li>
+<li>向图中增加边不会增加奇分支的数量</li>
+</ul>
+<h2 id="完美匹配的充要条件"><a href="#完美匹配的充要条件" class="headerlink" title="完美匹配的充要条件"></a>完美匹配的充要条件</h2><p>图$G$有完美匹配 $\Leftrightarrow \forall S\subset V(G), o(G-S)\leq |S|$</p>
+<h2 id="因子"><a href="#因子" class="headerlink" title="因子"></a>因子</h2><ul>
+<li>$k$-因子：图$G$的$k$-正则生成子图</li>
+<li>$1$-因子：完美匹配</li>
+<li>可$k$-因子分解的：图G有一组$k$-因子的边集构成$E(G)$的一个划分</li>
+<li>$k_{2n}$ 是可$1$-因子分解的</li>
+<li>$\forall n&gt;0$, $k_{2n+1}$是可$2$-因子分解的</li>
+</ul>
 ]]></content>
       <categories>
         <category>图论</category>
