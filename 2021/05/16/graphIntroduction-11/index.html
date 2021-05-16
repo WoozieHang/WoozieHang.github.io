@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+  <meta name="description" content="边染色相关概念 边$k$染色 $E(G)\rightarrow \{1,2,\cdots,k\}$ $E_i$：色为$i$的边集   边正常$k$染色：相邻的边不同色 边$k$色可染的： 能找到一个边正常$k$染色 边色数： 边$k$色可染的最小$k$ 记作$\chi’$   只考虑无环图，可以有重边  边色数的性质和意义 $\Delta\leq \chi’ \leq \epsilon$ $\ch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【习题解答】 平摊分析">
-<meta property="og:url" content="https://wooziehang.github.io/2021/04/16/algorithms18-hw/index.html">
+<meta property="og:title" content="【知识总结】 边染色和点染色">
+<meta property="og:url" content="https://wooziehang.github.io/2021/05/16/graphIntroduction-11/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+<meta property="og:description" content="边染色相关概念 边$k$染色 $E(G)\rightarrow \{1,2,\cdots,k\}$ $E_i$：色为$i$的边集   边正常$k$染色：相邻的边不同色 边$k$色可染的： 能找到一个边正常$k$染色 边色数： 边$k$色可染的最小$k$ 记作$\chi’$   只考虑无环图，可以有重边  边色数的性质和意义 $\Delta\leq \chi’ \leq \epsilon$ $\ch">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-16T11:24:10.000Z">
-<meta property="article:modified_time" content="2021-04-23T11:59:36.200Z">
+<meta property="article:published_time" content="2021-05-16T12:18:05.000Z">
+<meta property="article:modified_time" content="2021-05-16T13:57:25.026Z">
 <meta property="article:author" content="Woozie Hang">
-<meta property="article:tag" content="Problem Set Solutions">
+<meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/04/16/algorithms18-hw/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/05/16/graphIntroduction-11/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>【习题解答】 平摊分析 | 吴紫航</title>
+  <title>【知识总结】 边染色和点染色 | 吴紫航</title>
   
 
 
@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/16/algorithms18-hw/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/05/16/graphIntroduction-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -215,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【习题解答】 平摊分析
+          【知识总结】 边染色和点染色
         </h1>
 
         <div class="post-meta">
@@ -224,28 +224,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-16 19:24:10" itemprop="dateCreated datePublished" datetime="2021-04-16T19:24:10+08:00">2021-04-16</time>
+              <time title="创建时间：2021-05-16 20:18:05 / 修改时间：21:57:25" itemprop="dateCreated datePublished" datetime="2021-05-16T20:18:05+08:00">2021-05-16</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-23 19:59:36" itemprop="dateModified" datetime="2021-04-23T19:59:36+08:00">2021-04-23</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/04/16/algorithms18-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 平摊分析" title="阅读次数">
+            <span id="/2021/05/16/graphIntroduction-11/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 边染色和点染色" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -260,8 +254,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/04/16/algorithms18-hw/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/16/algorithms18-hw/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/05/16/graphIntroduction-11/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/16/graphIntroduction-11/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,22 +270,106 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
-  <script id="hbeData" type="hbeData" data-hmacdigest="9739e3745120dba91ec8aea238a23c9790d28ee2ef95ba2a01cc7d68a59b53d5">757ff964fcfd9532ba69fc6fadfc1252ecfa91f5d7837b28cb81f3786fadb42a3e123510686071591261c8eafaf93d725b46790797babcf55d73151d48891177a07cbbeb13271e945a6498790ccaa48b85260017d4b5ea240a6aada014eb4b57beb1c821c0877358c20281eef3efaf54517b9611bc74a8a85fad2d7f43a9caebab6cfae43e006ae7a7efa57d1b9504a0c431e41c399d05b6b3ff8b0e8d7a8837f92d9efe345362cb71982de50e944110d586316e075382a1cefb9d335a891df262db6d0ff5f4a15a78605206dd58d5fe87ea2bc60fc8b25eb9db1eb703b7865e6aa6a08fce3ee37e1c45537cfddc35cf0e69b4191ed1cf53ec4a3f6159e2c5df5ed3e1739b566d1e957e5806d66b01538f3205437c68bdeb946a42eca379b869137189e3e5be51a941e3d0ff1b0bade29b0be6ab6f17481b4abe49def4021af4daf6c5248f0b027f986b6fee3a0e7269b5e897d46cbd7d79324365bb292d89f87d99aafc0b3ad7c30089850d6cdd99fe233b38433c1deab2ac8257dfd4ec00789aaf7a289c248957d7fd9db6d861dd7945f221396a44aaaaf403430a52af354ccaeb06dc94c46dfe02db96e060909480708efffd7b14a75171607f5e7b0d8eb4a177280b8a879ca223ad656dae0e3b2bbd38ba2615e99db979fd25f8775a5f1a0cac1d12c668018e69a75b4e27880f69e7e3ce733c917c86c1d4f17796367713441257684b7d5805cf8dc2717983cac6e6e66b94165cc442fa712658811dda54a239af33ad3da3ddf3e85fd3f3364fd27bc00643d989e436410bf0521e35c5dc2837cf5eab581e0dd94c29e0566c276e2bbc898717d11c0c984eabb4a918b6f4579334633a34695ce44829cfb0b84fe98842b218da9c9aa92b32a6d05ac4eae336d6fa599225c6d1ebe8589d70e5c582bf6d604b21f6f93483ba92366bbe3e4a6f549ca8b3f50151340bef0b0314512cd5d33e7345b976bc93ef88df325130005501ef712ac38e27f1a45e41c76057c494d3f8e9ff8652d56c5e449f239505432aa80d2bf040760d90b7a7407fac0102434aed51d6f5bd3441505a15a5e59ec776b309d9ed4544ed48916bde0ff3e95dad0cda640c94dd5c42039dd78e5c12fa55cc5cf1e6a267be8b967480055694e32a8ae68943b99b3183465a39d11fefc75c01e805d96be474c93ce16ec17e98c11704058f2adf33d9d1168e5f97645967f1de223cce22f52cf964e1e1b879bf31d9f7accd6c2e92314bad6cea4dbd033459b4fc889215543e96fbe282f79e3f6de72eec76f113769e28f511500365f05831b0ef0c45a4ed5e2ec83b27ffc6f95b9771dcc7ad9fcd63d6ef5dd5692f94ab5b214ab95b07469754aab8e1aaeba18299d6462b5ccead8b56d20a0ca5e5cb02eb11c93080460a371678c1d65cff11974d0595b191e13db846c405f5be2dfb9705f682935485bba436e271a608ed16ffa803f4707c6d8d67e48ebc249557012789b892cd9943cb3058ed51d110c544e415ce6cdfcb13a4a5e7ed4ddad03156cbc106243ebf3fbe75cf9c7682eadafcac27a60a059a725aa62405b41ab4197eb3cd935daf4db90249f3ae675e6e4b9f4f6ab26c019d34d8ebeda2a78940e2feb86ef313dce26e0fe7057c01bcddcfb2c96506898fb61160bf9d5f5f7d3bb4d5617ce5175c7e430cb812b5b3c8d349fbc6f8e4053d2bbd5b0cfbdce381225b1829a4e8ca42cfd6257ecf8611d5a7ccde2ed7150d42f96e97ccff9e331c81904cf413598ca3fa0a2346db556269211c812d80597ee636d4c94eeeb2f204455ab6985efb18d7e4bae644d365a85f71a7c7bb02befdc7e162a03a32b3cf8147ed001e9d098d0efe598542e02d79c53ba71874c014bc925abfdf47e321741541c88330e6ac4132e54fe39da228f36e3a4cb71bcfb2912c270686e223ee3f1473fd818b8cd6e3946740ab7ce6e7fa9cd8ed46b0e83c8887c23f73d74381c8637776fac0f053f728aa70c4b98c99e98ef37f707ab4b17514289ebfb0ece556db460766a3557bbb9219e244342bc446cdb4ab020874b08b361a0ff1d29461032679140bbf4e6801a89b46e83ba6bef72833b0cbb73a754082821ba2a5c5f7203cd922eac9a3d31bf09784bf91e23f8ffbfa83f0d6275fcc59ae33457901806e1a7618505080f19c0f5d8d3868c9ab40321db0f1dd77f752679d582fda9f6baa1ae3f6cd89843a4ed6a5992ab43752e1df2797dcc19c9e04a2ad3f026b89cf420795e9de537d13eb53dd6108b5288e215bc31213c5347cf9fa7779e5e198e107661a0acc97eabdcb9e742fff45eddc0f5f535bd1b657af91afc80b88a20b86d0662cc72d3e467209b1aa4e68207a0efc73dbd24d4aacd7260bc79f47814c5ceb73755409d5802e69c24a7e5c2cef30117cce5044bcf5cd26a6e07db3461a808891891088244c4418e53b8fe95bc2740ba1fbf332248f387ef9434b616be6a3339bceb4c92e7e087983bb360a2614c84aada390b63b651b0f96173286a85ec492cca71033c3e1d3dfbb3ae59a88eec9c25fde1fdd3f01611a1a263e03f660871432e0f9bff546dbe4f63d30110813f8d23dbd19f368937f9796977cabc4b13c4a4035daaf1a0b1a894602d8933de138f3b273ab77e878374fdbbe3dc2fbd6d1755d9d792eafcbdee2af17e033cb9d21d167bab7dd976b1a315af6c6c4a18753ce16c6da8129fd0185ca70e46d03dca8049c28c202fa2af0b982dd0314bb44e19638723233cd63faba6aa032ebc91408de2f8a6969f3467d562301f6f666028f5f68249b455d954887a0d945e0699f07a3356ab24e0f67167fb825f4c45edd99cf81a96d96ab5bf4a88e79efbed0afade881dd1988e6a557a94672e723adfd37d78f14ed8c9682f84405f41c9fd896f21bc46322c61d7dec2bc74a932af42da4e985b5536c836f3bc740f975d38a03653c7130762e883da94004041a4a789f346b0791cc0e90ca73e32be82cb270e9c5bb3230a0950ddd1cfcf7f98469704a053df127b5623c26854da41e02030c513f1550d5687a32c50f2f8469c7c1d64eb8d777876f47cab4e17715d3df9f6d4e3d9e8a31f3898bd7d7c72cb6735add14489619f03a1fa77e9e8fde9960c818ba2e4f6ddcc094f1af01fb53dc0879fdeb84626c1ef168b6df46ce47ce32c73b8cbd80a74c960f184269650da96ea02e36df699a521fbed3262453d85dbbb254d033a435f18badb4bfb6d6953afc4782be349afb63a73c90a2073159e07e6f4fb95b000c9a072803c689083fa733580a107dd76c37db69fb9e7d0ca8e87a32d14e88610601e65e321baab0467456a6a310ff99823133f98b107f12f3f90601591b442cb5fcc531cd1dda681665f18923107ef7227b290aa8ad5df665d1a24db904a7decfbe242ad7bdf6e5032253fb6a738e2d5ea863ff3b6d1e54a49b93e825332b2ebe6de6ee115bf99908087986d3b86b4eb2ce2c003028fe1b7ccc0ca4c31c06e4cdca341ca16048f507456660f5c85000f6b6017ab634f3268457967d3d118f473c34d564c901028649e1a6fc7712d6b6618eaafd0304eff6fa49b26305ef5aaf077ce2ed4a6b8d1cb9d60c553bc7e7c69abcc436e93d685fc544c7ed5f1ac3bfa5f64310226dcca54a773d5fd64f3b82101f8e74b7ba562379e47f2b23157f815e62ac0054cb12b5259a8a42bd98778d0443fbdb776be98b4a13987b45c96bf94d8295248a83f31a768b2178081434b031813f0f84c0e028beab394664023dbb6d4d80a40cc8135675e5a52f2ece25759b0e332f91c2105b38d8f1a53c6ee8547e41d3fcf15f32886d94425b41a175cb1f71e432649c9ba40edcd52e34d3794364907f9523f5c4ecab12ce03c40d5d5227f382706548eb5c73eb4cdf63e8a97dceef64e27c520732c28675fbc1801b0355e3d3b7c66dcf87a6cdc061a0142215a72dfa4cd20560739c007582c0d5a3d15da3f4b2fb7d9b3ea873055c7db7136b94c9255b744b8f4e766560a76bd2f176a0073965a05bf8ac54b54367bdd9300b004920012bdcaaf405607aaadeb5f08cf1ef9d2a434c067224f8c8c1a901f6213c66ce1313556c4a9fff3b40f4b13d5fd2fe854f8e3808f15ea87b06b558fe414274b2c5bb7e4e12997f30a893913ba9e19ad4810fdde9bdbd6e5dd1a844a2d02e8889a511c95b8fb59541b38da91ce3b0096feed4612522d47cfc56e6e746f4e8960a729e196ac65fba8a5ff2d7203be1c75d32e5c608bc7d027f289ab6e3efa7645ccc8b7e30382e0f2fe2008cc6bd76539bdfddcf660b8d1711624d92ee22878bc5a1e77608be41c12114fb137233544eadff064ae234b95df21a46a20953d6e76a4d994c2a746d9cf40454681874b616a8b843b3abaca0f9537fac1e0f34ddc29ed62976767f162b3aeb22155f697fbe39ca56bcebce78ba9206564e72231b3eb0822e1699893d9c8eb9453714ed7b7a1753112da5cd767fdaf7126b4eff8e30d5c051a8e2b0afe0b05f9c90ed8bfa8ee46a13ba5f5be5f610fc9fc0841e683c71c7bbcd757867de5000c3485d81a688000583ae3470ed561ec5b0494cc16567ad08bc2f0d83be833e50636c948c360e4d2756d8f1bf5fbdc8fa50d881878e33ab926bd1691bbf6500575cdf410055c3746323ab3b08d18e52580e5fdf0ee886e63ad7dc194a13f356cb18971d21e6dcb92b20362775203d56dd0716f30908f76b2a1b87ceac3817ad6c0c9e435443f561913adbf445f2996b8f42bbcb834df6fccf465b113377ea1973d8f8e8d93374dd295ca330ff3c0dea421dab90ca361a921ceb38bf7ad16784c8e542b3edc9d112ab2f8ca3f6705e14e2c285f6d2d107b58ffdb3c293b5a4e0f175be8cd0b7f36ed2b5994c699091c9f34aa835fa439c15b7566822941958b81880085b2f25e85108f5e49c9521330c01d094ce203bb23a817c5a03a328bae5194b70ada3955cd142b3f9e919b1040975db6a9a2ab9fb330e22f17e0fadb9330cac2bed2896469c48f95390282e1d6029ae01192c6a74ac1a80885fbb90bbdc35e178edf8dad250e8eab9ba8fcb3f01bcef219dbb4ef8960fdaef3c1f2c7c0d9362ab9bd48fb799779faf4066ac626f2066477ba8c20427e2fb7077f3fabd358fc945f0266a0291576852b8edd30a0b90bdc065c67604bf9f1e6fad0b9b5b41148b241b5f66515a7ec4db7986df33b02f5efbf4bb6130c5d3cc5844bd9c7c243e5a5f8ebb0e7dcf5156cfd5b2930e0a1c932871deccc6ff932b9b019e321e458a42796934c61e8353ef4f99decbeab0e6f73d5768a26dd254627ced94e97519ae811a547ca2dc47b204c55e05155008bfaf581ce712de5ed81d2b67f89b5099a71f19d4b5b60549f2053bd257839185c9eb5b1c9b3d2eb5bfc4cf8c89d11fd1b3301317c4867199905b75f90bed228749d6c1dd19e4539f53f2a7889a6b47211a6ef6aa8013c04f85af139f286ce4b8b97b27c4a076ed4d42384f55870397166ee5b152b46f7102ad12d709499221660622ad53794fc95afe67632f4cb2fe8b61ba00e6f5236578a67d08cfecbb7e7be0a45419ada0cea38dedff1f8bbbe7070d855a5d3e51be8a7a2e2767a9464ad9c8850a81f28736ab6fa74d0bc048d245c90b5ea44efc168b5cf957eb3b948552659cd376fa6d0f33d53b7934f82bfda9c5c0f0efddbb168477ed80a98c39220780d0eaee89a504bb6363c2f9c741798ffc4a606c44e67cc4b84d5c113a06aac68cecd6686717350e5c61b9182b6a1d90a1521c76fc9522c15d777324281e5c457bcaed8f7bf01ba3a7eeebebac3181559f0f6a18b98029a1e566452cbf91d37d519f3cdbbbdcebcd239dff3876a1adb7340efcb58fcec3a1f9afde757be05935d60d35a7b0aa24c1b9aba3edf81f948917849e5268ecc9d71d7e74f13954d5a43389c870fe20b8b543cfee8e314f94fe31b8edd2069a60c2ab45aa605fb2f9dbe5298671b6a51a686782a076127c65867a78d0b89338a84e7832dc698e291d8541b783861441fdc9e718520dbad948458de4cb26bbf92ebad4151976ba0309ae7f9a4ae1e8ac90f663b6e226066486d9b0194080460b3951b4615b1ec2106aeb4333014a0beb05074b2766173daea716c017b7d34d201e978996f0beee59e6e999cdd32d945ad6ced6231b2745061e2c7eac881df1158418fdfe6fd2f4c2638fdf01e53893cca9f96123a23d8a42c3638a4d4a8e66ed92942326056f55428b84ebdd04192412c5845087c626ce62cb8a32ea2edb4059cfc3b33e56399160929b98bdae2b71239013fd45c354c1880ad42753dd68de5184b84ac99e2456411ffd1daa5916a2958a4a6e8389e4a5723031f0fd7d913710170abf6c4922eb2262b58e2941e9634d8086fddc0099e7429a2139d26d12e34edf0c29af3ca23ff73145797df2ca9bc5e3359346b0b68cd8fc396198bf3ec4acda20e2f7b1f988e19ae39fd6340146193f537053ff5c154e88681a96cbb882bc839c7f306ebdcee6986be44faf38a9ebad8f24f1542f74e442bbb0a48f2fbee7a4af0aba89f0e25dfee0f5b6dc89f90f63849da32c5883da0fc2df89a34d6130f62bd600808f652994b9de416fb8b91477944069b798036b7af0ae6a5ea70505e9153aa098f987dc078b0566ba35bfa4c42cb2391b9fa72b76e03788b45dbe1b63751c99167a69fc40ac04a917dcb6b88e9d6c3f505a3beb47e76aa9fb99c61e62dca4c9e6094e32958c8847ee081ad2bc01e10b0e1c379c05aa1c1c3346a275b7d2c5d03272b72f194475662291a8793219d34019a9dd6c83de616b0ae318b0734f09270a2e22333be6e77f1261fdb0ad11abe9ea1a670e10e6c4082b082ad05effb4aa2298bba0721ca92097b9cbe9d5cb1d8d8d6ddb8cbb9c8748fe35aeeee29ce96c18d052ad74e7f01452d5545036d4c431015aa31702b3fd8d1aed73814b659d9b795bd70bd6b96055f6635785f71db692d67a88ab645fe26fa03e2e09f7f149eb68a3a7354482662b303ecb18940678afd6599d2b11d949fc30ecd20ded6077b959c24acaef58456d9ccefcae69903a4661a06785ed07cb582dcf65cece1b6717357326926994eac413eca4bd013bc47d26d24bbfb939615fc9e7f4e57315bddc01bd47644ac3722a431e4d88cab8e5fc89185f8b695b82efa835d85f7fe5bf6400322d51a8fe46ecbf37fbbed835f6b0c33b656ac5aba193847b79d4de3503abcdef48bc430dd41c87680c8e458a4b54bb258fb828d427d1177c21f40c9a89d0af7f05b63583816c15e1ddbcdd52f63950c643f4f14a01ea24859e9f08ac2beaea112e364523c25f63f003fcf4daea2cc99407641402b598f4f68bc9f30c5793ff29df6ca71204b1335ea8cd929c791bae445929d24102dd0342d04afb69790a72d6db9d5d01108483342db80eb231bcb1c32450536a398ff46911f581b0345f460dcb9d3f498352a71af2afc392f1a2a1330db62c22e9bcfc15013eb24efc6ccdcf22b05d4709e0e2a98b6caf766e5ce8c9a7827777e43b83c5a4daa4c4ccaa1dbb1cf5028a1d05aaf7341e0191313754b359ebdf2539654282efbff9f6d88bfffaacc3d13b33ce0f4792b105c6f9f73c2ef6d61fb8158ed3e8d52e6e6d96209e3b339cf1961526602763ccc0faa70dbc95df4d2b7bcf85717b9163576d6e3253e39b19acc57ca1e3266a6fd8be9e77a7138bd08deeda1a743b1f363f567d1149f39a78d508bf7864222cf5630aaa2b99fc0938bae3a83bc8ff7e5176aeb7852a6ea24d45247298acb402c31a434dca539cb5f0880787778b8445344926f1e7c78d17ae81629355b1814d9fc18b4c9319e45a273e9d999e2ee4a95151bbf2bd865b2b1780925ee81967145f29c42d0345a88a293a8c2ac628f29b1ce2b661d1741aab0585173892906eb7d4b2ba0ad48572dd70fab49bd45978ea7db34eae9c6e19afb37d59977de2a3c5663c114987d3ca356c81dac4cb998b1cc91a856288edfd12db92b402a941156c60692209b2d0222adb924c4ffae9a2cbed9e114225b9ed567862cbbcb7ece539fcb7739d49cdf4ac61754f7c9f13cd6057dccf7aba0bf576505fa84b9daf711c352e9a7c7568d03adf499051ad9ecef3ab1da6646e3e0c26fbcae396e74b3de22a6bdce8c2358949031bbc28f312eaec8a40f81f49fa40bbf4854c7c527ef9647988ef255c5dada3323f417de415df29021d7e1361929564b23d6da08bba325dd863af17436ff3d7b0a5bd53265d3a7f7d3a58a3c29a6ec4032165f28b0339a50944ae58ca04454b8adf7b63bac71e4ff4233c298ed48011f85cd8712df46c7126d9a13b74f8e4a5253352bdd2b4d9a4f44c16500842dcc49f7d14780ac0e303d0d8abf5bd49dccf26be0b675a2692a2a18b21e446cc57dd48905a74e41fbabfd1e050f23f8c92f85c93723349691dda224c89421f8b47ec708fc2d3996c2745bb5d9586ab3e2b04e6c3d516b856b7ed68540bb60648e3f0c358ce36712ee7b0ce07170671176b8193d0c95622b4525564d623e30f92e28c2d6eb058f0a9698b63c0d52e64708f00f78aa1acfd5a29c1ab16eb30cda0ff845a771057c5ec55f9c32e1b08758598d4d63f1c25ac134b087770f874201f0e667d664e2981615d9fbecfca50c94373d7f07cf221d50735fac1fe85c9baefe9e97c7cd9949a15284a95337016b4418a1e31243b56b1d8a4473057a619bbf192f0ec62a3a852be021dcab0502b9021823af8df5467495e5fdf4b65c7b19a1bc74ae6e80ba028987a60411e7de38f1c3e1fc6b3437a5c25f04a2ee85294e97b30bccf391295779d2acda8a0d4a4c8fb5c32a9311440762c7a3fb9d597ed68</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <h2 id="边染色"><a href="#边染色" class="headerlink" title="边染色"></a>边染色</h2><h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
+<li>边$k$染色<ul>
+<li>$E(G)\rightarrow \{1,2,\cdots,k\}$</li>
+<li>$E_i$：色为$i$的边集</li>
+</ul>
+</li>
+<li>边正常$k$染色：相邻的边不同色</li>
+<li>边$k$色可染的： 能找到一个边正常$k$染色</li>
+<li>边色数：<ul>
+<li>边$k$色可染的最小$k$</li>
+<li>记作$\chi’$</li>
+</ul>
+</li>
+<li>只考虑无环图，可以有重边</li>
+</ul>
+<h3 id="边色数的性质和意义"><a href="#边色数的性质和意义" class="headerlink" title="边色数的性质和意义"></a>边色数的性质和意义</h3><ul>
+<li>$\Delta\leq \chi’ \leq \epsilon$</li>
+<li>$\chi’$和匹配的联系：<ul>
+<li>$E(G)$至少要被划分成$\chi’(G)$个匹配</li>
+<li>如果$E(G)$能被划分为$m$个匹配，则$\chi’(G)\leq m$</li>
+</ul>
+</li>
+</ul>
+<h3 id="最佳边k染色"><a href="#最佳边k染色" class="headerlink" title="最佳边k染色"></a>最佳边k染色</h3><ul>
+<li>对于边$k$染色$c$，用$c(v)$表示顶点$v$出现的色数</li>
+<li>若$\sum c’(v)&gt;\sum c(v)$，则称$c’$是$c$的一个改进</li>
+<li>不能改进的边$k$染色称作最佳边$k$染色（未必是边正常$k$染色）</li>
+</ul>
+<h3 id="Vizing定理"><a href="#Vizing定理" class="headerlink" title="Vizing定理"></a>Vizing定理</h3><p>对于简单图$G$，$\Delta\leq \chi’\leq \Delta+1$</p>
+<h3 id="简单图的分类"><a href="#简单图的分类" class="headerlink" title="简单图的分类"></a>简单图的分类</h3><ul>
+<li>第一类图：$\chi’=\Delta$</li>
+<li>第二类图：$\chi’=\Delta+1$</li>
+</ul>
+<h3 id="二部图的边色数"><a href="#二部图的边色数" class="headerlink" title="二部图的边色数"></a>二部图的边色数</h3><ul>
+<li>对于二部图$G$，$\chi’=\Delta$</li>
+<li>二部图的边正常$\Delta$染色算法<ul>
+<li>$k$正则二部图有$k$个边不重的完美匹配</li>
+<li>算法思路<ul>
+<li>将二部图扩展成$\Delta$正则二部图</li>
+<li>反复的求最大匹配，即完美匹配，染色后从图中删去</li>
+<li>忽略添加的顶点和边</li>
+</ul>
+</li>
+<li>二部图边染色复杂度：目前最快的算法是$O(mlog\Delta)$；</li>
+<li>一般简单图的边染色：多项式时间内可以做到$\Delta+1$染色</li>
+</ul>
+</li>
+</ul>
+<h2 id="点染色"><a href="#点染色" class="headerlink" title="点染色"></a>点染色</h2><h3 id="相关概念-1"><a href="#相关概念-1" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
+<li>$k$染色<ul>
+<li>$V(G)\rightarrow \{1,2,\cdots,k\}$</li>
+<li>$V_i$：色为$i$的顶点集</li>
+</ul>
+</li>
+<li>正常$k$染色：相邻的顶点不同色</li>
+<li>$k$色可染的： 能找到一个正常$k$染色</li>
+<li>色数：<ul>
+<li>$k$色可染的最小$k$</li>
+<li>记作$\chi$</li>
+</ul>
+</li>
+</ul>
+<h3 id="色数的性质和意义"><a href="#色数的性质和意义" class="headerlink" title="色数的性质和意义"></a>色数的性质和意义</h3><ul>
+<li>$chi \leq v$</li>
+<li>$\chi$和点独立集的联系：<ul>
+<li>$v(G)$至少要被划分成$\chi(G)$个点独立集</li>
+<li>如果$V(G)$能被划分为$m$个点独立集，则$\chi(G)\leq m$</li>
+</ul>
+</li>
+</ul>
+<h3 id="色临界图及其性质"><a href="#色临界图及其性质" class="headerlink" title="色临界图及其性质"></a>色临界图及其性质</h3><ul>
+<li>$k$临界的：$\chi=k$的极小图</li>
+<li>$k$色图一定包含一个$k$临界子图</li>
+<li>色临界图一定是连通的简单图</li>
+<li>对于$k$临界图$G$中的任一顶点$v$，能找到一个正常$k$染色使得$v$的色独一无二且与其他$k-1$种色都相邻</li>
+<li>$k$临界图满足$\Delta\geq k-1$</li>
+<li>对于$k$临界图$G$中的任一边$e$，$G-e$的任一正常$k-1$染色都使得$e$的两个端点同色</li>
+<li>色临界图的点割集不是团（两两相邻的顶点子集）</li>
+<li>每个色临界图都是块（无割点的连通图）</li>
+<li>色临界图若有2-点割集$\{u,v\}$，则$u$和$v$不相邻</li>
+</ul>
+<h3 id="色数的界和正常染色算法"><a href="#色数的界和正常染色算法" class="headerlink" title="色数的界和正常染色算法"></a>色数的界和正常染色算法</h3><h4 id="贪心算法一"><a href="#贪心算法一" class="headerlink" title="贪心算法一"></a>贪心算法一</h4><ul>
+<li>假设可以染的色为$1,2,\cdots$</li>
+<li>对于顶点$v_1,v_2,\cdots,v_n$按任意序染色，总选择不冲突的下标最小的色</li>
+<li>最多需要$\Delta+1$种颜色</li>
+<li>$\chi\leq \Delta+1$</li>
+</ul>
+<h4 id="贪心算法二"><a href="#贪心算法二" class="headerlink" title="贪心算法二"></a>贪心算法二</h4><ul>
+<li>假设可以染的色为$1,2,\cdots$</li>
+<li>对于顶点$v_1,v_2,\cdots,v_n$按度降序染色，总选择不冲突的下标最小的色</li>
+<li>$\chi\leq \max_i\min\{d(v_i)+1,i\}=1+\max_i\min\{d(v_i),i-1\}\leq \Delta+1$</li>
+<li>初期$i$较小，后期$d(v_i)$较小，因此总体较小</li>
+</ul>
+<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>除完全图和奇圈以外的连通简单图$G$满足$\chi\leq \Delta$</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>对于$k&gt;2$，判断一个图是否$k$色可染是NP-完全问题</li>
+<li>一般意义上的求色数更是$NP-hard$问题</li>
+<li>找到一个近似比为常数的近似算法同样困难</li>
+</ul>
+
     </div>
 
     
@@ -315,7 +393,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Problem-Set-Solutions/" rel="tag"># Problem Set Solutions</a>
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
           </div>
 
         
@@ -324,13 +402,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/16/algorithms16-hw/" rel="prev" title="【习题解答】 哈希表与查找">
-      <i class="fa fa-chevron-left"></i> 【习题解答】 哈希表与查找
+    <a href="/2021/05/07/worklog-2021-5/" rel="prev" title="【工作日志】 2021年5月">
+      <i class="fa fa-chevron-left"></i> 【工作日志】 2021年5月
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/16/algorithms19-hw/" rel="next" title="【习题解答】 对手论证">
-      【习题解答】 对手论证 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -390,6 +465,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E6%9F%93%E8%89%B2"><span class="nav-number">1.</span> <span class="nav-text">边染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%89%B2%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">边色数的性质和意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E8%BE%B9k%E6%9F%93%E8%89%B2"><span class="nav-number">1.3.</span> <span class="nav-text">最佳边k染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vizing%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">Vizing定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%9B%BE%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">简单图的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%83%A8%E5%9B%BE%E7%9A%84%E8%BE%B9%E8%89%B2%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">二部图的边色数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%B9%E6%9F%93%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">点染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-1"><span class="nav-number">2.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">色数的性质和意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E4%B8%B4%E7%95%8C%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">2.3.</span> <span class="nav-text">色临界图及其性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%95%B0%E7%9A%84%E7%95%8C%E5%92%8C%E6%AD%A3%E5%B8%B8%E6%9F%93%E8%89%B2%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">色数的界和正常染色算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%80"><span class="nav-number">2.4.1.</span> <span class="nav-text">贪心算法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%BA%8C"><span class="nav-number">2.4.2.</span> <span class="nav-text">贪心算法二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">2.4.3.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">2.4.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
