@@ -546,21 +546,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【工作日志】 第一篇博客</title>
-    <url>/2021/01/21/first%20blogs/</url>
-    <content><![CDATA[<p>欢迎来到我的博客。</p>
-<p>搭建博客的初衷，一方面是个人知识体系的总结与分享；其次是平时工作学习的记录和自我反馈。</p>
-<p>文章中有任何问题需要交流，都可以在博客评论区留言。</p>
-<p>本人邮箱：401986905@qq.com。</p>
-]]></content>
-      <categories>
-        <category>工作日志</category>
-      </categories>
-      <tags>
-        <tag>Working Logs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【知识总结】 Counting</title>
     <url>/2021/03/09/combinatorics-1/</url>
     <content><![CDATA[<h2 id="Double-Counting-Principle"><a href="#Double-Counting-Principle" class="headerlink" title="Double Counting Principle"></a>Double Counting Principle</h2><h3 id="数学含义"><a href="#数学含义" class="headerlink" title="数学含义"></a>数学含义</h3><p>$\sum_{i=1}^m\sum_{j=1}^n A[i][j]=\sum_{j=1}^n\sum_{i=1}^m A[i][j]$</p>
@@ -573,6 +558,21 @@
       </categories>
       <tags>
         <tag>Knowledge Summary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【工作日志】 第一篇博客</title>
+    <url>/2021/01/21/first%20blogs/</url>
+    <content><![CDATA[<p>欢迎来到我的博客。</p>
+<p>搭建博客的初衷，一方面是个人知识体系的总结与分享；其次是平时工作学习的记录和自我反馈。</p>
+<p>文章中有任何问题需要交流，都可以在博客评论区留言。</p>
+<p>本人邮箱：401986905@qq.com。</p>
+]]></content>
+      <categories>
+        <category>工作日志</category>
+      </categories>
+      <tags>
+        <tag>Working Logs</tag>
       </tags>
   </entry>
   <entry>
@@ -712,6 +712,111 @@
       </tags>
   </entry>
   <entry>
+    <title>【知识总结】 图的连通性</title>
+    <url>/2021/03/11/graphIntroduction-2/</url>
+    <content><![CDATA[<h2 id="割点和割边"><a href="#割点和割边" class="headerlink" title="割点和割边"></a>割点和割边</h2><h3 id="割点定义"><a href="#割点定义" class="headerlink" title="割点定义"></a>割点定义</h3><p>$v \in V(G):w(G-v)&gt;w(G)$</p>
+<h3 id="割点的一个定理"><a href="#割点的一个定理" class="headerlink" title="割点的一个定理"></a>割点的一个定理</h3><p>如果点v是简单图G的一个割点，则边集$E[G]$可划分为两个非空子集$E_1$和$E_2$，使得边导出子图$G[E_1]$和$G[E_2]$恰好有一个公共顶点v。</p>
+<h3 id="连通图中割点的等价定义"><a href="#连通图中割点的等价定义" class="headerlink" title="连通图中割点的等价定义"></a>连通图中割点的等价定义</h3><ul>
+<li>v是G的割点</li>
+<li>G-v不连通</li>
+<li>存在$V(G)\setminus\{v\}$的一个划分：$V(G)\setminus\{v\}=U\cup W$,$U\cap W=\emptyset$,使得对$\forall u\in U$和$\forall w\in W$,v在每条u-w路上</li>
+<li>存在$u,w\in V(G)$,使得u,w异于v，且v在每条u-w路上</li>
+</ul>
+<h3 id="割边定义"><a href="#割边定义" class="headerlink" title="割边定义"></a>割边定义</h3><p>$e \in E(G):w(G-e)&gt;w(G)$</p>
+<h3 id="割边的等价定义"><a href="#割边的等价定义" class="headerlink" title="割边的等价定义"></a>割边的等价定义</h3><ul>
+<li>e是G的割边</li>
+<li>e不在G的任何圈中</li>
+</ul>
+<h3 id="连通图中割边的等价定义"><a href="#连通图中割边的等价定义" class="headerlink" title="连通图中割边的等价定义"></a>连通图中割边的等价定义</h3><ul>
+<li>e是G的割边</li>
+<li>存在$V(G)$的一个划分：$V(G)=U\cup W$,$U\cap W=\emptyset$,使得对$\forall u\in U$和$\forall w\in W$,e在每条u-w路上</li>
+<li>存在$u,v\in V(G)$,使得e在每条u-v路上</li>
+</ul>
+<h2 id="连通度和边连通度"><a href="#连通度和边连通度" class="headerlink" title="连通度和边连通度"></a>连通度和边连通度</h2><h3 id="点割集"><a href="#点割集" class="headerlink" title="点割集"></a>点割集</h3><p>$S \subset V(G): w(G-S)&gt;1$</p>
+<h3 id="极小点割集"><a href="#极小点割集" class="headerlink" title="极小点割集"></a>极小点割集</h3><p>任何真子集都不是点割集</p>
+<h3 id="最小点割集"><a href="#最小点割集" class="headerlink" title="最小点割集"></a>最小点割集</h3><p>图中含顶点数最少的点割集</p>
+<h3 id="连通度"><a href="#连通度" class="headerlink" title="连通度"></a>连通度</h3><ul>
+<li>G不是完全图：最小点割集的势</li>
+<li>G是完全图：v-1</li>
+<li>G不连通：0</li>
+<li>G是零图或平凡图：不讨论</li>
+</ul>
+<h3 id="连通度性质（-kappa-G-kappa-）"><a href="#连通度性质（-kappa-G-kappa-）" class="headerlink" title="连通度性质（$\kappa(G)=\kappa$）"></a>连通度性质（$\kappa(G)=\kappa$）</h3><ul>
+<li>没有势为k-1或更小的点割集</li>
+<li>任意去掉k-1或更少的点，仍然连通</li>
+</ul>
+<h3 id="k-连通"><a href="#k-连通" class="headerlink" title="k-连通"></a>k-连通</h3><p>即$\kappa(G)\geq k$</p>
+<h3 id="边割集"><a href="#边割集" class="headerlink" title="边割集"></a>边割集</h3><p>$S \subset E(G): w(G-S)&gt;1$</p>
+<h3 id="极小边割集"><a href="#极小边割集" class="headerlink" title="极小边割集"></a>极小边割集</h3><p>任何真子集都不是边割集</p>
+<h3 id="最小边割集"><a href="#最小边割集" class="headerlink" title="最小边割集"></a>最小边割集</h3><p>图中含边数最少的边割集</p>
+<h3 id="边连通度"><a href="#边连通度" class="headerlink" title="边连通度"></a>边连通度</h3><ul>
+<li>最小边割集的势</li>
+<li>G不连通：0</li>
+<li>G是零图或平凡图：不讨论</li>
+</ul>
+<h3 id="连通度性质（-kappa’-G-k-）"><a href="#连通度性质（-kappa’-G-k-）" class="headerlink" title="连通度性质（$\kappa’(G)=k$）"></a>连通度性质（$\kappa’(G)=k$）</h3><ul>
+<li>没有势为k-1或更小的边割集</li>
+<li>任意去掉k-1或更少条边，仍然连通</li>
+</ul>
+<h3 id="k-边连通"><a href="#k-边连通" class="headerlink" title="k-边连通"></a>k-边连通</h3><p>即$\kappa’(G)\geq k$</p>
+<h3 id="一个重要的定理"><a href="#一个重要的定理" class="headerlink" title="一个重要的定理"></a>一个重要的定理</h3><p>$\kappa(G)\leq \kappa’(G)\leq \delta(G)$</p>
+<h3 id="kappa-G-的一个上界"><a href="#kappa-G-的一个上界" class="headerlink" title="$\kappa(G)$的一个上界"></a>$\kappa(G)$的一个上界</h3><p>$2\epsilon=\sum\limits_{u\in V(G)}d(u)\geq\delta(G)v\Rightarrow\delta(G)\leq \frac{2\epsilon}{v}\Rightarrow\kappa(G)\leq \delta(G)\leq \frac{2\epsilon}{v}\Rightarrow\kappa(G)$的一个上界$\lfloor\frac{2\epsilon}{v}\rfloor$</p>
+<h3 id="kappa-G-kappa’-G-的一个充分条件"><a href="#kappa-G-kappa’-G-的一个充分条件" class="headerlink" title="$\kappa(G)=\kappa’(G)$的一个充分条件"></a>$\kappa(G)=\kappa’(G)$的一个充分条件</h3><p>G是3-正则图</p>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>Knowledge Summary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【知识总结】 k-连通图</title>
+    <url>/2021/03/18/graphIntroduction-3/</url>
+    <content><![CDATA[<h2 id="2-连通图的性质"><a href="#2-连通图的性质" class="headerlink" title="2-连通图的性质"></a>2-连通图的性质</h2><h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><p>G是块：G是无割点的连通图<br>H是G的块：H是G中极大无割点连通子图</p>
+<h3 id="块的等价定义-G是-v-geq-3-的连通图"><a href="#块的等价定义-G是-v-geq-3-的连通图" class="headerlink" title="块的等价定义(G是$v\geq 3$的连通图)"></a>块的等价定义(G是$v\geq 3$的连通图)</h3><ul>
+<li>G是2-连通的(块)</li>
+<li>G的任二顶点共圈</li>
+<li>G的任一顶点与任一边共圈</li>
+<li>G的任二边共圈</li>
+<li>对 $\forall u,v\in V(G)$ 及 $\forall e \in E(G)$ 存在 $(u,v)$ 路含有边 $e$</li>
+<li>对 $\forall u,v,w\in V(G)$，存在 $(u,v)$ 路含有顶点 $w$</li>
+<li>对 $\forall u,v,w\in V(G)$，存在 $(u,v)$ 路不含有顶点 $w$</li>
+</ul>
+<h3 id="块的一些其他性质"><a href="#块的一些其他性质" class="headerlink" title="块的一些其他性质"></a>块的一些其他性质</h3><ul>
+<li>两个块最多只有一个公共顶点</li>
+<li>两个块没有公共边</li>
+<li>块是对图的边集的一种划分，等价关系是共圈</li>
+<li>割点$\Leftrightarrow$块的交点</li>
+<li>块-割点图</li>
+</ul>
+<h3 id="块的求法"><a href="#块的求法" class="headerlink" title="块的求法"></a>块的求法</h3><p>john Hopcroft和Robert Tarjan提出的经典算法</p>
+<ul>
+<li>思想：基于一次DFS</li>
+<li>时间复杂度：线性</li>
+<li>详细内容：可参考《算法导论》</li>
+</ul>
+<h2 id="Menger定理"><a href="#Menger定理" class="headerlink" title="Menger定理"></a>Menger定理</h2><h3 id="分离集"><a href="#分离集" class="headerlink" title="分离集"></a>分离集</h3><ul>
+<li>x-y分离集(x-y cut)：$S \subseteq V(G)\setminus\{x,y\}:G-S$中没有$x-y$路</li>
+<li>最小x-y分离集(minmum x-y cut)：势最小的x-y分离集</li>
+<li>x-y分离数：最小x-y分离集的势，记为s(x,y)</li>
+<li>两两内部无公共顶点的x-y路的最大条数：记作r(x,y)</li>
+</ul>
+<h3 id="Menger定理内容"><a href="#Menger定理内容" class="headerlink" title="Menger定理内容"></a>Menger定理内容</h3><p>设x,y是图G的两个不相邻的顶点，则s(x,y)=r(x,y)</p>
+<h3 id="Menger定理推论"><a href="#Menger定理推论" class="headerlink" title="Menger定理推论"></a>Menger定理推论</h3><p>$v\geq k+1$的图G是k-连通图</p>
+<p>$\Leftrightarrow$ G中任二顶点至少被k条两两内部无公共顶点的路所连</p>
+<h3 id="一个困惑"><a href="#一个困惑" class="headerlink" title="一个困惑"></a>一个困惑</h3><p>$v\geq k+1$的图G是k-连通图</p>
+<p>$\Leftrightarrow$ G中任二不相邻的顶点至少被k条两两内部无公共顶点的路所连</p>
+<p>是否成立呢？</p>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>Knowledge Summary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【知识总结】 边染色和点染色</title>
     <url>/2021/05/16/graphIntroduction-11/</url>
     <content><![CDATA[<h2 id="边染色"><a href="#边染色" class="headerlink" title="边染色"></a>边染色</h2><h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
@@ -813,111 +918,6 @@
 <li>一般意义上的求色数更是$NP-hard$问题</li>
 <li>找到一个近似比为常数的近似算法同样困难</li>
 </ul>
-]]></content>
-      <categories>
-        <category>图论</category>
-      </categories>
-      <tags>
-        <tag>Knowledge Summary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【知识总结】 图的连通性</title>
-    <url>/2021/03/11/graphIntroduction-2/</url>
-    <content><![CDATA[<h2 id="割点和割边"><a href="#割点和割边" class="headerlink" title="割点和割边"></a>割点和割边</h2><h3 id="割点定义"><a href="#割点定义" class="headerlink" title="割点定义"></a>割点定义</h3><p>$v \in V(G):w(G-v)&gt;w(G)$</p>
-<h3 id="割点的一个定理"><a href="#割点的一个定理" class="headerlink" title="割点的一个定理"></a>割点的一个定理</h3><p>如果点v是简单图G的一个割点，则边集$E[G]$可划分为两个非空子集$E_1$和$E_2$，使得边导出子图$G[E_1]$和$G[E_2]$恰好有一个公共顶点v。</p>
-<h3 id="连通图中割点的等价定义"><a href="#连通图中割点的等价定义" class="headerlink" title="连通图中割点的等价定义"></a>连通图中割点的等价定义</h3><ul>
-<li>v是G的割点</li>
-<li>G-v不连通</li>
-<li>存在$V(G)\setminus\{v\}$的一个划分：$V(G)\setminus\{v\}=U\cup W$,$U\cap W=\emptyset$,使得对$\forall u\in U$和$\forall w\in W$,v在每条u-w路上</li>
-<li>存在$u,w\in V(G)$,使得u,w异于v，且v在每条u-w路上</li>
-</ul>
-<h3 id="割边定义"><a href="#割边定义" class="headerlink" title="割边定义"></a>割边定义</h3><p>$e \in E(G):w(G-e)&gt;w(G)$</p>
-<h3 id="割边的等价定义"><a href="#割边的等价定义" class="headerlink" title="割边的等价定义"></a>割边的等价定义</h3><ul>
-<li>e是G的割边</li>
-<li>e不在G的任何圈中</li>
-</ul>
-<h3 id="连通图中割边的等价定义"><a href="#连通图中割边的等价定义" class="headerlink" title="连通图中割边的等价定义"></a>连通图中割边的等价定义</h3><ul>
-<li>e是G的割边</li>
-<li>存在$V(G)$的一个划分：$V(G)=U\cup W$,$U\cap W=\emptyset$,使得对$\forall u\in U$和$\forall w\in W$,e在每条u-w路上</li>
-<li>存在$u,v\in V(G)$,使得e在每条u-v路上</li>
-</ul>
-<h2 id="连通度和边连通度"><a href="#连通度和边连通度" class="headerlink" title="连通度和边连通度"></a>连通度和边连通度</h2><h3 id="点割集"><a href="#点割集" class="headerlink" title="点割集"></a>点割集</h3><p>$S \subset V(G): w(G-S)&gt;1$</p>
-<h3 id="极小点割集"><a href="#极小点割集" class="headerlink" title="极小点割集"></a>极小点割集</h3><p>任何真子集都不是点割集</p>
-<h3 id="最小点割集"><a href="#最小点割集" class="headerlink" title="最小点割集"></a>最小点割集</h3><p>图中含顶点数最少的点割集</p>
-<h3 id="连通度"><a href="#连通度" class="headerlink" title="连通度"></a>连通度</h3><ul>
-<li>G不是完全图：最小点割集的势</li>
-<li>G是完全图：v-1</li>
-<li>G不连通：0</li>
-<li>G是零图或平凡图：不讨论</li>
-</ul>
-<h3 id="连通度性质（-kappa-G-kappa-）"><a href="#连通度性质（-kappa-G-kappa-）" class="headerlink" title="连通度性质（$\kappa(G)=\kappa$）"></a>连通度性质（$\kappa(G)=\kappa$）</h3><ul>
-<li>没有势为k-1或更小的点割集</li>
-<li>任意去掉k-1或更少的点，仍然连通</li>
-</ul>
-<h3 id="k-连通"><a href="#k-连通" class="headerlink" title="k-连通"></a>k-连通</h3><p>即$\kappa(G)\geq k$</p>
-<h3 id="边割集"><a href="#边割集" class="headerlink" title="边割集"></a>边割集</h3><p>$S \subset E(G): w(G-S)&gt;1$</p>
-<h3 id="极小边割集"><a href="#极小边割集" class="headerlink" title="极小边割集"></a>极小边割集</h3><p>任何真子集都不是边割集</p>
-<h3 id="最小边割集"><a href="#最小边割集" class="headerlink" title="最小边割集"></a>最小边割集</h3><p>图中含边数最少的边割集</p>
-<h3 id="边连通度"><a href="#边连通度" class="headerlink" title="边连通度"></a>边连通度</h3><ul>
-<li>最小边割集的势</li>
-<li>G不连通：0</li>
-<li>G是零图或平凡图：不讨论</li>
-</ul>
-<h3 id="连通度性质（-kappa’-G-k-）"><a href="#连通度性质（-kappa’-G-k-）" class="headerlink" title="连通度性质（$\kappa’(G)=k$）"></a>连通度性质（$\kappa’(G)=k$）</h3><ul>
-<li>没有势为k-1或更小的边割集</li>
-<li>任意去掉k-1或更少条边，仍然连通</li>
-</ul>
-<h3 id="k-边连通"><a href="#k-边连通" class="headerlink" title="k-边连通"></a>k-边连通</h3><p>即$\kappa’(G)\geq k$</p>
-<h3 id="一个重要的定理"><a href="#一个重要的定理" class="headerlink" title="一个重要的定理"></a>一个重要的定理</h3><p>$\kappa(G)\leq \kappa’(G)\leq \delta(G)$</p>
-<h3 id="kappa-G-的一个上界"><a href="#kappa-G-的一个上界" class="headerlink" title="$\kappa(G)$的一个上界"></a>$\kappa(G)$的一个上界</h3><p>$2\epsilon=\sum\limits_{u\in V(G)}d(u)\geq\delta(G)v\Rightarrow\delta(G)\leq \frac{2\epsilon}{v}\Rightarrow\kappa(G)\leq \delta(G)\leq \frac{2\epsilon}{v}\Rightarrow\kappa(G)$的一个上界$\lfloor\frac{2\epsilon}{v}\rfloor$</p>
-<h3 id="kappa-G-kappa’-G-的一个充分条件"><a href="#kappa-G-kappa’-G-的一个充分条件" class="headerlink" title="$\kappa(G)=\kappa’(G)$的一个充分条件"></a>$\kappa(G)=\kappa’(G)$的一个充分条件</h3><p>G是3-正则图</p>
-]]></content>
-      <categories>
-        <category>图论</category>
-      </categories>
-      <tags>
-        <tag>Knowledge Summary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【知识总结】 k-连通图</title>
-    <url>/2021/03/18/graphIntroduction-3/</url>
-    <content><![CDATA[<h2 id="2-连通图的性质"><a href="#2-连通图的性质" class="headerlink" title="2-连通图的性质"></a>2-连通图的性质</h2><h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><p>G是块：G是无割点的连通图<br>H是G的块：H是G中极大无割点连通子图</p>
-<h3 id="块的等价定义-G是-v-geq-3-的连通图"><a href="#块的等价定义-G是-v-geq-3-的连通图" class="headerlink" title="块的等价定义(G是$v\geq 3$的连通图)"></a>块的等价定义(G是$v\geq 3$的连通图)</h3><ul>
-<li>G是2-连通的(块)</li>
-<li>G的任二顶点共圈</li>
-<li>G的任一顶点与任一边共圈</li>
-<li>G的任二边共圈</li>
-<li>对 $\forall u,v\in V(G)$ 及 $\forall e \in E(G)$ 存在 $(u,v)$ 路含有边 $e$</li>
-<li>对 $\forall u,v,w\in V(G)$，存在 $(u,v)$ 路含有顶点 $w$</li>
-<li>对 $\forall u,v,w\in V(G)$，存在 $(u,v)$ 路不含有顶点 $w$</li>
-</ul>
-<h3 id="块的一些其他性质"><a href="#块的一些其他性质" class="headerlink" title="块的一些其他性质"></a>块的一些其他性质</h3><ul>
-<li>两个块最多只有一个公共顶点</li>
-<li>两个块没有公共边</li>
-<li>块是对图的边集的一种划分，等价关系是共圈</li>
-<li>割点$\Leftrightarrow$块的交点</li>
-<li>块-割点图</li>
-</ul>
-<h3 id="块的求法"><a href="#块的求法" class="headerlink" title="块的求法"></a>块的求法</h3><p>john Hopcroft和Robert Tarjan提出的经典算法</p>
-<ul>
-<li>思想：基于一次DFS</li>
-<li>时间复杂度：线性</li>
-<li>详细内容：可参考《算法导论》</li>
-</ul>
-<h2 id="Menger定理"><a href="#Menger定理" class="headerlink" title="Menger定理"></a>Menger定理</h2><h3 id="分离集"><a href="#分离集" class="headerlink" title="分离集"></a>分离集</h3><ul>
-<li>x-y分离集(x-y cut)：$S \subseteq V(G)\setminus\{x,y\}:G-S$中没有$x-y$路</li>
-<li>最小x-y分离集(minmum x-y cut)：势最小的x-y分离集</li>
-<li>x-y分离数：最小x-y分离集的势，记为s(x,y)</li>
-<li>两两内部无公共顶点的x-y路的最大条数：记作r(x,y)</li>
-</ul>
-<h3 id="Menger定理内容"><a href="#Menger定理内容" class="headerlink" title="Menger定理内容"></a>Menger定理内容</h3><p>设x,y是图G的两个不相邻的顶点，则s(x,y)=r(x,y)</p>
-<h3 id="Menger定理推论"><a href="#Menger定理推论" class="headerlink" title="Menger定理推论"></a>Menger定理推论</h3><p>$v\geq k+1$的图G是k-连通图</p>
-<p>$\Leftrightarrow$ G中任二顶点至少被k条两两内部无公共顶点的路所连</p>
-<h3 id="一个困惑"><a href="#一个困惑" class="headerlink" title="一个困惑"></a>一个困惑</h3><p>$v\geq k+1$的图G是k-连通图</p>
-<p>$\Leftrightarrow$ G中任二不相邻的顶点至少被k条两两内部无公共顶点的路所连</p>
-<p>是否成立呢？</p>
 ]]></content>
       <categories>
         <category>图论</category>
@@ -1142,6 +1142,81 @@
       </tags>
   </entry>
   <entry>
+    <title>【知识总结】 边独立集和边覆盖集</title>
+    <url>/2021/04/22/graphIntroduction-8/</url>
+    <content><![CDATA[<h2 id="边独立集"><a href="#边独立集" class="headerlink" title="边独立集"></a>边独立集</h2><h3 id="边独立集-1"><a href="#边独立集-1" class="headerlink" title="边独立集"></a>边独立集</h3><ul>
+<li>边独立集（匹配）：两两不相邻的边</li>
+<li>极大边独立集（极大匹配）：不是任何边独立集的真子集</li>
+<li>最大边独立集（最大匹配）：边数最多</li>
+<li>边独立数$\alpha’(G)$：最大边独立集的势</li>
+</ul>
+<h3 id="边独立集与点覆盖集"><a href="#边独立集与点覆盖集" class="headerlink" title="边独立集与点覆盖集"></a>边独立集与点覆盖集</h3><ul>
+<li>对任何无环边的图$G$，$\alpha’(G)\leq \beta(G)$</li>
+<li>二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|$</li>
+<li>二部图$G$，$\alpha’(G)=\beta(G)$</li>
+</ul>
+<h4 id="求最小点覆盖的算法"><a href="#求最小点覆盖的算法" class="headerlink" title="求最小点覆盖的算法"></a>求最小点覆盖的算法</h4><ul>
+<li>一般图：不存在近似比好于1.3606的多项式时间算法（除非P=NP）</li>
+<li>二部图：存在精确的多项式时间算法</li>
+</ul>
+<h4 id="二部图最小点覆盖算法细节"><a href="#二部图最小点覆盖算法细节" class="headerlink" title="二部图最小点覆盖算法细节"></a>二部图最小点覆盖算法细节</h4><ul>
+<li>求最大匹配</li>
+<li>未饱和顶点作为第0层</li>
+<li>根据交错路的距离对其他顶点分层</li>
+<li>每条边都有一个端点在奇层</li>
+<li>奇层顶点恰根据匹配中一条边引出一个新的偶层顶点</li>
+</ul>
+<h3 id="边独立数的估计"><a href="#边独立数的估计" class="headerlink" title="边独立数的估计"></a>边独立数的估计</h3><p>设图$G$无孤立点，则$\lceil\frac{v}{1+\Delta(G)}\rceil\leq \alpha’(G)\leq \lfloor\frac{v}{2}\rfloor$</p>
+<h2 id="边覆盖集"><a href="#边覆盖集" class="headerlink" title="边覆盖集"></a>边覆盖集</h2><h3 id="边覆盖集-1"><a href="#边覆盖集-1" class="headerlink" title="边覆盖集"></a>边覆盖集</h3><ul>
+<li>$L$是$G$（$G$无孤立点即$\delta(G)&gt;0$）的边覆盖集：$\forall u\in V(G),\exists v\in V(G),(u,v)\in L$</li>
+<li>极小边覆盖集：任何一个真子集都不再是边覆盖集</li>
+<li>最小边覆盖集：边数最少</li>
+<li>边覆盖数$\beta’(G)$：最小边覆盖集的势</li>
+</ul>
+<h3 id="边覆盖集与边独立集"><a href="#边覆盖集与边独立集" class="headerlink" title="边覆盖集与边独立集"></a>边覆盖集与边独立集</h3><ul>
+<li>若$\delta(G)&gt;0$，则$\alpha’(G)+\beta’(G)=v(G)$</li>
+<li>设$\delta(G)&gt;0$，则$\alpha’(G)\leq \beta’(G)$，等号成立当且仅当$G$有完美匹配</li>
+</ul>
+<h3 id="边覆盖集与点独立集"><a href="#边覆盖集与点独立集" class="headerlink" title="边覆盖集与点独立集"></a>边覆盖集与点独立集</h3><ul>
+<li>$\alpha(G)\leq \beta’(G)$</li>
+<li>设$G$是二部图且$\delta(G)\geq 0$，则$\alpha(G)=\beta’(G)$</li>
+</ul>
+<h3 id="边覆盖数的估计"><a href="#边覆盖数的估计" class="headerlink" title="边覆盖数的估计"></a>边覆盖数的估计</h3><p>设$G$无孤立点，则$\lceil\frac{v}{2}\rceil\leq\beta’(G)\leq\lceil v\frac{\Delta(G)}{1+\Delta(G)}\rceil$</p>
+<h3 id="无孤立点图中更一般的关系"><a href="#无孤立点图中更一般的关系" class="headerlink" title="无孤立点图中更一般的关系"></a>无孤立点图中更一般的关系</h3><ul>
+<li>边独立集小于等于边覆盖集，当边独立集为完美匹配，边覆盖集为最小时取等号</li>
+<li>边独立集小于等于点覆盖集，当边独立集为最大匹配，点覆盖集为最小时取等号</li>
+<li>点独立集小于等于边覆盖集，当点独立集为最大，边覆盖集为最小时取等号</li>
+<li>$\gamma(G)\leq \min\{\alpha(G),\beta(G),\alpha’(G),\beta’(G)\}$</li>
+</ul>
+<h3 id="求最小边覆盖集的算法"><a href="#求最小边覆盖集的算法" class="headerlink" title="求最小边覆盖集的算法"></a>求最小边覆盖集的算法</h3><ul>
+<li>原理是$\beta’(G)=v(G)-\alpha’(G)=\alpha’(G)+[v(G)-2\alpha’(G)]$</li>
+<li>最大匹配</li>
+<li>每个未饱和点任取一边</li>
+</ul>
+<h2 id="关系小节"><a href="#关系小节" class="headerlink" title="关系小节"></a>关系小节</h2><ul>
+<li>$\gamma(G)\leq \min\{\alpha(G),\beta(G),\alpha’(G),\beta’(G)\}$</li>
+<li>$\alpha(G)\leq \beta’(G)$</li>
+<li>$\alpha’(G)\leq \beta(G)$</li>
+<li>$\alpha’(G)\leq \beta’(G)$</li>
+<li>$\alpha(G)+ \beta(G)=v(G)$</li>
+<li>$\alpha’(G)+ \beta’(G)=v(G)$</li>
+</ul>
+<h2 id="求解算法小节"><a href="#求解算法小节" class="headerlink" title="求解算法小节"></a>求解算法小节</h2><ul>
+<li>最小支配集：近似算法，贪心</li>
+<li>最大点独立集：最小点覆盖集的补集</li>
+<li>最小点覆盖集：一般图用近似算法，基于极大匹配；二部图基于最大匹配</li>
+<li>最大边独立集：即最大匹配求解算法，一般图用Edmonds，二部图用Hopcroft-Karp</li>
+<li>最小边覆盖集：基于最大匹配</li>
+</ul>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>Knowledge Summary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【知识总结】 支配集、点独立集和点覆盖集</title>
     <url>/2021/04/15/graphIntroduction-7/</url>
     <content><![CDATA[<h2 id="支配集"><a href="#支配集" class="headerlink" title="支配集"></a>支配集</h2><h3 id="支配集-控制集"><a href="#支配集-控制集" class="headerlink" title="支配集(控制集)"></a>支配集(控制集)</h3><ul>
@@ -1224,81 +1299,6 @@
 <li>找极大匹配即可</li>
 <li>不存在近似比好于1.3606的多项式时间算法（除非P=NP）</li>
 <li>目前还没有找到近似比显著小于2的多项式时间算法：基于极大匹配的算法还不错</li>
-</ul>
-]]></content>
-      <categories>
-        <category>图论</category>
-      </categories>
-      <tags>
-        <tag>Knowledge Summary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【知识总结】 边独立集和边覆盖集</title>
-    <url>/2021/04/22/graphIntroduction-8/</url>
-    <content><![CDATA[<h2 id="边独立集"><a href="#边独立集" class="headerlink" title="边独立集"></a>边独立集</h2><h3 id="边独立集-1"><a href="#边独立集-1" class="headerlink" title="边独立集"></a>边独立集</h3><ul>
-<li>边独立集（匹配）：两两不相邻的边</li>
-<li>极大边独立集（极大匹配）：不是任何边独立集的真子集</li>
-<li>最大边独立集（最大匹配）：边数最多</li>
-<li>边独立数$\alpha’(G)$：最大边独立集的势</li>
-</ul>
-<h3 id="边独立集与点覆盖集"><a href="#边独立集与点覆盖集" class="headerlink" title="边独立集与点覆盖集"></a>边独立集与点覆盖集</h3><ul>
-<li>对任何无环边的图$G$，$\alpha’(G)\leq \beta(G)$</li>
-<li>二部图$X-Y$有饱和$X$的匹配当且仅当$\forall S\subset X,|N(S)|\geq |S|$</li>
-<li>二部图$G$，$\alpha’(G)=\beta(G)$</li>
-</ul>
-<h4 id="求最小点覆盖的算法"><a href="#求最小点覆盖的算法" class="headerlink" title="求最小点覆盖的算法"></a>求最小点覆盖的算法</h4><ul>
-<li>一般图：不存在近似比好于1.3606的多项式时间算法（除非P=NP）</li>
-<li>二部图：存在精确的多项式时间算法</li>
-</ul>
-<h4 id="二部图最小点覆盖算法细节"><a href="#二部图最小点覆盖算法细节" class="headerlink" title="二部图最小点覆盖算法细节"></a>二部图最小点覆盖算法细节</h4><ul>
-<li>求最大匹配</li>
-<li>未饱和顶点作为第0层</li>
-<li>根据交错路的距离对其他顶点分层</li>
-<li>每条边都有一个端点在奇层</li>
-<li>奇层顶点恰根据匹配中一条边引出一个新的偶层顶点</li>
-</ul>
-<h3 id="边独立数的估计"><a href="#边独立数的估计" class="headerlink" title="边独立数的估计"></a>边独立数的估计</h3><p>设图$G$无孤立点，则$\lceil\frac{v}{1+\Delta(G)}\rceil\leq \alpha’(G)\leq \lfloor\frac{v}{2}\rfloor$</p>
-<h2 id="边覆盖集"><a href="#边覆盖集" class="headerlink" title="边覆盖集"></a>边覆盖集</h2><h3 id="边覆盖集-1"><a href="#边覆盖集-1" class="headerlink" title="边覆盖集"></a>边覆盖集</h3><ul>
-<li>$L$是$G$（$G$无孤立点即$\delta(G)&gt;0$）的边覆盖集：$\forall u\in V(G),\exists v\in V(G),(u,v)\in L$</li>
-<li>极小边覆盖集：任何一个真子集都不再是边覆盖集</li>
-<li>最小边覆盖集：边数最少</li>
-<li>边覆盖数$\beta’(G)$：最小边覆盖集的势</li>
-</ul>
-<h3 id="边覆盖集与边独立集"><a href="#边覆盖集与边独立集" class="headerlink" title="边覆盖集与边独立集"></a>边覆盖集与边独立集</h3><ul>
-<li>若$\delta(G)&gt;0$，则$\alpha’(G)+\beta’(G)=v(G)$</li>
-<li>设$\delta(G)&gt;0$，则$\alpha’(G)\leq \beta’(G)$，等号成立当且仅当$G$有完美匹配</li>
-</ul>
-<h3 id="边覆盖集与点独立集"><a href="#边覆盖集与点独立集" class="headerlink" title="边覆盖集与点独立集"></a>边覆盖集与点独立集</h3><ul>
-<li>$\alpha(G)\leq \beta’(G)$</li>
-<li>设$G$是二部图且$\delta(G)\geq 0$，则$\alpha(G)=\beta’(G)$</li>
-</ul>
-<h3 id="边覆盖数的估计"><a href="#边覆盖数的估计" class="headerlink" title="边覆盖数的估计"></a>边覆盖数的估计</h3><p>设$G$无孤立点，则$\lceil\frac{v}{2}\rceil\leq\beta’(G)\leq\lceil v\frac{\Delta(G)}{1+\Delta(G)}\rceil$</p>
-<h3 id="无孤立点图中更一般的关系"><a href="#无孤立点图中更一般的关系" class="headerlink" title="无孤立点图中更一般的关系"></a>无孤立点图中更一般的关系</h3><ul>
-<li>边独立集小于等于边覆盖集，当边独立集为完美匹配，边覆盖集为最小时取等号</li>
-<li>边独立集小于等于点覆盖集，当边独立集为最大匹配，点覆盖集为最小时取等号</li>
-<li>点独立集小于等于边覆盖集，当点独立集为最大，边覆盖集为最小时取等号</li>
-<li>$\gamma(G)\leq \min\{\alpha(G),\beta(G),\alpha’(G),\beta’(G)\}$</li>
-</ul>
-<h3 id="求最小边覆盖集的算法"><a href="#求最小边覆盖集的算法" class="headerlink" title="求最小边覆盖集的算法"></a>求最小边覆盖集的算法</h3><ul>
-<li>原理是$\beta’(G)=v(G)-\alpha’(G)=\alpha’(G)+[v(G)-2\alpha’(G)]$</li>
-<li>最大匹配</li>
-<li>每个未饱和点任取一边</li>
-</ul>
-<h2 id="关系小节"><a href="#关系小节" class="headerlink" title="关系小节"></a>关系小节</h2><ul>
-<li>$\gamma(G)\leq \min\{\alpha(G),\beta(G),\alpha’(G),\beta’(G)\}$</li>
-<li>$\alpha(G)\leq \beta’(G)$</li>
-<li>$\alpha’(G)\leq \beta(G)$</li>
-<li>$\alpha’(G)\leq \beta’(G)$</li>
-<li>$\alpha(G)+ \beta(G)=v(G)$</li>
-<li>$\alpha’(G)+ \beta’(G)=v(G)$</li>
-</ul>
-<h2 id="求解算法小节"><a href="#求解算法小节" class="headerlink" title="求解算法小节"></a>求解算法小节</h2><ul>
-<li>最小支配集：近似算法，贪心</li>
-<li>最大点独立集：最小点覆盖集的补集</li>
-<li>最小点覆盖集：一般图用近似算法，基于极大匹配；二部图基于最大匹配</li>
-<li>最大边独立集：即最大匹配求解算法，一般图用Edmonds，二部图用Hopcroft-Karp</li>
-<li>最小边覆盖集：基于最大匹配</li>
 </ul>
 ]]></content>
       <categories>
