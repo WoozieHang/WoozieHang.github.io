@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+  <meta name="description" content="图的基本概念图的定义 图G由顶点集V和边集E构成，记为G&#x3D;(V,E) V(G)表示G中的顶点的有限非空集，|V|为点数 E(G)表示G中的边的有限集，|E|为边数 图不可以没有顶点，不能是空图，但可以没有边  基本概念 有向图：如果E是有向边（弧）的有限集合，则G是有向图，从v到w的弧是顶点的有序对，v是弧尾，w是弧头（也称作v邻接到w） 无向图：如果E是无向边的有限集合，则G是无向图，边是顶点的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第六章-图">
 <meta property="og:url" content="https://wooziehang.github.io/2021/10/19/DataStructure-6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+<meta property="og:description" content="图的基本概念图的定义 图G由顶点集V和边集E构成，记为G&#x3D;(V,E) V(G)表示G中的顶点的有限非空集，|V|为点数 E(G)表示G中的边的有限集，|E|为边数 图不可以没有顶点，不能是空图，但可以没有边  基本概念 有向图：如果E是有向边（弧）的有限集合，则G是有向图，从v到w的弧是顶点的有序对，v是弧尾，w是弧头（也称作v邻接到w） 无向图：如果E是无向边的有限集合，则G是无向图，边是顶点的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-19T06:02:01.000Z">
-<meta property="article:modified_time" content="2021-10-19T06:02:40.876Z">
+<meta property="article:modified_time" content="2021-10-20T07:14:16.592Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-19 14:02:01 / 修改时间：14:02:40" itemprop="dateCreated datePublished" datetime="2021-10-19T14:02:01+08:00">2021-10-19</time>
+              <time title="创建时间：2021-10-19 14:02:01" itemprop="dateCreated datePublished" datetime="2021-10-19T14:02:01+08:00">2021-10-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-20 15:14:16" itemprop="dateModified" datetime="2021-10-20T15:14:16+08:00">2021-10-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -270,7 +276,209 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h2 id="图的基本概念"><a href="#图的基本概念" class="headerlink" title="图的基本概念"></a>图的基本概念</h2><h3 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h3><ul>
+<li>图G由顶点集V和边集E构成，记为G=(V,E)</li>
+<li>V(G)表示G中的顶点的有限<strong>非空</strong>集，|V|为点数</li>
+<li>E(G)表示G中的边的有限集，|E|为边数</li>
+<li>图不可以没有顶点，不能是空图，但可以没有边</li>
+</ul>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>有向图：如果E是有向边（弧）的有限集合，则G是有向图，从v到w的弧是顶点的有序对<v,w>，v是弧尾，w是弧头（也称作v邻接到w）</v,w></li>
+<li>无向图：如果E是无向边的有限集合，则G是无向图，边是顶点的无序对（v，w），w和v互为邻接点，边（v，w）依附于v和w两个点</li>
+<li>简单图：没有重复边，没有顶点到自身的边，数据结构中只讨论简单图</li>
+<li>完全图：任意两点之间都有一条边，一般是指无向图</li>
+<li>有向完全图：任意两点之间都有一对方向相反的弧</li>
+<li>子图：两个图G(V,E)和G’(V’,E’)，如果V’是V子集，E’是E子集，则G’是G子图</li>
+<li>生成子图：V’=V的子图</li>
+<li>点的连通：无向图两个顶点之间有路径则两个点是连通的</li>
+<li>连通图：任意两点是连通的</li>
+<li>连通分量：无向图（可以是<strong>非连通图</strong>）的极大连通子图（一个图的连通分量显然不一定唯一）</li>
+<li>强连通图：有向图两个顶点之间相互可达</li>
+<li>强连通图：有向图任意两点之间强连通</li>
+<li>强连通分量：有向图的极大强连通子图</li>
+<li>生成树：<strong>连通图</strong>的生成树是包含图中全部顶点的极小连通子图</li>
+<li>顶点的度、入度、出度：无向图顶点上依附的边数为度（记为TD）；有向图根据出边和入边进一步区分度为入度和出度（记为ID和OD）</li>
+<li>无向图的顶点度之和是边数两倍</li>
+<li>有向图顶点入度和 = 出度和 = 图边数 = 度数和的一半</li>
+<li>带权图（网）：给图的边标上权值的图</li>
+<li>稠密图、稀疏图：边数少的图为稀疏图，反之为稠密图。一般认为|E|&lt;|V|log|V|时为稀疏图</li>
+<li>路径：顶点$v_p$到$v_q$的路径指的是顶点序列$v_p、v_{i1}、\cdots、v_q$，路径上边个数是路径长度，首位顶点相同的路径叫做回路或者环。n个顶点的图，如果边数大于n-1，则一定有环</li>
+<li>简单路径：顶点不重复的路径</li>
+<li>简单回路：除了首位顶点外，其他顶点不重复的回路</li>
+<li>距离：两个顶点的最短路径长度，如果不存在路径则距离为无穷</li>
+<li>有向树：一个顶点的入度为0，其余顶点的入度为1的有向图</li>
+</ul>
+<h2 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h2><h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><ul>
+<li>定义：用一维数组存储顶点，二维矩阵存储两点之间是否有边（或者存边的权值）</li>
+<li>简单应用时可以直接用二维数组作为图的邻接矩阵，忽略顶点信息</li>
+<li>如果不需要考虑边的权值，矩阵的元素就是1或0</li>
+<li>无向图的邻接矩阵是对称矩阵，可以压缩存储</li>
+<li>邻接矩阵的空间开销是$O(|V|^2)$</li>
+<li>特点<ul>
+<li>无向图的邻接矩阵是对称的，适合压缩存储，只保存例如下三角矩阵</li>
+<li>无向图第i行或第i列非零元素个数，刚好是顶点的度$TD(v_i)$</li>
+<li>有向图第i行非零元素的个数，刚好是顶点的出度$OD(v_i)$；第i列非零元素的个数，刚好是顶点的入度$ID(v_i)$</li>
+<li>任意确定两点之间是否有边，但得到总边数开销大</li>
+<li>稠密图适合用邻接矩阵</li>
+<li>假设G的邻接矩阵是$A$，$B=A^n$，则$B[i][j]$表示从$i$顶点到$j$顶点，长度为$n$的路径个数</li>
+</ul>
+</li>
+</ul>
+<h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><ul>
+<li>对于稀疏图，邻接表更适合</li>
+<li>图G中每个顶点建立一个单链表，第i个单链表中的结点表示依附于$v_i$的边（对于有向图则是以$v_i$为尾的弧），该单链表是顶点$v_i$的边表（对于有向图则是出边表）。顶点信息和顶点边表头指针采用顺序存储，称为顶点表。</li>
+<li>简单来说，邻接表中存在两种结点：顶点表结点（顶点信息、边表头指针）、边表结点（邻接点信息、指针域）</li>
+<li>特点：<ul>
+<li>无向图空间开销O(|V|+2|E|)，有向图空间开销O(|V|+|E|)</li>
+<li>适合稀疏图，比邻接矩阵节约了很多空间</li>
+<li>邻接表找到顶点的所有边更快，但是确定两个点之间是否有边效率不如邻接矩阵</li>
+<li>有向图的邻接表中，求顶点出度只需要计算该顶点的出边表中结点个数；但是求该顶点的入度需要遍历整个邻接表的所有出边表</li>
+<li>邻接表的表示不唯一，和数据输入次序有关</li>
+</ul>
+</li>
+</ul>
+<h3 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h3><ul>
+<li>有向图的一种链式存储结构</li>
+<li>每条弧一个弧度结点，包含尾顶点域、头顶点域、相同弧头的下一弧（对应矩阵表示的同列的下方第一个非零弧）、相同弧尾的下一弧（对应矩阵表示的同行的右方第一个非零弧）、弧信息域</li>
+<li>每个顶点一个顶点结点，包含顶点数据信息、以该顶点为弧头的第一个弧结点（该顶点所在行第一个非零弧）、以该顶点为弧尾的第一个弧结点（该顶点所在列第一个非零弧）</li>
+<li>十字链表很容易得到以结点为头或尾的弧，所以容易求出度入度</li>
+<li>表示不唯一，和信息输入顺序有关，但图是唯一的</li>
+</ul>
+<h3 id="邻接多重表"><a href="#邻接多重表" class="headerlink" title="邻接多重表"></a>邻接多重表</h3><ul>
+<li>无向图的一种链式存储结构</li>
+<li>无向图邻接表，一条边有两个边结点</li>
+<li>无向图邻接多重表，一条边只有一个边结点</li>
+<li>邻接多重表中存在两种结点：顶点表结点（顶点信息、边表头指针）、边表结点（标志边是否被搜过的标志域，顶点i域，依附顶点i的下一条边，顶点j域，依附于顶点j的下一条边，边信息域）</li>
+</ul>
+<h2 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h2><h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><ul>
+<li>借助队列，空间开销$O(|V|)$</li>
+<li>邻接表存储方式，复杂度$O(|E|+|V|)$</li>
+<li>邻接矩阵存储方式，复杂度$O(V^2)$</li>
+<li>BFS算法可以解决单源非带权图最短路径问题</li>
+<li>广度优先生成树：即广度优先遍历后得到的生成树</li>
+<li>基于邻接表的遍历序列不唯一，基于邻接矩阵的遍历序列唯一</li>
+</ul>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><ul>
+<li>简洁的递归实现</li>
+<li>递归本质上用到了栈，空间开销$O(|V|)$</li>
+<li>邻接表存储方式，复杂度$O(|E|+|V|)$</li>
+<li>邻接矩阵存储方式，复杂度$O(V^2)$</li>
+<li>深度优先生成树：即深度优先遍历后得到的生成树，如果对非连通图调用则会生成森林</li>
+<li>基于邻接表的遍历序列不唯一，基于邻接矩阵的遍历序列唯一</li>
+</ul>
+<h3 id="图的连通性判断"><a href="#图的连通性判断" class="headerlink" title="图的连通性判断"></a>图的连通性判断</h3><ul>
+<li>无向图是连通的，则从任一结点出发，遍历一遍可以访问到所有结点</li>
+<li>无向图是非连通的，从任一结点出发，遍历一遍可以访问到该结点所在的连通分支上所有结点</li>
+<li>使用for循环选取初始点进行遍历，防止一次无法遍历完所有点</li>
+<li>无向图for循环次数即连通分支数</li>
+</ul>
+<h2 id="图的应用"><a href="#图的应用" class="headerlink" title="图的应用"></a>图的应用</h2><h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><ul>
+<li>最小生成树不一定唯一</li>
+<li>最小生成树权值和唯一</li>
+<li>最小生成树边数为顶点数减1</li>
+<li>最小生成树任意去掉一边后变不连通，任意增加一边形成回路</li>
+</ul>
+<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><ul>
+<li>任选一个点加入T</li>
+<li>每次选择距离T最近的一个结点加入T</li>
+<li>直到所有顶点都加入T</li>
+<li>复杂度$O(|V|^2)$，适合稠密图（事实上优先队列如果是基于数组，则是$O(|V|^2+|E|)$，如果优先队列是基于堆，则是$O((|V|+|E|)log\ |V|)$）</li>
+</ul>
+<h4 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h4><ul>
+<li>初始化时T中所有顶点各自为一个连通分量</li>
+<li>不断选择未访问过的边中权值最小的边（边用堆存储，以方便找最小边），如果该边两端不在同一个连通分量中（用到并查集），则此边加入T，否则舍弃该边。</li>
+<li>直到所有顶点都在同一个连通分量中</li>
+<li>复杂度$O(|E|log |E|)$，适合稀疏图</li>
+</ul>
+<h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3><p>这里的最短路径指的是带权长度最短路径</p>
+<h4 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h4><ul>
+<li>解决单源最短路径问题</li>
+<li>要求权值非负</li>
+<li>根据源点到各个点边权初始化dist[]</li>
+<li>S表示已经确定最短路径的点集，起始只有源点</li>
+<li>每次选dist中最小的dist[j]加入S，并更新$dist[i]=min\{dist[i],dist[j]+e(i,j)\}$</li>
+<li>path[k]可以记录到第k个结点最短路径上k的前驱结点</li>
+<li>最终所有点都加入S</li>
+<li>复杂度$O(|V|^2)$</li>
+</ul>
+<h4 id="Floyd算法"><a href="#Floyd算法" class="headerlink" title="Floyd算法"></a>Floyd算法</h4><ul>
+<li>解决所有顶点之间最短路径问题</li>
+<li>权值可以为负，但不能有负边组成环</li>
+<li>假设点为$v_1,\cdots,v_n$</li>
+<li>$A^0[i][j]$表示$v_i$结点到$v_j$结点的边权，$i,j=1,2,\cdots,n$</li>
+<li>$A^k[i][j]=\min\{A^{k-1}[i][j],A^{k-1}[i][k]+A^{k-1}[k][j]\}$，表示中间结点为$v_1,\cdots,v_k$范围的最短路径</li>
+<li>复杂度$O(|V|^3)$</li>
+</ul>
+<h3 id="有向无环图"><a href="#有向无环图" class="headerlink" title="有向无环图"></a>有向无环图</h3><ul>
+<li>不存在环的有向图，简称DAG</li>
+<li>表达式可以用树结构表示</li>
+<li>表达式总有公共子式的情况，用树表达会有重复的空间</li>
+<li>使用有向无环图可以存储表达式，节约空间</li>
+</ul>
+<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><ul>
+<li>AOV网：DAG图表示一个工程，<strong>顶点表示活动</strong>的网络，边表示活动进行的先后顺序限制</li>
+<li>拓扑排序：DAG图顶点组成的序列，每个顶点恰出现一次，存在A到B的路径，则B排在A后面</li>
+<li>删源点法<ul>
+<li>找没入度点删除</li>
+<li>如果所有点都有入度且没删完，则无法拓扑排序，不是DAG图</li>
+<li>否则删除的顺序就是拓扑排序顺序</li>
+</ul>
+</li>
+<li>DFS法<ul>
+<li>对转置图的未访问过的结点开始，进行DFS，（可能进行多次，直到所有结点都访问过）</li>
+<li>遍历完成结点和该结点的所有邻点后，将该点输出拓扑序列</li>
+<li>如果DFS出现环，则说明不是DAG图，不能拓扑排序</li>
+<li>如果不是转置图，则求出的是逆拓扑排序</li>
+</ul>
+</li>
+</ul>
+<h3 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h3><ul>
+<li>AOE网：DAG图表示一个工程，<strong>顶点表示事件，边表示活动</strong>，边权值表示活动需要的时间</li>
+<li>AOE网性质：<ul>
+<li>顶点的所有入边活动都结束，则该顶点事件才能发生</li>
+<li>顶点事件发生，该顶点出边活动才能开始</li>
+<li>AOE网仅有一个源点，表示整个工程的开始事件</li>
+<li>AOE网仅有一个汇点，表示整个工程的结束事件</li>
+</ul>
+</li>
+<li>关键路径：从源点到汇点的最大路径长度，影响工程最短完成时间的因素</li>
+<li>参量定义<ul>
+<li>事件$v_k$最早发生时间$ve(k)$<ul>
+<li>从前往后算</li>
+<li>$ve(0)=0$</li>
+<li>$ve(k)=\max\{we(j)+e(j,k)\}$，k是j的后继</li>
+</ul>
+</li>
+<li>事件$v_k$最迟发生（使得工程完成不推迟）时间$le(k)$<ul>
+<li>从后往前算</li>
+<li>$le(汇点)=ve(汇点)$</li>
+<li>$le(k)=\min\{le(j)+weight(j,k)\}$，k是j的前驱</li>
+</ul>
+</li>
+<li>活动$a_i$最早开始时间$e(i)$：弧尾事件最早发生时间</li>
+<li>活动$a_i$最晚开始事件$l(i)$：弧头事件最晚发生时间-该活动时间</li>
+<li>差额（活动可拖延时间）$d$：活动的最迟开始时间-活动最早开始时间</li>
+<li>不可拖延的活动（$d=0$）是关键活动</li>
+</ul>
+</li>
+<li>关键路径算法<ul>
+<li>从源点出发求ve</li>
+<li>从汇点出发求vl</li>
+<li>求e</li>
+<li>求l</li>
+<li>求可拖延时间d</li>
+<li>所有d=0的活动构成关键路径</li>
+</ul>
+</li>
+<li>注意点<ul>
+<li>关键路径所有活动都是关键活动，缩短关键活动可以缩减工期</li>
+<li>缩短关键活动太多可能会使其变为非关键活动</li>
+<li>关键路径不一定唯一</li>
+<li>有多个关键路径的工程想缩短工期需要缩短在所有关键路径上的关键活动（比如桥）</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -366,6 +574,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">图的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">图的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-number">2.</span> <span class="nav-text">图的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="nav-number">2.1.</span> <span class="nav-text">邻接矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">邻接表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8"><span class="nav-number">2.3.</span> <span class="nav-text">十字链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8"><span class="nav-number">2.4.</span> <span class="nav-text">邻接多重表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">3.</span> <span class="nav-text">图的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS"><span class="nav-number">3.1.</span> <span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS"><span class="nav-number">3.2.</span> <span class="nav-text">DFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7%E5%88%A4%E6%96%AD"><span class="nav-number">3.3.</span> <span class="nav-text">图的连通性判断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">图的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">4.1.</span> <span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prim%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.1.</span> <span class="nav-text">Prim算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kruskal%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.2.</span> <span class="nav-text">Kruskal算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84"><span class="nav-number">4.2.</span> <span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dijkstra%E7%AE%97%E6%B3%95"><span class="nav-number">4.2.1.</span> <span class="nav-text">Dijkstra算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Floyd%E7%AE%97%E6%B3%95"><span class="nav-number">4.2.2.</span> <span class="nav-text">Floyd算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE"><span class="nav-number">4.3.</span> <span class="nav-text">有向无环图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">4.4.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84"><span class="nav-number">4.5.</span> <span class="nav-text">关键路径</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
