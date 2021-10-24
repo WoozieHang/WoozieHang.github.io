@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基本概念 机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成 汇编语言：把机器指令表示为助记符，与机器语言指令一一对应 高级语言：接近自然语言，按约定符号和规则写程序 编译程序：把高级语言程序翻译成机器语言目标代码的系统软件 汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件 字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度 系列机：一个厂家生产的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第一章-计算机系统概述">
+<meta property="og:url" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-1/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="基本概念 机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成 汇编语言：把机器指令表示为助记符，与机器语言指令一一对应 高级语言：接近自然语言，按约定符号和规则写程序 编译程序：把高级语言程序翻译成机器语言目标代码的系统软件 汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件 字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度 系列机：一个厂家生产的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-23T04:09:45.000Z">
+<meta property="article:modified_time" content="2021-10-23T14:05:51.693Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/10/23/ComputerOrganization-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第一章-计算机系统概述 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/23/ComputerOrganization-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第一章-计算机系统概述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-23 12:09:45 / 修改时间：22:05:51" itemprop="dateCreated datePublished" datetime="2021-10-23T12:09:45+08:00">2021-10-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/10/23/ComputerOrganization-1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第一章-计算机系统概述" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/10/23/ComputerOrganization-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/23/ComputerOrganization-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成</li>
+<li>汇编语言：把机器指令表示为助记符，与机器语言指令一一对应</li>
+<li>高级语言：接近自然语言，按约定符号和规则写程序</li>
+<li>编译程序：把高级语言程序翻译成机器语言目标代码的系统软件</li>
+<li>汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件</li>
+<li>字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度</li>
+<li>系列机：一个厂家生产的，具有相同的系统结构，但具有不同组成和实现的一系列不同型号机器</li>
+<li>软件兼容：现有的软件在升级换代后的新机器上可以使用</li>
+<li>虚拟机器：从使用者角度，计算机系统是硬件上的虚拟机器；虚拟机依靠软件存在，软件扩充了系统功能</li>
+<li>二进制位：是数字计算机中信息最小的位</li>
+<li>字节：8个二进制数是1个字节。计算机系统存储器按字节编址。</li>
+<li>内存地址：给存储器每个位置编号，方便访问指定位置，该编号是内存地址</li>
+</ul>
+<h2 id="计算机系统层次结构"><a href="#计算机系统层次结构" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h2><h3 id="计算机系统的组成"><a href="#计算机系统的组成" class="headerlink" title="计算机系统的组成"></a>计算机系统的组成</h3><ul>
+<li>硬件系统：有形的物理设备，计算机系统中实际物理装置的总称</li>
+<li>软件系统：在硬件上运行的程序、相关数据、文档</li>
+</ul>
+<h3 id="计算机硬件的基本组成"><a href="#计算机硬件的基本组成" class="headerlink" title="计算机硬件的基本组成"></a>计算机硬件的基本组成</h3><h4 id="早期冯诺依曼机"><a href="#早期冯诺依曼机" class="headerlink" title="早期冯诺依曼机"></a>早期冯诺依曼机</h4><p>冯诺依曼提出了“存储程序”概念（指令以代码形式事先输入主存储器，按程序首地址开始按顺序执行直至程序结束）和二进制原理，以此概念原理为基础的各种计算机通称为冯诺依曼机，特点如下：</p>
+<ul>
+<li>计算机硬件系统由运算器、存储器、控制器、输入设备、输出设备5个部分组成</li>
+<li>指令和数据以同等地位存到存储器中，按址访问</li>
+<li>指令和数据以二进制代码表示</li>
+<li>指令由操作码和地址吗组成，操作码是操作的类型，地址码指出操作的地址</li>
+<li>指令在存储器内按顺序存放。通常是顺序执行，特定条件下可以改变执行顺序</li>
+</ul>
+<h4 id="现代计算机组织结构"><a href="#现代计算机组织结构" class="headerlink" title="现代计算机组织结构"></a>现代计算机组织结构</h4><ul>
+<li><strong>早期的冯诺依曼机以运算器为中心</strong>，输出输出设备通过运算器与存储器传送数据</li>
+<li><strong>现代计算机以存储器为中心</strong>，输入输出尽量绕过CPU，提高效率。</li>
+<li>现代计算机仍然遵循存储程序的设计思想</li>
+</ul>
+<h4 id="硬件组成和功能"><a href="#硬件组成和功能" class="headerlink" title="硬件组成和功能"></a>硬件组成和功能</h4><p>现代计算机虽然结构和冯诺依曼机有区别，但硬件组成和功能相同，具体如下</p>
+<ul>
+<li>输入设备：用于输入原始数据和程序，如键盘、鼠标</li>
+<li>输出设备：用于输出计算机处理结果，如显示器、打印机</li>
+<li>运算器：核心是一个算术逻辑运算部件ALU，完成信息或数据的处理运算，包括加、减、乘、除、比较、移位、逻辑运算，是计算机的执行部件</li>
+<li>控制器：是整个计算机的指挥中心，在指令执行过程中产生指挥各个部件协同工作的控制信号</li>
+<li>存储器：用于存放原始数据、程序、中间运算结果、最终处理结果。分为主（内）存储器和辅（外）存储器。CPU（即中央处理器，是运算器和控制器集成的芯片）能直接访问的程序和数据在主存储器中。此外，CPU和主存构成主机，外存和IO设备是外部设备。</li>
+</ul>
+<h3 id="计算机系统软件分类"><a href="#计算机系统软件分类" class="headerlink" title="计算机系统软件分类"></a>计算机系统软件分类</h3><ul>
+<li>系统软件<ul>
+<li>一组保证计算机系统高效正确运行的基础软件，作为系统资源供用户使用。</li>
+<li>主要包括操作系统（OS）、数据库管理系统（DBMS）、语言处理程序、分布式软件系统、网络软件系统、标准库程序、服务性程序</li>
+</ul>
+</li>
+<li>应用软件<ul>
+<li>用户为了解决某个应用领域的问题编写的程序</li>
+<li>例如科学计算程序、工程设计程序、数据统计处理程序</li>
+</ul>
+</li>
+</ul>
+<h3 id="计算机软件和硬件的关系"><a href="#计算机软件和硬件的关系" class="headerlink" title="计算机软件和硬件的关系"></a>计算机软件和硬件的关系</h3><ul>
+<li>是完整计算机系统中相互依存的两大部分<ul>
+<li>硬件是软件工作的物质基础，支持软件发挥性能</li>
+<li>软件是硬件发挥作用的途径，完善的软件系统能充分发挥硬件各种功能</li>
+</ul>
+</li>
+<li>软件和硬件有逻辑等价性<ul>
+<li>软件能完成的工作硬件也能完成</li>
+<li>硬件能完成的工作软件大多也能完成</li>
+<li>软件实现更灵活、可复制</li>
+<li>硬件实现更高效</li>
+</ul>
+</li>
+</ul>
+<h3 id="计算机工作原理"><a href="#计算机工作原理" class="headerlink" title="计算机工作原理"></a>计算机工作原理</h3><h4 id="存储程序工作方式"><a href="#存储程序工作方式" class="headerlink" title="存储程序工作方式"></a>存储程序工作方式</h4><p>计算机的工作过程是</p>
+<ul>
+<li>把数据和程序装入主存储器</li>
+<li>将源程序转换成可执行文件，并保存到磁盘上</li>
+<li>存储程序工作方式：把可执行文件保存到主存储器中，并从首地址开始逐条执行指令</li>
+</ul>
+<h4 id="高级语言程序与机器语言程序转换"><a href="#高级语言程序与机器语言程序转换" class="headerlink" title="高级语言程序与机器语言程序转换"></a>高级语言程序与机器语言程序转换</h4><ul>
+<li>解释方式<ul>
+<li>用专门的解释器将源程序逐行翻译为机器代码并立刻执行，不形成目标程序</li>
+<li>每次执行都需要翻译一次，运行效率低，且不能脱离解释器独立运行</li>
+<li>优点是只要提供特定平台的解释器，就可以方便实现源程序级别的跨平台移植</li>
+</ul>
+</li>
+<li>编译方式<ul>
+<li>专用的编译器，一次将高级语言源程序翻译成机器语言程序，编译后生成，可执行目标程序可以脱离开发环境独立运行，效率高</li>
+<li>如果需要移植到其他平台，则需要采用特定平台编译器重新编译</li>
+<li>大部分编译程序直接产生机器语言目标文件，也有的先产生汇编语言代码文件，再用汇编程序处理产生可执行机器语言目标文件</li>
+<li>举一个GCC编译器的例子<ul>
+<li>预处理阶段：输入源文件hello.c，经过预处理器cpp对源文件的“#”开头命令进行处理，去掉注释，输出hello.i</li>
+<li>编译阶段：编译器ccl对预处理后的源程序进行编译，生成汇编语言源程序hello.s</li>
+<li>汇编阶段：汇编器as把hello.s翻译成机器语言指令，并打包成可重定位目标文件hello.o，这是二进制文件，文本编辑器打开是乱码</li>
+<li>链接阶段：链接器ld把多个可重定位目标文件和标准库函数合并为一个可执行目标文件hello，最终保存到磁盘上。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="程序与指令的执行过程"><a href="#程序与指令的执行过程" class="headerlink" title="程序与指令的执行过程"></a>程序与指令的执行过程</h4><p>程序的第一条地址存在PC中，完成一条指令，会计算下一条指令的地址，程序和指令的执行过程分为三个阶段：</p>
+<ul>
+<li>取指令</li>
+<li>分析指令</li>
+<li>执行指令</li>
+</ul>
+<h3 id="计算机系统层次结构-1"><a href="#计算机系统层次结构-1" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h3><ul>
+<li><p>层次划分为</p>
+<ul>
+<li>第0级机器：硬联逻辑级。由门电路、触发器等逻辑电路构成</li>
+<li>第1级机器：微程序级。根据各指令操作的控制时序，用微指令写微程序，控制信息在部件之间传送</li>
+<li>第2级机器：传统机器语言机器。机器语言程序员用此级指令系统写程序，并由第1级解释或第0级直接实现</li>
+<li>第3级机器：操作系统机器（又叫混合层）。提供有人机交互功能的用户界面和底层系统调用服务例程。除了提供传统机器指令，还提供操作系统级别的指令（如打开文件，读写文件，关闭文件等）。</li>
+<li>第4级机器：汇编语言机器。用汇编语言编写的程序，先由汇编程序翻译成第3级或第2级语言，再由相应机器解释。</li>
+<li>第5级机器：高级语言机器。用高级语言写的程序由编译程序翻译成第4级或第3级机器上的语言，个别高级语言也用解释方式实现</li>
+<li>第6级机器：应用语言机器。非计算机专业人员可以直接使用计算机，在用户终端用键盘或其他方式发出服务请求即可进入该级的信息处理系统</li>
+</ul>
+</li>
+<li><p>在特定计算机系统中，有些级可能不存在</p>
+</li>
+<li>划分层次的意义<ul>
+<li>便于分开研究层内和层间的关系，优化系统结构</li>
+<li>便于理解计算机系统软件硬件逻辑等价性</li>
+</ul>
+</li>
+<li>虚拟机的概念：在硬件上由于软件的发展，扩充了计算机系统功能，不同语言用户面对的是不同层次的虚拟机</li>
+<li>0-2层是没有软件配置的裸机，3-6层是虚拟机</li>
+</ul>
+<h2 id="计算机性能指标"><a href="#计算机性能指标" class="headerlink" title="计算机性能指标"></a>计算机性能指标</h2><p>主要衡量性能的指标有存储容量和速度，常见的具体指标如下</p>
+<ul>
+<li>机器字长：计算机进行一次整数运算所能处理的二进制数据的位数，和CPU寄存器位数、加法器有关，通常是字节的整数倍</li>
+<li>数据通路带宽：外部总线一次能传送的信息位数</li>
+<li>主存储量：主存储器所能存储信息的最大容量，用字节衡量，或字数乘字长衡量</li>
+<li>吞吐量：系统单位时间内处理请求的数量，主要取决于主存存取周期</li>
+<li>响应时间：从用户发送请求，到计算机系统做出响应并获得结果需要的等待时间。包括CPU时间和等待时间（磁盘访问、存储器访问、IO、操作系统开销等）</li>
+<li>CPU时钟周期：CPU最小时间单位</li>
+<li>主频：CPU时钟周期的倒数，机器内部时钟的频率，单位HZ</li>
+<li>CPI：平均每条指令执行需要的时钟周期数</li>
+<li>IPC：每个时钟周期执行的指令条数</li>
+<li>CPU执行时间：等于时钟周期数$\times$时钟周期，等于(指令数$\times$ CPI)$\times$时钟周期。这里的指令数、CPI、主频是相互制约的。</li>
+<li>MIPS：每秒执行多少百万条的指令数（同时考虑了主频和CPI），等于指令条数/（$10^6\times$ 执行时间）= 1/（$10^6\times$ 每条指令执行时间）= 主频/（$10^6\times$ CPI）。这种指标有缺陷，因为不同机器的指令集不同。</li>
+<li>MFLOPS：每秒执行多少百万次浮点运算，等于浮点操作次数/(执行时间$\times 10^6$)</li>
+<li>GFLOPS：每秒执行多少十亿次浮点运算，等于浮点操作次数/(执行时间$\times 10^9$)</li>
+<li>TFLOPS：每秒执行多少万亿次浮点运算，等于浮点操作次数/(执行时间$\times 10^{12}$)</li>
+<li>PFLOPS：等于浮点操作次数/(执行时间$\times 10^{15}$)</li>
+<li>EFLOPS：等于浮点操作次数/(执行时间$\times 10^{18}$)</li>
+<li>ZFLOPS：等于浮点操作次数/(执行时间$\times 10^{21}$)</li>
+</ul>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="关于常用前缀"><a href="#关于常用前缀" class="headerlink" title="关于常用前缀"></a>关于常用前缀</h3><ul>
+<li>描述存储容量、文件大小时，K、M、G、T是2的幂次，如1Kb=1024b</li>
+<li>描述速度、频率时，k、M、G、T，是10的幂次，如1kb/s=1000b/s</li>
+<li>前者用大写的K，后者用小写的k，其他的都用大写</li>
+</ul>
+<h3 id="关于透明性"><a href="#关于透明性" class="headerlink" title="关于透明性"></a>关于透明性</h3><ul>
+<li>计算机领域的透明性，指的是<strong>不可见</strong>的事物</li>
+<li>比如<ul>
+<li>高级语言程序员，不可见乘法指令、浮点数格式</li>
+<li>机器语言或汇编程序员不可见IR、MAR、MDR</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/20/DataStructure-8/" rel="prev" title="【知识总结】 第八章-排序">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第八章-排序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/23/ComputerOrganization-2/" rel="next" title="【知识总结】 第二章-数据的表示和运算">
+      【知识总结】 第二章-数据的表示和运算 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">计算机系统层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">2.1.</span> <span class="nav-text">计算机系统的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="nav-number">2.2.</span> <span class="nav-text">计算机硬件的基本组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A9%E6%9C%9F%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E6%9C%BA"><span class="nav-number">2.2.1.</span> <span class="nav-text">早期冯诺依曼机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.2.</span> <span class="nav-text">现代计算机组织结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%88%90%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">2.2.3.</span> <span class="nav-text">硬件组成和功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%88%86%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">计算机系统软件分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.4.</span> <span class="nav-text">计算机软件和硬件的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">2.5.</span> <span class="nav-text">计算机工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%A8%8B%E5%BA%8F%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">2.5.1.</span> <span class="nav-text">存储程序工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%8E%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.5.2.</span> <span class="nav-text">高级语言程序与机器语言程序转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%8E%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">2.5.3.</span> <span class="nav-text">程序与指令的执行过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-1"><span class="nav-number">2.6.</span> <span class="nav-text">计算机系统层次结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">3.</span> <span class="nav-text">计算机性能指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%B8%B8%E7%94%A8%E5%89%8D%E7%BC%80"><span class="nav-number">4.1.</span> <span class="nav-text">关于常用前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E9%80%8F%E6%98%8E%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">关于透明性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
