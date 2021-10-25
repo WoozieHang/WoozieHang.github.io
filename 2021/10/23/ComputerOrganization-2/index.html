@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/complement_mul.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/div.png">
 <meta property="article:published_time" content="2021-10-23T13:58:35.000Z">
-<meta property="article:modified_time" content="2021-10-24T16:04:04.596Z">
+<meta property="article:modified_time" content="2021-10-25T07:47:45.698Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-25 00:04:04" itemprop="dateModified" datetime="2021-10-25T00:04:04+08:00">2021-10-25</time>
+                <time title="修改时间：2021-10-25 15:47:45" itemprop="dateModified" datetime="2021-10-25T15:47:45+08:00">2021-10-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -579,8 +579,50 @@
 </ul>
 </li>
 </ul>
-<h2 id="浮点数的表示和运算"><a href="#浮点数的表示和运算" class="headerlink" title="浮点数的表示和运算"></a>浮点数的表示和运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><p>IEEE754标准</p>
-<h3 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h3><h2 id="数据的存储和排列"><a href="#数据的存储和排列" class="headerlink" title="数据的存储和排列"></a>数据的存储和排列</h2><h3 id="大端方式和小端方式"><a href="#大端方式和小端方式" class="headerlink" title="大端方式和小端方式"></a>大端方式和小端方式</h3><ul>
+<h2 id="浮点数的表示和运算"><a href="#浮点数的表示和运算" class="headerlink" title="浮点数的表示和运算"></a>浮点数的表示和运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><ul>
+<li>浮点数表示为$N=r^E\times M$，其中底数r通常是2，E和M都是带符号定点数，前者是阶码，后者是尾数</li>
+<li>阶码一般用移码或补码表示，尾数一般用原码或补码表示</li>
+<li>规范化浮点数：尾数最高位是1</li>
+<li>左规：尾数算术左移1位，阶码减1，可能需要多次</li>
+<li>右规：运算溢出时（双符号位01或10），则尾数算术右移1位，阶码加1，只需要一次</li>
+<li>浮点数范围：从小到大分别为，负上溢、负数范围、负下溢、0、正下溢、正数范围、正上溢</li>
+<li>规格化后的运算结果超过浮点数范围则为溢出，浮点数下溢时计算机通常当0处理</li>
+<li><strong>IEEE754标准</strong><ul>
+<li>单精度浮点数float（1位符号S、8位阶码E、23位尾数M、共32位）表示为$(-1)^s\times 1.M\times 2^{E-127}$，符号S取0或1，阶码E取1-254</li>
+<li>双精度浮点数double（1位符号S，11位阶码E，52位尾数M，共64位）表示为$(-1)^s\times 1.M\times 2^{E-1023}$，符号S取0或1，阶码E取1-2046</li>
+<li>阶码的移码偏置是127/1023，因为可以空出全1表示无穷大</li>
+<li>尾数含有隐藏的1在小数点前面，尾数只保存小数点后面的值</li>
+<li>0用全0表示，根据符号位可以分为+0和-0</li>
+<li>无法规范化的数称为非规范化数，即阶码全0。此时偏置为126或1022，即阶码全0和全1对应值相等，同时非规范化数的尾数不包含隐藏的1，这样设置阶码和尾数的目的是为了平滑的从规范化数过渡到非规范化数</li>
+<li>非规范化数提供了一种表示0的方式，但0不是非规范化数，最小的非规范化数是非0的</li>
+<li>阶码全1，尾数全0，表示无穷大，根据符号位分为正无穷负无穷</li>
+<li>阶码全1，尾数非全0，表示NaN（Not a Number），即用于无意义的数或在初始化时使用。</li>
+</ul>
+</li>
+<li>同样数值位长度的浮点数和定点数相比，表示范围增大，但精度降低</li>
+</ul>
+<h3 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h3><ul>
+<li>对阶：小阶向大阶对齐，即阶码小的尾数（算术）右移阶加1，直到两个数阶码相等。右移时舍掉有效位会影响精度。计算时可以先算阶码的差$\Delta E$</li>
+<li>尾数求和：对阶后的尾数按定点数补码加减运算处理，带上双符号位，减法等于加补码对应的负数</li>
+<li>规格化:左规或右规至补码最高数值位和符号位不同</li>
+<li>舍入：右规造成的低位丢失，可以0舍1入，也可以末尾恒置1。前者的“1入”情况如果造成上溢，需要再右规一次，后者根据末尾原先的情况，可能造成结果变大或变小</li>
+<li>溢出判断和处理：规格化尾数后，根据阶码是否超过范围来判断溢出情况，即补码表示的双符号位不一致（10下溢，01上溢）。</li>
+</ul>
+<h3 id="浮点数类型转换"><a href="#浮点数类型转换" class="headerlink" title="浮点数类型转换"></a>浮点数类型转换</h3><ul>
+<li>int转float，不会溢出；可能有数据舍入从而丢失精度</li>
+<li>int或float转double，不会溢出；且保持精度</li>
+<li>double转float，可能溢出；可能有数据舍入从而丢失精度</li>
+<li>double或float转int，可能溢出；可能有数据截断从而丢失精度</li>
+<li>以上类型转换尽量保持真值不变，但由于编码方式不同，因此存储的二进制串会有改变</li>
+<li>溢出主要看编码的表示范围</li>
+<li>精度主要看编码的有效位数和表示范围的相对关系<ul>
+<li>同样的有效位数，表示范围约大，精度越低，比如float和int都是32个有效位，float范围大，精度低</li>
+<li>同样的表示范围，编码有效位数越多，精度越高</li>
+<li>注意到double相比float和int，即使表示范围更大，但因为有效位数更大，精度更大</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据的存储和排列"><a href="#数据的存储和排列" class="headerlink" title="数据的存储和排列"></a>数据的存储和排列</h2><h3 id="大端方式和小端方式"><a href="#大端方式和小端方式" class="headerlink" title="大端方式和小端方式"></a>大端方式和小端方式</h3><ul>
 <li>用最低有效字节LSB和最高有效字节MSB表示数的最高位和最低位</li>
 <li>大端方式：按MSB到LSB的顺序存储数据</li>
 <li>小端方式：按LSB到MSB的顺序存储数据</li>
@@ -639,7 +681,10 @@
     <a href="/2021/10/23/ComputerOrganization-1/" rel="prev" title="【知识总结】 第一章-计算机系统概述">
       <i class="fa fa-chevron-left"></i> 【知识总结】 第一章-计算机系统概述
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/25/ComputerOrganization-3/" rel="next" title="【知识总结】 第三章-存储器层次结构">
+      【知识总结】 第三章-存储器层次结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -699,7 +744,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">数制与编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E4%BD%8D%E8%AE%A1%E6%95%B0%E5%88%B6%E5%92%8C%E6%95%B0%E6%8D%AE%E9%97%B4%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">进位计数制和数据间转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">定点数的编码表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E7%94%B5%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">运算方法和运算电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="nav-number">2.1.</span> <span class="nav-text">运算器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E9%83%A8%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">基本运算部件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E9%83%A8%E4%BB%B6"><span class="nav-number">2.2.2.</span> <span class="nav-text">算术逻辑部件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">2.3.</span> <span class="nav-text">加减运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97"><span class="nav-number">2.4.</span> <span class="nav-text">乘除运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.1.</span> <span class="nav-text">乘除运算基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E7%94%B5%E8%B7%AF%E5%92%8C%E9%99%A4%E6%B3%95%E7%94%B5%E8%B7%AF%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.2.</span> <span class="nav-text">乘法电路和除法电路基本结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">2.5.</span> <span class="nav-text">移位运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">整数的表示和运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.</span> <span class="nav-text">无符号整数的表示和运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.</span> <span class="nav-text">带符号整数的表示和运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.</span> <span class="nav-text">整数的类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">浮点数的表示和运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.1.</span> <span class="nav-text">浮点数的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">4.2.</span> <span class="nav-text">浮点数加减运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E5%82%A8%E5%92%8C%E6%8E%92%E5%88%97"><span class="nav-number">5.</span> <span class="nav-text">数据的存储和排列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E6%96%B9%E5%BC%8F%E5%92%8C%E5%B0%8F%E7%AB%AF%E6%96%B9%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">大端方式和小端方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%AF%B9%E9%BD%90"><span class="nav-number">5.2.</span> <span class="nav-text">边界对齐</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">数制与编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E4%BD%8D%E8%AE%A1%E6%95%B0%E5%88%B6%E5%92%8C%E6%95%B0%E6%8D%AE%E9%97%B4%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">进位计数制和数据间转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">定点数的编码表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E7%94%B5%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">运算方法和运算电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="nav-number">2.1.</span> <span class="nav-text">运算器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E9%83%A8%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">基本运算部件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E9%83%A8%E4%BB%B6"><span class="nav-number">2.2.2.</span> <span class="nav-text">算术逻辑部件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">2.3.</span> <span class="nav-text">加减运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97"><span class="nav-number">2.4.</span> <span class="nav-text">乘除运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.1.</span> <span class="nav-text">乘除运算基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E7%94%B5%E8%B7%AF%E5%92%8C%E9%99%A4%E6%B3%95%E7%94%B5%E8%B7%AF%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.2.</span> <span class="nav-text">乘法电路和除法电路基本结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">2.5.</span> <span class="nav-text">移位运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">整数的表示和运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.</span> <span class="nav-text">无符号整数的表示和运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">3.2.</span> <span class="nav-text">带符号整数的表示和运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.</span> <span class="nav-text">整数的类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">浮点数的表示和运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.1.</span> <span class="nav-text">浮点数的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">4.2.</span> <span class="nav-text">浮点数加减运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">4.3.</span> <span class="nav-text">浮点数类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E5%82%A8%E5%92%8C%E6%8E%92%E5%88%97"><span class="nav-number">5.</span> <span class="nav-text">数据的存储和排列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E6%96%B9%E5%BC%8F%E5%92%8C%E5%B0%8F%E7%AB%AF%E6%96%B9%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">大端方式和小端方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%AF%B9%E9%BD%90"><span class="nav-number">5.2.</span> <span class="nav-text">边界对齐</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -715,7 +760,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
