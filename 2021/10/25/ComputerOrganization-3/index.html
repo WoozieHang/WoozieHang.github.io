@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/25/ComputerOrganization-3/T.png">
 <meta property="article:published_time" content="2021-10-25T07:48:14.000Z">
-<meta property="article:modified_time" content="2021-10-26T16:55:30.450Z">
+<meta property="article:modified_time" content="2021-10-28T16:11:27.726Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-27 00:55:30" itemprop="dateModified" datetime="2021-10-27T00:55:30+08:00">2021-10-27</time>
+                <time title="修改时间：2021-10-29 00:11:27" itemprop="dateModified" datetime="2021-10-29T00:11:27+08:00">2021-10-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -480,7 +480,7 @@
 <li>和U盘本质差不多，但容量更大，存取性能更好</li>
 <li>由控制单元（Flash翻译层）和存储单元（Flash芯片或DRAM芯片）组成</li>
 <li>和Flash存储器一样可长期保存信息、可快速擦除重写</li>
-<li>比传统硬盘读写快、质量轻、功耗低、体积小、抗震性好、安全性高、无噪音</li>
+<li>比传统磁盘读写快、质量轻、功耗低、体积小、抗震性好、安全性高、无噪音</li>
 <li>缺点是价格高、容量不算很大、寿命短、容易磨损、数据破坏后难恢复</li>
 </ul>
 </li>
@@ -585,9 +585,328 @@
 </ul>
 </li>
 </ul>
-<h3 id="多模块存储器"><a href="#多模块存储器" class="headerlink" title="多模块存储器"></a>多模块存储器</h3><h2 id="外部存储器"><a href="#外部存储器" class="headerlink" title="外部存储器"></a>外部存储器</h2><h3 id="磁盘存储器"><a href="#磁盘存储器" class="headerlink" title="磁盘存储器"></a>磁盘存储器</h3><h3 id="固态硬盘SSD"><a href="#固态硬盘SSD" class="headerlink" title="固态硬盘SSD"></a>固态硬盘SSD</h3><h2 id="高速缓冲存储器Cache"><a href="#高速缓冲存储器Cache" class="headerlink" title="高速缓冲存储器Cache"></a>高速缓冲存储器Cache</h2><h3 id="Cache基本原理"><a href="#Cache基本原理" class="headerlink" title="Cache基本原理"></a>Cache基本原理</h3><h3 id="Cache和主存间映射方式"><a href="#Cache和主存间映射方式" class="headerlink" title="Cache和主存间映射方式"></a>Cache和主存间映射方式</h3><h3 id="Cache中主存块替换算法"><a href="#Cache中主存块替换算法" class="headerlink" title="Cache中主存块替换算法"></a>Cache中主存块替换算法</h3><h3 id="Cache写策略"><a href="#Cache写策略" class="headerlink" title="Cache写策略"></a>Cache写策略</h3><h2 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h2><h3 id="虚拟存储器的基本概念"><a href="#虚拟存储器的基本概念" class="headerlink" title="虚拟存储器的基本概念"></a>虚拟存储器的基本概念</h3><h3 id="页式虚拟存储器"><a href="#页式虚拟存储器" class="headerlink" title="页式虚拟存储器"></a>页式虚拟存储器</h3><p>基本原理、页表、地址转换、TLB快表</p>
-<h3 id="段式虚拟存储器"><a href="#段式虚拟存储器" class="headerlink" title="段式虚拟存储器"></a>段式虚拟存储器</h3><p>基本原理</p>
-<h3 id="段页式虚拟存储器"><a href="#段页式虚拟存储器" class="headerlink" title="段页式虚拟存储器"></a>段页式虚拟存储器</h3><p>基本原理</p>
+<h3 id="双端口RAM和多模块存储器"><a href="#双端口RAM和多模块存储器" class="headerlink" title="双端口RAM和多模块存储器"></a>双端口RAM和多模块存储器</h3><ul>
+<li>为了提高CPU访存速度，采用双端口RAM（空间并行）、多模块存储器（时间并行）</li>
+<li>双端口RAM<ul>
+<li>存储器左右两个独立端口，有独立的数据线、地址线、控制线</li>
+<li>两个控制器允许同时异步的访问存储单元</li>
+<li>如果对不同地址读写，或对同一地址读，无冲突</li>
+<li>如果对同一地址写则有写冲突；如果对同一地址读和写，则有读冲突</li>
+<li>解决冲突的方法<ul>
+<li>把$\overline{BUSY}$信号置0，相当于暂时关闭一个端口，延迟其访问</li>
+<li>对每个存储看单元的数据进行CPU的权限分配</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多模块存储器<ul>
+<li>单体多字存储器<ul>
+<li>一个存储体，每个存储单元多个字，比如m个</li>
+<li>总线宽度也是m个字，一次并行读出</li>
+<li>一个存取周期能取出m个指令，每隔1/m周期CPU向主存取一条指令，带宽增加</li>
+<li>缺点是只能处理连续情况，遇到转移指令，效果不明显</li>
+</ul>
+</li>
+<li>多体并行存储器（多体交叉存储器）<ul>
+<li>多个存储体模块，每个模块有独立的控制电路、地址寄存器、数据寄存器，可行</li>
+<li>高位交叉编址：高位表示体号，低位表示体内地址，本质还是顺序访问，吞吐量基本不能提高</li>
+<li>低位交叉编址：低位表示体号，高位表示体内地址，此时可以流水线并行存取，提高存储器带宽。设模块字长等于总线宽度，模块存取周期是T，总线传送周期是r（每隔至少r启动流水线下一模块，一般取r），模块数（交叉存取度）不小于T/r，使得每个模块的启动间隔大于T。因此，连续存取m个字需要时间T+(m-1)r，小于顺序存取时间mT，带宽明显提高。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="外部存储器"><a href="#外部存储器" class="headerlink" title="外部存储器"></a>外部存储器</h2><h3 id="磁盘存储器"><a href="#磁盘存储器" class="headerlink" title="磁盘存储器"></a>磁盘存储器</h3><ul>
+<li>利用磁记录技术在涂有磁记录介质的旋转圆盘上进行数据存储</li>
+<li>一般用于辅助存储器</li>
+<li>由磁盘、磁盘驱动器、磁盘控制器构成</li>
+<li>磁盘一般装在磁盘驱动器上，其数据的定位类似于柱坐标（盘面层号对应高度、扇区号对应角度、磁道号对应半径）</li>
+<li>磁盘驱动器即磁盘机，是驱动磁盘转动并在盘面上通过磁头进行读写的装置</li>
+<li>磁盘控制器即磁盘驱动器适配器，属于磁盘面向计算机的接口设备，接受计算机命令，向磁盘驱动器发出控制信号</li>
+<li>存储容量大、数据传输率高、可长期保存</li>
+<li>详见操作系统的输入输出管理的外存管理部分</li>
+</ul>
+<h3 id="固态硬盘SSD"><a href="#固态硬盘SSD" class="headerlink" title="固态硬盘SSD"></a>固态硬盘SSD</h3><ul>
+<li>参考前面ROM存储器的固态硬盘内容</li>
+<li>操作系统的输入输出管理的外存管理部分也有介绍</li>
+</ul>
+<h2 id="高速缓冲存储器Cache"><a href="#高速缓冲存储器Cache" class="headerlink" title="高速缓冲存储器Cache"></a>高速缓冲存储器Cache</h2><h3 id="程序访问局部性原理"><a href="#程序访问局部性原理" class="headerlink" title="程序访问局部性原理"></a>程序访问局部性原理</h3><ul>
+<li>时间局部性：最近要用的信息可能是现在正在用的信息</li>
+<li>空间局部性：最近要用的信息在存储空间里和正在用的信息是相邻的</li>
+<li>利用程序局部性原理，把程序正在使用的部分存放的高速、容量较小的Cache中，使得访存操作通过Cache进行，提高程序速度</li>
+</ul>
+<h3 id="Cache基本原理"><a href="#Cache基本原理" class="headerlink" title="Cache基本原理"></a>Cache基本原理</h3><ul>
+<li>通常由SRAM构成</li>
+<li>主存和Cache划分为相等的块，Cache块又叫Cache行，每块有若干字节，块长度被称为块长或Cache行长</li>
+<li>Cache块数远小于主存块数，仅保存主存最活跃的部分块</li>
+<li>CPU发出读请求时<ul>
+<li>如果命中Cache，则地址转换为Cache地址，直接对Cache读</li>
+<li>如果没命中Cache，则需要访问主存，并把该字所在块从主存调入Cache<ul>
+<li>如果Cache未满，则直接调入</li>
+<li>如果Cache已满，根据替换算法，进行Cache中块的替换</li>
+</ul>
+</li>
+<li>CPU和Cache交换字，主存和Cache交换块</li>
+</ul>
+</li>
+<li>CPU发出写请求时<ul>
+<li>如果命中Cache，则要考虑Cache数据和内存数据的一致性问题，采取一定的写策略，如<ul>
+<li>全写法</li>
+<li>写回法</li>
+</ul>
+</li>
+<li>如果未命中Cache，则根据块是否调入Cache，可以分为<ul>
+<li>写分配法</li>
+<li>非写分配法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cache命中率指的是CPU欲访问信息在Cache中的比率，越接近1越好</li>
+<li>假设$t_c$是命中情况的Cache访问时间，$t_m$是未命中情况的访问时间（有可能比访问内存时间长，因为要先检查是否命中Cache），$H$是命中率，则$H\times t_c+(1-H)\times t_m$是Cache-内存系统平均访问时间</li>
+<li>Cache的结构为<ul>
+<li>存储主存信息的数据块</li>
+<li>有效位：表示内容是否有用</li>
+<li>标记位：标记该Cache行对应主存哪个块，位数和地址映射方式有关</li>
+<li>块修改标记：提供写策略使用</li>
+<li>替换标记：提供替换策略使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cache和主存间映射方式"><a href="#Cache和主存间映射方式" class="headerlink" title="Cache和主存间映射方式"></a>Cache和主存间映射方式</h3><ul>
+<li>映射指的是从主存地址映射到Cache地址</li>
+<li>Cache中的每个块都标记了其在内存中对应的块位置（块号），并有一个块有效位</li>
+<li>主要方法有<ul>
+<li>直接映射<ul>
+<li>主存每个块映射到Cache唯一位置。如果冲突直接替换，不需要替换算法</li>
+<li>实现简单但不灵活。</li>
+<li>主存块号$p_{mem}$的低c位是Cache行号$p_{cache}$，即$p_{cache}=p_{mem}\ mod\ 2^{c}$，高t位存入对应Cache行的标记中</li>
+<li>主存地址的结构是：主存区号（作为Cache标记）、主存区内块号（等于Cache行号）、块内地址，前两者合并就是主存块号</li>
+<li>访存先根据Cache行号对比Cache行的标记和主存地址的高t位是否一致，一致且有效位是1则命中，根据块内地址存取Cache行信息；否则不命中，先从主存读该地址对应的块到Cache中，并设置有效位为1，并标记高t位，然后将地址对应的数据送到CPU</li>
+</ul>
+</li>
+<li>全相联映射<ul>
+<li>主存块可以映射到Cache任何一位置，CPU访存需要和所有Cache行标记对比</li>
+<li>灵活、冲突率低、空间利用率高、命中率高，但是标记比较速度慢，一般要用高成本的相联存储器（<strong>可以按内容寻址</strong>）进行映射</li>
+<li>主存的地址结构是：主存块号（作为Cache标记）、块内地址</li>
+</ul>
+</li>
+<li>组相联映射<ul>
+<li>把Cache空间分组，组间直接映射，组内全相联，访存需要和对应组的所有Cache行标记对比</li>
+<li>主存的地址结构是：主存区号、组内块号、组号、块内地址。前两者作为标记存入Cache；前三者就是主存块号</li>
+<li>注意主存地址的组号是主存块号的低位，位数由组数来确定。这意味着主存中连续的块，在Cache中对应不同的分组</li>
+<li>n路组相联，表示每个组有n个块；n为1（即组数为Cache块数）则变为直接映射；n为Cache块数（即组数为1）则变为全相联</li>
+<li>访存先根据组号找到Cache组，再对比组内每个Cache块的标记。然后相等且有效位为1则命中，否则不命中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cache中主存块替换算法"><a href="#Cache中主存块替换算法" class="headerlink" title="Cache中主存块替换算法"></a>Cache中主存块替换算法</h3><ul>
+<li>对应全相联和组相联，当需要把主存块调入已满的Cache时，需要进行替换</li>
+<li>常见的有<ul>
+<li>随机算法RAND<ul>
+<li>随即确定替换块，实现简单</li>
+<li>未考虑程序局部性原理，命中率可能低</li>
+</ul>
+</li>
+<li>先进先出算法FIFO<ul>
+<li>选最早进入的块替换，实现简单</li>
+<li>未考虑程序局部性原理，命中率可能低</li>
+</ul>
+</li>
+<li>近期最少用算法LRU<ul>
+<li>选最久没使用的块替换，考虑局部性原理，命中率比FIFO高</li>
+<li>设置一个计数器，最近访问的Cache块（可能是新调入的，或命中原本Cache的）的计数器置0，Cache中已有的其他块计数器加1</li>
+<li>计数器的位数等于组内块数对应的位数，即计数器的值小于组内块数，当计数器的值自增达到上限后，不再自增</li>
+<li>如果Cache已满需要替换，则移出计数器值最大（等于组内块数减1）的块</li>
+<li>当集中访问的、映射到同一组的存储块数超过了组内块数，很可能出现命中率很低的情况，称为抖动现象</li>
+</ul>
+</li>
+<li>最不经常使用LFU算法<ul>
+<li>选近期访问次数最少的块替换</li>
+<li>每行设置一个计数器，新建的块从0开始计数</li>
+<li>每命中一次计数器加1，替换时把计数器最小的块移出</li>
+<li>和LRU类似思想但又有不同</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cache写策略"><a href="#Cache写策略" class="headerlink" title="Cache写策略"></a>Cache写策略</h3><ul>
+<li>写策略主要处理Cache和主存数据的一致性问题</li>
+<li>当Cache写命中时<ul>
+<li>全写法（写直通法、写直达法、write through）<ul>
+<li>数据同时写入Cache和主存</li>
+<li>好处是实现简单，替换块时不需要写回，随时保证主存数据准确</li>
+<li>坏处是增加访存次数，降低Cache效率</li>
+<li>可以在Cache和主存间加一个写缓冲，数据同时写入Cache和写缓冲器，一定程度解决速度不匹配问题，但也存在缓冲器溢出问题</li>
+</ul>
+</li>
+<li>写回法（write back）<ul>
+<li>只修改Cache</li>
+<li>当块被替换掉时再写回主存</li>
+<li>Cache行设置脏位，标记该块是否改过</li>
+<li>减少访存次数，但有数据不一致的风险</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当Cache未命中时<ul>
+<li>写分配法（write-allocate）<ul>
+<li>加载主存的块到Cache中，然后更新这个Cache块</li>
+<li>和写回法配合使用，缺点是每次不命中都需要读取主存的块</li>
+</ul>
+</li>
+<li>非写分配法（not-write-allocate）<ul>
+<li>只更新主存，不调块到Cache</li>
+<li>和全写法配合使用，缺点是未考虑程序空间局部性</li>
+</ul>
+</li>
+<li>现代计算机往往采用多级Cache（通常3级）<ul>
+<li>按离CPU从近到远分为L1 Cache、L2 Cache、L3 Cache等，速度递减，容量递增</li>
+<li>比如两级Cache系统中，L1 Cache和L2 Cache采用全写法，因为访问L2 Cache速度比访问主存快，没有缓冲器溢出问题；L2 Cache和主存采用写回法，减少访存的次数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h2><h3 id="虚拟存储器的基本概念"><a href="#虚拟存储器的基本概念" class="headerlink" title="虚拟存储器的基本概念"></a>虚拟存储器的基本概念</h3><ul>
+<li>虚拟存储器由主存和辅存共同构成，具有前者的速度和后者的空间</li>
+<li>虚地址<ul>
+<li>又叫逻辑地址、程序地址，是编程允许涉及的地址</li>
+<li>对应的存储空间为虚拟空间（程序空间）</li>
+<li>虚地址=虚存页号+页内字地址</li>
+</ul>
+</li>
+<li>实地址<ul>
+<li>又叫物理地址，是实际的主存单元地址</li>
+<li>对应的存储空间为实地址空间（主存地址空间）</li>
+<li>实地址=主存页号+页内字地址</li>
+</ul>
+</li>
+<li>辅存地址<ul>
+<li>辅存的单元地址</li>
+<li>对应的存储空间为辅存空间</li>
+<li>辅存地址=磁盘号+盘面号+磁道号+扇区号</li>
+</ul>
+</li>
+<li>CPU使用虚地址时，先由辅助软硬件找到虚地址和实地址的关系，判断该地址对应存储单元是否装入主存<ul>
+<li>若在主存，则通过地址变换，CPU直接访问主存对应单元</li>
+<li>若不在主存，则把该字的一个页或一个段调入主存后再由CPU访问；若主存已满则需要使用替换算法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="页式虚拟存储器"><a href="#页式虚拟存储器" class="headerlink" title="页式虚拟存储器"></a>页式虚拟存储器</h3><ul>
+<li>基本原理<ul>
+<li>页式存储器以页为基本单位，虚拟空间和主存空间划分为同样大小的页，叫做实页和虚页</li>
+<li>虚拟地址分为虚页号和页内地址，由页表转换为物理地址</li>
+</ul>
+</li>
+<li>页表<ul>
+<li>随着进程的建立，对应进程页表被建立</li>
+<li>长期保存在主存中<ul>
+<li>进程切换运行时，页表被调入主存</li>
+<li>页表首地址保存在进程的页表基址寄存器</li>
+</ul>
+</li>
+<li>每个页表项包含<ul>
+<li>有效位（装入位）：对应页是否在主存</li>
+<li>脏位（修改位）：页面是否被修改过，一般结合回写策略，在页面从主存中被替换时写回磁盘</li>
+<li>引用位：配合替换策略进行设置，比如帮助实现FIFO或LRU策略</li>
+<li>物理页号或磁盘地址</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>虚拟地址转换到物理地址步骤<ul>
+<li>首先通过虚页号（虚拟地址高位，作为页表的索引）和页表首地址找到页表项</li>
+<li>如果有效则取出物理页号，和虚拟地址低位页内地址拼接，成为物理地址</li>
+<li>如果无效则缺页，需要操作系统先进行缺页处理</li>
+</ul>
+</li>
+<li>优点是页长固定，页表简单，调入方便；缺点是程序不一定是页整数倍，最后一页可能有空间浪费，同时页没有逻辑含义，不方便处理、保护、共享</li>
+<li>快表TLB<ul>
+<li>专门存放主存中页表的部分表项的缓冲表（类似于Cache）</li>
+<li>通常是全相联或组相联</li>
+<li>TLB表项包括：页表表项内容、TLB标记</li>
+<li>TLB标记表示该TLB表项来自主存页表的哪一个表项<ul>
+<li>全相联方式，TLB标记就是虚页号</li>
+<li>组相联方式，TLB标记是虚页号的高位，虚页号的低位是TLB的组号</li>
+</ul>
+</li>
+<li>如果查表时标记相等且有效位为1则命中，直接用TLB进行地址转换</li>
+<li>如果不命中，则TLB缺失，需要访问主存查页表<ul>
+<li>如果TLB未满，则把主存页表中相应表项调入TLB页表</li>
+<li>如果TLB已满，则需要替换策略</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多级页表<ul>
+<li>考虑页表需要在内存中分配连续空间，页表较大时不方便</li>
+<li>多级索引的方式，虚页号进一步分成页目录索引、页表索引两个部分</li>
+<li>先用页目录首地址和页目录索引确定页表首地址，再结合页表索引确定物理页号</li>
+</ul>
+</li>
+<li>具有TLB和Cache的多级存储系统<ul>
+<li>首先进行虚拟地址到物理地址的转换，（涉及快表TLB、多级页表、缺页处理）</li>
+<li>然后根据物理地址，在Cache-主存系统中存取相应的数据</li>
+<li>可能发生的缺失<ul>
+<li>TLB缺失：硬件或软件（操作系统）处理，需要访问主存</li>
+<li>缺页：软件（操作系统)处理，需要访问辅存（磁盘）</li>
+<li>Cache缺失：硬件处理，需要访问内存</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="段式虚拟存储器"><a href="#段式虚拟存储器" class="headerlink" title="段式虚拟存储器"></a>段式虚拟存储器</h3><ul>
+<li>主存按程序的逻辑分段，以段为主存和辅存的调度单位，各段长不一定</li>
+<li>虚拟地址分为段号和段内地址，物理地址分为物理段号和段内地址</li>
+<li>段表<ul>
+<li>指出各段在主存中的首地址</li>
+<li>包括段号、段长、段起始地址（高位相当于段号）、有效位（装入位）、段访问方式和标记等</li>
+</ul>
+</li>
+<li>虚拟地址转换到物理地址步骤<ul>
+<li>首先通过段表基地址和段号找到对应段表项</li>
+<li>如果有效则把段表项的段起始地址 + 段内地址（偏移量），得到物理地址</li>
+</ul>
+</li>
+<li>优点是段的分界和程序分界对应，易于编译、管理、修改、保护、共享；缺点是段长度可变，分配空间不便，主存中容易产生段内碎片的浪费</li>
+</ul>
+<h3 id="段页式虚拟存储器"><a href="#段页式虚拟存储器" class="headerlink" title="段页式虚拟存储器"></a>段页式虚拟存储器</h3><ul>
+<li>程序按逻辑分段，段内划分为固定大小的页，主存空间也划分为大小相等的页</li>
+<li>主存和辅存以页为调度单位</li>
+<li>每个程序对应一个段表，每段对应一个页表。</li>
+<li>段的长度是页长整数倍，段的起点是页的起点</li>
+<li>虚地址分为段号、段内页号、页内地址</li>
+<li>地址转换<ul>
+<li>根据段号和段表起始地址找到段表项，取出该段的页表首地址</li>
+<li>页表首地址和段内页号找到对应页表项</li>
+<li>从页表项中取出实页号和页内地址拼接为物理地址</li>
+</ul>
+</li>
+<li>优点是兼备段式和页式存储器的优点，可以按段共享和保护、按页进行存储调度</li>
+<li>缺点是需要2次查表，开销较大</li>
+</ul>
+<h3 id="虚拟存储器和Cache比较"><a href="#虚拟存储器和Cache比较" class="headerlink" title="虚拟存储器和Cache比较"></a>虚拟存储器和Cache比较</h3><ul>
+<li>相同之处<ul>
+<li>都为了提高系统性能、具有容量、速度、价格的梯度</li>
+<li>数据都划分为小的信息块，作为传递单位，虚存系统的信息块更大</li>
+<li>都涉及地址的映射、替换算法、更新策略</li>
+<li>都依据程序局部性原理来应用快速缓存的思想，把活跃的数据保存在高速的部件中</li>
+</ul>
+</li>
+<li>不同之处<ul>
+<li>Cache主要解决CPU和主存存取速度不匹配问题，虚拟存储器是解决主存容量问题</li>
+<li>Cache由硬件实现，对所有程序员透明；虚拟存储器由OS和硬件实现，对系统程序员不透明，对应用程序员透明</li>
+<li>因为CPU的速度约是Cache 10倍，主存速度约是硬盘100倍，所以虚拟存储器不命中时对性能影响更大</li>
+<li>CPU和Cache都和主存有直接访问的通路，辅存和CPU没有直接通路</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -684,7 +1003,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">存储器概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">存储器分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">存储器性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">层次化存储器的基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E5%AF%BC%E4%BD%93%E9%9A%8F%E6%9C%BA%E5%AD%98%E5%8F%96%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">半导体随机存取存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SRAM%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">SRAM存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DRAM%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">DRAM存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROM%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">ROM存储器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">主存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">4.1.</span> <span class="nav-text">主存储器的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DRAM%E8%8A%AF%E7%89%87%E5%92%8C%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-number">4.2.</span> <span class="nav-text">DRAM芯片和内存条</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DRAM%E5%AD%98%E5%82%A8%E8%8A%AF%E7%89%87"><span class="nav-number">4.2.1.</span> <span class="nav-text">DRAM存储芯片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-number">4.2.2.</span> <span class="nav-text">内存条</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%92%8CCPU%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.3.</span> <span class="nav-text">主存和CPU之间的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.4.</span> <span class="nav-text">多模块存储器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">外部存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">磁盘存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98SSD"><span class="nav-number">5.2.</span> <span class="nav-text">固态硬盘SSD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%86%B2%E5%AD%98%E5%82%A8%E5%99%A8Cache"><span class="nav-number">6.</span> <span class="nav-text">高速缓冲存储器Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">6.1.</span> <span class="nav-text">Cache基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E5%92%8C%E4%B8%BB%E5%AD%98%E9%97%B4%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F"><span class="nav-number">6.2.</span> <span class="nav-text">Cache和主存间映射方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E4%B8%AD%E4%B8%BB%E5%AD%98%E5%9D%97%E6%9B%BF%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">6.3.</span> <span class="nav-text">Cache中主存块替换算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E5%86%99%E7%AD%96%E7%95%A5"><span class="nav-number">6.4.</span> <span class="nav-text">Cache写策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">虚拟存储器的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.2.</span> <span class="nav-text">页式虚拟存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.3.</span> <span class="nav-text">段式虚拟存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.4.</span> <span class="nav-text">段页式虚拟存储器</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">存储器概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">存储器分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">存储器性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">层次化存储器的基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E5%AF%BC%E4%BD%93%E9%9A%8F%E6%9C%BA%E5%AD%98%E5%8F%96%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">半导体随机存取存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SRAM%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">SRAM存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DRAM%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">DRAM存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROM%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">ROM存储器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">主存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">4.1.</span> <span class="nav-text">主存储器的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DRAM%E8%8A%AF%E7%89%87%E5%92%8C%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-number">4.2.</span> <span class="nav-text">DRAM芯片和内存条</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DRAM%E5%AD%98%E5%82%A8%E8%8A%AF%E7%89%87"><span class="nav-number">4.2.1.</span> <span class="nav-text">DRAM存储芯片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-number">4.2.2.</span> <span class="nav-text">内存条</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%92%8CCPU%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.3.</span> <span class="nav-text">主存和CPU之间的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E7%AB%AF%E5%8F%A3RAM%E5%92%8C%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.4.</span> <span class="nav-text">双端口RAM和多模块存储器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">外部存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">磁盘存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98SSD"><span class="nav-number">5.2.</span> <span class="nav-text">固态硬盘SSD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%86%B2%E5%AD%98%E5%82%A8%E5%99%A8Cache"><span class="nav-number">6.</span> <span class="nav-text">高速缓冲存储器Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BF%E9%97%AE%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86"><span class="nav-number">6.1.</span> <span class="nav-text">程序访问局部性原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">6.2.</span> <span class="nav-text">Cache基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E5%92%8C%E4%B8%BB%E5%AD%98%E9%97%B4%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F"><span class="nav-number">6.3.</span> <span class="nav-text">Cache和主存间映射方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E4%B8%AD%E4%B8%BB%E5%AD%98%E5%9D%97%E6%9B%BF%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">6.4.</span> <span class="nav-text">Cache中主存块替换算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E5%86%99%E7%AD%96%E7%95%A5"><span class="nav-number">6.5.</span> <span class="nav-text">Cache写策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">虚拟存储器的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.2.</span> <span class="nav-text">页式虚拟存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.3.</span> <span class="nav-text">段式虚拟存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">7.4.</span> <span class="nav-text">段页式虚拟存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E5%92%8CCache%E6%AF%94%E8%BE%83"><span class="nav-number">7.5.</span> <span class="nav-text">虚拟存储器和Cache比较</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
