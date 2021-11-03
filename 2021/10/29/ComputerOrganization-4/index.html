@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基本概念 程序：由一系列有序的指令构成 指令：指示计算机硬件完成指定的基本操作的命令 指令系统 又叫指令集，是一台计算机所有指令的集合 位于软件硬件交界面上 计算机的主要属性，指出计算机有哪些基本的硬件功能   指令系统应具备的特征 完备性：功能齐全 高效性：编写的程序占据空间小，执行速度快 规整性 对称性：所有寄存器和存储单元可同等对待；所有指令可使用各种寻址方式 匀齐性：可以支持各自数据类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第四章-指令系统">
+<meta property="og:url" content="https://wooziehang.github.io/2021/10/29/ComputerOrganization-4/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="基本概念 程序：由一系列有序的指令构成 指令：指示计算机硬件完成指定的基本操作的命令 指令系统 又叫指令集，是一台计算机所有指令的集合 位于软件硬件交界面上 计算机的主要属性，指出计算机有哪些基本的硬件功能   指令系统应具备的特征 完备性：功能齐全 高效性：编写的程序占据空间小，执行速度快 规整性 对称性：所有寄存器和存储单元可同等对待；所有指令可使用各种寻址方式 匀齐性：可以支持各自数据类型">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-29T01:33:03.000Z">
+<meta property="article:modified_time" content="2021-10-31T09:49:24.082Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/10/29/ComputerOrganization-4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第四章-指令系统 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/29/ComputerOrganization-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第四章-指令系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-29 09:33:03" itemprop="dateCreated datePublished" datetime="2021-10-29T09:33:03+08:00">2021-10-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-31 17:49:24" itemprop="dateModified" datetime="2021-10-31T17:49:24+08:00">2021-10-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/10/29/ComputerOrganization-4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-指令系统" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/10/29/ComputerOrganization-4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/29/ComputerOrganization-4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>程序：由一系列有序的指令构成</li>
+<li>指令：指示计算机硬件完成指定的基本操作的命令</li>
+<li>指令系统<ul>
+<li>又叫指令集，是一台计算机所有指令的集合</li>
+<li>位于软件硬件交界面上</li>
+<li>计算机的主要属性，指出计算机有哪些基本的硬件功能</li>
+</ul>
+</li>
+<li>指令系统应具备的特征<ul>
+<li>完备性：功能齐全</li>
+<li>高效性：编写的程序占据空间小，执行速度快</li>
+<li>规整性<ul>
+<li>对称性：所有寄存器和存储单元可同等对待；所有指令可使用各种寻址方式</li>
+<li>匀齐性：可以支持各自数据类型</li>
+<li>一致性：指令格式和数据格式一致</li>
+</ul>
+</li>
+<li>兼容性：系列机各种机型有相同的基本机构和共同的基本指令集</li>
+</ul>
+</li>
+</ul>
+<h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><h3 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h3><ul>
+<li>操作码+地址码</li>
+<li>操作码指出操作的类型</li>
+<li>地址码给出被操作的信息的地址</li>
+<li>指令长度指的是一条指令的二进制代码长度<ul>
+<li>取决于操作码长度、地址码长度、地址码个数</li>
+<li>可能大于、等于或小于机器字长，如双字长指令、字长指令、半字长指令</li>
+<li>指令系统的所有指令长度相等，称为<strong>定长指令字结构</strong>，执行快，结构简单</li>
+<li>指令系统的指令长度随指令而异，称为<strong>变长指令字结构</strong>，一般是字节的整数倍（考虑主存按字节编址）</li>
+</ul>
+</li>
+<li>根据操作数地址码的个数，指令分为<ul>
+<li>零地址指令<ul>
+<li>不需要操作数的指令。如空指令、停机指令、关中断指令</li>
+<li>涉及堆栈的运算指令。</li>
+</ul>
+</li>
+<li>一地址指令：<ul>
+<li>单操作数指令。如自增、自减、求反、求补，形式为$OP(A_1)\rightarrow A_1$</li>
+<li>隐含的双操作数指令。一般另一个操作数由ACC（累加器）提供，运算结果也存到ACC中，形式为$(ACC)\ OP\ (A_1)\rightarrow ACC$</li>
+</ul>
+</li>
+<li>二地址指令：比如常用的逻辑运算，算术运算，形式为$(A_1)\ OP\ (A_2)\rightarrow A_1$</li>
+<li>三地址指令：比如常用的逻辑运算，算术运算，形式为$(A_1)\ OP\ (A_2)\rightarrow A_3$</li>
+<li>四地址指令：形式为$(A_1)\ OP\ (A_2)\rightarrow A_3$，$A_4$是下一条指令的地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="定长操作码指令格式"><a href="#定长操作码指令格式" class="headerlink" title="定长操作码指令格式"></a>定长操作码指令格式</h3><ul>
+<li>在指令高位分配固定长度的若干位表示操作码</li>
+<li>$n$位操作码字段可以表示$2^n$个指令</li>
+<li>定长操作码简化计算机硬件设计，提高指令译码识别速度，当计算机字节为32位和更长时，这是常规用法</li>
+</ul>
+<h3 id="拓展操作码指令格式"><a href="#拓展操作码指令格式" class="headerlink" title="拓展操作码指令格式"></a>拓展操作码指令格式</h3><ul>
+<li>当指令字长有限时，为了丰富指令种类，可以采用可变长度操作码</li>
+<li>拓展操作码是最常用的可变长操作码，操作码长度根据地址码的减少而增加<ul>
+<li>一般全1留作拓展操作码使用</li>
+<li>比如0000 - 1110是4位操作码；11110000 - 11111110是8位操作码；111111110000 - 111111111110是12位操作码</li>
+</ul>
+</li>
+<li>除了拓展操作码，还有其他的拓展方法，比如哈夫曼编码的思想，给高频指令短的操作码</li>
+<li>拓展编码必须是前缀码，即不存在短码是长码的前缀，且各指令操作码不重复</li>
+</ul>
+<h3 id="指令的操作类型"><a href="#指令的操作类型" class="headerlink" title="指令的操作类型"></a>指令的操作类型</h3><ul>
+<li>数据传送<ul>
+<li>寄存器之间的传送 MOV</li>
+<li>从内存读数据到CPU寄存器 LOAD</li>
+<li>从CPU寄存器写数据到内存 STORE</li>
+</ul>
+</li>
+<li>算术和逻辑运算<ul>
+<li>算术运算：ADD（加）、SUB（减）、CMP（比较）、MUL（乘）、DIV（除）、INC（自增1）、DEC（自减1）</li>
+<li>逻辑运算：AND（与）、OR（或）、NOT（非）、XOR（异或）</li>
+</ul>
+</li>
+<li>移位操作<ul>
+<li>算术移位</li>
+<li>逻辑移位</li>
+<li>循环移位</li>
+</ul>
+</li>
+<li>转移操作<ul>
+<li>无条件转移 JMP：任意条件都会转移</li>
+<li>条件转移 BRANCH：满足条件才会转移</li>
+<li>调用 CALL：调用指令需要保存下一条指令的地址，方便调用结束后返回。</li>
+<li>返回 RET：完成调用后根据之前保存的地址返回</li>
+<li>陷阱 TRAP</li>
+</ul>
+</li>
+<li>输入输出操作：用于CPU和外部设备交换数据、传送控制命令和状态信息</li>
+</ul>
+<h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><h3 id="有效地址的概念"><a href="#有效地址的概念" class="headerlink" title="有效地址的概念"></a>有效地址的概念</h3><ul>
+<li>指令中的地址码字段并不代表操作数真实地址，而是形式地址</li>
+<li>形式地址需要结合寻址方式，算出操作数在存储器中的真实地址，即有效地址EA<ul>
+<li>若考虑虚拟存储机制，有效地址本质上是段内偏移量，即线性地址等于段基地址加有效地址。</li>
+<li>本章内容除非特殊说明，默认先不考虑虚拟存储，即段基地址从0开始，且不采用分页机制，此时有效地址就是真实的物理地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="指令寻址和数据寻址"><a href="#指令寻址和数据寻址" class="headerlink" title="指令寻址和数据寻址"></a>指令寻址和数据寻址</h3><ul>
+<li>指令寻址<ul>
+<li>含义：寻找下一条需要执行的指令地址</li>
+<li>分为<ul>
+<li>顺序寻址：程序计数器PC加1</li>
+<li>跳跃寻址：通过本条转移指令算出下一条指令地址，可能跳跃到绝对地址（根据标记符），也可能跳跃到相对地址（距当前的指令偏移量），算出后修改程序计数器PC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据寻址<ul>
+<li>含义：根据指令中操作数的形式地址得到其有效地址</li>
+<li>数据寻址方式很多，通常在指令中设置一个字段（即寻址特征），用以指明寻址方式的类型</li>
+<li>指令的格式为：操作码、寻址特征、形式地址A</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见寻址方式"><a href="#常见寻址方式" class="headerlink" title="常见寻址方式"></a>常见寻址方式</h3><ul>
+<li>隐含寻址<ul>
+<li>不显式给出所有操作数地址，指令中隐含操作数的地址</li>
+<li>比如累加器ACC作为第二个操作数的地址，结果也存放到ACC中</li>
+<li>优点是缩短指令长度；缺点是需要增加存储隐含地址的硬件</li>
+<li>访存0次</li>
+</ul>
+</li>
+<li>立即（数）寻址<ul>
+<li>地址字段指出的是操作数本身，称为立即数</li>
+<li>数据用补码形式存放</li>
+<li>优点是不需要访问内存；缺点是立即数的位数收到指令长度限制</li>
+<li>访存0次</li>
+</ul>
+</li>
+<li>直接寻址<ul>
+<li>地址字段就是操作数的真实地址</li>
+<li>$EA = A$</li>
+<li>优点是寻址简单，只需要访问一次内存；缺点是寻址范围受指令位数限制，地址也不容易修改</li>
+<li>访存1次</li>
+</ul>
+</li>
+<li>间接寻址<ul>
+<li>指令中给出操作数真实地址所存放位置的真实地址</li>
+<li>$EA = (A)$</li>
+<li>间接寻址可以是一次，也可以是多次<ul>
+<li>如果内存寻址得到的内容第一位是1，表示多次间接寻址，需要继续寻址</li>
+<li>如果内存寻址得到的内容第一位是0，表示得到的就是操作数的地址</li>
+</ul>
+</li>
+<li>优点是扩大了寻址范围，EA位数大于A的位数；缺点是需要多次访存（至少2次）</li>
+<li>这种寻址方式不常用，通常使用<strong>寄存器间接寻址</strong>扩大寻址范围</li>
+<li>访存至少2次</li>
+</ul>
+</li>
+<li>寄存器寻址<ul>
+<li>指令中给出操作数所在的寄存器编号</li>
+<li>$EA = R_i$</li>
+<li>优点是不访问主存，且地址码很短（因为寄存器不多）；缺点是寄存器价格贵，个数有限</li>
+<li>访存0次</li>
+</ul>
+</li>
+<li>寄存器间接寻址<ul>
+<li>指令中给出操作数真实地址所存放的寄存器编号</li>
+<li>$EA = (R_i)$</li>
+<li>特点是比<strong>间接寻址</strong>快，但仍需要访问主存</li>
+<li>访存1次</li>
+</ul>
+</li>
+<li>相对寻址<ul>
+<li>指令中给出的是偏移地址（可正可负），基地址在PC中</li>
+<li>$EA = (PC)+A$</li>
+<li>操作数地址不是固定的，广泛应用于转移指令</li>
+<li>注意<ul>
+<li>转移指令取出后，PC会立刻更新到下一行指令的位置，此后再计算相对偏移量。</li>
+<li>比如转移指令2个字节，转移指令地址为X，则执行完后，$PC=X+2+A$</li>
+</ul>
+</li>
+<li>访存1次</li>
+</ul>
+</li>
+<li>基址寻址<ul>
+<li>指令给出偏移地址，基地址在基址寄存器BR中</li>
+<li>$EA =(BR) + A$</li>
+<li>面向操作系统的寻址方式，基址寄存器由操作系统管理，用户程序运行时通常BR不可变</li>
+<li>该寻址方法扩大了寻址范围，用户不需要考虑编程的地址范围；缺点是偏移量的位数短</li>
+<li>访存1次</li>
+</ul>
+</li>
+<li>变址寻址<ul>
+<li>指令给出基地址，偏移地址在变址寄存器IX中</li>
+<li>$EA =(IX) + A$</li>
+<li>面向用户的寻址方式，变址寄存器用户可以更改，指令中的A一般不变</li>
+<li>该寻址方法扩大了寻址范围，常用于数组（A为数组地址，IX存放元素偏移量）、循环；缺点是偏移量的位数短</li>
+<li>访存1次</li>
+</ul>
+</li>
+<li>堆栈寻址<ul>
+<li>堆栈是存储器（或专用寄存器组）中特定的按后进先出原则管理的存储区</li>
+<li>该存储的读写一般通过栈顶指针寄存器SP</li>
+<li>分为<ul>
+<li>硬堆栈：寄存器堆栈，成本高，不适合大容量堆栈</li>
+<li>软堆栈：主存中划分一块区域作为堆栈，划算且常用</li>
+</ul>
+</li>
+<li>本寻址方式一般指令中都无操作数，操作数隐含在堆栈中，在读写堆栈的单元前后会相应对SP内容进行增减</li>
+</ul>
+</li>
+</ul>
+<h3 id="x86汇编指令入门"><a href="#x86汇编指令入门" class="headerlink" title="x86汇编指令入门"></a>x86汇编指令入门</h3><h4 id="相关寄存器"><a href="#相关寄存器" class="headerlink" title="相关寄存器"></a>相关寄存器</h4><ul>
+<li>8个32位的通用寄存器，分别为<ul>
+<li>EAX 累加器（Accumulator）</li>
+<li>EBX 基地址寄存器（Base Register）</li>
+<li>ECX 计数寄存器（Count Register）</li>
+<li>EDX 数据寄存器（Data Register）</li>
+<li>ESI、EDI 变址寄存器（Index Register）</li>
+<li>EBP 堆栈基指针（Base Pointer）</li>
+<li>ESP 堆栈顶指针（Stack Pointer）</li>
+</ul>
+</li>
+<li>功能上作为程序计数器PC的寄存器：IP或EIP，只能使用控制指令修改</li>
+<li>字母表示可以大写也可以小写，第一个字母E表示Extended（拓展的）</li>
+<li>为了兼容性，EAX、EBX、ECX、EDX的低两个字节可以单独使用，以EAX为例<ul>
+<li>EAX低2字节称为AX</li>
+<li>AX的高字节和低字节分别称为AH和AL</li>
+</ul>
+</li>
+<li>除了EBP和ESP，其他寄存器的使用实际上是任意的</li>
+</ul>
+<h4 id="寻址模式"><a href="#寻址模式" class="headerlink" title="寻址模式"></a>寻址模式</h4><ul>
+<li>如果是两个地址参数，第一个为目的地址，第二个为源地址</li>
+<li>中括号$[]$内是地址，整体表示取括号中地址对应的存储空间</li>
+<li>计算地址最多只能用<strong>2个</strong>32位寄存器和<strong>1个</strong>32位有符号常数<strong>相加</strong></li>
+</ul>
+<h4 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h4><ul>
+<li>汇编语言中声明内存大小，显示的使用<ul>
+<li>DB：Data Byte，单字节</li>
+<li>DW：Data Word，双字节</li>
+<li>DD：Double Word，四字节</li>
+</ul>
+</li>
+<li>对于常数的分配空间大小，可以使用标识符<ul>
+<li>BYTE PTR：常数以单字节形式</li>
+<li>WORD PTR：常数以双字节形式</li>
+<li>DWORD PTR：常数以四字节形式</li>
+</ul>
+</li>
+<li>指令可以有后缀指明空间大小，以传送指令mov为例<ul>
+<li>movb：传送单字节</li>
+<li>movw：传送双字节</li>
+<li>movl：传送四字节</li>
+<li>movq：传送八字节</li>
+</ul>
+</li>
+</ul>
+<h4 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h4><ul>
+<li>以&lt;reg&gt;、&lt;mem&gt;、&lt;con&gt;分别表示操作数为寄存器、内存、常数的情况。如果reg和con后带数字则表示指定了位数。</li>
+<li>以&lt;label&gt;表示标签，放在指令的前面，表示指令的地址</li>
+<li>数据传送指令<ul>
+<li>mov指令：将第二个操作数复制到第一个操作数。要求目的操作数不为常数，且不能从内存到内存<ul>
+<li>mov &lt;reg&gt;,&lt;reg&gt;</li>
+<li>mov &lt;reg&gt;,&lt;mem&gt;</li>
+<li>mov &lt;reg&gt;,&lt;con&gt;</li>
+<li>mov &lt;mem&gt;,&lt;reg&gt;</li>
+<li>mov &lt;mem&gt;,&lt;con&gt;</li>
+</ul>
+</li>
+<li>push指令：ESP值减4后把操作数压入栈中，可以看出栈增长方向是从大地址到小地址<ul>
+<li>push &lt;reg32&gt;</li>
+<li>push &lt;mem&gt;</li>
+<li>push &lt;con32&gt;</li>
+</ul>
+</li>
+<li>pop指令：把操作数弹出栈后ESP加4<ul>
+<li>pop &lt;reg32&gt;</li>
+<li>pop &lt;mem&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>算术和逻辑计算指令<ul>
+<li>add/sub指令：第一个操作数加上/减去第二个操作数，结果保存在第一个操作数位置<ul>
+<li>add/sub &lt;reg&gt;,&lt;reg&gt;</li>
+<li>add/sub &lt;reg&gt;,&lt;mem&gt;</li>
+<li>add/sub &lt;reg&gt;,&lt;con&gt;</li>
+<li>add/sub &lt;mem&gt;,&lt;reg&gt;</li>
+<li>add/sub &lt;mem&gt;,&lt;con&gt;</li>
+</ul>
+</li>
+<li>inc/dec指令：操作数自增1/自减1<ul>
+<li>inc/dec &lt;reg&gt;</li>
+<li>inc/dec &lt;mem&gt;</li>
+</ul>
+</li>
+<li>imul指令：带符号整数乘法指令。第一个（目的）操作数必须是寄存器；可以有一个或两个源操作数；一个源操作数时不使用常数，其与目的操作数的积放到目的操作数；两个源操作数时使用常数，把积放到目的操作数；如果溢出则OF=1<ul>
+<li>imul &lt;reg32&gt;,&lt;reg32&gt;</li>
+<li>imul &lt;reg32&gt;,&lt;mem&gt;</li>
+<li>imul &lt;reg32&gt;,&lt;reg32&gt;,&lt;con&gt;</li>
+<li>imul &lt;reg32&gt;,&lt;mem&gt;,&lt;con&gt;</li>
+</ul>
+</li>
+<li>idiv指令：带符号除法指令。一个操作数表示除数。被除数为EDX:EAX。结果商存入EAX，余数存入EDX。<ul>
+<li>idiv &lt;reg32&gt;</li>
+<li>idiv &lt;mem&gt;</li>
+</ul>
+</li>
+<li>and/or/xor指令：逻辑与/或/异或，结果放在第一个操作数<ul>
+<li>and/or/xor &lt;reg&gt;,&lt;reg&gt;</li>
+<li>and/or/xor &lt;reg&gt;,&lt;mem&gt;</li>
+<li>and/or/xor &lt;reg&gt;,&lt;con&gt;</li>
+<li>and/or/xor &lt;mem&gt;,&lt;reg&gt;</li>
+<li>and/or/xor &lt;mem&gt;,&lt;con&gt;</li>
+</ul>
+</li>
+<li>not指令：取反（位翻转）指令<ul>
+<li>not &lt;reg&gt;</li>
+<li>not &lt;mem&gt;</li>
+</ul>
+</li>
+<li>neg指令：取负指令<ul>
+<li>neg &lt;reg&gt;</li>
+<li>neg &lt;mem&gt;</li>
+</ul>
+</li>
+<li>shl/shr指令：逻辑移位指令，结果存放在第一个操作数，第二个操作数为移位的位数<ul>
+<li>shl/shr &lt;reg&gt;,&lt;con8&gt;</li>
+<li>shl/shr &lt;mem&gt;,&lt;con8&gt;</li>
+<li>shl/shr &lt;reg&gt;,&lt;cl&gt;</li>
+<li>shl/shr &lt;mem&gt;,&lt;cl&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>控制流指令<ul>
+<li>jmp指令：控制IP转移到label指示的地址执行<ul>
+<li>jmp &lt;label&gt;</li>
+</ul>
+</li>
+<li>cmp指令：第一个操作数和第二个操作数比较，根据结果设置处理机状态字条件码<ul>
+<li>cmp &lt;reg&gt;,&lt;reg&gt;</li>
+<li>cmp &lt;reg&gt;,&lt;mem&gt;</li>
+<li>cmp &lt;reg&gt;,&lt;con&gt;</li>
+<li>cmp &lt;mem&gt;,&lt;reg&gt;</li>
+</ul>
+</li>
+<li>jcondition指令：根据处理机状态字进行条件转移<ul>
+<li>je &lt;label&gt; 等于时跳转</li>
+<li>jne &lt;label&gt; 不等于时跳转</li>
+<li>jz &lt;label&gt; 等于0时跳转</li>
+<li>jg &lt;label&gt; 有符号大于时跳转</li>
+<li>jge &lt;label&gt; 有符号大于等于时跳转</li>
+<li>jl &lt;label&gt; 有符号小于时跳转</li>
+<li>jle &lt;label&gt; 有符号小于等于时跳转</li>
+<li>ja &lt;label&gt; 无符号大于时跳转</li>
+<li>jae &lt;label&gt; 无符号大于等于时跳转</li>
+<li>jb &lt;label&gt; 无符号小于时跳转</li>
+<li>jbe &lt;label&gt; 无符号小于等于时跳转</li>
+</ul>
+</li>
+<li>call/ret指令：用于函数的调用和返回。call把当前指令地址入栈后，无条件转移到标签处；ret从栈中弹出之前保存的地址，无条件转移回之前的地址位置<ul>
+<li>call &lt;label&gt;</li>
+<li>ret</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据对齐和大小端存放"><a href="#数据对齐和大小端存放" class="headerlink" title="数据对齐和大小端存放"></a>数据对齐和大小端存放</h2><p>详见第二章笔记中，“数据的存储和排列”小节</p>
+<h2 id="CISC和RISC的基本概念"><a href="#CISC和RISC的基本概念" class="headerlink" title="CISC和RISC的基本概念"></a>CISC和RISC的基本概念</h2><ul>
+<li>复杂指令系统计算机（CISC）<ul>
+<li>增强原有指令的功能，设置更复杂的新指令，使软件功能硬件化实现</li>
+<li>比如X86架构计算机</li>
+</ul>
+</li>
+<li>精简指令系统计算机（RISC）<ul>
+<li>减少指令的种类、简化指令的功能，使指令的速度提高</li>
+<li>比如ARM、MIPS架构计算机</li>
+</ul>
+</li>
+</ul>
+<h3 id="复杂指令系统计算机"><a href="#复杂指令系统计算机" class="headerlink" title="复杂指令系统计算机"></a>复杂指令系统计算机</h3><p>CISC的特点如下：</p>
+<ul>
+<li>指令系统：复杂庞大</li>
+<li>指令数目：一般在200条以上</li>
+<li>指令字长：不固定。指令格式多，寻址方式多</li>
+<li>可访存的指令：不受限制</li>
+<li>各指令使用频度：差别大，遵循28定律（20%的指令使用频率80%，80%的指令很少使用）</li>
+<li>各指令执行时间：差别大，大部分需要多个时钟周期</li>
+<li>CPU中通用寄存器数量：较少</li>
+<li>控制器控制方式：大多数采用微程序控制。有些指令很复杂，无法用硬连线控制。</li>
+<li>目标代码优化：难以用优化编译生成高效的目标代码程序</li>
+<li>指令流水线技术：可以通过一定方式实现</li>
+<li>软件兼容性：比较好，高档机可保护低档机全部指令并加以扩充</li>
+</ul>
+<h3 id="精简指令系统计算机"><a href="#精简指令系统计算机" class="headerlink" title="精简指令系统计算机"></a>精简指令系统计算机</h3><p>RISC的特点如下：</p>
+<ul>
+<li>指令系统：选取使用频率高的简单指令，复杂的指令由简单指令组合实现</li>
+<li>指令数目：一般在100条以下</li>
+<li>指令字长：固定。指令格式少，寻址方式少</li>
+<li>可访存的指令：只有LOAD/STORE（取数存数）允许访存。其余指令的操作在寄存器之间进行</li>
+<li>各指令使用频度：都经常使用</li>
+<li>各指令执行时间：大部分指令在一个时钟周期内完成</li>
+<li>CPU中通用寄存器数量：非常多</li>
+<li>控制器控制方式：以硬布线控制（组合逻辑控制）为主，基本不用微程序控制</li>
+<li>目标代码优化：特别重视编译优化工作，以减少程序执行时间</li>
+<li>指令流水线技术：一定采用</li>
+<li>软件兼容性：大多数RISC不能和老机器兼容，但因为实用性强，是未来的发展方向</li>
+</ul>
+<h2 id="高级语言程序与机器代码之间的对应"><a href="#高级语言程序与机器代码之间的对应" class="headerlink" title="高级语言程序与机器代码之间的对应"></a>高级语言程序与机器代码之间的对应</h2><h3 id="编译器、汇编器和链接器的基本概念"><a href="#编译器、汇编器和链接器的基本概念" class="headerlink" title="编译器、汇编器和链接器的基本概念"></a>编译器、汇编器和链接器的基本概念</h3><p>详见第一章笔记“高级语言程序与机器语言程序转换”小节</p>
+<h3 id="过程（函数）调用的机器级表示"><a href="#过程（函数）调用的机器级表示" class="headerlink" title="过程（函数）调用的机器级表示"></a>过程（函数）调用的机器级表示</h3><p>假设P调用Q，则步骤如下</p>
+<ul>
+<li>P保存现场：当需要保留<strong>调用者保存寄存器</strong>（包括EAX、ECX、EDX）的值，进行此步骤</li>
+<li>P压参数：把调用参数按从右到左的顺序压入栈中（如果寄存器数量充足，也可能把部分参数用寄存器保存）</li>
+<li>P执行CALL指令<ul>
+<li>存旧PC：把返回地址（调用指令后一条指令的位置）压栈</li>
+<li>更新PC：修改PC至跳转处，此后Q过程开始执行</li>
+</ul>
+</li>
+<li>Q准备阶段<ul>
+<li>存原栈底：将EBP（P的栈底）压栈（此时ESP为栈顶，所指位置存放P的栈底）</li>
+<li>更新栈底：更新EBP为ESP位置（即Q的栈底中存放P的栈底）</li>
+<li>更新栈顶：修改ESP，为自己分配栈空间（一般减去大小为16字节的倍数，以便对齐）</li>
+<li>保存现场：如果需要用<strong>被调用者保存寄存器</strong>（包括EBX、ESI、EDI），进行此步骤</li>
+</ul>
+</li>
+<li>Q过程体阶段<ul>
+<li>局部变量空间分配：一般按低地址到高地址的顺序使用栈空间（和栈增长方向相反）</li>
+<li>通常按小端存放，考虑对齐</li>
+<li>结束时设置返回值（通常是放到EAX寄存器中）</li>
+</ul>
+</li>
+<li>Q结束阶段<ul>
+<li>Q恢复P的现场</li>
+<li>Q执行leave指令<ul>
+<li>恢复栈顶：修改ESP等于EBP，以释放Q的栈空间</li>
+<li>恢复栈底：弹出Q的EBP所指向P的EBP的值给EBP，即恢复P的栈空间</li>
+</ul>
+</li>
+<li>Q执行ret指令<ul>
+<li>恢复PC：弹出此时ESP所指向的返回地址给PC，以返回P执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>P恢复现场</li>
+<li>P继续执行CALL指令的下一条指令</li>
+</ul>
+<p><strong>注：关于一个过程P的栈帧</strong></p>
+<ul>
+<li>P栈帧头：P过程EBP指向空间（存放P过程的调用者的旧EBP）</li>
+<li>P栈帧尾：下一个过程Q的EBP指向空间（存放的是P的EBP）的前一个空间（存放的是P的返回地址）</li>
+<li>栈帧是周期性的，P的栈帧尾后面就是Q的栈帧头</li>
+</ul>
+<h3 id="选择结构语句的机器级表示"><a href="#选择结构语句的机器级表示" class="headerlink" title="选择结构语句的机器级表示"></a>选择结构语句的机器级表示</h3><h4 id="条件码"><a href="#条件码" class="headerlink" title="条件码"></a>条件码</h4><ul>
+<li>即标志位寄存器，包括<ul>
+<li>CF 进位标志：用于无符号数</li>
+<li>ZF 零标志：最近运算是否为0</li>
+<li>SF 符号标志：最近运算结果的符号</li>
+<li>OF 溢出标志：用于带符号数</li>
+</ul>
+</li>
+<li>cmp和sub对条件码的行为一致</li>
+<li>test和and对条件码行为一致</li>
+<li>jcondition指令结合条件码的ZF和SF可以实现跳转</li>
+</ul>
+<h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><ul>
+<li>可以利用if-goto语句分析从高级语言到汇编的过程</li>
+<li>如果if条件不满足，则goto跳转</li>
+<li>然后把if-goto转换到对应的汇编中，使用cmp/test、jcondition Label的方式</li>
+</ul>
+<h4 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h4><ul>
+<li>相比于if语句多次条件判断来跳转，switch是多路选择，一次直接跳到某个条件处的语句执行</li>
+<li>需要用到跳转表<ul>
+<li>段属性为只读，即.section .rodata</li>
+<li>跳转地址在4字节边界上，即align 4</li>
+<li>跳转表的头设置一个标记Label，头之后的每一行（项）都是一个标签Labeli，i=0，1，…，7</li>
+<li>给出一个例子<ul>
+<li>设switch输入10、12、14、15、17分别对应情况L2、L3、L4、L1、L3，其他输入对应情况L5</li>
+<li>跳转表Label标签后面的每一行分别表示情况10、11、12、…、17需要跳到的标记Labeli，即L2、L5、L3、L5、L4、L1、L5、L3</li>
+<li>汇编代码中，首先把判断的输入减10，记为t。</li>
+<li>比较t和7的关系（条件码设置按无符号减法）。</li>
+<li>如果大于7（根据无符号数运算，这里包括t是负数的情况），跳转到L5</li>
+<li>否则根据t作为索引查跳转表对应表项标签Labelt，跳转到跳转表此项对应的标签位置执行即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="循环结构语句的机器级表示"><a href="#循环结构语句的机器级表示" class="headerlink" title="循环结构语句的机器级表示"></a>循环结构语句的机器级表示</h3><ul>
+<li>高级语言转汇编可以借助if-goto作为中间代码，方便分析转换</li>
+<li>循环结构有三种情况<ul>
+<li>do-while循环：一次goto即可</li>
+<li>while循环：相当于在do-while前先判断条件一次。需要两个goto</li>
+<li>for循环：相当于while语句前先做一个初始化语句，可以先转成while循环。需要两个goto。</li>
+</ul>
+</li>
+<li>最后把if-goto转换到对应的汇编中，使用cmp/test、jcondition Label的方式</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/25/ComputerOrganization-3/" rel="prev" title="【知识总结】 第三章-存储器层次结构">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第三章-存储器层次结构
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/31/ComputerOrganization-5/" rel="next" title="【知识总结】 第五章-中央处理器">
+      【知识总结】 第五章-中央处理器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">指令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">基本格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E9%95%BF%E6%93%8D%E4%BD%9C%E7%A0%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">定长操作码指令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">拓展操作码指令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">指令的操作类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E5%9C%B0%E5%9D%80%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">有效地址的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80"><span class="nav-number">3.2.</span> <span class="nav-text">指令寻址和数据寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">常见寻址方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x86%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E5%85%A5%E9%97%A8"><span class="nav-number">3.4.</span> <span class="nav-text">x86汇编指令入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">3.4.1.</span> <span class="nav-text">相关寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">寻址模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">3.4.3.</span> <span class="nav-text">内存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">3.4.4.</span> <span class="nav-text">常用指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90%E5%92%8C%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%AD%98%E6%94%BE"><span class="nav-number">4.</span> <span class="nav-text">数据对齐和大小端存放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CISC%E5%92%8CRISC%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">5.</span> <span class="nav-text">CISC和RISC的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="nav-number">5.1.</span> <span class="nav-text">复杂指令系统计算机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E7%AE%80%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="nav-number">5.2.</span> <span class="nav-text">精简指令系统计算机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BB%A3%E7%A0%81%E4%B9%8B%E9%97%B4%E7%9A%84%E5%AF%B9%E5%BA%94"><span class="nav-number">6.</span> <span class="nav-text">高级语言程序与机器代码之间的对应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E3%80%81%E6%B1%87%E7%BC%96%E5%99%A8%E5%92%8C%E9%93%BE%E6%8E%A5%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">6.1.</span> <span class="nav-text">编译器、汇编器和链接器的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B%EF%BC%88%E5%87%BD%E6%95%B0%EF%BC%89%E8%B0%83%E7%94%A8%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">6.2.</span> <span class="nav-text">过程（函数）调用的机器级表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">6.3.</span> <span class="nav-text">选择结构语句的机器级表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%A0%81"><span class="nav-number">6.3.1.</span> <span class="nav-text">条件码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.3.2.</span> <span class="nav-text">if语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.3.3.</span> <span class="nav-text">switch语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">6.4.</span> <span class="nav-text">循环结构语句的机器级表示</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
