@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基本概念 输入：信息从外部送到主机 输出：信息从主机送到外部 接口：外设和主机传输数据进行协调（比如速度匹配、电平和格式转换）的逻辑部件 外部设备：输入输出设备或通过输入输出接口才能访问的外存储设备 输入设备：键盘、鼠标 输出设备：打印机、显示器 外存设备：硬磁盘、光盘、U盘   IO系统构成 IO软件 包括：驱动程序、用户程序、管理程序、升级补丁 通过IO指令和通道指令（详见后面IO控制方式的通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第七章-输入输出系统">
+<meta property="og:url" content="https://wooziehang.github.io/2021/11/06/ComputerOrganization-7/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="基本概念 输入：信息从外部送到主机 输出：信息从主机送到外部 接口：外设和主机传输数据进行协调（比如速度匹配、电平和格式转换）的逻辑部件 外部设备：输入输出设备或通过输入输出接口才能访问的外存储设备 输入设备：键盘、鼠标 输出设备：打印机、显示器 外存设备：硬磁盘、光盘、U盘   IO系统构成 IO软件 包括：驱动程序、用户程序、管理程序、升级补丁 通过IO指令和通道指令（详见后面IO控制方式的通">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-06T06:54:59.000Z">
+<meta property="article:modified_time" content="2021-11-06T15:40:51.895Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/11/06/ComputerOrganization-7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第七章-输入输出系统 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/06/ComputerOrganization-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第七章-输入输出系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-06 14:54:59 / 修改时间：23:40:51" itemprop="dateCreated datePublished" datetime="2021-11-06T14:54:59+08:00">2021-11-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/06/ComputerOrganization-7/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第七章-输入输出系统" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/06/ComputerOrganization-7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/06/ComputerOrganization-7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>输入：信息从外部送到主机</li>
+<li>输出：信息从主机送到外部</li>
+<li>接口：外设和主机传输数据进行协调（比如速度匹配、电平和格式转换）的逻辑部件</li>
+<li>外部设备：输入输出设备或通过输入输出接口才能访问的外存储设备<ul>
+<li>输入设备：键盘、鼠标</li>
+<li>输出设备：打印机、显示器</li>
+<li>外存设备：硬磁盘、光盘、U盘</li>
+</ul>
+</li>
+<li>IO系统构成<ul>
+<li>IO软件<ul>
+<li>包括：驱动程序、用户程序、管理程序、升级补丁</li>
+<li>通过IO指令和通道指令（详见后面IO控制方式的通道方式）实现CPU和IO设备信息交换</li>
+</ul>
+</li>
+<li>IO硬件：<ul>
+<li>包括：外部设备、设备控制器和接口、IO总线</li>
+<li>设备控制器控制IO设备</li>
+<li>IO接口（或设备控制器、适配器）和总线相连</li>
+<li>IO端口是接口电路的一些寄存器，可被CPU访问；IO接口是主机和外部的交接面（详见IO接口小节）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IO控制方式<ul>
+<li>程序查询方式：CPU通过程序查询IO设备是否可用</li>
+<li>程序中断方式：IO设备可用时向CPU发出中断请求</li>
+<li>DMA方式：用于主存和IO设备的数据交换，无需调用中断服务程序</li>
+<li>通道方式<ul>
+<li>系统设置通道控制部件，每个通道挂接若干外设</li>
+<li>通道程序保存在主存，由通道执行通道指令</li>
+<li>通道指令实现数据传送，即执行IO操作（包括读、写、磁盘走带、寻道等）</li>
+<li>IO指令实现启停IO设备、查询通道和IO设备状态、对通道进行控制等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="外部设备"><a href="#外部设备" class="headerlink" title="外部设备"></a>外部设备</h2><h3 id="输入设备"><a href="#输入设备" class="headerlink" title="输入设备"></a>输入设备</h3><ul>
+<li>键盘<ul>
+<li>矩阵形式排列按键</li>
+<li>按下键电信号连通；松开键电信号断开</li>
+<li>键盘输入信息步骤：查出按哪个键、翻译为ASCII码、编码传给主机</li>
+</ul>
+</li>
+<li>鼠标<ul>
+<li>控制光标位置的定位输入设备</li>
+<li>分为机械式和光电式</li>
+<li>鼠标底部有传感器，可能检测运动的方向和距离</li>
+</ul>
+</li>
+</ul>
+<h3 id="输出设备"><a href="#输出设备" class="headerlink" title="输出设备"></a>输出设备</h3><ul>
+<li>显示器<ul>
+<li>按器件分类<ul>
+<li>阴极射线管（CRT）显示器</li>
+<li>液晶显示器（LCD）</li>
+<li>发光二极管（LED）显示器</li>
+</ul>
+</li>
+<li>按信息内容分类<ul>
+<li>字符显示器</li>
+<li>图形显示器</li>
+<li>图像显示器</li>
+</ul>
+</li>
+<li>按扫描方式分类（CRT显示器）<ul>
+<li>光栅扫描显示器：只能按固定顺序扫描，比如一行一行扫描</li>
+<li>随机扫描显示器：可以按随意方向扫描</li>
+</ul>
+</li>
+<li>显示器按点阵方式运行，主要参数有<ul>
+<li>屏幕大小：对角线长度，单位英寸</li>
+<li>分辨率：长宽的像素乘积</li>
+<li>灰度级：同一个像素的灰度个数，比如8位有256个灰度，是256级</li>
+<li>刷新：在光点消失前重新扫描显示，一次刷新需要扫描整个屏幕（通常是按行扫描）</li>
+<li>刷新频率：单位时间刷新的次数，通常是60-120HZ（大于30HZ人类视觉就感受不到闪烁）</li>
+<li>显示存储器（VRAM）：即刷新存储器</li>
+<li>VRAM容量：分辨率$\times$灰度级位数，单位比特</li>
+<li>VRAM带宽：VRAM容量$\times$帧频（单位时间的画面数量，可以认为等于刷新频率）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>打印机<ul>
+<li>按工作原理分类<ul>
+<li>击打式：比如针式打印机</li>
+<li>非击打式：用物理化学方法印刷，比如喷墨式、激光打印机</li>
+</ul>
+</li>
+<li>按工作方式分类（都是点阵打印机）<ul>
+<li>针式打印机：多层复写，适合票据打印。原理简单、价格便宜；分辨率低、打印速度慢</li>
+<li>喷墨式打印机：噪声小、高质量彩印、打印快；防水差</li>
+<li>激光打印机：激光技术和电子显像技术结合，核心部件是感光鼓。打印质量高、速度快、噪声小；价格贵、不能复写打印</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储设备"><a href="#存储设备" class="headerlink" title="存储设备"></a>存储设备</h3><h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><ul>
+<li>目前主要使用磁表面存储器，如磁盘、磁带、磁鼓</li>
+<li>容量大、可重复记录、可脱机存储、非破坏读出；存取慢、结构复杂</li>
+</ul>
+<h4 id="磁盘存储器"><a href="#磁盘存储器" class="headerlink" title="磁盘存储器"></a>磁盘存储器</h4><p><em>本节在第三章的外存储器中也有介绍，可以对应参考</em></p>
+<ul>
+<li>组成<ul>
+<li>磁盘<ul>
+<li>磁头数：即盘面数，一个磁头对应一个盘面</li>
+<li>柱面数：即一个盘面的磁道数</li>
+<li>扇区数：即一个磁道的扇区个数。扇区又叫块，磁盘读写基本单位，磁盘按块存取。</li>
+</ul>
+</li>
+<li>磁盘驱动器：驱动磁盘转动并在盘面上通过磁头进行读写的装置，每个驱动器对应一个磁盘</li>
+<li>磁盘控制器：属于磁盘面向计算机的接口设备，接受计算机命令，向磁盘驱动器发出控制信号</li>
+</ul>
+</li>
+<li>原理<ul>
+<li>磁头和磁性介质相对运动完成读写操作</li>
+<li>用存储介质的磁层磁化翻转状态表示二进制信息</li>
+</ul>
+</li>
+<li>性能指标<ul>
+<li>容量<ul>
+<li>非格式化容量：可利用的磁化单元总数</li>
+<li>格式化容量：按某种格式能记录的信息总量</li>
+</ul>
+</li>
+<li>记录密度<ul>
+<li>道密度：半径方向单位长度磁道数</li>
+<li>位密度：磁道单位长度的二进制代码位数</li>
+<li>面密度：位密度乘以道密度，即单位面积二进制信息量</li>
+</ul>
+</li>
+<li>平均存取时间<ul>
+<li>寻道时间：半径方向定位，移动磁头到目标磁道的平均时间</li>
+<li>旋转时间：角度定位，取盘面旋转半圈的时间</li>
+<li>传输时间：定位后的传输时间</li>
+</ul>
+</li>
+<li>数据传输率：单位时间传输到主机的字节数，等于每秒转圈数$\times$一个磁道的容量</li>
+</ul>
+</li>
+<li>磁盘地址<ul>
+<li>驱动器号</li>
+<li>磁道号（柱面号）</li>
+<li>盘面号</li>
+<li>扇区号</li>
+</ul>
+</li>
+<li>磁盘工作过程<ul>
+<li>操作为：寻址、读盘、写盘</li>
+<li>每个操作对应一个控制字，具体操作是取控制字、执行控制字</li>
+<li>硬盘的所有读写操作都是串行，不能同时进行</li>
+</ul>
+</li>
+</ul>
+<h4 id="磁盘阵列"><a href="#磁盘阵列" class="headerlink" title="磁盘阵列"></a>磁盘阵列</h4><ul>
+<li>RAID（廉价冗余磁盘阵列）：把多个物理磁盘组成一个独立逻辑磁盘，数据交叉存储，并行访问</li>
+<li>RAID按可靠性等级从低到高分为<ul>
+<li>RAID0：无冗余、无校验</li>
+<li>RAID1：采用磁盘镜像</li>
+<li>RAID2：采用纠错海明码</li>
+<li>RAID3：采用位交叉奇偶校验</li>
+<li>RAID4：采用块交叉奇偶校验</li>
+<li>RAID5：采用无独立校验的奇偶校验</li>
+</ul>
+</li>
+<li>RAID0容量大、并行存取、速度快；没有容错能力</li>
+<li>RAID1用两个磁盘同时读写，相互备份；容量减半</li>
+<li>特点总结：使用多个磁盘并行存取，速度快；通过<strong>镜像</strong>和<strong>校验</strong>提高可靠性和容错能力</li>
+</ul>
+<h4 id="光盘存储器"><a href="#光盘存储器" class="headerlink" title="光盘存储器"></a>光盘存储器</h4><ul>
+<li>利用光学原理，非接触方式记录信息</li>
+<li>组成：驱动器、控制器、光盘片、驱动软件</li>
+<li>特点：存储密度高、轻便、便宜、容量大、存储期限久、易保存</li>
+<li>分类<ul>
+<li>CD-ROM：只读型光盘</li>
+<li>CD-R：只可写入一次信息</li>
+<li>CD-RW：可重复读写的光盘</li>
+<li>DVD-ROM（DVD是通用数字化多功能光盘）：高容量CD-ROM</li>
+</ul>
+</li>
+</ul>
+<h4 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h4><ul>
+<li>详见第三章ROM存储器小节的固态硬盘内容</li>
+</ul>
+<h2 id="IO接口"><a href="#IO接口" class="headerlink" title="IO接口"></a>IO接口</h2><p><em>IO接口是主机和外设的交接面，解决主机和外设信息形式和工作速度的差异问题</em></p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>控制主机和外设的通信，协调工作速度不同的问题</li>
+<li>对CPU送来的地址码进行译码并选择设备</li>
+<li>实现数据缓冲，也是为了解决速度不匹配问题</li>
+<li>信号格式转换，解决信息形式不一致问题。比如电平转换、并-串或串-并转换、模-数或数-模转换</li>
+<li>传送CPU控制命令、反馈外设的状态信息</li>
+</ul>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><ul>
+<li>IO接口的外部，主机侧通过IO总线连接内存、CPU等主机的设备，外设侧连接着各个外部设备</li>
+<li>IO接口内部包括<ul>
+<li>数据缓冲寄存器<ul>
+<li>双向的保存缓冲数据</li>
+<li>连接数据总线</li>
+</ul>
+</li>
+<li>状态寄存器<ul>
+<li>从外设到主机传送状态信息</li>
+<li>连接数据总线和IO控制逻辑部件</li>
+</ul>
+</li>
+<li>控制寄存器<ul>
+<li>从主机到外设传送控制信息</li>
+<li>连接数据总线和IO控制逻辑部件</li>
+</ul>
+</li>
+<li>IO控制逻辑部件<ul>
+<li>地址译码、传送控制信号到外设控制逻辑、传送状态到状态寄存器、发送或接收缓冲寄存器数据</li>
+<li>连接地址总线、控制总线、控制寄存器、状态寄存器、数据缓冲寄存器</li>
+</ul>
+</li>
+<li>外设界面控制逻辑<ul>
+<li>接收或发送数据到外设，接受外设的状态发给IO控制逻辑，把IO控制逻辑发来的控制发送给外设</li>
+<li>连接外设、连接IO控制逻辑部件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对IO接口里的寄存器的访问通过<strong>操作系统的IO特权指令</strong></li>
+<li>IO接口的这些可读写寄存器叫做IO端口</li>
+</ul>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ul>
+<li>按IO接口外设侧的传送数据方式分类<ul>
+<li>并行接口：多个位同时传</li>
+<li>串行接口：一位一位的传</li>
+</ul>
+</li>
+<li>按主机的IO控制方式分类<ul>
+<li>程序查询接口</li>
+<li>中断接口</li>
+<li>DMA接口</li>
+</ul>
+</li>
+<li>按功能的灵活性分类<ul>
+<li>可编程接口</li>
+<li>不可编程接口</li>
+</ul>
+</li>
+</ul>
+<h3 id="IO端口"><a href="#IO端口" class="headerlink" title="IO端口"></a>IO端口</h3><ul>
+<li>指的是接口电路被CPU可直接访问的寄存器</li>
+<li>分为数据端口（CPU可读写）、状态端口（CPU可读）、控制端口（可写）</li>
+<li>IO端口加上一些控制逻辑组成IO接口</li>
+<li>IO端口被CPU访问需要进行编址，编址方式有<ul>
+<li>统一编址<ul>
+<li>又叫存储器映射方式，把IO当作存储器的单元进行地址分配</li>
+<li>优点是不需要专门的IO指令，方便；缺点是内存容量变小，执行速度慢</li>
+</ul>
+</li>
+<li>独立编址<ul>
+<li>又叫IO映射方式，IO端口的地址空间和主存地址空间是两个独立的空间</li>
+<li>地址码形式相同，需要设置专门的IO指令来访问IO端口</li>
+<li>优点是编程清晰、容易理解；缺点是需要CPU提高存储器读写、IO设备读写两组控制信号，复杂</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="IO方式"><a href="#IO方式" class="headerlink" title="IO方式"></a>IO方式</h2><h3 id="程序查询"><a href="#程序查询" class="headerlink" title="程序查询"></a>程序查询</h3><ul>
+<li>由主机程序实现信息交换</li>
+<li>工作流程如下<ul>
+<li>CPU初始化程序，设置传送参数</li>
+<li>向IO接口发出命令，启动IO设备</li>
+<li>取外设状态，不断查询外设状态，直至就绪</li>
+<li>传送一次数据</li>
+<li>修改地址，计数器（记录还需要传送几次数据）减1</li>
+<li>当计数器大于0则返回第三步，否则程序结束</li>
+</ul>
+</li>
+<li>优点是设计简单、设备量少；缺点是CPU查询等待耗费时间（CPU踏步等待现象），且一段时间只能和一台设备交换信息</li>
+</ul>
+<h3 id="程序中断"><a href="#程序中断" class="headerlink" title="程序中断"></a>程序中断</h3><ul>
+<li>详见计组笔记第五章的异常和中断机制</li>
+</ul>
+<h3 id="DMA方式"><a href="#DMA方式" class="headerlink" title="DMA方式"></a>DMA方式</h3><h4 id="DMA方式特点"><a href="#DMA方式特点" class="headerlink" title="DMA方式特点"></a>DMA方式特点</h4><ul>
+<li>外设和内存有直接数据通路，全称是直接存储器存取方式</li>
+<li>数据不经过CPU，IO和CPU并行工作，不需要保存恢复CPU现场等操作，传送速度快</li>
+<li>数据块传送时，主存地址、传送数据计数由硬件电路实现</li>
+<li>主存开辟专门的缓冲区，接收和供给外设数据</li>
+<li>开始前：通过程序进行预处理</li>
+<li>结束后：通过中断方式进行后处理</li>
+</ul>
+<h4 id="DMA控制器"><a href="#DMA控制器" class="headerlink" title="DMA控制器"></a>DMA控制器</h4><ul>
+<li>又叫DMA接口</li>
+<li>组成为<ul>
+<li>主存地址计数器：存放数据主存地址</li>
+<li>传送长度计数器：存放数据长度，计数溢出时即传送完毕（减到长度为0时）</li>
+<li>数据缓冲寄存器：缓存传送的数据</li>
+<li>DMA请求触发器：接收IO设备的就绪控制信号</li>
+<li>控制/状态逻辑：协调同步DMA请求信号和CPU响应信号、指定传送方向、修改传送参数</li>
+<li>中断机构：传送完毕后向CPU提出中断请求</li>
+</ul>
+</li>
+<li>以单总线结构为例（即主存、CPU和IO接口都挂在一组总线上），DMA控制器功能如下（可结合后面的传送过程部分进行理解）<ul>
+<li>接受外设的DMA请求DRQ，向CPU发出总线请求HRQ</li>
+<li>CPU发出总线响应信号HLDA，让出系统总线控制权（地址总线、数据总线、控制总线）给DMA控制器，进入DMA周期</li>
+<li>确定传送数据的主存地址和长度，自动修改主存地址计数器和传送长度计数器</li>
+<li>规定传送方向，发出读写控制信号，执行数据传送</li>
+<li>向CPU报告DMA操作完成</li>
+</ul>
+</li>
+</ul>
+<h4 id="传送方式"><a href="#传送方式" class="headerlink" title="传送方式"></a>传送方式</h4><p><em>CPU和IO设备同时访问主存时会发生冲突，本节介绍解决冲突的方式</em></p>
+<ul>
+<li>块传送方式（停止CPU访存）<ul>
+<li>由DMA控制器向CPU发送停止信号，总线控制权交给DMA控制器</li>
+<li>工作完成后向CPU发出操作完成信号，总线控制器归还给CPU</li>
+<li>适合高速IO</li>
+</ul>
+</li>
+<li>单字传送方式（周期挪用、周期窃取）<ul>
+<li>当CPU不在访存：此时无冲突</li>
+<li>当CPU正在访存：待存取周期结束再让出总线控制器给DMA控制器</li>
+<li>当CPU正在申请访存：IO访存的优先级更高，因为IO不立刻访存会丢失数据</li>
+<li>适合低速IO</li>
+</ul>
+</li>
+<li>DMA和CPU交替访存<ul>
+<li>要求主存存取周期不到CPU工作周期的一半</li>
+<li>CPU工作周期分成两个部分，分别供CPU访存和DMA访存</li>
+<li>不需要总线使用权的申请、建立、归还，而是通过分时控制</li>
+</ul>
+</li>
+</ul>
+<h4 id="传送过程"><a href="#传送过程" class="headerlink" title="传送过程"></a>传送过程</h4><p><em>可结合前面的DMA控制器功能的部分进行理解</em></p>
+<ul>
+<li>预处理阶段<ul>
+<li>CPU执行IO指令<ul>
+<li>测试IO设备状态</li>
+<li>设置DMA控制器有关寄存器初值</li>
+<li>设置传送方向</li>
+<li>启动IO设备</li>
+</ul>
+</li>
+<li>IO设备准备好后向DMA控制器发送DMA请求</li>
+<li>DMA控制器向CPU发送总线请求（上一条的DMA请求和总线请求可以统称为DMA请求）</li>
+</ul>
+</li>
+<li>数据传送阶段<ul>
+<li>基本传送单位：单字节、单字或数据块</li>
+<li>本阶段完全由DMA硬件控制。比如基本传送单位为数据块的情况（比如硬盘），循环由DMA控制器实现而不是CPU</li>
+<li>本阶段流程细化为（按单总线结构）<ul>
+<li>判断是否允许传送</li>
+<li>是则把主存地址送总线，数据根据传送方向送IO设备或主存，修改主存地址计数器和传送长度计数器</li>
+<li>判断是否结束传送。不结束则返回第一步，结束则进入后处理阶段</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>后处理阶段<ul>
+<li>DMA控制器向CPU发送中断请求</li>
+<li>CPU执行中断服务程序做DMA结束处理<ul>
+<li>校验数据传输是否正确</li>
+<li>错误需要转入诊断程序</li>
+<li>决定是否继续用DMA传送数据块</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="和中断方式的区别"><a href="#和中断方式的区别" class="headerlink" title="和中断方式的区别"></a>和中断方式的区别</h4><ul>
+<li>中断方式是程序的切换，需要保存、恢复现场；DMA方式数据传送阶段不占用CPU任何资源</li>
+<li>中断响应在指令执行周期后；DMA响应可以在各个机器周期后（取指、间址、执行周期后），CPU不占用总线即可进行响应</li>
+<li>中断传送需要CPU干预；DMA传送不需要CPU干预，适合高速外设成组数据传送</li>
+<li>DMA请求优先级高于中断请求，因为DMA传送几乎不占用CPU资源</li>
+<li>中断方式还可以处理异常；DMA方式仅用于数据IO传送</li>
+<li>中断方式靠程序传送；DMA方式靠硬件传送</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/05/ComputerOrganization-6/" rel="prev" title="【知识总结】 第六章-总线">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第六章-总线
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%AE%BE%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%AE%BE%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text">输入设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87"><span class="nav-number">2.2.</span> <span class="nav-text">输出设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87"><span class="nav-number">2.3.</span> <span class="nav-text">存储设备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.3.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.3.2.</span> <span class="nav-text">磁盘存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97"><span class="nav-number">2.3.3.</span> <span class="nav-text">磁盘阵列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.3.4.</span> <span class="nav-text">光盘存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98"><span class="nav-number">2.3.5.</span> <span class="nav-text">固态硬盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.</span> <span class="nav-text">IO接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">3.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.3.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO%E7%AB%AF%E5%8F%A3"><span class="nav-number">3.4.</span> <span class="nav-text">IO端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">IO方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="nav-number">4.1.</span> <span class="nav-text">程序查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD"><span class="nav-number">4.2.</span> <span class="nav-text">程序中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA%E6%96%B9%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">DMA方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA%E6%96%B9%E5%BC%8F%E7%89%B9%E7%82%B9"><span class="nav-number">4.3.1.</span> <span class="nav-text">DMA方式特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">4.3.2.</span> <span class="nav-text">DMA控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F"><span class="nav-number">4.3.3.</span> <span class="nav-text">传送方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%81%E8%BF%87%E7%A8%8B"><span class="nav-number">4.3.4.</span> <span class="nav-text">传送过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%92%8C%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.3.5.</span> <span class="nav-text">和中断方式的区别</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
