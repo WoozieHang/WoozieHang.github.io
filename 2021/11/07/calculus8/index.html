@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  可分离变量微分方程 形式：$y$和$x$可分离到等式两侧 方法：分离变量至两次后，两端积分即可  齐次微分方程 形式：$\frac{dy}{dx}&#x3D;f(\frac{y}{x})$ 思路：换元令$t&#x3D;\frac{y}{x}$ 注意：所有的换元操作在解出微分方程后都需要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【习题解答】 图的广度优先遍历">
-<meta property="og:url" content="https://wooziehang.github.io/2021/05/25/algorithms9-hw/index.html">
+<meta property="og:title" content="【知识总结】 第八章-常微分方程">
+<meta property="og:url" content="https://wooziehang.github.io/2021/11/07/calculus8/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  可分离变量微分方程 形式：$y$和$x$可分离到等式两侧 方法：分离变量至两次后，两端积分即可  齐次微分方程 形式：$\frac{dy}{dx}&#x3D;f(\frac{y}{x})$ 思路：换元令$t&#x3D;\frac{y}{x}$ 注意：所有的换元操作在解出微分方程后都需要">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-25T06:22:15.000Z">
-<meta property="article:modified_time" content="2021-07-09T15:07:29.659Z">
+<meta property="article:published_time" content="2021-11-07T09:55:59.000Z">
+<meta property="article:modified_time" content="2021-11-07T14:01:20.980Z">
 <meta property="article:author" content="Woozie Hang">
-<meta property="article:tag" content="Problem Set Solutions">
+<meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/05/25/algorithms9-hw/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/11/07/calculus8/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>【习题解答】 图的广度优先遍历 | 吴紫航</title>
+  <title>【知识总结】 第八章-常微分方程 | 吴紫航</title>
   
 
 
@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/05/25/algorithms9-hw/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/07/calculus8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -215,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【习题解答】 图的广度优先遍历
+          【知识总结】 第八章-常微分方程
         </h1>
 
         <div class="post-meta">
@@ -224,28 +224,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-05-25 14:22:15" itemprop="dateCreated datePublished" datetime="2021-05-25T14:22:15+08:00">2021-05-25</time>
+              <time title="创建时间：2021-11-07 17:55:59 / 修改时间：22:01:20" itemprop="dateCreated datePublished" datetime="2021-11-07T17:55:59+08:00">2021-11-07</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-09 23:07:29" itemprop="dateModified" datetime="2021-07-09T23:07:29+08:00">2021-07-09</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
+                  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" itemprop="url" rel="index"><span itemprop="name">微积分</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/05/25/algorithms9-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 图的广度优先遍历" title="阅读次数">
+            <span id="/2021/11/07/calculus8/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第八章-常微分方程" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -260,8 +254,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/05/25/algorithms9-hw/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/25/algorithms9-hw/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/11/07/calculus8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/07/calculus8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,22 +270,127 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
-  <script id="hbeData" type="hbeData" data-hmacdigest="3a2c3f61ccdfb23a6020dd997f92156596b4faae1c789e3761c01753f415dc01">757ff964fcfd9532ba69fc6fadfc1252eb09ce1986feccadb66dcf2cef6bec7fbe28dbe491ffc48832acc507e8ccd5d437fb2880eecb3c35dca9d60fa0a3a1baa51934e4ebaa8897f30a1ec2f734af45393804e358ee89b5e8676379998e928ad8945afdbfedd7074b2e91744d52f3e96a9b4b836f0afb7dba2178cffaccb832989165fec7d9aec7644a329cd9429e251c71eb886ba6ec982a6af379cd2a71a33820432af08f5abf03503fb7383fb7d6c9bb25c17356d73ac6206dcdc3beb3571b420ffb03be914684a1d0111aa39440c10dad771da384bfbe31d16cac8c9d493df315b003804b1aafa755e9fc16e0d273c3274d676c63aace22d0e0a9c8c2cd55c5fdd26a0eefc465f0698eefd6d5689bf2af671787235c64438c754ad0b1a8deeab42180c2486974698e0d935f2bc14faef8df8d34d2cf85d9a8d9ef59465e63e31949a67f7cfe279c5893e7ac3ac09a01b42c9b0fba80bbec1db4a8a657dfd6d721a7c4dde875860e3511b8653f695360949e3e8d4cdc7b5d8c57baec7e84d01c045aaf04b7da5ac0bf404379bebe75fb88def9c70e3679f178fb50ac4f3dd5a400fc0b64fda856f1222a9747e34e8f9fd0c6a8ece3e3f8b92e8110b2944bccbecc058b397a1aaf0c383c50183cec49bf95969c2bdbcae4d3d7cfe65734ce14bb440388984f854c9bd7a3cde2dd1fc083e822bc75f48a0965a46c2f42b7151d56334debbe58c6c02992fb4ea3123250b74bc999c4b4cff04aee35c4000c344f7d38095b9f2e79e4955a028b48a4424e930c640a7d8b66ad04c76dc94867808972b2b2a87cbce7873cf1c2d1f033331bf734f74b199212bd3c80d50fd795da1696370e1a6f9cbf2b21b843e9f3f1de281d995bb3c609f5812c88af7bb7f86660fbb78f9e67de939937a8c516199b7da207ecd8f42338c39b03bdc77be795908c1c95dde4742568f98698001d33f54fc0b80c2d8f26ab5d85075b8350578970aec59e91b04565acd03e9623fe28eaa4444da47764647d2df27c05a304685e36bd70135b202bbfd2ed4e192f95e829ba363ede760abe123338ac9ed4ee1cd35e7d152d50972e71e1de9f7eae44398507c122b49738916e9f21e1ac4e48d1272d67b743d7ed769457e535714e9f2255bb766cc66b75cea759c6c6ecaea3767022d8cbe363ff3e78a7a780e0b8414d900c3f49a3570a34da977482dc70bbe9ca12e5444a20536cb6d3e6214632988a2d6fe523fc1150fb69a181c671a2318e9f7884efc3733f1594ceec28fa60285f162bc8d5b61485f7ec080ca44333581d90290d5b8afae99d7171be0f07e36a7b32bcebdfc929ef147ae67e9765fed6592076e54774ac2882406755f851bb1a20e86c94121a4837ce692517394796b536f83b972d24292002b747da5d395e7d1c7f144564389851a7a05b60e4c5dc0c9f145f244b17be8e0b8356bb0de1c08d6936fbfaed0e978fa784ce81dd5e5c1adabb3d8d20851c8a2865ae42bff9c738ab14559605b382873254e0017a602e4cd01194385feb052248c3179b9107e502ad8eff5edd4e2deef85bdc6cb1619cd039bb7fe7aaed68b7c5f92a56df941696ce7cfdba55cf14d58f5f90233ba6ebfe63f787e08d694d94aa96d8ce86a2e96ab7c0db194343e867b851f6d41bbcb3d0190ba96d9eea20d3047238e602d7979d796bb9af9d5224f85526a05c26ca1d18ffd991d1ba7e9844d6d19da77395d0d7dff49e5580209e04ae2139780053d8b60f4d773526386b3e9a44d2023f7544bac768e6fee139d40fde904a9d2ff7c3955e5261d65436a6f0ab3b67dc380ce256464836056fc792cac3221b82cb14b14093aabe7ccd48e75d322a684f69ed84221fcc8b6b68498659608f10c63bc0e68c882c86ba15ea421e6d2a639f780dd6f489d249fd823c5a6c2de4e3d5e02f3c4a12a92d2f3642d634dd3b9c2d4244a0a008896e8031cb5b74bddb9e4639e5e16e54482625522483684bce454c9dd93eb5a317eac83254d14f6657e68256cfc935d84242c5d24148e3ac02453eb48d402f2c920c282669bdaaa2cfa62eb3e5ceb549aa7f0c9efd6777e78e9e249726631e55fddd07969d808e779713c682a76862e7b0973df32825fbed41b05809daf616dff334ea2d33b13c9b05a058b81db59f9d65605dc6d1ac6fed203ed323d9a9a20bf9e3cf2787b758e30f1b57ce64f5f7566994f4339bb9a08b5e6255b88ffd3de6865af6ac4e2871279dc9c82273abf2bba26ff81f51c5e880710bf47679cc6995adcfe16fc1d4b35944d763991fae82dc863776b427bb91d80831251a0ed5e26f46faa925f4e97b786f12c2fc30bdff17ce6eb92d82cf032c4e42fefa50826244be6a9ec9843e65a3d913d8ac7eaa77ddfc9381d655ed05a4926065059e70f97483dfe95e1f5122a6b573c630541309d9f6063ffe9c61645be8c2a79ce50a7de62db7908cd875b20dd7661e56778832a9ef6ec0352d39b76f5b74b79b3800c7cd65c7620da84c3e8f271460d60f6afb10ec7e163271e87047cf4ec18f5702422f2b67ea0953e3501bb6c5a7b9b4cb413caf2a4863f7a4d9aacdade3d3645e5efde74983d98e2c2df7ea0913677f7f5ee9295727ae96ce950eee155f2ba9a584c3b5c37650839336aa6feade0112d2d1a6924816d520857a9b8e10ad7694b44ff9c3b707f2453abc7685624ca87811400550a7c95f97a43fdb49eda28e697a810ad7c3e5c03078f1654239a3fdf90a91b6b64840ee5d52841654a3368e6befcdb9189f48c16fe30db1957280f88a115d397b7dc27409064df651dcf5cbfb5f4d3c68361ecbaa370d5755741b75c684fc5a9029493b336b1a25f0a33a21702d91afbc1f3f49c9507cfbfddc6a644e16a46c9c2aff1214f3b39bbfdec0774b6143237f7f87ed1202bf89ea94c5b0640bbd0a363a69fff8d796591931438806923bb0ed0d132c1a3e19ed404f1019430d69721bde6ff9bdaca5f1762f05d2d3708f2cf966f0ef953a9228f0e5f458d3ab65ba5e2b840edfdd92e5b8a49984f468d9f514476416a77b8dd6b09625f8752031f9ad86331256ec12d93c48341da24a648c2c2dfb5f6b786e3793c56574917aed806ced226e3f2c685033a496cd6782fb0ac13d1ec9c7e234b5a9a01e5c2eb728388476aa633e3c887a0fc3d102a7bbe8875a2e81bb51e8ec0c8f37a8b200b242d9c82bccff1703a6b6c7fe81e698f1a40da301c5d810e25c9f57ac0c105a4ea67166ea1d60131fd02cf73b3cbbae5644be6380f2ce929c54a95e58032c0ada8ee3b280756f11cb84c43fe8b6c9d85ddcf97fcaf8368f7d6aa7cd26652fe92409f0f30c834d0f26e6d6f51a1121eccbb50c0fdef3bd25b8f6d43eb3cfda69795563a1c0a868cefbf5f3838547072a25a79776a8f6ed63d03ca300f851ede3824777ef92cc8af886f8204895f483b5491dee1220cca9509e33c6b0cf2a1c1bfd7e0115b6968ae6169ee5673c5953280c586748017ac19cae8eb6513bbd582a51a290cd223b5060a118d1f7ca0bd25da9fe72991a1c2b0ea91d6b42050585793fe0a95c3d2eb101f6748e46d55767227e1c6b508389935b25dc97a2d19df22c8365e502c13e5eb56a738dbf7d5ccd3e11f2711c63fb4fc125ef2e2c876dc4cfebc2add14f3e2ceebd95256acb143b00a71ea34a6426dccf5c5b6bd76b3f71272abe1737cfbc250270e8fd534430487b0bf8ff064f2a3eba40825e1e5fc9dec5bdd484faa7d86db2b32dc654e5e4813986cf121ae77fb32febac82d047fa11eb58e37bf11a9a35eeafbcb2c3dd793679075913d98df8b74a7d546d6f050cc1414285dbb3a135caa460dfe62bb4267e2290612d97a20c8dc942aff02d732dcff4ebfe1b59801b17a482672186d49b5ca6f423649ec8e5cbcc0f6aef51ff721698d305ae9ff3a78f0dd99e84660cea1cba36f48008fce550c70f88d68fa351f9d03c57dfe59a34cba0a4220ee4b822f49237c1a623781499e07c93300cdba21e3dfe783c1707c4c67cd66178eca215659a474dee0791a3d5c8f3d8ac801e27f2d6a387a92fe180cceea2c4c08982a9e412f54dd96e3755b528958d7905c1e9c20a708d83f5989419d84d4673f1157c59967f21d75b2c0d5b5336b0ca92a317fd0bbcfa773f87d045f224b5647e227b5b42b77817de7b45e14586fd750083caac500939563e3294575a6271204ec7b239213eef825f578bf5c35250ea87f832d60ca4a2ebd754d484d09bb71f3c4729175a9827f862490a9603398ef63eced15595f2446ae4103a35d529af157ebac51e0dfe3c55d9b9bfd797e4680680a05402887282bcee65c45685d0707b7a0fcc6391c245ffbbb7c4d986a180460e6be08211ad9407b2ca90fac1f6d5714bd45ad756727c4b936943ec8c1f5551225777b1953c3f5a4c088a19d2acfc6501e641b5c79b98d092b0d0f8c02415d9a0a0a559923eb4df445d9e6991e9639b92a5e5be18a71829eef91ba8c8f1d2788ed38d257db060d4ba8432b801244b2ae2146977ec975455345b2255015e9566b59716c65d4c3ce2b4f399ede83abb23e4de80e941a2ed1a2ec141a12e652702a5f662e85d1fe0e7d6628bbf1908c3746fda7b8ca58db591ff6cbce6052a508ce679dfdfc8243255b29bb611c4ba8f123278198d97d5c8fcd278bd49e5d4c4a6fd69fe8b971637912d8ef4e52bb37f84524d53cb1abd73667c46122cc2969b8bf583afe3528cd5a1c55dc91bc4745409d8415b68c7dbcb5e95219107d955edf4fffa2eacebb8b8f6903017f620eb06f0b731e1ddf05ef0cfbb7b32c05fe79ababf1a313564b39c12fcd024f9bc1a3f32af22bf9da80f9ed4e709a7715f1e68543d4a843b92227cfb0293ff2bc8768318262a4922ba8209cc6a869fd9cb3fe50140df536a32d591f08b7b8f58db107b066ba451208411231c1c99d372c907ba138a79c3264266bf9d9f23340f94ce6ed2738a71daa54cb3c5623e0480ea37a92330c7cffe5ba4175e16d34087159f9a5c8b6d67524fd71063478602de8a236ae4e7bccd7d4489eabce19760b6d4a506122527dd93aaf94bd2a64225926204ca9b760cb53010b6aaa9ea2269c6e978e3ccc390cd225d92f11ae7e51915846a54978e338c36febd8c12e9ca73da153dd28ccbcf7b310d366e34ce4bdb22b553bbefd240678156e76c33b09fabc2f52218523ca65c4c67fbaf229323ef7d4914c18161cdf1e71a777b6da8a6757c828bcb215dee05400c51fcee0e092d5db517f1a585045fcabecf61f23169e9a0ee8bb2dfd62f6022ef5bef8db38ea6699dc374643d0a92742a6ecdd9b242a80488b1f7119de59519d194fea6c7ffc274d15a3ceba91d8cfaebc88039b56cb2522a58d302e7abedcfa79844c59c17826a05f3a5c3966165fce7cd221b362d6ab38ea79f0c6496209c5a86b508bfaa34c93f3690e097043a3b98d49612838fec0f11bd148145627c3c872fec3c0e680fae7a18c52b7371a12c603b0eb962c3713787c29fdf7a0bf51b0cdc64859b108ebb0c60ffdb37eca0bf60c64b0ee57b66ba37adfd45156bedfd7c2e0790ee77f46a0cf1cbf792db2a9af8d0138dc55057c9a392ab6cb5d6796d4543b96d2c2ee92aa12215b1aaee9e5c5ffab7f94cd281533c245226197807f675c4877069536862523f9125171dff6714054f95d80e9867143be7a7bd80241f5fc82d09a31e112aacd00b55c65970992422baf5b591ad3d3ad1a87892dcfd4fdeefee0042bb68d4365c29d2d594d0009a6a60750bcc7df233083873a51f138f8eaf28a41b8311c8b66c2b97ed23195a7c24905fe6c0482c1e7b89467ed89e208364f30d26b23ed3ec5f2b89b6b69f26d5ea27f730ec455e0a02b99eb193c3961782c3afff8a9558cad67359b584d78e0f55d171d9218afb88cfc37c474ffdd4bdd670d77444abea9ba2afd8d725627f395bc2ca33918c4655229eeb78e2208d9c27a7df4ea0e445db157b0642d94810a5b042ee2ddf96226ba6eaf9e77f28a9f73dcf383d04a501cd71141e87ef7e4bb42acaa3c7ac4b1a810faf7250c3f24ad536bbb0a610e253e62c31b3628dd6406eac805c2b7b418839ba128eb5737c1f091e9c8525cea7a3466052fc145b25b5ddb0f1fd6b51cd7fb077bf8045081af187ab5cd6f01c5bcf0d9cf7cacc3af691394885845cfa5f6d4e2d0d0bbc8b512fa854fd78a4968ed66d7829af24f7b16db5563ed6519769b09b77920f950ad2e3757f8eb374c74730d568e4be25cdedaa69e276470cf76fcc940da37e7516213d09be5ea1b2df1a0595820b94f4bd3a65f94686ae749a30491c76fbf15472ef5d77948e28d4fc10ea72f0a2826605cf6bc00eba525148b5fa61c591d24ec263f0ebc8970b51075065a190cdd5793ac8ec5d2a7b143efb1284d568854b55b627c9c2ee60b920f97e065a69bf37008cc4f908b21065b51149cf770eba862d7cf496ec95681481f2db378686621f75bf42861ff9184cd4e371cdbd200ec54f9a3b0ebcd2058033e40d34d23fe5bad0fc0312c7c9b6296fa046932e27e2ce318bc56e08b635951a722622bebce983f626ac4403df80964a2140411a74201cacab63dcf8b97027594926a98b047378845864a443ea054b5e191c5fe5d67b874949887cdddd5d7c6eb58de640354bc0edfff26f89f6c63a100af10104775b031d72c3d1340ceebeec68eb524be06aae4b151ad3cc2a8590b850e143201f0f1ea62f5366b6cac47d6210afcee2042390c8bb9948aa467f24032faf54af44114640333cb6894aef9bd8edfd01b22b416100f3bd1c0ab2e136a3099b0af36b05dd74da3051db63bfd82b2e7fd628b4a26307b0606a59ad102e6a64cb3153250a0963b7bb43089f9e4365fd010ec31ce93b2767fa2cbf852ad5ca954f95c670099119608ea02b3653ffa15b9a93aab1b4de7a93b5e4af02298930996645a120421960ce28a6a6d54337edbc33384e4e3942f17f0d9ef7f5cf44e4cf585eda7acec3082357f7cd302b44d71da3ca6152ab74eea151d2df77b912271d293e73d4e6b18b54b630eb894f71a678a26a82a93d7ae6eebb9f66d611d8038b59a265217040c9dc5faa2c9681efdd9d3e56b0c7956b845c21b95a18f57fffb7493be7a2210135d42dcc44c986f22fecfc865929de34592e7ae2eb884803659d69839c63e4db5c8ff19e8fd8acd5961f9016ccf21ac0fb51203d813bc50839dd452b8f62cb0d62dba416ba3fa975d2d2f7f8a80dc20e4ee14a2886f27142ca1f236b4b794f231d8afbdf8cc050138e38626480af69f28fa1d54e550e538f82fd7975c7ac231799127955a87cbd0617b0797168ae01d14a5f3f0484968e50d07eafcf2b71122d492e467d15310a7bea18ad9685cb412af17fd4a7ab692973e4b5cdbc0b610635913e0ae99cf0d036aa87e31476ad518bdaead2d19b3e209e44358281fb031e3246324e24e6b09d79615a2fbcdb04953a6f6d28cf747001daf2653c5300e8cbe862c384cec4d6c4a245f5e432ca452fead697b91d2a94f053006663e520c020b1acc6ef5e4e10d90030c048a41d9972e4a37fcc6e17beac65c19b3798841789661b25a23f009f65b98f2d07d848cf25ea25a2dcfe65c304b8e332c7de40dfe9e83df6e89b3b21213f6cec7459ad87ce21f162fa3067df5d2529c5cb284a5459e058a746f7adb6485c84e7124be3372bbe1724743f64fda8e572beebef1bd446181a8fd3674d827b5e498039ae288d7e3432ffb5cae14d9ea40618fb8cebd87a954b585d84ddb3e34e82e0afc7044a0794dcd3cbfe280af7dc735323504f8b030401df35a6c8ac0ad17abd3d2b0df04afd491fe11a06d23adbcada59118827e1cba22b8409c13f7257fa2f7d5d4c53d57dd7eaf01c06eabe53e3dc12c7ff3e806850f89b73914fc4dce3478b99e962127829226ca198912f850821353f32d938acd84f4e89bcc168f1128229a30b6a2b06ef412f443e2d2c56f93f1f52f1e41ea56df11d138d96b82a92538acec7c6fa0635210d5124ae5a896011902be921aee2f114f60a71ba41dc66e36e8c0939bcb80b13de6e71256bef3f76719f21608d19c4ba2183efa917d4b8f32497b61eacb42870211e0e974ebf327a6312fb4cdee8c82b99f2869a7008249cb3aac2bedee61df0ad21071553144f1cc511ebe45691c133de60fcfa0038859ed1050a7852d9ddffcb66b41a8b285af09339edd41d715abe0ede66cbebe9afa4c364dc51c974d9b0a76400eb9841cc696461e2c8f6cf87a757bd2888b5e92efa4edae95f22eb3242bdf63578f1562126c6cf68256ebbf944c72880113ad5436f8c18492d79bb7efcc0e3f0f4f80346b8fb8fe0f22f11c63f0978912cfcc7eaa39041f3a878e0230064d379726aaaa671817f1b0ba240306f7c7ca2b83d0b8aa8a54a6ab445d0eced81fe94e145d663da20effbc4fa19eb7661e33dd5f88f629fb0b45bca052976ed64f25078c194f4b8d96868722c710a2447a09ca457de97da360a79ed5ba7b8b63987aad5e898702003f97ebba1be9e0c013d77d42fce4e49d0453ec580c5f394ee21bce80e72e0c8da310e4d5a7d982ff68dc00e6a6898d146bcee1d6f5d17f6ca9fa0ec0a34a2cf0b0060eb728271796399a6a526382ea42b3c81605daa35979d1c1276a1ef4cde7f48bfff7e5b3fb27e34e77152eae7f41458a744acae94c12b8a9dd7d8e400d443083e92a52ea1cd9dcbe0bf2618b43d7da77b29f9e6c7cbf60d908798025d1f11f68f9b69ec53341eb2ed29a8369cab</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="可分离变量微分方程"><a href="#可分离变量微分方程" class="headerlink" title="可分离变量微分方程"></a>可分离变量微分方程</h2><ul>
+<li>形式：$y$和$x$可分离到等式两侧</li>
+<li>方法：分离变量至两次后，两端积分即可</li>
+</ul>
+<h2 id="齐次微分方程"><a href="#齐次微分方程" class="headerlink" title="齐次微分方程"></a>齐次微分方程</h2><ul>
+<li>形式：$\frac{dy}{dx}=f(\frac{y}{x})$</li>
+<li>思路：换元令$t=\frac{y}{x}$</li>
+<li>注意：所有的换元操作在解出微分方程后都需要把原变量带回去，结果中的变量必须是原始的</li>
+</ul>
+<h2 id="一阶线性方程"><a href="#一阶线性方程" class="headerlink" title="一阶线性方程"></a>一阶线性方程</h2><ul>
+<li>形式：$\frac{dy}{dx}+P(x)y=Q(x)$</li>
+<li>思路<ul>
+<li>背公式$y=e^{-\int P(x)dx}\times(\int Q(x)e^{\int P(x)dx}dx+C)$</li>
+<li>注意：因为是一阶微分方程，只带一个常数C，公式中的不定积分不需要带上常数</li>
+</ul>
+</li>
+</ul>
+<h2 id="伯努利方程"><a href="#伯努利方程" class="headerlink" title="伯努利方程"></a>伯努利方程</h2><ul>
+<li>形式：$\frac{dy}{dx}+P(x)y=Q(x)y^n$</li>
+<li>思路<ul>
+<li>换元令$u=y^{1-n},du=(1-n)y^{-n}dy$</li>
+<li>替换掉原式的$dy$即可转化为一阶线性方程</li>
+</ul>
+</li>
+</ul>
+<h2 id="全微分方程"><a href="#全微分方程" class="headerlink" title="全微分方程"></a>全微分方程</h2><ul>
+<li>形式$P(x,y)dx+Q(x,y)dy=0$，要求$\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}$</li>
+<li>思路：凑积分或偏积分求全微分的原函数，$P(x,y)dx+Q(x,y)dy=du(x,y)=0$</li>
+</ul>
+<h2 id="对称情况"><a href="#对称情况" class="headerlink" title="对称情况"></a>对称情况</h2><ul>
+<li>形式：有可能出现$x$和$y$的位置对调的情况</li>
+<li>思路：把$y$当$x$，$x$当$y$来处理即可</li>
+</ul>
+<h2 id="可降阶的高阶微分方程"><a href="#可降阶的高阶微分方程" class="headerlink" title="可降阶的高阶微分方程"></a>可降阶的高阶微分方程</h2><ul>
+<li>一般只有三种形式<ul>
+<li>$y^{(n)}=f(x)$</li>
+<li>$y’’=f(x,y’)$</li>
+<li>$y’’=f(y,y’)$</li>
+</ul>
+</li>
+<li>思路分别对应如下<ul>
+<li>反复积分降阶</li>
+<li>换元令$y’=u,y’’=\frac{du}{dx}$，降阶为$u$和$x$的一阶方程$\frac{du}{dx}=f(x,u)$</li>
+<li>换元令$y’=u,y’’=\frac{du}{dx}=\frac{du}{dy}\frac{dy}{dx}=\frac{du}{dy}u$，降阶为$u$和$y$一阶方程$\frac{du}{dy}u=f(y,u)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="线性方程解的结构"><a href="#线性方程解的结构" class="headerlink" title="线性方程解的结构"></a>线性方程解的结构</h2><ul>
+<li>齐次方程<ul>
+<li>方程的阶数即线性无关的解个数</li>
+<li>通解：阶数个线性无关的解的线性组合</li>
+</ul>
+</li>
+<li>非齐次方程：非齐次方程的通解 = 非齐次方程的一个特解 + 对应齐次方程的通解</li>
+<li>叠加原理<ul>
+<li>用的比较少</li>
+<li>指的是，已知两个非齐次微分方程的特解$y_1,y_2$，则把两个非齐次方程右侧的x多项式相加后得到的非齐次方程的特解是$y_1+y_2$</li>
+<li>不用背，按定义很容易推导</li>
+</ul>
+</li>
+</ul>
+<h2 id="线性常系数齐次方程"><a href="#线性常系数齐次方程" class="headerlink" title="线性常系数齐次方程"></a>线性常系数齐次方程</h2><ul>
+<li>形式：$y^{(n)}+p_1y^{(n-1)}+\cdots+p_{n-1}y’+p_ny=0$</li>
+<li>求解步骤<ul>
+<li>解特征方程$y^{n}+p_1y^{n-1}+\cdots+p_{n-1}y+p_n=0$（即k阶导换成k次方）</li>
+<li>每一重实根对应着一个线性无关的解，每一重复根对应两个线性无关的解，对应如下</li>
+<li>单实根$r$<ul>
+<li>$Ce^{rx}$</li>
+</ul>
+</li>
+<li>$k$重实根$r$<ul>
+<li>$(C_1+C_2x+\cdots+C_kx^{k-1})e^{rx}$</li>
+</ul>
+</li>
+<li>单重复根对$a\pm bi$<ul>
+<li>$[C_1cos(bx)+C_2sin(bx)]e^{ax}$</li>
+</ul>
+</li>
+<li>k重复根对$a\pm bi$<ul>
+<li>$[(C_1+C_2x+\cdots+C_kx^{k-1})cos(bx)+(D_1+D_2x+\cdots+D_kx^{k-1})sin(bx)]e^{ax}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="线性常系数非齐次方程"><a href="#线性常系数非齐次方程" class="headerlink" title="线性常系数非齐次方程"></a>线性常系数非齐次方程</h2><ul>
+<li>形式：$y^{(n)}+p_1y^{(n-1)}+\cdots+p_{n-1}y’+p_ny=f(x)$</li>
+<li>求解步骤<ul>
+<li>解对应齐次方程的通解</li>
+<li>寻找一个非齐次方程的特解</li>
+<li>利用线性方程解的结构，非齐次方程特解 + 齐次方程通解 = 非齐次方程通解</li>
+</ul>
+</li>
+<li>非齐次方程特解求解方法<ul>
+<li>已知$f(x)=e^{ax}[P_m(x)cos(bx)+P_n(x)sin(bx)]$</li>
+<li>$P_m$和$P_n$是两个给定的$m$次、$n$次多项式</li>
+<li>设特解为$y^\star=x^ke^{ax}[Q_l(x)cos(bx)+R_l(x)sin(bx)]$</li>
+<li>$k$为特征方程的复根对$a\pm bi$的重数</li>
+<li>$l=\max\{m,n\}$</li>
+<li>$Q_l$和$R_l$是两个待定系数的$l$次多项式</li>
+<li>特解待定系数带入原微分方程，算出特解</li>
+</ul>
+</li>
+</ul>
+<h2 id="欧拉方程"><a href="#欧拉方程" class="headerlink" title="欧拉方程"></a>欧拉方程</h2><ul>
+<li>形式：$x^ny^{(n)}+p_1x^{n-1}y^{(n-1)}+p_2x^{n-2}y^{(n-2)}+\cdots+p_{n-1}y=f(x)$</li>
+<li>思路<ul>
+<li>这是$y$关于$x$线性微分方程，但不是常系数</li>
+<li>设$t=lnx$，则$x^ky^{(k)}=D(D-1)\cdots(D-k+1)y$，$D=\frac{d}{dt}$</li>
+<li>上面一条把$y$关于$x$的$k$阶导数换成了$y$关于$t$的$k$的阶导数。推导不难，但步骤比较繁琐，可以推但没必要，建议背下来直接使用。</li>
+<li>换元后变成关于$y$关于$t$的线性常系数微分方程，用前面的方法求解</li>
+<li>求解后把$t$换回$x$</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -315,7 +414,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Problem-Set-Solutions/" rel="tag"># Problem Set Solutions</a>
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
           </div>
 
         
@@ -324,13 +423,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/24/algorithms8-hw/" rel="prev" title="【习题解答】 图的深度优先遍历">
-      <i class="fa fa-chevron-left"></i> 【习题解答】 图的深度优先遍历
+    <a href="/2021/11/07/calculus7/" rel="prev" title="【知识总结】 第七章-无穷级数">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第七章-无穷级数
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/27/graphIntroduction-12/" rel="next" title="【知识总结】 有向图">
-      【知识总结】 有向图 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -390,6 +486,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">可分离变量微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BD%90%E6%AC%A1%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">齐次微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">一阶线性方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">伯努利方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">全微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E6%83%85%E5%86%B5"><span class="nav-number">6.</span> <span class="nav-text">对称情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%99%8D%E9%98%B6%E7%9A%84%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">7.</span> <span class="nav-text">可降阶的高阶微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">8.</span> <span class="nav-text">线性方程解的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">线性常系数齐次方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%9D%9E%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B"><span class="nav-number">10.</span> <span class="nav-text">线性常系数非齐次方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B"><span class="nav-number">11.</span> <span class="nav-text">欧拉方程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
