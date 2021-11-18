@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  向量的表示 一般默认是列向量，比如$\pmb{\alpha}&#x3D;(a_1,a_2,\cdots,a_n)^T$ 行向量需要转置列向量，比如$\pmb{\alpha}^{T}&#x3D;(a_1,a_2,\cdots,a_n)$ 在计算时，对向量的行、列判断要清晰  线性相关性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第三章-向量">
+<meta property="og:url" content="https://wooziehang.github.io/2021/11/17/linearAlgebra3/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  向量的表示 一般默认是列向量，比如$\pmb{\alpha}&#x3D;(a_1,a_2,\cdots,a_n)^T$ 行向量需要转置列向量，比如$\pmb{\alpha}^{T}&#x3D;(a_1,a_2,\cdots,a_n)$ 在计算时，对向量的行、列判断要清晰  线性相关性">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-17T11:39:21.000Z">
+<meta property="article:modified_time" content="2021-11-18T14:36:39.203Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/11/17/linearAlgebra3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第三章-向量 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/17/linearAlgebra3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第三章-向量
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-17 19:39:21" itemprop="dateCreated datePublished" datetime="2021-11-17T19:39:21+08:00">2021-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-18 22:36:39" itemprop="dateModified" datetime="2021-11-18T22:36:39+08:00">2021-11-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/17/linearAlgebra3/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第三章-向量" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/17/linearAlgebra3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/17/linearAlgebra3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="向量的表示"><a href="#向量的表示" class="headerlink" title="向量的表示"></a>向量的表示</h2><ul>
+<li>一般默认是列向量，比如$\pmb{\alpha}=(a_1,a_2,\cdots,a_n)^T$</li>
+<li>行向量需要转置列向量，比如$\pmb{\alpha}^{T}=(a_1,a_2,\cdots,a_n)$</li>
+<li>在计算时，对向量的行、列判断要清晰</li>
+</ul>
+<h2 id="线性相关性"><a href="#线性相关性" class="headerlink" title="线性相关性"></a>线性相关性</h2><ul>
+<li>线性相关的等价条件<ul>
+<li>存在不全为$0$的数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}$</li>
+<li>存在不全为$0$的数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{0}$</li>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$的秩小于$n$（根据齐次线性方程组知识）</li>
+<li>第一章行列式为$0$的等价条件都适合此处</li>
+</ul>
+</li>
+<li>线性无关的等价条件<ul>
+<li>不存在不全为$0$的数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}$</li>
+<li>不存在不全为$0$的数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{0}$</li>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$的秩等于$n$（根据齐次线性方程组知识）</li>
+<li>第二章可逆矩阵的等价条件都适合此处</li>
+</ul>
+</li>
+</ul>
+<h2 id="线性表出"><a href="#线性表出" class="headerlink" title="线性表出"></a>线性表出</h2><ul>
+<li>一个向量$\pmb{\beta}$可以用一个向量组$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$线性表出的等价条件<ul>
+<li>存在实数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{\beta}$</li>
+<li>存在实数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{\beta}$</li>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$和$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n &amp; \pmb{\beta}\end{matrix} \right ]$的秩相同（根据非齐次线性方程组知识）</li>
+</ul>
+</li>
+<li>一个向量$\pmb{\beta}$不可以用一个向量组$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$线性表出的等价条件<ul>
+<li>不存在实数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{\beta}$</li>
+<li>不存在实数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{\beta}$</li>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$和$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n &amp; \pmb{\beta}\end{matrix} \right ]$的秩不相同（根据非齐次线性方程组知识）</li>
+</ul>
+</li>
+<li>一个向量组$\pmb{\beta}_1, \cdots ,\pmb{\beta}_n$可以用一个向量组$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$线性表出的等价条件<ul>
+<li>$\pmb{\beta}_1 , \cdots ,\pmb{\beta}_n$的每个向量都能用$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$线性表示</li>
+<li>存在实数$k_{11},\cdots,k_{nn}$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_{11}&amp;k_{12}&amp;\cdots&amp;k_{1n}\\k_{21}&amp;k_{22}&amp;\cdots&amp;k_{2n}\\ \vdots&amp;\vdots&amp;\ &amp;\vdots\\k_{n1}&amp;k_{n2}&amp;\cdots&amp;k_{nn} \end{matrix} \right ]=\left [ \begin{matrix}\pmb{\beta}_1 &amp; \cdots &amp;\pmb{\beta}_n \end{matrix} \right ]$</li>
+<li>$r(\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ])=r(\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n &amp; \pmb{\beta}_1 &amp;  \cdots &amp;\pmb{\beta}_n\end{matrix} \right ])$（根据非齐次线性方程组知识）</li>
+</ul>
+</li>
+<li>一个向量组$\pmb{\beta}_1, \cdots ,\pmb{\beta}_n$不可以用一个向量组$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$线性表出的等价条件<ul>
+<li>不存在实数$k_{11},\cdots,k_{nn}$，使$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_{11}&amp;k_{12}&amp;\cdots&amp;k_{1n}\\k_{21}&amp;k_{22}&amp;\cdots&amp;k_{2n}\\ \vdots&amp;\vdots&amp;\ &amp;\vdots\\k_{n1}&amp;k_{n2}&amp;\cdots&amp;k_{nn} \end{matrix} \right ]=\left [ \begin{matrix}\pmb{\beta}_1 &amp; \cdots &amp;\pmb{\beta}_n \end{matrix} \right ]$</li>
+<li>$r(\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ])\neq r(\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n &amp; \pmb{\beta}_1 &amp;  \cdots &amp;\pmb{\beta}_n\end{matrix} \right ])$（根据非齐次线性方程组知识）</li>
+</ul>
+</li>
+</ul>
+<h2 id="向量组等价"><a href="#向量组等价" class="headerlink" title="向量组等价"></a>向量组等价</h2><h3 id="向量组等价的判断"><a href="#向量组等价的判断" class="headerlink" title="向量组等价的判断"></a>向量组等价的判断</h3><ul>
+<li>两个向量组等价的充要条件<ul>
+<li>两个向量组相互可以线性表示对方</li>
+<li>$r(\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ])=r(\left [ \begin{matrix}\pmb{\beta}_1 &amp; \cdots &amp;\pmb{\beta}_n \end{matrix} \right ])= r(\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n &amp; \pmb{\beta}_1 &amp;  \cdots &amp;\pmb{\beta}_n\end{matrix} \right ])$（线性表出小节的推论）</li>
+</ul>
+</li>
+</ul>
+<h3 id="和矩阵等价的关系"><a href="#和矩阵等价的关系" class="headerlink" title="和矩阵等价的关系"></a>和矩阵等价的关系</h3><p>本节探讨向量组等价和矩阵等价两个条件之间的关系（结论：互相不为对方的必要条件）</p>
+<ul>
+<li>向量组等价的定义：两个向量组相互可以线性表示</li>
+<li>矩阵等价的等价条件：两个矩阵同型且秩相同（详见第二章初等变换部分性质3）</li>
+<li>两个向量组等价，可以说明两个向量组秩相同，即由两向量组所拼成的两个矩阵的秩相同，但不一定同型（向量组的向量数不一定相同），所以，矩阵不一定等价</li>
+<li>若两个矩阵等价，则对应行（列）向量组的向量个数相同，且秩相同，但两个向量组之间不一定可以线性表出。简单的例子：xy平面的10个向量，yz平面的10个向量，这两个向量组的向量个数都是10，且秩都是2，但是两个向量组之间不可以线性表出</li>
+</ul>
+<h2 id="极大线性无关组"><a href="#极大线性无关组" class="headerlink" title="极大线性无关组"></a>极大线性无关组</h2><ul>
+<li>求法<ul>
+<li>对列向量组作初等行变换，化成行阶梯型矩阵</li>
+<li>因为初等行变换不改变（任意几列的列向量组成的）方程组的解，所以也不改变列向量的线性相关性</li>
+<li>根据行阶梯型矩阵的各列向量的线性相关性，得到原向量组的极大线性无关组</li>
+</ul>
+</li>
+<li>重要结论：极大线性无关组的向量个数 = 向量组的秩 = 矩阵的秩</li>
+</ul>
+<h2 id="理解线性无关向量组的正交化"><a href="#理解线性无关向量组的正交化" class="headerlink" title="理解线性无关向量组的正交化"></a>理解线性无关向量组的正交化</h2><ul>
+<li>向量个数为n的m维向量组线性无关，意思是向量组恰好张成了m维线性空间的n维子空间，可以表示这个n维子空间的任何向量</li>
+<li>但是这个n个向量不一定两两垂直，正交化的步骤就是计算垂直分量的步骤</li>
+<li>设n个向量为$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n$，正交化步骤如下<ul>
+<li>$\pmb{\beta}_1=\pmb{\alpha}_1$：第一个向量直接照搬，作为第一个维度</li>
+<li>$\pmb{\beta}_2=\pmb{\alpha}_2-\frac{(\pmb{\alpha}_2,\pmb{\beta}_1)}{(\pmb{\beta}_1,\pmb{\beta}_1)}\pmb{\beta}_1$：$\pmb{\alpha}_2$减去其在$\pmb{\beta}_1$维度上的分量</li>
+<li>$\pmb{\beta}_3=\pmb{\alpha}_3-\frac{(\pmb{\alpha}_3,\pmb{\beta}_1)}{(\pmb{\beta}_1,\pmb{\beta}_1)}\pmb{\beta}_1-\frac{(\pmb{\alpha}_3,\pmb{\beta}_2)}{(\pmb{\beta}_2,\pmb{\beta}_2)}\pmb{\beta}_2$：$\pmb{\alpha}_3$减去其在$\pmb{\beta}_1$和$\pmb{\beta}_2$维度上的分量</li>
+<li>$\pmb{\beta}_n=\pmb{\alpha}_n-\frac{(\pmb{\alpha}_n,\pmb{\beta}_1)}{(\pmb{\beta}_1,\pmb{\beta}_1)}\pmb{\beta}_1-\cdots-\frac{(\pmb{\alpha}_n,\pmb{\beta}_{n-1})}{(\pmb{\beta}_{n-1},\pmb{\beta}_{n-1})}\pmb{\beta}_{n-1}$：$\pmb{\alpha}_n$减去其在$\pmb{\beta}_1$一直到$\pmb{\beta}_{n-1}$维度上的分量</li>
+</ul>
+</li>
+<li>正交化后如果再单位化，即得到正交规范向量组</li>
+</ul>
+<h2 id="正交矩阵的理解"><a href="#正交矩阵的理解" class="headerlink" title="正交矩阵的理解"></a>正交矩阵的理解</h2><ul>
+<li>由正交规范向量组构成的矩阵是正交矩阵</li>
+<li>不同行（列）的内积为0（因为正交化），同一行（列）的内积是1（因为单位化）<ul>
+<li>因此正交矩阵满足$\pmb{A}\pmb{A}^T=\pmb{A}^T\pmb{A}=\pmb{E}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h2><ul>
+<li>从基$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$到基$\pmb{\beta}_1,\cdots,\pmb{\beta}_n$<ul>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\pmb{C}=\left [ \begin{matrix}\pmb{\beta}_1 &amp; \cdots &amp;\pmb{\beta}_n \end{matrix} \right ]$</li>
+<li>$\pmb{C}=\left [ \begin{matrix}c_{11}&amp;c_{12}&amp;\cdots&amp;c_{1n}\\c_{21}&amp;c_{22}&amp;\cdots&amp;c_{2n}\\ \vdots&amp;\vdots&amp;\ &amp;\vdots\\c_{n1}&amp;c_{n2}&amp;\cdots&amp;c_{nn} \end{matrix} \right ]$是过渡矩阵</li>
+</ul>
+</li>
+</ul>
+<h2 id="坐标变换"><a href="#坐标变换" class="headerlink" title="坐标变换"></a>坐标变换</h2><ul>
+<li>从基$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$的坐标$\left [ \begin{matrix}x_1\\x_2\\ \vdots\\ x_n \end{matrix} \right ]$到自然基$\left [ \begin{matrix}1\\0\\ \vdots\\ 0 \end{matrix} \right ],\left [ \begin{matrix}0\\1\\ \vdots\\ 0 \end{matrix} \right ],\cdots,\left [ \begin{matrix}0\\0\\ \vdots\\ 1 \end{matrix} \right ]$的坐标$\left [ \begin{matrix}z_1\\z_2\\ \vdots\\ z_n \end{matrix} \right ]$<ul>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}x_1\\x_2\\ \vdots\\ x_n \end{matrix} \right ]=\left [ \begin{matrix}1&amp;0&amp;\cdots&amp;0\\0&amp;1&amp;\cdots&amp;0\\ \vdots&amp;\vdots&amp;\ &amp;\vdots\\0&amp;0&amp;\cdots&amp;1 \end{matrix} \right ]\left [ \begin{matrix}z_1\\z_2\\ \vdots\\ z_n \end{matrix} \right ]=\left [ \begin{matrix}z_1\\z_2\\ \vdots\\ z_n \end{matrix} \right ]$</li>
+</ul>
+</li>
+<li>从基$\pmb{\alpha}_1,\cdots,\pmb{\alpha}_n$的坐标$\left [ \begin{matrix}x_1\\x_2\\ \vdots\\ x_n \end{matrix} \right ]$到基$\pmb{\beta}_1,\cdots,\pmb{\beta}_n$的坐标$\left [ \begin{matrix}y_1\\y_2\\ \vdots\\ y_n \end{matrix} \right ]$<ul>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}x_1\\x_2\\ \vdots\\ x_n \end{matrix} \right ]=\left [ \begin{matrix}\pmb{\beta}_1 &amp; \cdots &amp;\pmb{\beta}_n \end{matrix} \right ]\left [ \begin{matrix}y_1\\y_2\\ \vdots\\ y_n \end{matrix} \right ]=\left [ \begin{matrix}z_1\\z_2\\ \vdots\\ z_n \end{matrix} \right ]$</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/16/operatingSystem4/" rel="prev" title="【知识总结】 第四章-文件管理">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第四章-文件管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/18/operatingSystem5/" rel="next" title="【知识总结】 第五章-输入输出管理">
+      【知识总结】 第五章-输入输出管理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">向量的表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">线性相关性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">线性表出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%BB%84%E7%AD%89%E4%BB%B7"><span class="nav-number">4.</span> <span class="nav-text">向量组等价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%BB%84%E7%AD%89%E4%BB%B7%E7%9A%84%E5%88%A4%E6%96%AD"><span class="nav-number">4.1.</span> <span class="nav-text">向量组等价的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%92%8C%E7%9F%A9%E9%98%B5%E7%AD%89%E4%BB%B7%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">4.2.</span> <span class="nav-text">和矩阵等价的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3%E7%BB%84"><span class="nav-number">5.</span> <span class="nav-text">极大线性无关组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3%E5%90%91%E9%87%8F%E7%BB%84%E7%9A%84%E6%AD%A3%E4%BA%A4%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">理解线性无关向量组的正交化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">7.</span> <span class="nav-text">正交矩阵的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E5%8F%98%E6%8D%A2"><span class="nav-number">8.</span> <span class="nav-text">基变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="nav-number">9.</span> <span class="nav-text">坐标变换</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>

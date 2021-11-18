@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/25/ComputerOrganization-3/T.png">
 <meta property="article:published_time" content="2021-10-25T07:48:14.000Z">
-<meta property="article:modified_time" content="2021-11-06T11:36:55.845Z">
+<meta property="article:modified_time" content="2021-11-15T15:15:27.689Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-06 19:36:55" itemprop="dateModified" datetime="2021-11-06T19:36:55+08:00">2021-11-06</time>
+                <time title="修改时间：2021-11-15 23:15:27" itemprop="dateModified" datetime="2021-11-15T23:15:27+08:00">2021-11-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -799,7 +799,7 @@
 </ul>
 <h3 id="页式虚拟存储器"><a href="#页式虚拟存储器" class="headerlink" title="页式虚拟存储器"></a>页式虚拟存储器</h3><ul>
 <li>基本原理<ul>
-<li>页式存储器以页为基本单位，虚拟空间和主存空间划分为同样大小的页，分别叫虚页和实页（也可以叫页框）</li>
+<li>页式存储器以页为基本单位，虚拟空间和主存空间划分为同样大小的页，分别叫虚页和实页（也可以叫页框、页帧、块）。外存中也按同样大小划分，叫块</li>
 <li>虚拟地址分为虚页号和页内地址，由页表转换为物理地址</li>
 </ul>
 </li>
@@ -807,20 +807,21 @@
 <li>随着进程的建立，对应进程页表被建立</li>
 <li>长期保存在主存中<ul>
 <li>进程切换运行时，页表被调入主存</li>
-<li>页表首地址保存在进程的页表基址寄存器</li>
+<li>页表首地址和长度（用于越界检查）保存在进程控制块中，在进程执行时，存入页表基址寄存器PTR</li>
 </ul>
 </li>
 <li>每个页表项包含<ul>
-<li>有效位（装入位）：对应页是否在主存</li>
+<li>有效位（装入位、状态位）：对应页是否在主存</li>
 <li>脏位（修改位）：页面是否被修改过，一般结合回写策略，在页面从主存中被替换时写回磁盘</li>
-<li>引用位：配合替换策略进行设置，比如帮助实现FIFO或LRU策略</li>
+<li>引用位（访问字段）：配合替换策略进行设置，比如帮助实现FIFO或LRU策略</li>
 <li>物理页号或磁盘地址</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>虚拟地址转换到物理地址步骤<ul>
-<li>首先通过虚页号（虚拟地址高位，作为页表的索引）和页表首地址找到页表项</li>
+<li>查页表前先进行越界检查</li>
+<li>然后通过虚页号（虚拟地址高位，作为页表的索引）和页表首地址找到页表项</li>
 <li>如果有效则取出物理页号，和虚拟地址低位页内地址拼接，成为物理地址</li>
 <li>如果无效则缺页，需要操作系统先进行缺页处理</li>
 </ul>
@@ -862,15 +863,18 @@
 </ul>
 <h3 id="段式虚拟存储器"><a href="#段式虚拟存储器" class="headerlink" title="段式虚拟存储器"></a>段式虚拟存储器</h3><ul>
 <li>主存按程序的逻辑分段，以段为主存和辅存的调度单位，各段长不一定</li>
-<li>虚拟地址分为段号和段内地址，物理地址分为物理段号和段内地址</li>
+<li>虚拟地址分为段号和段内地址（由用户显式提供，实际设计一般是编译器实现），物理地址分为物理段号和段内地址</li>
+<li>页式虚拟地址是一维的（可以分解为页号和页内地址），段式虚拟地址是二维的（段号和段内地址必须分别给出），是因为页大小固定，段大小不固定</li>
 <li>段表<ul>
 <li>指出各段在主存中的首地址</li>
 <li>包括段号、段长、段起始地址（高位相当于物理段号）、有效位（装入位）、段访问方式和标记等</li>
+<li>段表的首地址和长度（用于越界检查）存放在段表寄存器</li>
 </ul>
 </li>
 <li>虚拟地址转换到物理地址步骤<ul>
-<li>首先通过段表基地址和段号找到对应段表项</li>
-<li>如果有效则把段表项的段起始地址 + 段内地址（偏移量），得到物理地址</li>
+<li>查段表前先进行越界检查</li>
+<li>再通过段表基地址和段号找到对应段表项</li>
+<li>如果有效且段内偏移量不越界，则把段表项的段起始地址 + 段内地址（偏移量），得到物理地址</li>
 </ul>
 </li>
 <li>优点是段的分界和程序分界对应，易于编译、管理、修改、保护、共享；缺点是段长度可变，分配空间不便，主存中容易产生段内碎片的浪费</li>
@@ -880,10 +884,12 @@
 <li>主存和辅存以页为调度单位</li>
 <li>每个程序对应一个段表，每段对应一个页表。</li>
 <li>段的长度是页长整数倍，段的起点是页的起点</li>
-<li>虚地址分为段号、段内页号、页内地址</li>
+<li>虚地址分为段号、段内页号、页内地址（二维的，段号和段内地址分别给出）</li>
 <li>地址转换<ul>
-<li>根据段号和段表起始地址找到段表项，取出该段的页表首地址</li>
-<li>页表首地址和段内页号找到对应页表项</li>
+<li>根据段表寄存器的段表长检查是否越界</li>
+<li>根据段号和段表寄存器中的段起始地址找到段表项，取出该段的页表首地址和页表长度</li>
+<li>根据页表长度和段内页号判断是否越界</li>
+<li>根据页表首地址和段内页号找到对应页表项</li>
 <li>从页表项中取出实页号和页内地址拼接为物理地址</li>
 </ul>
 </li>
@@ -1085,7 +1091,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
