@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  齐次线性方程组 形式:$\pmb{A}_{m\times n}\pmb{x}&#x3D;\pmb{0}$ 有解条件：一定有零解 基础解系 所有解向量的极大线性无关组 课本的表述为线性无关，且可以线性表出所有解向量的向量组 一定是$n$维非零向量   基础解系向量个数 $n-r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第四章-线性方程组">
+<meta property="og:url" content="https://wooziehang.github.io/2021/11/20/linearAlgebra4/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  齐次线性方程组 形式:$\pmb{A}_{m\times n}\pmb{x}&#x3D;\pmb{0}$ 有解条件：一定有零解 基础解系 所有解向量的极大线性无关组 课本的表述为线性无关，且可以线性表出所有解向量的向量组 一定是$n$维非零向量   基础解系向量个数 $n-r">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-20T08:45:35.000Z">
+<meta property="article:modified_time" content="2021-11-20T12:04:03.838Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/11/20/linearAlgebra4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第四章-线性方程组 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/20/linearAlgebra4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第四章-线性方程组
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-20 16:45:35 / 修改时间：20:04:03" itemprop="dateCreated datePublished" datetime="2021-11-20T16:45:35+08:00">2021-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/20/linearAlgebra4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-线性方程组" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/20/linearAlgebra4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/20/linearAlgebra4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="齐次线性方程组"><a href="#齐次线性方程组" class="headerlink" title="齐次线性方程组"></a>齐次线性方程组</h2><ul>
+<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{0}$</li>
+<li>有解条件：一定有零解</li>
+<li>基础解系<ul>
+<li>所有解向量的极大线性无关组</li>
+<li>课本的表述为线性无关，且可以线性表出所有解向量的向量组</li>
+<li>一定是$n$维非零向量</li>
+</ul>
+</li>
+<li>基础解系向量个数<ul>
+<li>$n-r(\pmb{A})$</li>
+<li>从向量空间角度理解<ul>
+<li>基础解系，就是找到所有的线性无关的非零列向量，和$\pmb{A}$的行向量正交</li>
+<li>本质是，在$n$维度向量空间中，正交于$r(\pmb{A})$维子空间（由$\pmb{A}$行向量张成）的非零且线性无关的向量有$n-r(\pmb{A})$个</li>
+<li>例如三维空间中，和某个二维平面垂直的线性无关非零向量，最多找到一个</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通解：由基础解系线性表出即可</li>
+<li>通解求法<ul>
+<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
+<li>接下来只需要解同解方程组</li>
+<li>本质就是高斯消元法</li>
+</ul>
+</li>
+<li>$r$个独立变量和$n-r$个自由变量<ul>
+<li>每次只选一个自由变量取$1$，其他取$0$，算出独立变量，得到一个解向量</li>
+<li>选$n-r$次自由变量，得到基础解系</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="非齐次线性方程组"><a href="#非齐次线性方程组" class="headerlink" title="非齐次线性方程组"></a>非齐次线性方程组</h2><ul>
+<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{b}$</li>
+<li>有解等价条件：$r(\pmb{A})=r(\pmb{A},b)$</li>
+<li>解的性质：两个解的差值是对应齐次线性方程组的解</li>
+<li>通解结构：找到一个特解，再加上对应齐次线性方程组的通解</li>
+<li>通解求法<ul>
+<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
+<li>接下来只需要解同解方程组</li>
+</ul>
+</li>
+<li>$r$个独立变量和$n-r$个自由变量<ul>
+<li>自由变量取$0$，算出一个特解</li>
+<li>每个自由变量分别取$1$，算出对应齐次线性方程组基础解系</li>
+</ul>
+</li>
+<li>利用非齐次线性方程组的通解结构即可</li>
+</ul>
+</li>
+</ul>
+<h2 id="由基础解系求方程组"><a href="#由基础解系求方程组" class="headerlink" title="由基础解系求方程组"></a>由基础解系求方程组</h2><ul>
+<li>已知$m$个方程$n$个未知量的齐次线性方程组的基础解系为$\pmb{\xi}_1,\pmb{\xi}_2,\cdots,\pmb{\xi}_k$</li>
+<li>即$\pmb{A}_{m\times n}\left [ \begin{matrix}\pmb{\xi}_1&amp;\pmb{\xi}_2&amp;\cdots&amp;\pmb{\xi}_k \end{matrix} \right ]=\pmb{O}_{m\times k}$</li>
+<li>即$\left [ \begin{matrix}\pmb{\xi}_1^T\\ \pmb{\xi}_2^T\\ \vdots \pmb{\xi}_k^T \end{matrix} \right ]\pmb{A}^T_{n\times m}=\pmb{O}_{k\times m}$</li>
+<li>新方程解出来的基础解系的向量个数为$n-k=n-(n-r(\pmb{A}))=r(\pmb{A})$<ul>
+<li>可以根据该基础解系确定原方程的系数矩阵行向量</li>
+</ul>
+</li>
+</ul>
+<h2 id="两个方程组的公共解"><a href="#两个方程组的公共解" class="headerlink" title="两个方程组的公共解"></a>两个方程组的公共解</h2><ul>
+<li>法一：直接解联立方程组</li>
+<li>法二：先解一个方程组，再代入另一个方程组</li>
+<li>法三：分别解两个方程组得到各自的通解，令两个通解相等，解关于通解的参数的方程组</li>
+</ul>
+<h2 id="同解方程组"><a href="#同解方程组" class="headerlink" title="同解方程组"></a>同解方程组</h2><ul>
+<li>定义法（推荐使用）：证明一个方程组的解也是另一个方程组的解（两个方向都要证明）</li>
+<li>初等行变换：只经过初等行变换（不改变方程的解），可以将两个方程组的（系数矩阵和右端向量的）增广矩阵相互转换，则说明是同解方程组</li>
+<li>线性表示法：两个方程组的增广矩阵的行向量相互可以线性表出</li>
+</ul>
+<h2 id="解线性方程组应用于可逆矩阵"><a href="#解线性方程组应用于可逆矩阵" class="headerlink" title="解线性方程组应用于可逆矩阵"></a>解线性方程组应用于可逆矩阵</h2><p>补充一个技巧：计算$\pmb{A}^{-1}\pmb{B}$可以规约为解方程$\pmb{A}\pmb{X}=\pmb{B}$</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/18/operatingSystem5/" rel="prev" title="【知识总结】 第五章-输入输出管理">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第五章-输入输出管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/20/linearAlgebra5/" rel="next" title="【知识总结】 第五章-特征值和特征向量">
+      【知识总结】 第五章-特征值和特征向量 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">齐次线性方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">非齐次线性方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B1%E5%9F%BA%E7%A1%80%E8%A7%A3%E7%B3%BB%E6%B1%82%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">由基础解系求方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%85%AC%E5%85%B1%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">两个方程组的公共解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E8%A7%A3%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">5.</span> <span class="nav-text">同解方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E5%BA%94%E7%94%A8%E4%BA%8E%E5%8F%AF%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">6.</span> <span class="nav-text">解线性方程组应用于可逆矩阵</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
