@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吴紫航">
-<meta property="og:url" content="https://wooziehang.github.io/tags/Knowledge-Summary/page/5/index.html">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  二次型的矩阵表示 二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^na_{ij}x_ix_j$ $\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第六章-二次型">
+<meta property="og:url" content="https://wooziehang.github.io/2021/11/21/linearAlgebra6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  二次型的矩阵表示 二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^na_{ij}x_ix_j$ $\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-21T09:46:36.000Z">
+<meta property="article:modified_time" content="2021-11-22T14:23:25.442Z">
 <meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/tags/Knowledge-Summary/page/5/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/11/21/linearAlgebra6/">
 
 
 <script id="page-configurations">
@@ -38,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: Knowledge Summary | 吴紫航</title>
+  <title>【知识总结】 第六章-二次型 | 吴紫航</title>
   
 
 
@@ -192,160 +195,217 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/21/linearAlgebra6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第六章-二次型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-21 17:46:36" itemprop="dateCreated datePublished" datetime="2021-11-21T17:46:36+08:00">2021-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-22 22:23:25" itemprop="dateModified" datetime="2021-11-22T22:23:25+08:00">2021-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/21/linearAlgebra6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-二次型" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Knowledge Summary
-          <small>标签</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/21/linearAlgebra6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/21/linearAlgebra6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-19T20:15:57+08:00"
-              content="2021-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/19/algorithms2/" itemprop="url">
-            <span itemprop="name">【知识总结】 从算法视角重审数学概念</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-18T16:06:48+08:00"
-              content="2021-03-18">
-          03-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/18/graphIntroduction-3/" itemprop="url">
-            <span itemprop="name">【知识总结】 k-连通图</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-11T16:09:20+08:00"
-              content="2021-03-11">
-          03-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/11/graphIntroduction-2/" itemprop="url">
-            <span itemprop="name">【知识总结】 图的连通性</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-09T18:19:40+08:00"
-              content="2021-03-09">
-          03-09
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/09/combinatorics-1/" itemprop="url">
-            <span itemprop="name">【知识总结】 Counting</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-08T19:52:02+08:00"
-              content="2021-03-08">
-          03-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/08/graphIntroduction-1/" itemprop="url">
-            <span itemprop="name">【知识总结】 图的基本概念</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-31T22:43:26+08:00"
-              content="2021-01-31">
-          01-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/01/31/algorithms1/" itemprop="url">
-            <span itemprop="name">【知识总结】 抽象算法设计与分析</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="二次型的矩阵表示"><a href="#二次型的矩阵表示" class="headerlink" title="二次型的矩阵表示"></a>二次型的矩阵表示</h2><ul>
+<li>二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j$</li>
+<li>$\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=\left [ \begin{matrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{matrix} \right ]\left [ \begin{matrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp; a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\ a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{matrix} \right ]\left [ \begin{matrix} x_1\\x_2\\\cdots\\x_n \end{matrix} \right ]=\pmb{x}^T\pmb{A}\pmb{x}$</li>
+<li>要求$\pmb{A}$是对称矩阵，此时二次型和矩阵一一对应</li>
+</ul>
+<h2 id="二次型化为标准形"><a href="#二次型化为标准形" class="headerlink" title="二次型化为标准形"></a>二次型化为标准形</h2><ul>
+<li>标准形：只有平方项的二次型</li>
+<li>规范性：在标准形基础上，平方项的系数只能是-1、0、1</li>
+<li>线性变换：即第三章的坐标变换，$\pmb{x}=\pmb{P}\pmb{y}$<ul>
+<li>当$\pmb{P}$是正交矩阵$\pmb{Q}$，则对应正交变换</li>
+</ul>
+</li>
+<li>法一：通过正交变换$\pmb{x}=\pmb{Q}\pmb{y}$化为标准形<ul>
+<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}$</li>
+<li>用到了第五章正交相似对角化的内容</li>
+<li>求解要点<ul>
+<li>求特征值，算出$\pmb{\Lambda}$，从而得到标准形</li>
+<li>求特征向量并正交单位化，给出线性变换$\pmb{y}=\pmb{Q}^{-1}\pmb{x}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>法二：通过配方法化为标准形<ul>
+<li>有平方项则配方；无平方项则利用$x_i=y_i+y_j,x_j=y_i-y_j$得到平方项，即$a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)$</li>
+<li>要给出可逆线性变换和标准形的表示<ul>
+<li>若配方后平方项个数不足原二次型的变量数，则需要补充平方项以保证线性变换可逆（补充方法不唯一，因为标准形也不唯一）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="合同矩阵与合同二次型"><a href="#合同矩阵与合同二次型" class="headerlink" title="合同矩阵与合同二次型"></a>合同矩阵与合同二次型</h2><ul>
+<li>合同矩阵：$\pmb{A}\simeq\pmb{B}\Leftrightarrow$ 即存在可逆矩阵$\pmb{C}$，使得$\pmb{B}=\pmb{C}^T\pmb{A}\pmb{C}$<ul>
+<li>合同关系是等价关系，自反性、对称性、传递性</li>
+<li>合同变换：双向箭头的右侧部分</li>
+</ul>
+</li>
+<li>合同二次型：对原二次型进行<strong>可逆线性变换</strong>$\pmb{x}=\pmb{C}\pmb{y}$，得到合同二次型<ul>
+<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{C}^T)\pmb{A}(\pmb{C}\pmb{y})=\pmb{y}^T(\pmb{C}^T\pmb{A}\pmb{C})\pmb{y}=\pmb{y}^T\pmb{B}\pmb{y}$</li>
+<li>相当于对二次型的矩阵表示进行合同变换</li>
+</ul>
+</li>
+<li>惯性定理：二次型的标准形不唯一，但是其正惯性指数、负惯性指数是确定的<ul>
+<li>正惯性指数：标准形正平方项个数</li>
+<li>负惯性指数：标准形负平方项个数</li>
+<li>二次型的秩：正负惯性指数的和<ul>
+<li>重要定理：二次型的矩阵的合同变换不改变其正负惯性指数</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为二次型可逆线性变换不改变其规范形   </li>
+</ul>
+</li>
+</ul>
+<h2 id="正定性的证明"><a href="#正定性的证明" class="headerlink" title="正定性的证明"></a>正定性的证明</h2><ul>
+<li>正定二次型的证明：等价条件如下<ul>
+<li>对任意$\pmb{x}\neq \pmb{0}$，有$\pmb{x}^T\pmb{A}\pmb{x}&gt;0$恒成立<ul>
+<li>正定二次型的定义</li>
+</ul>
+</li>
+<li>$\pmb{A}$顺序主子式大于0</li>
+<li>$\pmb{A}$特征值都大于0</li>
+<li>二次型正惯性指数等于变量个数</li>
+<li>存在可逆矩阵$D$，使得$\pmb{A}=\pmb{D}^T\pmb{E}\pmb{D}=\pmb{D}^T\pmb{D}$<ul>
+<li>因为规范形的平方项系数全为1，对应二次型的矩阵表示为$\pmb{E}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>正定矩阵：正定二次型的矩阵表示<ul>
+<li>先证明是对称矩阵，再证明对应的二次型正定</li>
+</ul>
+</li>
+</ul>
 
     </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/21/network1/" rel="prev" title="【知识总结】 第一章-计算机网络概述">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第一章-计算机网络概述
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/Knowledge-Summary/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/tags/Knowledge-Summary/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tags/Knowledge-Summary/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -392,6 +452,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E5%9E%8B%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">二次型的矩阵表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E5%9E%8B%E5%8C%96%E4%B8%BA%E6%A0%87%E5%87%86%E5%BD%A2"><span class="nav-number">2.</span> <span class="nav-text">二次型化为标准形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%90%8C%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%90%88%E5%90%8C%E4%BA%8C%E6%AC%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">合同矩阵与合同二次型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%AE%9A%E6%80%A7%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text">正定性的证明</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -573,6 +634,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

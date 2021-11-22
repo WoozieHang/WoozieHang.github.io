@@ -198,6 +198,143 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/21/linearAlgebra6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/21/linearAlgebra6/" class="post-title-link" itemprop="url">【知识总结】 第六章-二次型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-21 17:46:36" itemprop="dateCreated datePublished" datetime="2021-11-21T17:46:36+08:00">2021-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-22 22:23:25" itemprop="dateModified" datetime="2021-11-22T22:23:25+08:00">2021-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/21/linearAlgebra6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-二次型" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/21/linearAlgebra6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/21/linearAlgebra6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="二次型的矩阵表示"><a href="#二次型的矩阵表示" class="headerlink" title="二次型的矩阵表示"></a>二次型的矩阵表示</h2><ul>
+<li>二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j$</li>
+<li>$\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=\left [ \begin{matrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{matrix} \right ]\left [ \begin{matrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp; a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\ a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{matrix} \right ]\left [ \begin{matrix} x_1\\x_2\\\cdots\\x_n \end{matrix} \right ]=\pmb{x}^T\pmb{A}\pmb{x}$</li>
+<li>要求$\pmb{A}$是对称矩阵，此时二次型和矩阵一一对应</li>
+</ul>
+<h2 id="二次型化为标准形"><a href="#二次型化为标准形" class="headerlink" title="二次型化为标准形"></a>二次型化为标准形</h2><ul>
+<li>标准形：只有平方项的二次型</li>
+<li>规范性：在标准形基础上，平方项的系数只能是-1、0、1</li>
+<li>线性变换：即第三章的坐标变换，$\pmb{x}=\pmb{P}\pmb{y}$<ul>
+<li>当$\pmb{P}$是正交矩阵$\pmb{Q}$，则对应正交变换</li>
+</ul>
+</li>
+<li>法一：通过正交变换$\pmb{x}=\pmb{Q}\pmb{y}$化为标准形<ul>
+<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}$</li>
+<li>用到了第五章正交相似对角化的内容</li>
+<li>求解要点<ul>
+<li>求特征值，算出$\pmb{\Lambda}$，从而得到标准形</li>
+<li>求特征向量并正交单位化，给出线性变换$\pmb{y}=\pmb{Q}^{-1}\pmb{x}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>法二：通过配方法化为标准形<ul>
+<li>有平方项则配方；无平方项则利用$x_i=y_i+y_j,x_j=y_i-y_j$得到平方项，即$a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)$</li>
+<li>要给出可逆线性变换和标准形的表示<ul>
+<li>若配方后平方项个数不足原二次型的变量数，则需要补充平方项以保证线性变换可逆（补充方法不唯一，因为标准形也不唯一）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/21/linearAlgebra6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/21/network1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -221,10 +358,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-21 13:29:12 / 修改时间：14:21:07" itemprop="dateCreated datePublished" datetime="2021-11-21T13:29:12+08:00">2021-11-21</time>
+              <time title="创建时间：2021-11-21 13:29:12" itemprop="dateCreated datePublished" datetime="2021-11-21T13:29:12+08:00">2021-11-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-22 20:11:36" itemprop="dateModified" datetime="2021-11-22T20:11:36+08:00">2021-11-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -343,7 +486,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-21 17:40:10" itemprop="dateModified" datetime="2021-11-21T17:40:10+08:00">2021-11-21</time>
+                <time title="修改时间：2021-11-22 21:27:08" itemprop="dateModified" datetime="2021-11-22T21:27:08+08:00">2021-11-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -407,7 +550,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="相关概念的定义和理解"><a href="#相关概念的定义和理解" class="headerlink" title="相关概念的定义和理解"></a>相关概念的定义和理解</h3>
+<h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/20/linearAlgebra5/#more" rel="contents">
@@ -457,10 +600,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-20 16:45:35 / 修改时间：20:04:03" itemprop="dateCreated datePublished" datetime="2021-11-20T16:45:35+08:00">2021-11-20</time>
+              <time title="创建时间：2021-11-20 16:45:35" itemprop="dateCreated datePublished" datetime="2021-11-20T16:45:35+08:00">2021-11-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-21 17:54:36" itemprop="dateModified" datetime="2021-11-21T17:54:36+08:00">2021-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -508,59 +657,14 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="齐次线性方程组"><a href="#齐次线性方程组" class="headerlink" title="齐次线性方程组"></a>齐次线性方程组</h2><ul>
-<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{0}$</li>
-<li>有解条件：一定有零解</li>
-<li>基础解系<ul>
-<li>所有解向量的极大线性无关组</li>
-<li>课本的表述为线性无关，且可以线性表出所有解向量的向量组</li>
-<li>一定是$n$维非零向量</li>
-</ul>
-</li>
-<li>基础解系向量个数<ul>
-<li>$n-r(\pmb{A})$</li>
-<li>从向量空间角度理解<ul>
-<li>基础解系，就是找到所有的线性无关的非零列向量，和$\pmb{A}$的行向量正交</li>
-<li>本质是，在$n$维度向量空间中，正交于$r(\pmb{A})$维子空间（由$\pmb{A}$行向量张成）的非零且线性无关的向量有$n-r(\pmb{A})$个</li>
-<li>例如三维空间中，和某个二维平面垂直的线性无关非零向量，最多找到一个</li>
+<h2 id="克拉姆法则"><a href="#克拉姆法则" class="headerlink" title="克拉姆法则"></a>克拉姆法则</h2><p>因为计算复杂度远高于高斯消元法，因此较少使用，其内容如下</p>
+<ul>
+<li>当$\vert\pmb{A}\vert\neq 0$，方程$\pmb{A}\pmb{x}=\pmb{b}$的唯一解是$x_i=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i=1,2,\cdots,n$<ul>
+<li>其中$\vert\pmb{A}_i\vert$的第$i$列是右端向量$\pmb{b}$，其他列同$\pmb{A}$</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>通解：由基础解系线性表出即可</li>
-<li>通解求法<ul>
-<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
-<li>接下来只需要解同解方程组</li>
-<li>本质就是高斯消元法</li>
-</ul>
-</li>
-<li>$r$个独立变量和$n-r$个自由变量<ul>
-<li>每次只选一个自由变量取$1$，其他取$0$，算出独立变量，得到一个解向量</li>
-<li>选$n-r$次自由变量，得到基础解系</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="非齐次线性方程组"><a href="#非齐次线性方程组" class="headerlink" title="非齐次线性方程组"></a>非齐次线性方程组</h2><ul>
-<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{b}$</li>
-<li>有解等价条件：$r(\pmb{A})=r(\pmb{A},b)$</li>
-<li>解的性质：两个解的差值是对应齐次线性方程组的解</li>
-<li>通解结构：找到一个特解，再加上对应齐次线性方程组的通解</li>
-<li>通解求法<ul>
-<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
-<li>接下来只需要解同解方程组</li>
-</ul>
-</li>
-<li>$r$个独立变量和$n-r$个自由变量<ul>
-<li>自由变量取$0$，算出一个特解</li>
-<li>每个自由变量分别取$1$，算出对应齐次线性方程组基础解系</li>
-</ul>
-</li>
-<li>利用非齐次线性方程组的通解结构即可</li>
-</ul>
-</li>
-</ul>
+<h2 id="齐次线性方程组"><a href="#齐次线性方程组" class="headerlink" title="齐次线性方程组"></a>齐次线性方程组</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/20/linearAlgebra4/#more" rel="contents">
@@ -1133,7 +1237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-20 17:19:05" itemprop="dateModified" datetime="2021-11-20T17:19:05+08:00">2021-11-20</time>
+                <time title="修改时间：2021-11-22 21:24:06" itemprop="dateModified" datetime="2021-11-22T21:24:06+08:00">2021-11-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1329,131 +1433,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/10/operatingSystem2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/10/operatingSystem2/" class="post-title-link" itemprop="url">【知识总结】 第二章-进程管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-10 15:41:30" itemprop="dateCreated datePublished" datetime="2021-11-10T15:41:30+08:00">2021-11-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-12 17:34:44" itemprop="dateModified" datetime="2021-11-12T17:34:44+08:00">2021-11-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/10/operatingSystem2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-进程管理" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/10/operatingSystem2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/10/operatingSystem2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程基本概念"><a href="#进程基本概念" class="headerlink" title="进程基本概念"></a>进程基本概念</h3><ul>
-<li>进程的定义<ul>
-<li>具有独立功能的程序在一个数据集合上的一次执行过程（活动）</li>
-<li>资源分配和调度的基本单位</li>
-</ul>
-</li>
-<li>进程控制块PCB<ul>
-<li>描述进程基本情况和运行状态的数据结构</li>
-<li>系统通过PCB感知进程、控制和管理进程</li>
-<li>创建进程时创建PCB，撤销进程时撤销PCB，PCB是进程存在的唯一标志</li>
-<li>PCB包括进程的描述信息、控制管理信息、资源分配清单、处理机有关信息</li>
-<li>状态相同的各进程的PCB可以用索引表统一管理，每个表项指向一个PCB</li>
-</ul>
-</li>
-<li>进程的特征<ul>
-<li>动态性：有动态的生命周期，比如：创建、活动、暂停、终止</li>
-<li>并发性：多个进程实体在同一段时间内，在内存中运行，并发是引入进程的目的</li>
-<li>独立性：进程实体能独立运行、获得资源、调度</li>
-<li>异步性：各进程按不可预测的速度推进</li>
-<li>结构性：每个进程一个PCB，进程实体包括程序段、数据段、PCB</li>
-</ul>
-</li>
-</ul>
-<h3 id="进程状态和转换"><a href="#进程状态和转换" class="headerlink" title="进程状态和转换"></a>进程状态和转换</h3><h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/10/operatingSystem2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1525,7 +1504,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
