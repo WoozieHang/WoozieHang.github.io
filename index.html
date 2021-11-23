@@ -198,6 +198,158 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/23/network2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/23/network2/" class="post-title-link" itemprop="url">【知识总结】 第二章-物理层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-23 10:11:05 / 修改时间：22:39:06" itemprop="dateCreated datePublished" datetime="2021-11-23T10:11:05+08:00">2021-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/23/network2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-物理层" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/23/network2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/23/network2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="通信基础"><a href="#通信基础" class="headerlink" title="通信基础"></a>通信基础</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>数据：信息的实体</li>
+<li>信号：数据的电气表现、存在形式<ul>
+<li>模拟信号：连续的信号</li>
+<li>数字信号：离散的信号</li>
+</ul>
+</li>
+<li>码元：用固定时长（即码元宽度）的信号波形表示一个k进制数<ul>
+<li>码元宽度：固定时长</li>
+<li>数字脉冲：信号波形</li>
+</ul>
+</li>
+<li>信源：产生和发送数据的源头<ul>
+<li>数据经过变换器变成信号，传给信道（详见编码和调制小节）</li>
+</ul>
+</li>
+<li>信道：信号的传输媒介<ul>
+<li>噪声源会对信号产生干扰</li>
+<li>按信号类型分类：模拟信道、数字信道</li>
+<li>按传输介质分类：无线信道和有线信道</li>
+</ul>
+</li>
+<li>信宿：接收数据的终点<ul>
+<li>信号经过反变换器变为数据，传给信宿</li>
+</ul>
+</li>
+<li>基带传输：把数据以原始频带（基本频带）编码为基带信号，在数字信道上传输</li>
+<li>频带传输：把基带信号调制为模拟信号，在模拟信道上传输</li>
+<li>宽带传输：在频带传输基础上使用多个信道，每个信道同时频带传输，链路容量大，</li>
+<li>通信方式<ul>
+<li>单向通信：只有一个方向的通信</li>
+<li>半双工通信：同一时间只有一个方向的通信，需要两个信道</li>
+<li>全双工通信：同一时间可以有两个方向的通信，需要两个信道</li>
+</ul>
+</li>
+<li>速率：单位时间内传输的数据量<ul>
+<li>码元传输速率（波特率、调制速率）：单位时间传输码元的个数（脉冲数）<ul>
+<li>单位是波特（Baud）</li>
+<li>与进制有关</li>
+</ul>
+</li>
+<li>信息传输速率（比特率）：单位时间传输比特的个数<ul>
+<li>单位是b/s</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>带宽 <ul>
+<li>在通信领域指频带范围，单位Hz</li>
+<li>在网络领域指最高数据传输速率，单位b/s</li>
+</ul>
+</li>
+</ul>
+<h3 id="奈奎斯特定理"><a href="#奈奎斯特定理" class="headerlink" title="奈奎斯特定理"></a>奈奎斯特定理</h3><ul>
+<li>条件：理想低通信道，即无噪声且带宽有限，带宽设为$W$</li>
+<li>结论：极限波特率为$2W$，单位Baud</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/23/network2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/21/linearAlgebra6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -366,7 +518,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-22 20:11:36" itemprop="dateModified" datetime="2021-11-22T20:11:36+08:00">2021-11-22</time>
+                <time title="修改时间：2021-11-23 21:09:27" itemprop="dateModified" datetime="2021-11-23T21:09:27+08:00">2021-11-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1321,118 +1473,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/12/linearAlgebra1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/12/linearAlgebra1/" class="post-title-link" itemprop="url">【知识总结】 第一章-行列式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-12 22:00:32" itemprop="dateCreated datePublished" datetime="2021-11-12T22:00:32+08:00">2021-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-13 19:39:31" itemprop="dateModified" datetime="2021-11-13T19:39:31+08:00">2021-11-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/12/linearAlgebra1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第一章-行列式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/12/linearAlgebra1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/12/linearAlgebra1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
-<li>笔记为个人整理，禁止商业用途</li>
-<li>如有疏漏，欢迎留言</li>
-</ul>
-<h2 id="拉普拉斯展开式"><a href="#拉普拉斯展开式" class="headerlink" title="拉普拉斯展开式"></a>拉普拉斯展开式</h2><ul>
-<li>$\pmb{A}$和$\pmb{B}$分别是$m$阶矩阵和$n$阶矩阵</li>
-<li>$\left | \begin{matrix} \pmb{A}&amp; \pmb{\star} \\ \pmb{O}&amp; \pmb{B} \\ \end{matrix} \right |=\left | \begin{matrix} \pmb{A}&amp; \pmb{O} \\ \pmb{\star}&amp; \pmb{B} \\ \end{matrix} \right |=|\pmb{A}|\cdot|\pmb{B}|$</li>
-<li>$\left | \begin{matrix} \pmb{O}&amp; \pmb{A} \\ \pmb{B}&amp; \pmb{\star} \\ \end{matrix} \right |=\left | \begin{matrix} \pmb{\star}&amp; \pmb{A} \\ \pmb{B}&amp; \pmb{O} \\ \end{matrix} \right |=(-1)^{mn}|\pmb{A}|\cdot|\pmb{B}|$</li>
-</ul>
-<h2 id="范德蒙行列式"><a href="#范德蒙行列式" class="headerlink" title="范德蒙行列式"></a>范德蒙行列式</h2><p>$\left | \begin{matrix} 1&amp; 1&amp; \cdots&amp; 1 \\ x_1&amp; x_2&amp; \cdots&amp; x_n \\ {x_1}^2&amp; {x_2}^2&amp; \cdots&amp; {x_n}^2 \\ \vdots&amp; \vdots&amp; \ &amp; \vdots \\ {x_1}^{n-1}&amp; {x_2}^{n-1}&amp; \cdots&amp; {x_n}^{n-1} \end{matrix} \right |=\prod\limits_{1\leq j\leq i\leq n}(x_i-x_j)$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/12/linearAlgebra1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1504,7 +1544,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
