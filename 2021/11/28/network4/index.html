@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="网络层的功能异构网络互联 中间设备：又叫中间系统、中继系统 物理层中间设备：中继器、集线器 数据链路层中间设备：网桥、交换机 网络层中间设备：路由器 网络层以上中间设备：网关 路由器的一种，详见NAT     异构网络：物理结构不同的网络 异构网络互联：把多个异构网络用网络层的中间设备连接，构成更大的网络系统 该更大的网络叫虚拟互联网络（或逻辑互联网络、IP网络）    路由和转发网络层从上到下分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第四章-网络层">
+<meta property="og:url" content="https://wooziehang.github.io/2021/11/28/network4/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="网络层的功能异构网络互联 中间设备：又叫中间系统、中继系统 物理层中间设备：中继器、集线器 数据链路层中间设备：网桥、交换机 网络层中间设备：路由器 网络层以上中间设备：网关 路由器的一种，详见NAT     异构网络：物理结构不同的网络 异构网络互联：把多个异构网络用网络层的中间设备连接，构成更大的网络系统 该更大的网络叫虚拟互联网络（或逻辑互联网络、IP网络）    路由和转发网络层从上到下分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-28T04:27:13.000Z">
+<meta property="article:modified_time" content="2021-11-29T10:43:41.641Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/11/28/network4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第四章-网络层 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/28/network4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第四章-网络层
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-28 12:27:13" itemprop="dateCreated datePublished" datetime="2021-11-28T12:27:13+08:00">2021-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-29 18:43:41" itemprop="dateModified" datetime="2021-11-29T18:43:41+08:00">2021-11-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/28/network4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-网络层" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/28/network4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/28/network4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="网络层的功能"><a href="#网络层的功能" class="headerlink" title="网络层的功能"></a>网络层的功能</h2><h3 id="异构网络互联"><a href="#异构网络互联" class="headerlink" title="异构网络互联"></a>异构网络互联</h3><ul>
+<li>中间设备：又叫中间系统、中继系统<ul>
+<li>物理层中间设备：中继器、集线器</li>
+<li>数据链路层中间设备：网桥、交换机</li>
+<li>网络层中间设备：路由器</li>
+<li>网络层以上中间设备：网关<ul>
+<li>路由器的一种，详见NAT</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异构网络：物理结构不同的网络</li>
+<li>异构网络互联：把多个<strong>异构网络</strong>用网络层的<strong>中间设备</strong>连接，构成<strong>更大的网络系统</strong><ul>
+<li>该更大的网络叫虚拟互联网络（或逻辑互联网络、IP网络）</li>
+</ul>
+</li>
+</ul>
+<h3 id="路由和转发"><a href="#路由和转发" class="headerlink" title="路由和转发"></a>路由和转发</h3><p>网络层从上到下分为控制层、数据层，对应路由器的两个功能（当然主机也有这个功能）</p>
+<ul>
+<li>路由选择（控制层的功能）<ul>
+<li>根据路由选择协议，构造路由表（目的地址、子网掩码、下一跳地址）</li>
+<li>和相邻路由器交换信息，更新维护路由表</li>
+</ul>
+</li>
+<li>分组转发（数据层的功能）<ul>
+<li>根据路由表得到转发表</li>
+<li>根据转发表把分组从适合的端口传出<ul>
+<li>有时转发表的内容也放入路由表不做区分</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="SDN基本概念"><a href="#SDN基本概念" class="headerlink" title="SDN基本概念"></a>SDN基本概念</h3><ul>
+<li>原理<ul>
+<li>传统网络：路由器分布式的实现控制层、数据层</li>
+<li>软件定义网络（SDN）：远程控制器集中式实现控制层，路由器分布式实现数据层<ul>
+<li>远程控制器一般由多个服务器组成，掌握整个网络状态，算出最佳路由后把转发表发给路由器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>接口<ul>
+<li>北向接口：SDN控制器提供给应用开发者的编程接口</li>
+<li>南向接口：SDN控制器提供给路由器的双向会话接口</li>
+<li>东西向接口：SDN控制器集群内部控制器间的通信接口</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>控制层和数据层分离，全局优化路由，高速转发</li>
+<li>网络灵活可编程</li>
+<li>降低成本</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>控制器崩溃则网络崩溃，不安全</li>
+<li>网络规模扩大，控制器成为性能瓶颈</li>
+</ul>
+</li>
+</ul>
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><ul>
+<li>拥塞<ul>
+<li>概念：通信子网中，分组过量导致网络性能下降的现象</li>
+<li>坏处：导致分组丢失，甚至网络死锁</li>
+</ul>
+</li>
+<li>拥塞控制<ul>
+<li>判断网络是否拥塞<ul>
+<li>一般用网络吞吐量（相比正常吞吐量）的下降程度表示拥塞程度</li>
+</ul>
+</li>
+<li>控制拥塞<ul>
+<li>开环控制：网络设计时考虑导致拥塞的因素，一种静态预防方法</li>
+<li>闭环控制：网络运行时检测系统拥塞的情况，一种动态调整方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>拥塞控制和流量控制的区别<ul>
+<li>流量控制是两个点之间通信量的控制，希望发送速率不大于接收速率</li>
+<li>拥塞控制涉及整个通信子网所有的主机</li>
+</ul>
+</li>
+</ul>
+<h2 id="路由算法"><a href="#路由算法" class="headerlink" title="路由算法"></a>路由算法</h2><h3 id="静态路由和动态路由"><a href="#静态路由和动态路由" class="headerlink" title="静态路由和动态路由"></a>静态路由和动态路由</h3><ul>
+<li>静态路由算法（非自适应路由算法）<ul>
+<li>由网络管理员手动设置路由信息</li>
+<li>简便，开销小，适合小型网络</li>
+</ul>
+</li>
+<li>动态路由算法（自适应路由算法）<ul>
+<li>路由器之间交换信息，按算法优化得到路由表项</li>
+<li>性能好，但需要复杂的算法，增加网络的负担</li>
+<li>常见动态路由算法<ul>
+<li>距离-向量路由</li>
+<li>链路状态路由</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="距离-向量路由算法"><a href="#距离-向量路由算法" class="headerlink" title="距离-向量路由算法"></a>距离-向量路由算法</h3><p><em>本节只介绍大概的算法思想，具体的算法后面再介绍</em></p>
+<ul>
+<li>数据结构<ul>
+<li>每个结点维护一个向量，表示当前结点到各目的地的距离（比如跳数）</li>
+</ul>
+</li>
+<li>算法思想<ul>
+<li>若接收到相邻结点发来的向量，则对自身向量进行更新</li>
+<li>若本结点的向量更新，则将其发到所有的相邻结点</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>结点给<strong>相邻结点</strong>发送<strong>从自身到所有其他结点</strong>的最低费用估计</li>
+<li>有慢收敛现象（在RIP协议再解释），可能导致路由回路问题（分组在两个结点间来回传递）</li>
+</ul>
+</li>
+<li>典型算法<ul>
+<li>RIP算法</li>
+</ul>
+</li>
+</ul>
+<h3 id="链路状态路由算法"><a href="#链路状态路由算法" class="headerlink" title="链路状态路由算法"></a>链路状态路由算法</h3><p><em>本节只介绍大概的算法思想，具体的算法后面再介绍</em></p>
+<ul>
+<li>数据结构<ul>
+<li>每个结点维护<strong>直接链路状态</strong>和<strong>全局网络拓扑</strong><ul>
+<li>直接链路状态即到各相邻路由器的距离、费用、时延等代价度量</li>
+<li>全局网络拓扑即整个网络的非负带权图</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>算法思想<ul>
+<li>若接收其他任何结点更新后的直接链路状态，则对本结点的全局网络拓扑进行更新，并用Dijkstra算法重新计算路由</li>
+<li>若自身直接链路状态变化时，则将其发送到所有其他的路由器<ul>
+<li>洪泛法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>结点给<strong>其他所有结点</strong>发送<strong>从自身到相邻结点</strong>的链路状态</li>
+<li>每个结点有全局的网络拓扑信息，能直接算出路由，快速收敛汇聚</li>
+</ul>
+</li>
+<li>典型算法<ul>
+<li>OSPF算法</li>
+</ul>
+</li>
+</ul>
+<h3 id="层次路由"><a href="#层次路由" class="headerlink" title="层次路由"></a>层次路由</h3><p><em>本节只介绍大概的算法思想，具体的算法后面再介绍</em></p>
+<ul>
+<li>层次路由<ul>
+<li>把整个互联网划分为多个自治系统AS（每个AS可包括若干局域网）</li>
+<li>AS内和AS间采用各自的路由协议</li>
+</ul>
+</li>
+<li>内部网关协议IGP（域内路由选择协议）<ul>
+<li>即AS内部的路由选择协议</li>
+<li>比如RIP、OSPF</li>
+</ul>
+</li>
+<li>外部网关协议EGP（域间路由选择协议）<ul>
+<li>即AS之间的路由选择协议</li>
+<li>比如BGP</li>
+</ul>
+</li>
+</ul>
+<h2 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h2><h3 id="分组格式"><a href="#分组格式" class="headerlink" title="分组格式"></a>分组格式</h3><ul>
+<li>首部<ul>
+<li>版本（半字节）<ul>
+<li>IP的版本</li>
+</ul>
+</li>
+<li>首部长度（半字节）<ul>
+<li>单位是$4B$</li>
+<li>最大值为$15\times 4B=60B$</li>
+<li>最常见为$20B$（即首部不采用可选项）</li>
+</ul>
+</li>
+<li>服务类型（1字节）<ul>
+<li>比如区分一些要求低时延、高吞吐量的数据报</li>
+</ul>
+</li>
+<li>总长度（2字节）<ul>
+<li>指首部和数据部分总长度</li>
+<li>单位是$1B$</li>
+</ul>
+</li>
+<li>标识（2字节）<ul>
+<li>每个数据报（分组）一个标识</li>
+<li>同一个数据报片的各分片标识相同</li>
+</ul>
+</li>
+<li>标志（3位）<ul>
+<li>低位MF表示后面是否还有分片</li>
+<li>中位DF表示是否禁止对本分组继续分片</li>
+<li>高位没用</li>
+</ul>
+</li>
+<li>片偏移（13位）<ul>
+<li>表示分片在原数据报的相对位置</li>
+<li>单位是8字节（因为分片大小规定是8字节的整数倍）</li>
+</ul>
+</li>
+<li>生存时间TTL（1字节）<ul>
+<li>表示数据报在网络中可通过的最大路由器数</li>
+<li>路由器收到TTL为0的数据报则丢弃，否则转发并把TTL减1</li>
+</ul>
+</li>
+<li>协议（1字节）<ul>
+<li>指出传输层是什么协议</li>
+<li>6表示TCP，17表示UDP</li>
+</ul>
+</li>
+<li>首部校验和（2字节）<ul>
+<li>只校验首部</li>
+</ul>
+</li>
+<li>源地址（4字节）<ul>
+<li>最初发送方IP地址</li>
+</ul>
+</li>
+<li>目的地址（4字节）<ul>
+<li>最终接收方IP地址</li>
+</ul>
+</li>
+<li>可变长字段<ul>
+<li>0-40字节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据部分<ul>
+<li>首部加数据部分长度不超过帧的最大传送单元MTU</li>
+</ul>
+</li>
+</ul>
+<h3 id="分组分片"><a href="#分组分片" class="headerlink" title="分组分片"></a>分组分片</h3><ul>
+<li>分片<ul>
+<li><strong>中间路由器</strong>转发分组时，由于MTU的限制，会<strong>把分组分片</strong></li>
+<li>各分片的标识同原始分组</li>
+<li>设置分片的标志和片偏移</li>
+</ul>
+</li>
+<li>重组<ul>
+<li>在<strong>目的地重组分片</strong></li>
+<li>把同标识的分片取出，根据片偏移排序重组为原分组</li>
+</ul>
+</li>
+</ul>
+<h3 id="转发流程"><a href="#转发流程" class="headerlink" title="转发流程"></a>转发流程</h3><ul>
+<li>提取目的地址D</li>
+<li>如果某个直连路由器的网络和D匹配（需要用到该网络的子网掩码），则数据报<strong>直接交付</strong><ul>
+<li>否则是间接交付，继续往下执行</li>
+</ul>
+</li>
+<li>如果路由表有D的路由，则转发到下一跳<ul>
+<li>否则继续执行</li>
+</ul>
+</li>
+<li>如果路由表有网络和D匹配（需要用到该网络的子网掩码），则转发到下一跳<ul>
+<li>否则继续执行</li>
+</ul>
+</li>
+<li>如果路由表有默认路由，则转发到该默认路由器<ul>
+<li>否则报告转发出错</li>
+</ul>
+</li>
+</ul>
+<p><em>注：路由器转发帧，不改变网络层地址，通过ARP和下一跳地址来修改MAC源地址、目的地址。此外，网桥转发帧时不改变帧的源MAC地址。</em></p>
+<h3 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h3><ul>
+<li>定义：全球唯一的32位网络层标识符<ul>
+<li>简称IP地址</li>
+</ul>
+</li>
+<li>组成<ul>
+<li>网络号：整个因特网范围唯一</li>
+<li>主机号：网络号对应的网络的范围内唯一</li>
+</ul>
+</li>
+<li>传统网络划分<ul>
+<li>A类：0（网络号固定部分）、7位网络号可变部分、24位主机号</li>
+<li>B类：10（网络号固定部分）、14位网络号可变部分、16位主机号</li>
+<li>C类：110（网络号固定部分）、21位网络号可变部分、8位主机号</li>
+<li>D类（多播地址）：1110（网络号固定部分）、多播地址</li>
+<li>E类：1111（网络号固定部分）、保留将来使用</li>
+</ul>
+</li>
+<li>IP地址划分<ul>
+<li>网络号全0，主机号全0<ul>
+<li><strong>本网络</strong>的本主机</li>
+<li>DHCP协议用到</li>
+<li>注：网络号全0指的是网络号的可变部分全0，下同</li>
+</ul>
+</li>
+<li>网络号全0，主机号非全0非全1<ul>
+<li><strong>本网络</strong>的某主机</li>
+</ul>
+</li>
+<li>网络号全0，主机号全1<ul>
+<li><strong>本网络</strong>的广播</li>
+</ul>
+</li>
+<li>网络号非全0，主机号全0<ul>
+<li><strong>网络号对应</strong>的网络本身</li>
+</ul>
+</li>
+<li>网络号非全0，主机号非全0非全1<ul>
+<li><strong>网络号对应</strong>网络的某主机</li>
+</ul>
+</li>
+<li>网络号非全0，主机号全1（等价于本网络的广播，因为路由器隔离广播域）<ul>
+<li>网络号非全1：网络号对应的网络的广播地址（全称直接广播地址）</li>
+<li>网络号全1：整个TCP/IP网络的广播（全称受限广播地址）</li>
+</ul>
+</li>
+<li>127.x.x.x，且主机号x.x.x非全0非全1<ul>
+<li>环回自检地址，表示主机本身</li>
+<li>主机检查自身端口状况时使用，带该地址的数据报不会出现在网络层</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>网络号由IP地址管理机构分配，主机号由得到网络的单位自行分配</li>
+<li>路由器每个端口一个IP地址，一般至少两个IP地址</li>
+<li>交换机连接的各局域网，其主机IP地址网络号相同，但主机号不同</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a>网络地址转换NAT</h3><ul>
+<li>设计目的<ul>
+<li>节省公用IP地址的消耗<ul>
+<li>一个公用IP让多个主机访问因特网</li>
+</ul>
+</li>
+<li>隐藏内部网络结构，更安全<ul>
+<li>多个私有IP在外界看来是一个公用IP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>工作原理<ul>
+<li>把IP地址划分为公有IP和私有IP</li>
+<li>公有IP给外界的因特网（广域网WAN）使用</li>
+<li>私有IP给内部的专用网（局域网LAN）使用<ul>
+<li>又叫可重用地址，因为不同局域网的私有IP可以重复</li>
+<li>网段包括10.x.x.x、127.16-31.x.x、192.168.x.x</li>
+</ul>
+</li>
+<li>通过<strong>网关NAT路由器</strong>实现两种地址的转换<ul>
+<li>转换表项是（私有IP，端口号）和（公有IP，端口号）之间的映射</li>
+<li>转换表项由管理员手动添加</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>转换步骤<ul>
+<li>从LAN到WAN<ul>
+<li>转换源IP和源端口</li>
+</ul>
+</li>
+<li>从WAN到LAN<ul>
+<li>转换目的IP和目的端口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>网关NAT路由器<ul>
+<li>工作在传输层，因为使用到传输层的端口号</li>
+</ul>
+</li>
+</ul>
+<h3 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h3><ul>
+<li>定长子网划分：把两级IP地址（网络号、主机号）变成三级IP地址（网络号、子网号、主机号）<ul>
+<li>把主机号分成子网号和主机号</li>
+<li>划分后的主机号全0表示子网，全1表示子网的广播</li>
+<li>划分后的各子网长度相等，有着相同的子网掩码</li>
+</ul>
+</li>
+<li>变长子网划分<ul>
+<li>给出各子网的32位IP地址和子网掩码</li>
+<li>划分后的子网大小不完全相同，有着不同的子网掩码</li>
+</ul>
+</li>
+</ul>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><ul>
+<li>32位二进制串，高位若干1，低位若干0<ul>
+<li>1为网络号和子网号的位数</li>
+<li>0为主机号的位数</li>
+</ul>
+</li>
+<li>IP地址和子网掩码进行位运算“与”，得到子网的地址</li>
+<li>默认子网掩码<ul>
+<li>255.0.0.0</li>
+<li>255.255.0.0</li>
+<li>255.255.255.0</li>
+</ul>
+</li>
+</ul>
+<h3 id="CIDR"><a href="#CIDR" class="headerlink" title="CIDR"></a>CIDR</h3><ul>
+<li>定义：无分类域间路由选择CIDR是基于子网掩码的网络划分方法<ul>
+<li>两级IP地址（网络前缀、主机号）</li>
+<li>网络前缀的长度不固定<ul>
+<li>消除了传统A、B、C网络地址（网络号定长）的概念</li>
+</ul>
+</li>
+<li>主机号可以进一步划分成一些子网<ul>
+<li>子网的<strong>网络前缀变长</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>斜线记法（CIDR记法）<ul>
+<li>IP地址/网络前缀的比特数</li>
+</ul>
+</li>
+<li>CIDR地址块：网络前缀相同的IP地址的集合</li>
+<li>路由聚合<ul>
+<li>按需要<strong>缩短网络前缀</strong>，使得多个IP地址的网络前缀相同</li>
+<li>把这些IP地址用一个CIDR块表示，节约路由表的表项</li>
+</ul>
+</li>
+<li>最长前缀匹配（最佳匹配）<ul>
+<li>路由表中，匹配网络前缀最长的表项</li>
+</ul>
+</li>
+</ul>
+<h3 id="有关协议"><a href="#有关协议" class="headerlink" title="有关协议"></a>有关协议</h3><h4 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h4><ul>
+<li>地址解析协议ARP<ul>
+<li>网络层协议</li>
+<li>每个主机维护一个ARP高速缓存（ARP表），完成本局域网各IP地址到MAC地址的映射</li>
+</ul>
+</li>
+<li>工作原理<ul>
+<li>ARP表中有下一跳的IP地址，则映射为MAC地址，封装为帧发送</li>
+<li>ARP表中没有下一跳的IP地址，则广播<strong>ARP请求分组</strong>（MAC地址为全1）<ul>
+<li>下一跳设备收到ARP请求后，发出<strong>ARP响应分组</strong>，包含其IP地址到MAC地址的映射</li>
+<li>原设备收到后更新ARP表，然后根据映射封装并发送帧即可 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="DHCP协议"><a href="#DHCP协议" class="headerlink" title="DHCP协议"></a>DHCP协议</h4><ul>
+<li>动态主机配置协议DHCP<ul>
+<li>基于UDP的应用层协议<ul>
+<li>工作方式为客户-服务器方式（应用层部分会介绍）</li>
+</ul>
+</li>
+<li>给主机动态的分配IP地址<ul>
+<li>分配是临时的，分配时长叫做<strong>租用期</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>步骤原理<ul>
+<li>第一步：客户机广播<strong>DHCP发现报文</strong><ul>
+<li>源IP全0，目的IP全1</li>
+<li>广播域中可以有多个DHCP服务器</li>
+</ul>
+</li>
+<li>第二步：服务器收到后<ul>
+<li>若数据库中有该计算机配置信息，则发送此配置信息</li>
+<li>否则广播<strong>DHCP提供报文</strong>，包括提供给客户机的IP地址（服务器从地址池中取出）和配置信息</li>
+</ul>
+</li>
+<li>第三步：客户机收到后，如果接受则广播<strong>DHCP请求报文</strong><ul>
+<li>一般只接受第一个收到的提供报文</li>
+<li>请求报文中包括请求的IP地址</li>
+</ul>
+</li>
+<li>第四步：服务器收到后，广播<strong>DHCP确认报文</strong><ul>
+<li>包括提供的IP地址和配置信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用广播的原因<ul>
+<li>第一步：服务器地址未知</li>
+<li>第二步：客户机还没有IP地址</li>
+<li>第三步：告知所有DHCP服务器，客户机将选择某服务器</li>
+<li>第四步：客户机还没有IP地址</li>
+</ul>
+</li>
+<li>重新登陆<ul>
+<li>客户机重新登陆时从第三步开始，发送请求报文</li>
+<li>服务器接收到后<ul>
+<li>若同意客户继续使用IP地址，则发送确认报文</li>
+<li>否则发送<strong>否定报文NACK</strong>，客户机要从第一步开始</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>更新租约<ul>
+<li>在租用期过半时，客户从第三步开始，发送请求报文，更新租约</li>
+</ul>
+</li>
+</ul>
+<h4 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h4><ul>
+<li>网际控制报文协议ICMP<ul>
+<li>报告差错和异常情况</li>
+<li>ICMP报文作为IP的数据部分，加上IP头部组成IP数据报</li>
+</ul>
+</li>
+<li>ICMP差错报告报文<ul>
+<li>终点不可达</li>
+<li>源点抑制<ul>
+<li>用于拥塞控制</li>
+</ul>
+</li>
+<li>时间超过<ul>
+<li>路由器发送情况：收到TTL为0的分组，丢弃</li>
+<li>终点主机发送情况：等待数据报分片超时，丢弃已接收的分片</li>
+</ul>
+</li>
+<li>参数问题<ul>
+<li>数据报的头部有错误字段</li>
+</ul>
+</li>
+<li>改变路由（重定向）<ul>
+<li>路由器告知主机更好的路由</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不发送的ICMP差错报告情况<ul>
+<li>ICMP差错报告报文所在的数据报</li>
+<li>第一个分片后面所有分片的数据报</li>
+<li>有组播地址的数据报</li>
+<li>有特殊地址（如127.0.0.0和0.0.0.0）的数据报</li>
+</ul>
+</li>
+<li>ICMP询问报文<ul>
+<li>回送请求和回答报文<ul>
+<li>测试目的主机的可达状态</li>
+</ul>
+</li>
+<li>时间戳请求和回答报文</li>
+<li>地址掩码请求和回答报文</li>
+<li>路由器询问和通告报文</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>路由追踪命令（Traceroute/Tracert）<ul>
+<li>工作层：网络层</li>
+<li>原理：依次发送TTL为1、2、3的报文，通过接收的<strong>ICMP时间超过报文</strong>，推测路由信息</li>
+</ul>
+</li>
+<li>分组网间探测命令（PING）<ul>
+<li>工作层：应用层，不使用传输层</li>
+<li>原理：通过<strong>ICMP回送请求和回答报文</strong>测试连通性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h2><h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><h3 id="IPv6地址"><a href="#IPv6地址" class="headerlink" title="IPv6地址"></a>IPv6地址</h3><h2 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h2><h3 id="自治系统"><a href="#自治系统" class="headerlink" title="自治系统"></a>自治系统</h3><h3 id="域内路由"><a href="#域内路由" class="headerlink" title="域内路由"></a>域内路由</h3><h3 id="域间路由"><a href="#域间路由" class="headerlink" title="域间路由"></a>域间路由</h3><h3 id="RIP路由协议"><a href="#RIP路由协议" class="headerlink" title="RIP路由协议"></a>RIP路由协议</h3><h3 id="OSPF路由协议"><a href="#OSPF路由协议" class="headerlink" title="OSPF路由协议"></a>OSPF路由协议</h3><h3 id="BGP路由协议"><a href="#BGP路由协议" class="headerlink" title="BGP路由协议"></a>BGP路由协议</h3><h2 id="IP组播"><a href="#IP组播" class="headerlink" title="IP组播"></a>IP组播</h2><h3 id="组播概念"><a href="#组播概念" class="headerlink" title="组播概念"></a>组播概念</h3><h3 id="IP组播地址"><a href="#IP组播地址" class="headerlink" title="IP组播地址"></a>IP组播地址</h3><h2 id="移动IP"><a href="#移动IP" class="headerlink" title="移动IP"></a>移动IP</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="通信过程"><a href="#通信过程" class="headerlink" title="通信过程"></a>通信过程</h3><h2 id="网络层设备"><a href="#网络层设备" class="headerlink" title="网络层设备"></a>网络层设备</h2><h3 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h3><p>组成和功能</p>
+<h3 id="路由表和分组转发"><a href="#路由表和分组转发" class="headerlink" title="路由表和分组转发"></a>路由表和分组转发</h3>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/26/ProbabilityAndStatistics2/" rel="prev" title="【知识总结】 第二章-随机变量及其概率分布">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第二章-随机变量及其概率分布
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/28/ProbabilityAndStatistics3/" rel="next" title="【知识总结】 第三章-多维随机变量及其概率分布">
+      【知识总结】 第三章-多维随机变量及其概率分布 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">网络层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%9E%84%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94"><span class="nav-number">1.1.</span> <span class="nav-text">异构网络互联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%92%8C%E8%BD%AC%E5%8F%91"><span class="nav-number">1.2.</span> <span class="nav-text">路由和转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDN%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.3.</span> <span class="nav-text">SDN基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">拥塞控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">路由算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%92%8C%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-number">2.1.</span> <span class="nav-text">静态路由和动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%9D%E7%A6%BB-%E5%90%91%E9%87%8F%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">距离-向量路由算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">链路状态路由算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E8%B7%AF%E7%94%B1"><span class="nav-number">2.4.</span> <span class="nav-text">层次路由</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4"><span class="nav-number">3.</span> <span class="nav-text">IPv4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">分组格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E5%88%86%E7%89%87"><span class="nav-number">3.2.</span> <span class="nav-text">分组分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.</span> <span class="nav-text">转发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4%E5%9C%B0%E5%9D%80"><span class="nav-number">3.4.</span> <span class="nav-text">IPv4地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2NAT"><span class="nav-number">3.5.</span> <span class="nav-text">网络地址转换NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="nav-number">3.6.</span> <span class="nav-text">子网划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="nav-number">3.7.</span> <span class="nav-text">子网掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CIDR"><span class="nav-number">3.8.</span> <span class="nav-text">CIDR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.9.</span> <span class="nav-text">有关协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.9.1.</span> <span class="nav-text">ARP协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DHCP%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.9.2.</span> <span class="nav-text">DHCP协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.9.3.</span> <span class="nav-text">ICMP协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv6"><span class="nav-number">4.</span> <span class="nav-text">IPv6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">主要特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6%E5%9C%B0%E5%9D%80"><span class="nav-number">4.2.</span> <span class="nav-text">IPv6地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.</span> <span class="nav-text">路由协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%B2%BB%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.1.</span> <span class="nav-text">自治系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%86%85%E8%B7%AF%E7%94%B1"><span class="nav-number">5.2.</span> <span class="nav-text">域内路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E9%97%B4%E8%B7%AF%E7%94%B1"><span class="nav-number">5.3.</span> <span class="nav-text">域间路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.4.</span> <span class="nav-text">RIP路由协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSPF%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.5.</span> <span class="nav-text">OSPF路由协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BGP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.6.</span> <span class="nav-text">BGP路由协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP%E7%BB%84%E6%92%AD"><span class="nav-number">6.</span> <span class="nav-text">IP组播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E6%92%AD%E6%A6%82%E5%BF%B5"><span class="nav-number">6.1.</span> <span class="nav-text">组播概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="nav-number">6.2.</span> <span class="nav-text">IP组播地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8IP"><span class="nav-number">7.</span> <span class="nav-text">移动IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B"><span class="nav-number">7.2.</span> <span class="nav-text">通信过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="nav-number">8.</span> <span class="nav-text">网络层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="nav-number">8.1.</span> <span class="nav-text">路由器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%92%8C%E5%88%86%E7%BB%84%E8%BD%AC%E5%8F%91"><span class="nav-number">8.2.</span> <span class="nav-text">路由表和分组转发</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
