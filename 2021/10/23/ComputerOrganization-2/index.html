@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/complement_mul.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/div.png">
 <meta property="article:published_time" content="2021-10-23T13:58:35.000Z">
-<meta property="article:modified_time" content="2021-12-02T14:19:41.782Z">
+<meta property="article:modified_time" content="2021-12-02T14:24:27.706Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 22:19:41" itemprop="dateModified" datetime="2021-12-02T22:19:41+08:00">2021-12-02</time>
+                <time title="修改时间：2021-12-02 22:24:27" itemprop="dateModified" datetime="2021-12-02T22:24:27+08:00">2021-12-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -431,10 +431,12 @@
 </ul>
 <h3 id="加减运算"><a href="#加减运算" class="headerlink" title="加减运算"></a>加减运算</h3><p>补码加减运算器可以实现无符号数和带符号数的加减操作，原理如下</p>
 <ul>
-<li>减法看作是加上相反数（以补码的规则按位取反加1）</li>
-<li>在加法器基础上，增加一个2选1多路选择器，根据$sub$控制信号来选择加还是减</li>
-<li>如果选加则直接输入，如果选减，则减数取相反数</li>
-<li>$sub$控制信号作为$C_{in}$输入加法器</li>
+<li>减法看作是加上相反数（以补码的规则<strong>按位取反加1</strong>）</li>
+<li>在加法器基础上，增加一个2选1多路选择器，根据$sub$控制信号来选择加还是减<ul>
+<li>如果选加则直接输入，如果选减，则减数<strong>按位取反</strong></li>
+</ul>
+</li>
+<li>$sub$控制信号作为$C_{in}$输入加法器，<strong>表示减数加1</strong></li>
 <li>ZF零标志对于有符号无符号数都有意义</li>
 <li>CF进/借位标志，等于$sub\oplus C_{out}$，无符号数使用</li>
 <li>OF溢出标志，有符号数使用，判定方法有<ul>
@@ -760,7 +762,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

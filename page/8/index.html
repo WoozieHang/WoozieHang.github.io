@@ -198,6 +198,223 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/04/Generalized-ODIN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/04/Generalized-ODIN/" class="post-title-link" itemprop="url">【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-04 17:19:16" itemprop="dateCreated datePublished" datetime="2021-04-04T17:19:16+08:00">2021-04-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-11 12:32:12" itemprop="dateModified" datetime="2021-05-11T12:32:12+08:00">2021-05-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OoD-Detection/" itemprop="url" rel="index"><span itemprop="name">OoD Detection</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/04/04/Generalized-ODIN/" class="post-meta-item leancloud_visitors" data-flag-title="【阅读笔记】 Generalied ODIN:Detecting Out-of-distribution Image without Learning from Out-of-distribution Data" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/04/04/Generalized-ODIN/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/04/Generalized-ODIN/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。因此，检测一个样本是不是OoD对于能拒绝或警示这种样本的系统是重要的。包含 一些小数据集的OoD benchmarks下的工作在近期已经取得了巨大的进展。然而，这些方法很多都需要神经网络训练、调参的时候同时有in-distribution和out-of-distribution的数据。后者是难以先验定义的，不同的OoD数据会产生不同的学习效果。本文的工作基于一个流行的方法：ODIN。这个方法提出两个重要的策略，不需要OoD的数据，同时改进了OoD的检测性能。本文具体的提出了<strong>分解置信度</strong>的方法以及<strong>改进input preprocessing</strong>的方法。本文展示了这两者都得能显著提高检测OoD的性能。并且，作者在更大规模的图像数据集上进行了分析，表明数据的分布迁移有两种：语义迁移和非语义迁移。这两者会让问题的难度变得非常不同，这提供了一个关于ODIN-like的策略何时能有效的分析。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>先进的机器学习模型，具体来说是深度神经网络，通常在静态封闭世界假设下设计的。这些模型需要引入测试集和训练集独立同分布的假设。在真实世界，数据分布会以复杂和动态的方式进行迁移。更坏的是，新概念（如新的分类对象）可能在任何时刻输入到模型中。这样的类内的迁移或者是新概念的数据都会导致灾难性的失败，因为模型依然是基于封闭世界假设来预测的。这些失效经常是无声的，模型不会输出明显的错误。</p>
+<p>以上的问题已经被规范为一个检测问题，即判断一个输入数据是不是in-distribution的数据，或者是out-of-distribution。这个问题已经被研究了很多年，也以各种观点被讨论了，例如rejection, anomaly detection, open set recognition, uncertainty estimation。最近几年，一个流行的基于神经网络检测的baseline使用了类别的后验概率（即softmax）的最大值，这个方法可以在有些情况是一个良好的区分in-distribution和out-of-distribution的指示器。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/04/Generalized-ODIN/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/01/graphIntroduction-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/01/graphIntroduction-5/" class="post-title-link" itemprop="url">【知识总结】 最大匹配算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-01 16:10:56" itemprop="dateCreated datePublished" datetime="2021-04-01T16:10:56+08:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-05 13:42:00" itemprop="dateModified" datetime="2021-04-05T13:42:00+08:00">2021-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/04/01/graphIntroduction-5/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 最大匹配算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/04/01/graphIntroduction-5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/01/graphIntroduction-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="面向二部图的增广路算法"><a href="#面向二部图的增广路算法" class="headerlink" title="面向二部图的增广路算法"></a>面向二部图的增广路算法</h2><h3 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h3><ul>
+<li>搜索一条增广路</li>
+<li>如果找到了：替换得到更大的匹配，返回1</li>
+<li>否则结束</li>
+</ul>
+<h3 id="算法细节"><a href="#算法细节" class="headerlink" title="算法细节"></a>算法细节</h3><ol>
+<li>每轮从二部图的任意一侧的不饱和顶点开始，搜索增广路，以左侧为例。</li>
+<li>左侧到右侧，找不在匹配中的边；右侧到左侧，找在匹配中的边。</li>
+<li>如果找到一个不是起点的未饱和顶点 $\Rightarrow$ 则找到增广路 $\Rightarrow$ 替换得到更大的匹配 $\Rightarrow$ 转到5。</li>
+<li>或深度优先搜索完所有的点和边，仍未找到增广路 $\Rightarrow$ 本轮没找到增广路 $\Rightarrow$ 转到5。</li>
+<li>如果左侧还有不饱和的顶点没有搜索过，则转到1进入下一轮搜索。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/01/graphIntroduction-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/29/algorithms3-hw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1023,211 +1240,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/08/graphIntroduction-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/graphIntroduction-1/" class="post-title-link" itemprop="url">【知识总结】 图的基本概念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-08 19:52:02" itemprop="dateCreated datePublished" datetime="2021-03-08T19:52:02+08:00">2021-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:46:04" itemprop="dateModified" datetime="2021-04-05T13:46:04+08:00">2021-04-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/03/08/graphIntroduction-1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 图的基本概念" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/03/08/graphIntroduction-1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/08/graphIntroduction-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为<strong>顶点集</strong>，集合E是V中元素组成的某些无序对的集合，称为<strong>边集</strong>，顶点的数目$|V|$称为图的<strong>阶</strong>，边的数目$|E|$称为图的边数。</p>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p>定义：点表示顶点，线段表示边，绘制出平面表示图。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/08/graphIntroduction-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/01/worklog-2021-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/01/worklog-2021-3/" class="post-title-link" itemprop="url">【工作日志】 2021年3月</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-01 14:57:01" itemprop="dateCreated datePublished" datetime="2021-03-01T14:57:01+08:00">2021-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 20:59:43" itemprop="dateModified" datetime="2021-04-13T20:59:43+08:00">2021-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">工作日志</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/03/01/worklog-2021-3/" class="post-meta-item leancloud_visitors" data-flag-title="【工作日志】 2021年3月" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/03/01/worklog-2021-3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/01/worklog-2021-3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/01/worklog-2021-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1299,7 +1311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

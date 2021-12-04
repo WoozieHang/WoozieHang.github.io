@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吴紫航">
-<meta property="og:url" content="https://wooziehang.github.io/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/index.html">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  基本概念 总体 研究对象某个数量指标（随机变量）的全体 总体的分布即该随机变量的分布   简单随机样本 独立同分布（同总体的分布）的随机变量    样本值 样本的观测数值   统计量 简单随机样本的函数 随机变量的函数   统计值 统计量的观测数值    概率论和数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第六章-数理统计的基本概念">
+<meta property="og:url" content="https://wooziehang.github.io/2021/12/02/ProbabilityAndStatistics6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  基本概念 总体 研究对象某个数量指标（随机变量）的全体 总体的分布即该随机变量的分布   简单随机样本 独立同分布（同总体的分布）的随机变量    样本值 样本的观测数值   统计量 简单随机样本的函数 随机变量的函数   统计值 统计量的观测数值    概率论和数">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-02T14:34:22.000Z">
+<meta property="article:modified_time" content="2021-12-03T16:08:41.614Z">
 <meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">
+<link rel="canonical" href="https://wooziehang.github.io/2021/12/02/ProbabilityAndStatistics6/">
 
 
 <script id="page-configurations">
@@ -38,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: 概率论与数理统计 | 吴紫航</title>
+  <title>【知识总结】 第六章-数理统计的基本概念 | 吴紫航</title>
   
 
 
@@ -192,157 +195,236 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/02/ProbabilityAndStatistics6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第六章-数理统计的基本概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-02 22:34:22" itemprop="dateCreated datePublished" datetime="2021-12-02T22:34:22+08:00">2021-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-04 00:08:41" itemprop="dateModified" datetime="2021-12-04T00:08:41+08:00">2021-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率论与数理统计</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/02/ProbabilityAndStatistics6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-数理统计的基本概念" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">概率论与数理统计
-          <small>分类</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/02/ProbabilityAndStatistics6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/02/ProbabilityAndStatistics6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-02T22:34:22+08:00"
-              content="2021-12-02">
-          12-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/02/ProbabilityAndStatistics6/" itemprop="url">
-            <span itemprop="name">【知识总结】 第六章-数理统计的基本概念</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-29T22:04:50+08:00"
-              content="2021-11-29">
-          11-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/29/ProbabilityAndStatistics5/" itemprop="url">
-            <span itemprop="name">【知识总结】 第五章-大数定律和中心极限定理</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-28T22:00:50+08:00"
-              content="2021-11-28">
-          11-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/28/ProbabilityAndStatistics4/" itemprop="url">
-            <span itemprop="name">【知识总结】 第四章-随机变量的数字特征</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-28T16:51:13+08:00"
-              content="2021-11-28">
-          11-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/28/ProbabilityAndStatistics3/" itemprop="url">
-            <span itemprop="name">【知识总结】 第三章-多维随机变量及其概率分布</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-26T23:03:09+08:00"
-              content="2021-11-26">
-          11-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/26/ProbabilityAndStatistics2/" itemprop="url">
-            <span itemprop="name">【知识总结】 第二章-随机变量及其概率分布</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-26T21:01:35+08:00"
-              content="2021-11-26">
-          11-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/26/ProbabilityAndStatistics1/" itemprop="url">
-            <span itemprop="name">【知识总结】 第一章-随机事件和概率</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>总体<ul>
+<li>研究对象某个数量指标（随机变量）的全体</li>
+<li><strong>总体的分布</strong>即该随机变量的分布</li>
+</ul>
+</li>
+<li>简单随机样本<ul>
+<li><strong>独立同分布</strong>（同总体的分布）的随机变量 </li>
+</ul>
+</li>
+<li>样本值<ul>
+<li>样本的观测数值</li>
+</ul>
+</li>
+<li>统计量<ul>
+<li>简单随机样本的函数</li>
+<li><strong>随机变量</strong>的函数</li>
+</ul>
+</li>
+<li>统计值<ul>
+<li>统计量的观测数值</li>
+</ul>
+</li>
+</ul>
+<h2 id="概率论和数理统计的核心问题"><a href="#概率论和数理统计的核心问题" class="headerlink" title="概率论和数理统计的核心问题"></a>概率论和数理统计的核心问题</h2><ul>
+<li>概率论<ul>
+<li>核心问题<ul>
+<li>求总体的分布（随机变量的分布），进而求数字特征（反映总体分布特征的数字）</li>
+</ul>
+</li>
+<li>核心步骤<ul>
+<li>定义法计算总体的分布，定义法求数字特征</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数理统计<ul>
+<li>核心问题<ul>
+<li>已知样本值，通过各种方法，对总体的参数求解（参数估计），对总体的参数满足的性质进行验证（假设检验）</li>
+</ul>
+</li>
+<li>矩估计的原理<ul>
+<li>用样本统计值（数字）估计总体的数字特征（数字），从而得到总体的分布</li>
+</ul>
+</li>
+<li>极大似然估计<ul>
+<li>让样本的联合密度函数在样本值处取最大，从而估计出总体的参数</li>
+</ul>
+</li>
+<li>置信区间的理解（置信度给定）<ul>
+<li><strong>某个数字落在该数字的置信区间的概率，等于置信度</strong></li>
+<li>统计值和总体参数有各自的置信区间，但是两者和置信区间的位置关系是等价对应的</li>
+</ul>
+</li>
+<li>区间估计的原理<ul>
+<li>首先用统计量的分布（带总体参数），求出统计值的置信区间（带总体参数）</li>
+<li>令统计值落在统计值的置信区间内，求出总体参数的置信区间（估计区间）</li>
+</ul>
+</li>
+<li>假设检验的原理<ul>
+<li>在区间估计的基础上，对比参数的<strong>假设区间</strong>和参数的<strong>置信区间</strong></li>
+<li>如果参数的假设区间包含置信区间，说明<strong>参数落在假设区间的概率，不小于置信度</strong>，不拒绝原假设。否则拒绝原假设。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用统计量"><a href="#常用统计量" class="headerlink" title="常用统计量"></a>常用统计量</h2><ul>
+<li>样本均值<ul>
+<li>$\overline{X}=\frac{1}{n}\sum\limits_{i=1}^{n}X_i$</li>
+</ul>
+</li>
+<li>样本方差<ul>
+<li>$S^2=\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\overline{X})^2=\frac{1}{n-1}(\sum\limits_{i=1}^nX_i^2-n\overline{X}^2)$</li>
+</ul>
+</li>
+<li>样本标准差<ul>
+<li>$S=\sqrt{\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\overline{X})^2}$</li>
+</ul>
+</li>
+<li>样本$k$阶原点矩<ul>
+<li>$A_k=\frac{1}{n}\sum\limits_{i=1}^nX_i^k,k=1,2$</li>
+<li>$A_1=\overline{X}$</li>
+</ul>
+</li>
+<li>样本$k$阶中心矩<ul>
+<li>$B_k=\frac{1}{n}\sum\limits_{i=1}^n(X_i-\overline{X})^k,k=1,2$</li>
+<li>$B_2=\frac{n-1}{n}S^2$</li>
+</ul>
+</li>
+</ul>
 
     </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/01/network5/" rel="prev" title="【知识总结】 第五章-传输层">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第五章-传输层
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/03/network6/" rel="next" title="【知识总结】 第六章-应用层">
+      【知识总结】 第六章-应用层 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -389,6 +471,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%9A%84%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">概率论和数理统计的核心问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">常用统计量</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -570,6 +653,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

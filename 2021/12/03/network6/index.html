@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="网络应用模型客户&#x2F;服务器模型 即Cient&#x2F;Server模型、C&#x2F;S模型 服务器是服务提供方，要一直保持运行状态 客户是服务请求方，要实现知道服务器的地址    工作流程 服务器处于接收请求状态 客户机发出服务请求，等待结果 服务器收到后，分析请求、处理、把结果发给客户机   特征 非对称 占少数的服务器集中管理整个网络 占多数的客户机的权限由服务器管理限制   客户机之间不能通信 服务器支持的客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第六章-应用层">
+<meta property="og:url" content="https://wooziehang.github.io/2021/12/03/network6/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="网络应用模型客户&#x2F;服务器模型 即Cient&#x2F;Server模型、C&#x2F;S模型 服务器是服务提供方，要一直保持运行状态 客户是服务请求方，要实现知道服务器的地址    工作流程 服务器处于接收请求状态 客户机发出服务请求，等待结果 服务器收到后，分析请求、处理、把结果发给客户机   特征 非对称 占少数的服务器集中管理整个网络 占多数的客户机的权限由服务器管理限制   客户机之间不能通信 服务器支持的客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-03T01:40:54.000Z">
+<meta property="article:modified_time" content="2021-12-04T18:48:04.910Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/12/03/network6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第六章-应用层 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/03/network6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第六章-应用层
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-03 09:40:54" itemprop="dateCreated datePublished" datetime="2021-12-03T09:40:54+08:00">2021-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-05 02:48:04" itemprop="dateModified" datetime="2021-12-05T02:48:04+08:00">2021-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/03/network6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-应用层" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/03/network6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/03/network6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="网络应用模型"><a href="#网络应用模型" class="headerlink" title="网络应用模型"></a>网络应用模型</h2><h3 id="客户-服务器模型"><a href="#客户-服务器模型" class="headerlink" title="客户/服务器模型"></a>客户/服务器模型</h3><ul>
+<li>即Cient/Server模型、C/S模型<ul>
+<li>服务器是服务提供方，要一直保持运行状态</li>
+<li>客户是服务请求方，要实现知道服务器的地址 </li>
+</ul>
+</li>
+<li>工作流程<ul>
+<li>服务器处于接收请求状态</li>
+<li>客户机发出服务请求，等待结果</li>
+<li>服务器收到后，分析请求、处理、把结果发给客户机</li>
+</ul>
+</li>
+<li>特征<ul>
+<li>非对称<ul>
+<li>占少数的服务器集中管理整个网络</li>
+<li>占多数的客户机的权限由服务器管理限制</li>
+</ul>
+</li>
+<li>客户机之间不能通信</li>
+<li>服务器支持的客户机数有限</li>
+</ul>
+</li>
+<li>应用举例<ul>
+<li>FTP</li>
+<li>TELNET</li>
+<li>SMTP</li>
+<li>DNS</li>
+<li>WWW（Web）</li>
+</ul>
+</li>
+</ul>
+<h3 id="对等模型"><a href="#对等模型" class="headerlink" title="对等模型"></a>对等模型</h3><ul>
+<li>即P2P模型<ul>
+<li>P2P网络是由对等结点组成的逻辑网络</li>
+</ul>
+</li>
+<li>特征<ul>
+<li>各计算机地位对称，既是客户，又是服务器<ul>
+<li>获取服务的同时需要提供服务，也算缺点</li>
+</ul>
+</li>
+<li>任意一对计算机（对等方）直接相互通信</li>
+<li>网络单结点失效不影响其他结点</li>
+</ul>
+</li>
+<li>应用举例<ul>
+<li>PPlive</li>
+<li>Bittorrent</li>
+<li>电驴</li>
+</ul>
+</li>
+</ul>
+<h2 id="域名系统DNS"><a href="#域名系统DNS" class="headerlink" title="域名系统DNS"></a>域名系统DNS</h2><h3 id="层次域名空间"><a href="#层次域名空间" class="headerlink" title="层次域名空间"></a>层次域名空间</h3><ul>
+<li>域名：网络设备的一种具有层次结构的命名<ul>
+<li>比如www.google.com是谷歌搜索服务器的域名</li>
+<li>“.com”顶级域名、”.google”二级域名、”www”三级域名</li>
+</ul>
+</li>
+<li>概念介绍<ul>
+<li>域名<ul>
+<li>多个标号的序列，标号间”.”隔开</li>
+<li>每个标号对应一个子域名，且从左到右域名级别递增，最右边是顶级域名</li>
+<li>不超过255各字符</li>
+</ul>
+</li>
+<li>标号<ul>
+<li>由字母、数字、”-“组成</li>
+<li>不区分大小写</li>
+<li>不超过63个字符</li>
+</ul>
+</li>
+<li>顶级域名<ul>
+<li>国家顶级域名：”.cn”是中国、”.us”是美国</li>
+<li>通用顶级域名：”.com”是公司、”.org”是非营利组织</li>
+<li>基础结构域名：”.arpa”反向域名解析（唯一的基础结构域名）</li>
+</ul>
+</li>
+<li>层次域名空间<ul>
+<li>各个域的关系可以用树状层次结构表示</li>
+<li>各个域的管理组织不同，子域由子组织管理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="域名服务器"><a href="#域名服务器" class="headerlink" title="域名服务器"></a>域名服务器</h3><ul>
+<li>域名服务器：采用<strong>C/S模型</strong>的分布式数据库系统，<strong>提供从域名到IP地址的解析</strong><ul>
+<li>若不能进行解析，则给用户提供寻找其他域名服务器的信息</li>
+</ul>
+</li>
+<li>区：一个域名服务器的管辖范围</li>
+<li>域名系统（DNS）：以层次方式组织大量域名服务器，提供域名解析服务</li>
+<li>域名服务器按层次的分类<ul>
+<li>根域名服务器<ul>
+<li>13个相互冗余的根域名服务器组成服务器集群，管理所有顶级域名服务器的IP地址</li>
+<li>提供下一步要查询的顶级域名服务器的IP地址</li>
+</ul>
+</li>
+<li>顶级域名服务器<ul>
+<li>管理该域名服务器所注册的所有二级域名</li>
+<li>提供最终结果的IP地址或下一步要查询的域名服务器的IP地址</li>
+</ul>
+</li>
+<li>授权域名服务器（又叫权限域名服务器，<strong>可以涉及多个层次</strong>）<ul>
+<li>管理在服务器注册的所有主机（一台主机一般在多个服务器注册）</li>
+<li>提供从主机名到主机IP地址的转换</li>
+</ul>
+</li>
+<li>本地域名服务器<ul>
+<li>每个因特网服务提供者（ISP）可以拥有一个本地域名服务器</li>
+<li>处理本地主机的DNS查询请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="域名解析过程"><a href="#域名解析过程" class="headerlink" title="域名解析过程"></a>域名解析过程</h3><ul>
+<li>正向解析：域名映射到IP地址</li>
+<li>反向解析：IP地址映射到域名</li>
+<li>DNS请求报文：由用户机的DNS客户端构造，装入UDP，发往服务器，请求域名解析服务</li>
+<li>域名解析方式<ul>
+<li>注：<ul>
+<li>为描述简洁，域名服务器简写，比如“根域名服务器”简写为“根”</li>
+<li>低层服务器看作是高层服务器的用户机</li>
+</ul>
+</li>
+<li>递归查询（负载较大，很少使用）<ul>
+<li>主机、本地、根、顶级、权限、顶级、根、本地、主机</li>
+</ul>
+</li>
+<li>递归与迭代相结合的查询（常用）<ul>
+<li>完整的递归迭代查询：主机、<strong>本地</strong>、根、<strong>本地</strong>、顶级、<strong>本地</strong>、权限、<strong>本地</strong>、主机</li>
+<li>不完整的递归迭代查询：前三个<strong>本地</strong>的任意一个，若已经查到了域名的IP地址，可以提前结束迭代，返回主机</li>
+<li>退化为递归查询：主机、本地、主机</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>高速缓存<ul>
+<li>DNS服务器获得DNS查询结果后，除了将其发送给用户机，还要将其保存到高速缓存<ul>
+<li>方便之后相同的域名查询</li>
+<li>高速缓存内容不永久保存，定期丢弃</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="文本传输协议FTP"><a href="#文本传输协议FTP" class="headerlink" title="文本传输协议FTP"></a>文本传输协议FTP</h2><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ul>
+<li>功能<ul>
+<li>以用户登陆方式，获得远程FTP服务器的文件的管理权限<ul>
+<li>上传和下载</li>
+</ul>
+</li>
+<li>以匿名方式（非用户登陆方式）提供公用文件的共享</li>
+<li>提供不同种主机间的文件传输</li>
+</ul>
+</li>
+<li>服务器的进程组成<ul>
+<li>一个主进程（端口号21）<ul>
+<li>接收新请求</li>
+</ul>
+</li>
+<li>若干从属进程<ul>
+<li>处理单个请求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从属进程类型<ul>
+<li>控制进程（端口号21）</li>
+<li>数据传送进程（默认情况端口号20）</li>
+</ul>
+</li>
+<li>工作步骤<ul>
+<li>主进程等待客户连接请求</li>
+<li>主进程收到客户连接请求，启动控制进程，建立<strong>控制连接</strong><ul>
+<li>会话结束后终止控制进程</li>
+</ul>
+</li>
+<li>控制进程收到客户数据传输请求，启动数据传送进程，建立<strong>数据连接</strong><ul>
+<li>传送完后终止数据传送进程 </li>
+</ul>
+</li>
+<li>会话结束后，继续等待其他客户请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="控制连接和数据连接"><a href="#控制连接和数据连接" class="headerlink" title="控制连接和数据连接"></a>控制连接和数据连接</h3><ul>
+<li>控制连接<ul>
+<li>两端进程：控制进程</li>
+<li>服务器端口号：21</li>
+<li>用户端口号：用户随机分配</li>
+<li>功能：以ASCII格式传送控制信息，如数据连接请求、数据传送请求、中止传输命令等</li>
+<li>带外传送：指控制连接和数据连接分离的传送方式</li>
+</ul>
+</li>
+<li>数据连接<ul>
+<li>两端进程：数据传送进程</li>
+<li>服务器端口号<ul>
+<li>主动模式：20</li>
+<li>被动模式：服务器随机分配 </li>
+</ul>
+</li>
+<li>用户端口号：用户随机分配</li>
+<li>功能：完成客户端和服务器端的文件数据传送</li>
+<li>传送模式：默认为主动模式<ul>
+<li>主动模式PORT：客户发送PORT命令和客户端口号，再由服务器发起连接</li>
+<li>被动模式PASV：客户发送PASV命令获取服务器端口号，再由客户机发起连接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件修改方式"><a href="#文件修改方式" class="headerlink" title="文件修改方式"></a>文件修改方式</h3><ul>
+<li>传统的FTP<ul>
+<li>在本地复制远程文件的整个副本，修改后传回服务器，很耗时</li>
+</ul>
+</li>
+<li>网络文件系统NFS<ul>
+<li>在本地复制远程文件的特定片段，修改后传回服务器，速度快</li>
+</ul>
+</li>
+</ul>
+<h2 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h2><h3 id="电子邮件系统的组成结构"><a href="#电子邮件系统的组成结构" class="headerlink" title="电子邮件系统的组成结构"></a>电子邮件系统的组成结构</h3><ul>
+<li>用户代理<ul>
+<li>用户和电子邮件系统的接口（即邮件客户端软件）</li>
+<li>提供邮件撰写、显示、处理、通信的功能</li>
+</ul>
+</li>
+<li>邮件服务器<ul>
+<li>功能是发送和接收邮件</li>
+<li>结构包括邮件缓存和用户邮箱</li>
+<li>举例：qq邮件服务器、189邮件服务器等</li>
+</ul>
+</li>
+<li>电子邮件的协议<ul>
+<li>发送协议（SMTP协议）<ul>
+<li>发送方用户代理（客户）数据<strong>推</strong>到发送方邮件服务器（服务器）的<strong>邮件缓存</strong></li>
+<li>发送方邮件服务器（客户）发送数据到接收方邮件服务器（服务器）的<strong>用户邮箱</strong></li>
+</ul>
+</li>
+<li>接收协议（POP3协议或IMAP协议）<ul>
+<li>接收方邮件服务器（服务器）数据<strong>拉</strong>到接收方用户代理（客户）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="电子邮件格式"><a href="#电子邮件格式" class="headerlink" title="电子邮件格式"></a>电子邮件格式</h3><ul>
+<li>信封<ul>
+<li>自动填写</li>
+</ul>
+</li>
+<li>内容<ul>
+<li>首部<ul>
+<li>From（自动填写）：[发送方用户邮箱名]@[发送方邮件服务器的域名]</li>
+<li>To（用户必填）：[接收方用户邮箱名]@[接收方邮件服务器的域名]</li>
+<li>Subject（用户选填）：[邮件的主题]</li>
+</ul>
+</li>
+<li>主体<ul>
+<li>用户撰写的邮件内容（ASCII码）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="MIME"><a href="#MIME" class="headerlink" title="MIME"></a>MIME</h3><p>即多用途网际邮件扩充</p>
+<ul>
+<li>功能<ul>
+<li>使得SMTP除了支持ASCII码，还支持其他编码以及二进制文件的发送</li>
+</ul>
+</li>
+<li>实现<ul>
+<li>不改变SMTP</li>
+<li>新定义了首部字段、主体结构、传送非ASCII码的规则</li>
+</ul>
+</li>
+</ul>
+<h3 id="SMTP与POP3"><a href="#SMTP与POP3" class="headerlink" title="SMTP与POP3"></a>SMTP与POP3</h3><ul>
+<li>SMTP<ul>
+<li>连接建立<ul>
+<li>发送方邮件服务器定期扫描缓存</li>
+<li>缓存发现邮件，则在端口25和接收方服务器建立TCP连接</li>
+<li>接收方回复220 Service ready</li>
+<li>发送方发出HELO，带有发送方主机名</li>
+</ul>
+</li>
+<li>邮件传送<ul>
+<li>发送方发出的MAIL，带有发件人地址</li>
+<li>接收方回复250 OK</li>
+<li>发送方发出若干RCPT，确认接收方是否做好准备</li>
+<li>接收方回复250 OK或No such user here</li>
+<li>发送方发出DATA，传输邮件内容</li>
+<li>接收方回复354 Start mail input；end with <CRLF>.<CRLF></CRLF></CRLF></li>
+<li>发送方发出<CRLF>.<CRLF>，表示邮件内容结束</CRLF></CRLF></li>
+</ul>
+</li>
+<li>连接释放<ul>
+<li>发送方发出QUIT</li>
+<li>接收方回复221</li>
+<li>进行TCP的连接释放</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>POP3<ul>
+<li>端口号110，基于TCP</li>
+<li>工作方式（由POP3客户决定）<ul>
+<li>下载并保留：下载后邮件保留在邮箱</li>
+<li>下载并删除：下载后邮件删除</li>
+</ul>
+</li>
+<li>传输方式<ul>
+<li>明文传输</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IMAP<ul>
+<li>比POP3复杂，但都是用于邮件接收</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>在万维网的邮件系统中使用HTTP协议</p>
+<ul>
+<li>用户代理（浏览器）和邮件服务器以HTTP发送和接收邮件</li>
+</ul>
+<h2 id="WWW"><a href="#WWW" class="headerlink" title="WWW"></a>WWW</h2><h3 id="WWW的概念和组成结构"><a href="#WWW的概念和组成结构" class="headerlink" title="WWW的概念和组成结构"></a>WWW的概念和组成结构</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>万维网（WWW）：联机分布式的信息储藏所<ul>
+<li>万维网由大量网络站点互联</li>
+<li>每个站点包含若干文档（页面、资源）</li>
+</ul>
+</li>
+<li>超链接（链接）：从一个文档访问另一个文档的方法</li>
+<li>超文本：包含链接的文档（纯文本）</li>
+<li>超媒体：包含链接的文档（除了文本，还包含图像、声音、视频等媒体）</li>
+<li>互联网、因特网、万维网的关系<ul>
+<li>互联网：多个计算机网络按协议连接的大型网络</li>
+<li>因特网：实际已有的最大的互联网，包括网络站点、电子邮件、新闻组等</li>
+<li>万维网：因特网的主要部分</li>
+</ul>
+</li>
+</ul>
+<h4 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h4><ul>
+<li>统一资源定位符（URL）：唯一的标识万维网的文档<ul>
+<li>例如：”<a target="_blank" rel="noopener" href="http://www.tsinghua.edu.cn:80/zjqh/xxgk1.htm">http://www.tsinghua.edu.cn:80/zjqh/xxgk1.htm</a>“</li>
+<li>结构：[传送协议]://[服务器主机域名]：[端口]/[路径]</li>
+<li>注：传送协议一般是http或fps，端口一般省略</li>
+</ul>
+</li>
+<li>超文本传输协议（HTTP）：基于TCP的应用层协议，在浏览器客户端和Web服务器之间传送超文本</li>
+<li>超文本标记语言（HTML）：对页面进行描述的语言</li>
+</ul>
+<h3 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h3><h4 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h4><ul>
+<li>浏览器分析URL，得到URL的四个成分，传送协议是http</li>
+<li>浏览器请求DNS解析URL中的服务器主机域名，得到服务器IP地址</li>
+<li>浏览器与服务器的端口80建立TCP连接</li>
+<li>浏览器发出HTTP请求，GET/[路径]</li>
+<li>服务器发出HTTP响应，回复路径对应的文档</li>
+<li>释放TCP</li>
+<li>浏览器解释文档，并显示给用户</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>HTTP是无连接的<ul>
+<li>传送数据前不需要建立HTTP连接</li>
+</ul>
+</li>
+<li>HTTP是无状态的<ul>
+<li>服务器不跟踪用户活动</li>
+<li>可以用Cookie加数据库跟踪用户活动<ul>
+<li>Cookie在服务器生成，在浏览器储存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可以非持久连接和持久连接<ul>
+<li>非持久连接：服务器发送响应后释放TCP<ul>
+<li>比如前面的操作过程</li>
+</ul>
+</li>
+<li>持久连接：服务器发送响应后保持TCP<ul>
+<li>非流水线方式（HTTP/1.0）：浏览器收到响应才能发出下一个请求</li>
+<li>流水线方式（HTTP/1.1）：浏览器可以连续发送请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="报文结构"><a href="#报文结构" class="headerlink" title="报文结构"></a>报文结构</h4><p><em>注：每个字段都是ASCII码</em></p>
+<ul>
+<li>请求报文<ul>
+<li>请求行：[方法][空格][URL][空格][HTTP版本][CRLF]<ul>
+<li>GET方法：请求服务器响应并返回实体</li>
+<li>HEAD方法：请求服务器响应，不返回实体</li>
+<li>POST方法：给服务器发送注释</li>
+<li>CONNECT方法：用于代理服务器</li>
+<li>PUT方法：在URL处存储一个文档</li>
+<li>DELETE方法：删除URL对应文档</li>
+<li>CRLF：回车换行</li>
+</ul>
+</li>
+<li>首部：包含若干首部行，每个首部行结构为[字段名][:][空格][值][CRLF]<ul>
+<li>Host字段：服务器主机域名</li>
+<li>Connection字段：close或open，表示是否持久连接</li>
+<li>User-Agent：浏览器名称和版本</li>
+<li>Accept-Language：比如cn表示请求服务器优先响应中文文档</li>
+</ul>
+</li>
+<li>[CRLF]</li>
+<li>实体主体：通常不用</li>
+</ul>
+</li>
+<li>响应报文<ul>
+<li>状态行：[版本][空格][状态码][空格][短语][CRLF]<ul>
+<li>状态码（3位5类）：通知收到（1xx）、接受请求（2xx）、资源位置已转移（3xx）、客户差错（4xx）、服务器差错（5xx）</li>
+<li>短语：对状态码简单解释</li>
+</ul>
+</li>
+<li>首部：包含若干首部行<ul>
+<li>首部行：[字段名][:][空格][值][CRLF]</li>
+</ul>
+</li>
+<li>[CRLF]</li>
+<li>实体主体：包含一个请求对象（如文本、一张图片），有时不用</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/02/ProbabilityAndStatistics6/" rel="prev" title="【知识总结】 第六章-数理统计的基本概念">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第六章-数理统计的基本概念
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">网络应用模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">客户&#x2F;服务器模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%AD%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">对等模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9FDNS"><span class="nav-number">2.</span> <span class="nav-text">域名系统DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%9F%9F%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">2.1.</span> <span class="nav-text">层次域名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">域名服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">域名解析过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEFTP"><span class="nav-number">3.</span> <span class="nav-text">文本传输协议FTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.2.</span> <span class="nav-text">控制连接和数据连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">文件修改方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">电子邮件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">电子邮件系统的组成结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">电子邮件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIME"><span class="nav-number">4.3.</span> <span class="nav-text">MIME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMTP%E4%B8%8EPOP3"><span class="nav-number">4.4.</span> <span class="nav-text">SMTP与POP3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">4.5.</span> <span class="nav-text">HTTP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WWW"><span class="nav-number">5.</span> <span class="nav-text">WWW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WWW%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">WWW的概念和组成结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">5.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.2.</span> <span class="nav-text">组成结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1"><span class="nav-number">5.2.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">5.2.1.</span> <span class="nav-text">操作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">5.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.3.</span> <span class="nav-text">报文结构</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>

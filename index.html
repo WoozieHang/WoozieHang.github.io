@@ -198,6 +198,332 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/03/network6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/03/network6/" class="post-title-link" itemprop="url">【知识总结】 第六章-应用层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-03 09:40:54" itemprop="dateCreated datePublished" datetime="2021-12-03T09:40:54+08:00">2021-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-05 02:48:04" itemprop="dateModified" datetime="2021-12-05T02:48:04+08:00">2021-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/03/network6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-应用层" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/03/network6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/03/network6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="网络应用模型"><a href="#网络应用模型" class="headerlink" title="网络应用模型"></a>网络应用模型</h2><h3 id="客户-服务器模型"><a href="#客户-服务器模型" class="headerlink" title="客户/服务器模型"></a>客户/服务器模型</h3><ul>
+<li>即Cient/Server模型、C/S模型<ul>
+<li>服务器是服务提供方，要一直保持运行状态</li>
+<li>客户是服务请求方，要实现知道服务器的地址 </li>
+</ul>
+</li>
+<li>工作流程<ul>
+<li>服务器处于接收请求状态</li>
+<li>客户机发出服务请求，等待结果</li>
+<li>服务器收到后，分析请求、处理、把结果发给客户机</li>
+</ul>
+</li>
+<li>特征<ul>
+<li>非对称<ul>
+<li>占少数的服务器集中管理整个网络</li>
+<li>占多数的客户机的权限由服务器管理限制</li>
+</ul>
+</li>
+<li>客户机之间不能通信</li>
+<li>服务器支持的客户机数有限</li>
+</ul>
+</li>
+<li>应用举例<ul>
+<li>FTP</li>
+<li>TELNET</li>
+<li>SMTP</li>
+<li>DNS</li>
+<li>WWW（Web）</li>
+</ul>
+</li>
+</ul>
+<h3 id="对等模型"><a href="#对等模型" class="headerlink" title="对等模型"></a>对等模型</h3><ul>
+<li>即P2P模型<ul>
+<li>P2P网络是由对等结点组成的逻辑网络</li>
+</ul>
+</li>
+<li>特征<ul>
+<li>各计算机地位对称，既是客户，又是服务器<ul>
+<li>获取服务的同时需要提供服务，也算缺点</li>
+</ul>
+</li>
+<li>任意一对计算机（对等方）直接相互通信</li>
+<li>网络单结点失效不影响其他结点</li>
+</ul>
+</li>
+<li>应用举例<ul>
+<li>PPlive</li>
+<li>Bittorrent</li>
+<li>电驴</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/03/network6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/02/ProbabilityAndStatistics6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/02/ProbabilityAndStatistics6/" class="post-title-link" itemprop="url">【知识总结】 第六章-数理统计的基本概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-02 22:34:22" itemprop="dateCreated datePublished" datetime="2021-12-02T22:34:22+08:00">2021-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-04 00:08:41" itemprop="dateModified" datetime="2021-12-04T00:08:41+08:00">2021-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率论与数理统计</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/02/ProbabilityAndStatistics6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-数理统计的基本概念" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/02/ProbabilityAndStatistics6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/02/ProbabilityAndStatistics6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>总体<ul>
+<li>研究对象某个数量指标（随机变量）的全体</li>
+<li><strong>总体的分布</strong>即该随机变量的分布</li>
+</ul>
+</li>
+<li>简单随机样本<ul>
+<li><strong>独立同分布</strong>（同总体的分布）的随机变量 </li>
+</ul>
+</li>
+<li>样本值<ul>
+<li>样本的观测数值</li>
+</ul>
+</li>
+<li>统计量<ul>
+<li>简单随机样本的函数</li>
+<li><strong>随机变量</strong>的函数</li>
+</ul>
+</li>
+<li>统计值<ul>
+<li>统计量的观测数值</li>
+</ul>
+</li>
+</ul>
+<h2 id="概率论和数理统计的核心问题"><a href="#概率论和数理统计的核心问题" class="headerlink" title="概率论和数理统计的核心问题"></a>概率论和数理统计的核心问题</h2><ul>
+<li>概率论<ul>
+<li>核心问题<ul>
+<li>求总体的分布（随机变量的分布），进而求数字特征（反映总体分布特征的数字）</li>
+</ul>
+</li>
+<li>核心步骤<ul>
+<li>定义法计算总体的分布，定义法求数字特征</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数理统计<ul>
+<li>核心问题<ul>
+<li>已知样本值，通过各种方法，对总体的参数求解（参数估计），对总体的参数满足的性质进行验证（假设检验）</li>
+</ul>
+</li>
+<li>矩估计的原理<ul>
+<li>用样本统计值（数字）估计总体的数字特征（数字），从而得到总体的分布</li>
+</ul>
+</li>
+<li>极大似然估计<ul>
+<li>让样本的联合密度函数在样本值处取最大，从而估计出总体的参数</li>
+</ul>
+</li>
+<li>置信区间的理解（置信度给定）<ul>
+<li><strong>某个数字落在该数字的置信区间的概率，等于置信度</strong></li>
+<li>统计值和总体参数有各自的置信区间，但是两者和置信区间的位置关系是等价对应的</li>
+</ul>
+</li>
+<li>区间估计的原理<ul>
+<li>首先用统计量的分布（带总体参数），求出统计值的置信区间（带总体参数）</li>
+<li>令统计值落在统计值的置信区间内，求出总体参数的置信区间（估计区间）</li>
+</ul>
+</li>
+<li>假设检验的原理<ul>
+<li>在区间估计的基础上，对比参数的<strong>假设区间</strong>和参数的<strong>置信区间</strong></li>
+<li>如果参数的假设区间包含置信区间，说明<strong>参数落在假设区间的概率，不小于置信度</strong>，不拒绝原假设。否则拒绝原假设。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/02/ProbabilityAndStatistics6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/01/network5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,7 +555,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 21:53:39" itemprop="dateModified" datetime="2021-12-02T21:53:39+08:00">2021-12-02</time>
+                <time title="修改时间：2021-12-05 02:48:07" itemprop="dateModified" datetime="2021-12-05T02:48:07+08:00">2021-12-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1326,301 +1652,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/23/network2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/23/network2/" class="post-title-link" itemprop="url">【知识总结】 第二章-物理层</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-23 10:11:05" itemprop="dateCreated datePublished" datetime="2021-11-23T10:11:05+08:00">2021-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-01 10:10:58" itemprop="dateModified" datetime="2021-12-01T10:10:58+08:00">2021-12-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/23/network2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-物理层" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/23/network2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/23/network2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="通信基础"><a href="#通信基础" class="headerlink" title="通信基础"></a>通信基础</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
-<li>数据：信息的实体</li>
-<li>信号：数据的电气表现、存在形式<ul>
-<li>模拟信号：连续的信号</li>
-<li>数字信号：离散的信号</li>
-</ul>
-</li>
-<li>码元：用固定时长（即码元宽度）的信号波形表示一个k进制数<ul>
-<li>码元宽度：固定时长</li>
-<li>数字脉冲：信号波形</li>
-</ul>
-</li>
-<li>信源：产生和发送数据的源头<ul>
-<li>数据经过变换器变成信号，传给信道（详见编码和调制小节）</li>
-</ul>
-</li>
-<li>信道：信号的传输媒介<ul>
-<li>噪声源会对信号产生干扰</li>
-<li>按信号类型分类：模拟信道、数字信道</li>
-<li>按传输介质分类：无线信道和有线信道</li>
-</ul>
-</li>
-<li>信宿：接收数据的终点<ul>
-<li>信号经过反变换器变为数据，传给信宿</li>
-</ul>
-</li>
-<li>基带传输：把数据以原始频带（基本频带）编码为基带信号，在数字信道上传输</li>
-<li>频带传输：把基带信号调制为模拟信号，在模拟信道上传输</li>
-<li>宽带传输：在频带传输基础上使用多个信道，每个信道同时频带传输，链路容量大，</li>
-<li>通信方式<ul>
-<li>单向通信：只有一个方向的通信</li>
-<li>半双工通信：同一时间只有一个方向的通信，需要两个信道</li>
-<li>全双工通信：同一时间可以有两个方向的通信，需要两个信道</li>
-</ul>
-</li>
-<li>速率：单位时间内传输的数据量<ul>
-<li>码元传输速率（波特率、调制速率）：单位时间传输码元的个数（脉冲数）<ul>
-<li>单位是波特（Baud）</li>
-<li>与进制有关</li>
-</ul>
-</li>
-<li>信息传输速率（比特率）：单位时间传输比特的个数<ul>
-<li>单位是b/s</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>带宽 <ul>
-<li>在通信领域指频带范围，单位Hz</li>
-<li>在网络领域指最高数据传输速率，单位b/s</li>
-</ul>
-</li>
-</ul>
-<h3 id="奈奎斯特定理"><a href="#奈奎斯特定理" class="headerlink" title="奈奎斯特定理"></a>奈奎斯特定理</h3><ul>
-<li>条件：理想低通信道，即无噪声且带宽有限，带宽设为$W$</li>
-<li>结论：极限波特率为$2W$，单位Baud</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/23/network2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/21/linearAlgebra6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/21/linearAlgebra6/" class="post-title-link" itemprop="url">【知识总结】 第六章-二次型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-21 17:46:36" itemprop="dateCreated datePublished" datetime="2021-11-21T17:46:36+08:00">2021-11-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-22 22:23:25" itemprop="dateModified" datetime="2021-11-22T22:23:25+08:00">2021-11-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/21/linearAlgebra6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-二次型" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/21/linearAlgebra6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/21/linearAlgebra6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
-<li>笔记为个人整理，禁止商业用途</li>
-<li>如有疏漏，欢迎留言</li>
-</ul>
-<h2 id="二次型的矩阵表示"><a href="#二次型的矩阵表示" class="headerlink" title="二次型的矩阵表示"></a>二次型的矩阵表示</h2><ul>
-<li>二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j$</li>
-<li>$\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=\left [ \begin{matrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{matrix} \right ]\left [ \begin{matrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp; a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\ a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{matrix} \right ]\left [ \begin{matrix} x_1\\x_2\\\cdots\\x_n \end{matrix} \right ]=\pmb{x}^T\pmb{A}\pmb{x}$</li>
-<li>要求$\pmb{A}$是对称矩阵，此时二次型和矩阵一一对应</li>
-</ul>
-<h2 id="二次型化为标准形"><a href="#二次型化为标准形" class="headerlink" title="二次型化为标准形"></a>二次型化为标准形</h2><ul>
-<li>标准形：只有平方项的二次型</li>
-<li>规范性：在标准形基础上，平方项的系数只能是-1、0、1</li>
-<li>线性变换：即第三章的坐标变换，$\pmb{x}=\pmb{P}\pmb{y}$<ul>
-<li>当$\pmb{P}$是正交矩阵$\pmb{Q}$，则对应正交变换</li>
-</ul>
-</li>
-<li>法一：通过正交变换$\pmb{x}=\pmb{Q}\pmb{y}$化为标准形<ul>
-<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}$</li>
-<li>用到了第五章正交相似对角化的内容</li>
-<li>求解要点<ul>
-<li>求特征值，算出$\pmb{\Lambda}$，从而得到标准形</li>
-<li>求特征向量并正交单位化，给出线性变换$\pmb{y}=\pmb{Q}^{-1}\pmb{x}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>法二：通过配方法化为标准形<ul>
-<li>有平方项则配方；无平方项则利用$x_i=y_i+y_j,x_j=y_i-y_j$得到平方项，即$a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)$</li>
-<li>要给出可逆线性变换和标准形的表示<ul>
-<li>若配方后平方项个数不足原二次型的变量数，则需要补充平方项以保证线性变换可逆（补充方法不唯一，因为标准形也不唯一）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/21/linearAlgebra6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1692,7 +1723,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
