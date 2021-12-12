@@ -28,7 +28,7 @@
 <meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分二重积分 性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分 $ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta$   技巧1：根据积分域的对称性和被积函数的奇偶性简化计算 情况一：积分域关于坐标轴对">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-11T03:09:54.000Z">
-<meta property="article:modified_time" content="2021-12-12T09:32:26.896Z">
+<meta property="article:modified_time" content="2021-12-12T15:23:50.864Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-12 17:32:26" itemprop="dateModified" datetime="2021-12-12T17:32:26+08:00">2021-12-12</time>
+                <time title="修改时间：2021-12-12 23:23:50" itemprop="dateModified" datetime="2021-12-12T23:23:50+08:00">2021-12-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -330,7 +330,7 @@
 </ul>
 </li>
 <li>$\int\limits_{L}f(x,y,z)dl=\int\limits_{L}f(x,y,z)\sqrt{d^2x+d^2y+d^2z}$</li>
-<li>$=\int_{a}^bf(x,y,z)\sqrt{1+(y’(x))^2+(z’(x))^2}dx$</li>
+<li>最后结果为$\int_{a}^bf(x,y,z)\sqrt{1+(y’(x))^2+(z’(x))^2}dx,a\leq x\leq b$</li>
 </ul>
 </li>
 </ul>
@@ -389,14 +389,18 @@
 <li>情况二：积分曲面关于$y=x$或$x=z$或$y=z$对称</li>
 </ul>
 </li>
-<li>直接计算步骤（核心思路是$dS=\sqrt{(dxdy)^2+(dydz)^2+(dzdx)^2}$）<ul>
-<li>设曲面的方程$z=z(x,y)$<ul>
+<li>直接计算步骤（核心思路是$dS=\frac{dxdy}{|cos\gamma|}$或$dS=\sqrt{(dxdy)^2+(dydz)^2+(dzdx)^2}$）<ul>
+<li>设曲面的方程$z=z(x,y)$，法向量为$(cos\alpha,cos\beta,cos\gamma)=\pm\frac{(-z’_x,-z’_y,1)}{\sqrt{(z’_x)^2+(z’_y)^2+1}}$<ul>
 <li>说明每个$(x,y)$唯一对应着$z$，如果是参数式也要注意该点</li>
 <li>不唯一对应时，需要拆分曲面为多个部分</li>
 </ul>
 </li>
-<li>$\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\sqrt{1+(\frac{dz}{dx})^2+(\frac{dz}{dy})^2}dxdy$</li>
-<li>$=\iint\limits_{\Sigma_{xy}}f(x,y,z)\sqrt{1+(z’_x)^2+(z’_y)^2}dxdy$</li>
+<li>利用$\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\frac{dxdy}{|cos\gamma|}$</li>
+<li>或$\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\sqrt{1+(\frac{dzdy}{dxdy})^2+(\frac{dzdx}{dydx})^2}dxdy$<ul>
+<li>注意这里$\frac{dzdy}{dxdy}=\frac{\partial z}{\partial x}$与$\frac{dzdx}{dydx}=\frac{\partial z}{\partial y}$，不难记忆</li>
+</ul>
+</li>
+<li>最后结果为$\iint\limits_{\Sigma_{xy}}f(x,y,z)\sqrt{1+(z’_x)^2+(z’_y)^2}dxdy$</li>
 </ul>
 </li>
 </ul>
