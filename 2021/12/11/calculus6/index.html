@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分二重积分 性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分 $ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta$   技巧1：根据积分域的对称性和被积函数的奇偶性简化计算 情况一：积分域关于坐标轴对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识总结】 第六章-多元函数积分学">
+<meta property="og:url" content="https://wooziehang.github.io/2021/12/11/calculus6/index.html">
+<meta property="og:site_name" content="吴紫航">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分二重积分 性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分 $ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta$   技巧1：根据积分域的对称性和被积函数的奇偶性简化计算 情况一：积分域关于坐标轴对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-11T03:09:54.000Z">
+<meta property="article:modified_time" content="2021-12-12T09:32:26.896Z">
+<meta property="article:author" content="Woozie Hang">
+<meta property="article:tag" content="Knowledge Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wooziehang.github.io/2021/12/11/calculus6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【知识总结】 第六章-多元函数积分学 | 吴紫航</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴紫航</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>好友</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/WoozieHang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/11/calculus6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【知识总结】 第六章-多元函数积分学
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-11 11:09:54" itemprop="dateCreated datePublished" datetime="2021-12-11T11:09:54+08:00">2021-12-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-12 17:32:26" itemprop="dateModified" datetime="2021-12-12T17:32:26+08:00">2021-12-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" itemprop="url" rel="index"><span itemprop="name">微积分</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/11/calculus6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-多元函数积分学" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/11/calculus6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/11/calculus6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="重积分"><a href="#重积分" class="headerlink" title="重积分"></a>重积分</h2><h3 id="二重积分"><a href="#二重积分" class="headerlink" title="二重积分"></a>二重积分</h3><ul>
+<li>性质：和一元积分类似，有保号性和中值定理</li>
+<li>计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分<ul>
+<li>$ds=dx\cdot dy=dr\cdot rd\theta$</li>
+</ul>
+</li>
+<li>技巧1：根据积分域的对称性和被积函数的奇偶性简化计算<ul>
+<li>情况一：积分域关于坐标轴对称，被积函数有奇偶性<ul>
+<li>积分等于$0$或两倍的半积分域上的积分</li>
+</ul>
+</li>
+<li>情况二：积分域关于$y=x$对称（即积分域表达式调换$x,y$不改变积分域）<ul>
+<li>被积函数调换$x,y$不改变积分结果</li>
+</ul>
+</li>
+<li>其他情况：对称性也可以不是关于坐标轴，而是平行于坐标轴的直线</li>
+</ul>
+</li>
+<li>技巧2：极坐标的极点也可以不选在原点</li>
+<li>技巧3：利用形心<ul>
+<li>本质还是利用对称性</li>
+</ul>
+</li>
+</ul>
+<h3 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h3><ul>
+<li>性质：保号性、中值定理</li>
+<li>计算：直角坐标、柱坐标、球坐标，注意用合适的积分次序计算累次积分<ul>
+<li>$ds=dx\cdot dy\cdot dz=dr\cdot rd\theta \cdot dz=rsin\varphi d\theta \cdot rd\varphi\cdot dr$</li>
+</ul>
+</li>
+<li>技巧：和二重积分同理</li>
+</ul>
+<h3 id="交换累次积分"><a href="#交换累次积分" class="headerlink" title="交换累次积分"></a>交换累次积分</h3><ul>
+<li>二重积分：根据积分上下限确定积分域、绘制草图、按另一种次序确定积分上下限</li>
+<li>三重积分：相邻的俩个变量调换积分次序，转化为多遍二重积分的次序调换</li>
+</ul>
+<h2 id="曲线积分"><a href="#曲线积分" class="headerlink" title="曲线积分"></a>曲线积分</h2><h3 id="第一类曲线积分"><a href="#第一类曲线积分" class="headerlink" title="第一类曲线积分"></a>第一类曲线积分</h3><ul>
+<li>先考虑几种情况的奇偶性和对称性，简化计算<ul>
+<li>情况一：积分曲线关于坐标轴对称，被积函数有奇偶性</li>
+<li>情况二：积分曲线关于$y=x$或$x=z$或$y=z$对称</li>
+</ul>
+</li>
+<li>直接计算步骤（核心思路是$dl=\sqrt{d^2x+d^2y+d^2z}$）<ul>
+<li>设曲线的方程$y=y(x),z=z(x)$<ul>
+<li>说明每个$x$唯一对应着$y$和$z$，如果是参数式也要注意该点</li>
+<li>不唯一对应时，需要拆分曲线为多个段</li>
+</ul>
+</li>
+<li>$\int\limits_{L}f(x,y,z)dl=\int\limits_{L}f(x,y,z)\sqrt{d^2x+d^2y+d^2z}$</li>
+<li>$=\int_{a}^bf(x,y,z)\sqrt{1+(y’(x))^2+(z’(x))^2}dx$</li>
+</ul>
+</li>
+</ul>
+<h3 id="第二类曲线积分"><a href="#第二类曲线积分" class="headerlink" title="第二类曲线积分"></a>第二类曲线积分</h3><ul>
+<li>直接计算步骤（核心思路是计算$(P,Q,R)$到方向向量的投影）<ul>
+<li>根据积分路径的方向，确定曲线的方向向量为$(i,j,k)$<ul>
+<li>方向向量也可以用其方向余弦表示为$(cos\alpha,cos\beta,cos\gamma)$</li>
+</ul>
+</li>
+<li>$\int\limits_LPdx+Qdy+Rdz=\int\limits_L(\frac{(P,Q,R)\cdot(i,j,k)}{|(i,j,k)|})dl$<ul>
+<li>投影即数量积除以模</li>
+<li>转化为第一类曲线积分</li>
+</ul>
+</li>
+<li>教材的形式是$\int\limits_L(Pcos\alpha+Qcos\beta+Rcos\gamma)dl$<ul>
+<li>本质一样的，但是不引入余弦，防止思路紊乱</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>斯托克斯公式<ul>
+<li>$L$是空间光滑有向曲线，$\Sigma$是有向曲面，两者方向满足右手法则，且$P,Q,R$在$\Sigma$上有一阶连续偏导数</li>
+<li>$\oint\limits_LPdx+Qdy+Rdz=\iint\limits_\Sigma(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz+(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx+(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy$<ul>
+<li>转化为第二类曲面积分</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>格林公式<ul>
+<li>斯托克斯公式的特殊情况，记忆即可，推导的思路顺序如下</li>
+<li>第二类曲线积分$\rightarrow$第二类曲面积分$\rightarrow$第一类曲面积分$\rightarrow$二重积分</li>
+</ul>
+</li>
+<li>$P,Q$在单连通域的上一阶连续可偏导，则下面是等价条件<ul>
+<li>$\int Pdx+Qdy$和路径无关</li>
+<li>沿着封闭光滑曲线的第二类积分为$0$</li>
+<li>$\frac{\partial Q}{\partial y}-\frac{\partial P}{\partial x}=0$</li>
+<li>存在可微函数$F(x,y)$使得$dF(x,y)=Pdx+Qdy$</li>
+</ul>
+</li>
+<li>补形法结合格林公式（斯托克斯公式）<ul>
+<li>当不是封闭曲线时，可以补成封闭曲线<ul>
+<li>补后的整体用格林公式计算，补的形状用直接法计算</li>
+</ul>
+</li>
+<li>当封闭曲线内有点不存在一阶连续偏导数，则可以补一个小的封闭曲线，把该点挖去<ul>
+<li>补后的整体用格林公式计算，补的形状用直接法计算</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="曲面积分"><a href="#曲面积分" class="headerlink" title="曲面积分"></a>曲面积分</h2><h3 id="第一类曲面积分"><a href="#第一类曲面积分" class="headerlink" title="第一类曲面积分"></a>第一类曲面积分</h3><ul>
+<li>先考虑几种情况的奇偶性和对称性，简化计算<ul>
+<li>情况一：积分曲面关于坐标轴对称，被积函数有奇偶性</li>
+<li>情况二：积分曲面关于$y=x$或$x=z$或$y=z$对称</li>
+</ul>
+</li>
+<li>直接计算步骤（核心思路是$dS=\sqrt{(dxdy)^2+(dydz)^2+(dzdx)^2}$）<ul>
+<li>设曲面的方程$z=z(x,y)$<ul>
+<li>说明每个$(x,y)$唯一对应着$z$，如果是参数式也要注意该点</li>
+<li>不唯一对应时，需要拆分曲面为多个部分</li>
+</ul>
+</li>
+<li>$\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\sqrt{1+(\frac{dz}{dx})^2+(\frac{dz}{dy})^2}dxdy$</li>
+<li>$=\iint\limits_{\Sigma_{xy}}f(x,y,z)\sqrt{1+(z’_x)^2+(z’_y)^2}dxdy$</li>
+</ul>
+</li>
+</ul>
+<h3 id="第二类曲面积分"><a href="#第二类曲面积分" class="headerlink" title="第二类曲面积分"></a>第二类曲面积分</h3><ul>
+<li>直接计算步骤（核心思路是计算$(P,Q,R)$到法向量的投影）<ul>
+<li>根据有向曲面的内外侧，确定曲面的法向量为$(i,j,k)$<ul>
+<li>法向量也可以用其方向余弦表示为$(cos\alpha,cos\beta,cos\gamma)$</li>
+</ul>
+</li>
+<li>$\iint\limits_\Sigma Pdydz+Qdxdz+Rdxdy=\iint\limits_\Sigma (\frac{(P,Q,R)\cdot(i,j,k)}{|(i,j,k)|})dS$<ul>
+<li>投影即数量积除以模</li>
+<li>转化为第一类曲线积分</li>
+</ul>
+</li>
+<li>教材的形式是$\iint\limits_\Sigma(Pcos\alpha+Qcos\beta+Rcos\gamma)dS$<ul>
+<li>本质一样的，但是不引入余弦，防止思路紊乱</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>高斯公式<ul>
+<li>$\Sigma$是空间光滑有向曲面，$\Omega$是空间闭区域，有向曲面取外侧，且$P,Q,R$在$\Omega$上有一阶连续偏导数</li>
+<li>$\iint\limits_\Sigma Pdydz+Qdxdz+Rdxdy=\iiint\limits_{\Omega}(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dV$<ul>
+<li>转化为三重积分</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>补形法结合高斯公式<ul>
+<li>当不是封闭曲面时，可以补成封闭曲线<ul>
+<li>补后的整体用高斯公式计算，补的形状用直接法计算</li>
+</ul>
+</li>
+<li>当封闭曲面内有点不存在一阶连续偏导数，则可以补一个小的封闭曲面，把该点挖去<ul>
+<li>补后的整体用高斯公式计算，补的形状用直接法计算</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="场论初步"><a href="#场论初步" class="headerlink" title="场论初步"></a>场论初步</h2><p>设向量场是$\pmb{A}=(P,Q,R)$,有向曲面为$\Sigma$</p>
+<ul>
+<li>通量<ul>
+<li>即第二类曲面积分求解</li>
+<li>$\Phi=\iint\limits_{\Sigma}Pdydz+Qdzdx+Rdxdy$</li>
+</ul>
+</li>
+<li>散度<ul>
+<li>即高斯公式右侧的数值</li>
+<li>$div\pmb{A}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$</li>
+</ul>
+</li>
+<li>旋度<ul>
+<li>即斯托克斯公式右侧的向量</li>
+<li>$\pmb{rotA}=(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z},\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x},\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})$</li>
+</ul>
+</li>
+</ul>
+<h2 id="多元积分的应用"><a href="#多元积分的应用" class="headerlink" title="多元积分的应用"></a>多元积分的应用</h2><ul>
+<li>质心<ul>
+<li>$\overline{x}=\frac{\sum xdm}{\sum dm}$</li>
+</ul>
+</li>
+<li>转动惯量<ul>
+<li>$I=\sum r^2dm$</li>
+</ul>
+</li>
+<li>做功<ul>
+<li>设力场是$\pmb{F}=(P,Q,R)$,有向曲线为$L$</li>
+<li>做功为$W=\int\limits_LPdx+Qdy+Rdz$</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Woozie Hang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/09/calculus5/" rel="prev" title="【知识总结】 第五章-多元函数微分学">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 第五章-多元函数微分学
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/11/calculus7/" rel="next" title="【知识总结】 第七章-无穷级数">
+      【知识总结】 第七章-无穷级数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%A7%AF%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">重积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">二重积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E9%87%8D%E7%A7%AF%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">三重积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E7%B4%AF%E6%AC%A1%E7%A7%AF%E5%88%86"><span class="nav-number">1.3.</span> <span class="nav-text">交换累次积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">曲线积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">第一类曲线积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">第二类曲线积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">曲面积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="nav-number">3.1.</span> <span class="nav-text">第一类曲面积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="nav-number">3.2.</span> <span class="nav-text">第二类曲面积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E8%AE%BA%E5%88%9D%E6%AD%A5"><span class="nav-number">4.</span> <span class="nav-text">场论初步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">多元积分的应用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Woozie Hang"
+      src="/images/avatar.png#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Woozie Hang</p>
+  <div class="site-description" itemprop="description">This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Woozie Hang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'ckLv3qouDaBQbQBppalaXrKD-gzGzoHsz',
+      appKey     : 'D6SExeH1m0Yb5JVC02UYDdbn',
+      placeholder: "请在此输入您的留言",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
