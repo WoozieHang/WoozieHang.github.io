@@ -28,7 +28,7 @@
 <meta property="og:description" content="基本概念 输入：信息从外部送到主机 输出：信息从主机送到外部 接口：外设和主机传输数据进行协调（比如速度匹配、电平和格式转换）的逻辑部件 外部设备：输入输出设备或通过输入输出接口才能访问的外存储设备 输入设备：键盘、鼠标 输出设备：打印机、显示器 外存设备：硬磁盘、光盘、U盘   IO系统构成 IO软件 包括：驱动程序、用户程序、管理程序、升级补丁 通过IO指令和通道指令（详见后面IO控制方式的通">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-06T06:54:59.000Z">
-<meta property="article:modified_time" content="2021-11-19T01:36:48.516Z">
+<meta property="article:modified_time" content="2021-12-14T12:41:32.798Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,7 @@
       <h1 class="site-title">吴紫航</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+      <p class="site-subtitle" itemprop="description">Young for me</p>
   </div>
 
   <div class="site-nav-right">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-19 09:36:48" itemprop="dateModified" datetime="2021-11-19T09:36:48+08:00">2021-11-19</time>
+                <time title="修改时间：2021-12-14 20:41:32" itemprop="dateModified" datetime="2021-12-14T20:41:32+08:00">2021-12-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -356,7 +356,7 @@
 <li>刷新频率：单位时间刷新的次数，通常是60-120HZ（大于30HZ人类视觉就感受不到闪烁）</li>
 <li>显示存储器（VRAM）：即刷新存储器</li>
 <li>VRAM容量：分辨率$\times$灰度级位数，单位比特</li>
-<li>VRAM带宽：VRAM容量$\times$帧频（单位时间的画面数量，可以认为等于刷新频率）</li>
+<li>VRAM带宽：VRAM容量$\times$帧频（帧频是单位时间的画面数量，可以认为等于刷新频率）</li>
 </ul>
 </li>
 </ul>
@@ -653,7 +653,7 @@
 </ul>
 <h4 id="和中断方式的区别"><a href="#和中断方式的区别" class="headerlink" title="和中断方式的区别"></a>和中断方式的区别</h4><ul>
 <li>中断方式是程序的切换，需要保存、恢复现场；DMA方式数据传送阶段不占用CPU任何资源</li>
-<li>中断响应在指令执行周期后；DMA响应可以在各个机器周期后（取指、间址、执行周期后），CPU不占用总线即可进行响应</li>
+<li>中断响应在指令执行周期后；DMA响应可以在各个机器周期后（取指、间址、执行周期后），CPU不需占用总线时，便可以进行响应</li>
 <li>中断传送需要CPU干预；DMA传送不需要CPU干预，适合高速外设成组数据传送</li>
 <li>DMA请求优先级高于中断请求，因为DMA传送几乎不占用CPU资源</li>
 <li>中断方式还可以处理异常；DMA方式仅用于数据IO传送</li>
@@ -791,14 +791,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -831,7 +831,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

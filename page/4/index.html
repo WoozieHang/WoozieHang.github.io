@@ -97,7 +97,7 @@
       <h1 class="site-title">吴紫航</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">A Graduate of CS in NJU</p>
+      <p class="site-subtitle" itemprop="description">Young for me</p>
   </div>
 
   <div class="site-nav-right">
@@ -194,6 +194,513 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/17/linearAlgebra3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/17/linearAlgebra3/" class="post-title-link" itemprop="url">【知识总结】 第三章-向量</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-17 19:39:21" itemprop="dateCreated datePublished" datetime="2021-11-17T19:39:21+08:00">2021-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-03 00:15:39" itemprop="dateModified" datetime="2021-12-03T00:15:39+08:00">2021-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/17/linearAlgebra3/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第三章-向量" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/17/linearAlgebra3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/17/linearAlgebra3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="向量的表示"><a href="#向量的表示" class="headerlink" title="向量的表示"></a>向量的表示</h2><ul>
+<li>一般默认是列向量，比如$\pmb{\alpha}=(a_1,a_2,\cdots,a_n)^T$</li>
+<li>行向量需要转置列向量，比如$\pmb{\alpha}^{T}=(a_1,a_2,\cdots,a_n)$</li>
+<li>在计算时，对向量的行、列判断要清晰</li>
+</ul>
+<h2 id="线性相关性"><a href="#线性相关性" class="headerlink" title="线性相关性"></a>线性相关性</h2><ul>
+<li>线性相关的等价条件<ul>
+<li>存在不全为$0$的数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}$</li>
+<li>存在不全为$0$的数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{0}$</li>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$的秩小于$n$（根据齐次线性方程组知识）</li>
+<li>第一章行列式为$0$的等价条件都适合此处</li>
+</ul>
+</li>
+<li>线性无关的等价条件<ul>
+<li>不存在不全为$0$的数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}$</li>
+<li>不存在不全为$0$的数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{0}$</li>
+<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$的秩等于$n$（根据齐次线性方程组知识）</li>
+<li>第二章可逆矩阵的等价条件都适合此处</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/17/linearAlgebra3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/16/operatingSystem4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/16/operatingSystem4/" class="post-title-link" itemprop="url">【知识总结】 第四章-文件管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-16 22:11:59" itemprop="dateCreated datePublished" datetime="2021-11-16T22:11:59+08:00">2021-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-15 23:28:35" itemprop="dateModified" datetime="2021-12-15T23:28:35+08:00">2021-12-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/16/operatingSystem4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-文件管理" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/16/operatingSystem4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/16/operatingSystem4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>文件：以硬盘为载体存储在计算机中的信息集合，是用户输入输出的基本单位</li>
+<li>文件系统：维护和管理文件，并向用户提供系统调用，如建立、打开、关闭、撤销、读写等</li>
+<li>基本数据项：最小逻辑数据单元、原子数据，比如一个对象某个属性的一个值</li>
+<li>组合数据项：多个基本数据项组成</li>
+<li>记录：数据项的集合，描述一个对象的某个属性</li>
+<li>文件的划分<ul>
+<li>记录式：由相似的记录组成</li>
+<li>流式：看作是字符流</li>
+</ul>
+</li>
+<li>文件的属性</li>
+</ul>
+<h3 id="文件元数据"><a href="#文件元数据" class="headerlink" title="文件元数据"></a>文件元数据</h3><p>即文件的属性，包括</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/16/operatingSystem4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/13/operatingSystem3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/13/operatingSystem3/" class="post-title-link" itemprop="url">【知识总结】 第三章-存储管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-13 22:11:59" itemprop="dateCreated datePublished" datetime="2021-11-13T22:11:59+08:00">2021-11-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 00:12:39" itemprop="dateModified" datetime="2021-11-16T00:12:39+08:00">2021-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/13/operatingSystem3/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第三章-存储管理" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/13/operatingSystem3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/13/operatingSystem3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="内存管理基础"><a href="#内存管理基础" class="headerlink" title="内存管理基础"></a>内存管理基础</h2><h3 id="内存管理基本概念"><a href="#内存管理基本概念" class="headerlink" title="内存管理基本概念"></a>内存管理基本概念</h3><p>内存管理的功能</p>
+<ul>
+<li>地址转换：内存管理提供从逻辑地址到物理地址的变换机制<ul>
+<li>逻辑地址空间<ul>
+<li>编译后的目标模块从0单元开始编址</li>
+<li>各个模块按顺序链接后构成统一的从0单元开始的逻辑地址空间</li>
+<li>用户可见</li>
+</ul>
+</li>
+<li>物理地址空间<ul>
+<li>主存中实际的物理地址</li>
+<li>可执行代码装入内存时，要进行地址重定位，即把逻辑地址转换为物理地址</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内存共享：允许多个进程访问内存同一个部分，比如同一个数据块</li>
+<li>内存保护<ul>
+<li>含义：内存分配前，保护操作系统不受用户影响、保护用户之间不相互影响</li>
+<li>方法有两种<ul>
+<li>在CPU中设置用户作业上下限寄存器，存放用户作业在主存中的上限、下限地址</li>
+<li>把逻辑地址和界地址寄存器（限长寄存器）比较，判断是否越界；不越界的情况，把逻辑地址和重定位寄存器（基址寄存器）相加，得到物理地址</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内存分配和回收<ul>
+<li>由操作系统管理主存空间的分配和回收，程序员不需要考虑</li>
+</ul>
+</li>
+<li>内存扩充：利用外存扩充内存的容量，有两种方法<ul>
+<li>覆盖<ul>
+<li>思想：把用户空间分成固定区、覆盖区，活跃内容放固定区，其他即将访问的内容放覆盖区，其他暂时不用的内容放外存（需要时从外存替换入覆盖区）</li>
+<li>特点：内存容量可以小于单进程总信息量；内存容量需要大于单进程任何运行时刻需要的信息量；主要应用于单进程；属于被淘汰的历史技术</li>
+</ul>
+</li>
+<li>交换<ul>
+<li>思想：把等待态的进程换出到外存，把调度使用CPU的进程换入到内存（进程中级调度就是交换技术）</li>
+<li>特点：交换时间希望短于进程执行时间；适合多进程或多作业情况；目前主流的技术</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="连续分配管理方式"><a href="#连续分配管理方式" class="headerlink" title="连续分配管理方式"></a>连续分配管理方式</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/13/operatingSystem3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/12/linearAlgebra2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/12/linearAlgebra2/" class="post-title-link" itemprop="url">【知识总结】 第二章-矩阵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-12 23:32:19" itemprop="dateCreated datePublished" datetime="2021-11-12T23:32:19+08:00">2021-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-22 21:24:06" itemprop="dateModified" datetime="2021-11-22T21:24:06+08:00">2021-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/12/linearAlgebra2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-矩阵" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/12/linearAlgebra2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/12/linearAlgebra2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="伴随矩阵"><a href="#伴随矩阵" class="headerlink" title="伴随矩阵"></a>伴随矩阵</h2><h3 id="伴随矩阵的求法"><a href="#伴随矩阵的求法" class="headerlink" title="伴随矩阵的求法"></a>伴随矩阵的求法</h3><ul>
+<li>定义法<ul>
+<li>伴随矩阵的第$i$行第$j$列的值是原矩阵第$j$行第$i$列的代数余子式</li>
+<li>注意这里有一个转置操作</li>
+</ul>
+</li>
+<li>性质法<ul>
+<li>$\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}$</li>
+<li>注意这种方法求伴随矩阵要求$\pmb{A}$可逆，此时$\pmb{A}^\star=|\pmb{A}|\pmb{A}^{-1}$</li>
+</ul>
+</li>
+</ul>
+<h3 id="伴随矩阵相关证明"><a href="#伴随矩阵相关证明" class="headerlink" title="伴随矩阵相关证明"></a>伴随矩阵相关证明</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/12/linearAlgebra2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -341,7 +848,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-12 17:34:44" itemprop="dateModified" datetime="2021-11-12T17:34:44+08:00">2021-11-12</time>
+                <time title="修改时间：2021-12-15 21:20:30" itemprop="dateModified" datetime="2021-12-15T21:20:30+08:00">2021-12-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -593,7 +1100,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-19 09:36:48" itemprop="dateModified" datetime="2021-11-19T09:36:48+08:00">2021-11-19</time>
+                <time title="修改时间：2021-12-14 20:41:32" itemprop="dateModified" datetime="2021-12-14T20:41:32+08:00">2021-12-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -855,7 +1362,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-10 01:28:27" itemprop="dateModified" datetime="2021-12-10T01:28:27+08:00">2021-12-10</time>
+                <time title="修改时间：2021-12-14 00:38:23" itemprop="dateModified" datetime="2021-12-14T00:38:23+08:00">2021-12-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -970,560 +1477,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/29/ComputerOrganization-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/29/ComputerOrganization-4/" class="post-title-link" itemprop="url">【知识总结】 第四章-指令系统</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-29 09:33:03" itemprop="dateCreated datePublished" datetime="2021-10-29T09:33:03+08:00">2021-10-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-31 17:49:24" itemprop="dateModified" datetime="2021-10-31T17:49:24+08:00">2021-10-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/10/29/ComputerOrganization-4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-指令系统" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/10/29/ComputerOrganization-4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/29/ComputerOrganization-4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>程序：由一系列有序的指令构成</li>
-<li>指令：指示计算机硬件完成指定的基本操作的命令</li>
-<li>指令系统<ul>
-<li>又叫指令集，是一台计算机所有指令的集合</li>
-<li>位于软件硬件交界面上</li>
-<li>计算机的主要属性，指出计算机有哪些基本的硬件功能</li>
-</ul>
-</li>
-<li>指令系统应具备的特征<ul>
-<li>完备性：功能齐全</li>
-<li>高效性：编写的程序占据空间小，执行速度快</li>
-<li>规整性<ul>
-<li>对称性：所有寄存器和存储单元可同等对待；所有指令可使用各种寻址方式</li>
-<li>匀齐性：可以支持各自数据类型</li>
-<li>一致性：指令格式和数据格式一致</li>
-</ul>
-</li>
-<li>兼容性：系列机各种机型有相同的基本机构和共同的基本指令集</li>
-</ul>
-</li>
-</ul>
-<h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><h3 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h3><ul>
-<li>操作码+地址码</li>
-<li>操作码指出操作的类型</li>
-<li>地址码给出被操作的信息的地址</li>
-<li>指令长度指的是一条指令的二进制代码长度<ul>
-<li>取决于操作码长度、地址码长度、地址码个数</li>
-<li>可能大于、等于或小于机器字长，如双字长指令、字长指令、半字长指令</li>
-<li>指令系统的所有指令长度相等，称为<strong>定长指令字结构</strong>，执行快，结构简单</li>
-<li>指令系统的指令长度随指令而异，称为<strong>变长指令字结构</strong>，一般是字节的整数倍（考虑主存按字节编址）</li>
-</ul>
-</li>
-<li>根据操作数地址码的个数，指令分为<ul>
-<li>零地址指令<ul>
-<li>不需要操作数的指令。如空指令、停机指令、关中断指令</li>
-<li>涉及堆栈的运算指令。</li>
-</ul>
-</li>
-<li>一地址指令：<ul>
-<li>单操作数指令。如自增、自减、求反、求补，形式为$OP(A_1)\rightarrow A_1$</li>
-<li>隐含的双操作数指令。一般另一个操作数由ACC（累加器）提供，运算结果也存到ACC中，形式为$(ACC)\ OP\ (A_1)\rightarrow ACC$</li>
-</ul>
-</li>
-<li>二地址指令：比如常用的逻辑运算，算术运算，形式为$(A_1)\ OP\ (A_2)\rightarrow A_1$</li>
-<li>三地址指令：比如常用的逻辑运算，算术运算，形式为$(A_1)\ OP\ (A_2)\rightarrow A_3$</li>
-<li>四地址指令：形式为$(A_1)\ OP\ (A_2)\rightarrow A_3$，$A_4$是下一条指令的地址</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/29/ComputerOrganization-4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/25/ComputerOrganization-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/25/ComputerOrganization-3/" class="post-title-link" itemprop="url">【知识总结】 第三章-存储器层次结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-25 15:48:14" itemprop="dateCreated datePublished" datetime="2021-10-25T15:48:14+08:00">2021-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-29 18:51:30" itemprop="dateModified" datetime="2021-11-29T18:51:30+08:00">2021-11-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/10/25/ComputerOrganization-3/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第三章-存储器层次结构" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/10/25/ComputerOrganization-3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/25/ComputerOrganization-3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="存储器概述"><a href="#存储器概述" class="headerlink" title="存储器概述"></a>存储器概述</h2><ul>
-<li>存储元：一个二进制物理器件</li>
-<li>存储单元：多个存储元组成，一般是一次存取的单位</li>
-<li>存储体：若干存储单元</li>
-</ul>
-<h3 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h3><ul>
-<li>按作用/层次分类<ul>
-<li>主存储器<ul>
-<li>即内存，存放计算机运行期间的数据和程序</li>
-<li>CPU可以直接进行访问，也可以和Cache和辅存交换数据</li>
-<li>容量较小，速度较快，价格较高</li>
-</ul>
-</li>
-<li>辅助存储器<ul>
-<li>即外存，存放暂时不用的数据和程序，或需要长期保存的信息。</li>
-<li>CPU不能直接访问</li>
-<li>容量大，速度慢，成本低</li>
-</ul>
-</li>
-<li>高速缓冲存储器<ul>
-<li>即Cache，位于主存和CPU之间，存放正在执行的程序段和数据，加速CPU访问数据</li>
-<li>CPU可以直接进行访问，可以和内存交换数据</li>
-<li>容量小，价格高，存取速度和CPU速度匹配</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按存取方式分类<ul>
-<li>随机存储器RAM<ul>
-<li>存取时间和位置无关，可随机存取，使用方便</li>
-<li>常用于主存和缓冲存储器</li>
-<li>可分为静态RAM（SRAM），动态RAM（DRAM）</li>
-</ul>
-</li>
-<li>只读存储器ROM<ul>
-<li>只能随机读出，不能写入</li>
-<li>通常存放不变的程序、字库、常数，和RAM共同作为主存的一部分</li>
-</ul>
-</li>
-<li>串行访问存储器<ul>
-<li>顺序存取存储器SAM：只能按某种顺序存取，存取时间和位置有关，速度慢，如磁带</li>
-<li>直接存取存储器DAM：不是全局随机存取，也不是完全顺序存取，折中方案。先确定数据所在小区域，在区域内顺序查找，如磁盘、光盘（详见第7章笔记）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按存储介质分类<ul>
-<li>磁表面存储器<ul>
-<li>磁盘</li>
-<li>磁带</li>
-</ul>
-</li>
-<li>磁芯存储器</li>
-<li>半导体存储器<ul>
-<li>MOS型存储器</li>
-<li>双极型存储器</li>
-</ul>
-</li>
-<li>光存储器<ul>
-<li>光盘</li>
-<li>比如CD-ROM是只读型光盘，串行访问存储器，不是只读存储器ROM</li>
-<li>详见第7章笔记</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按信息的可保存性分类<ul>
-<li>易失性存储器<ul>
-<li>断电后存储信息就会消失</li>
-<li>如RAM</li>
-</ul>
-</li>
-<li>非易失性存储器<ul>
-<li>断电后存储信息不会消失</li>
-<li>如ROM、磁表面存储器、光存储器</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="存储器性能指标"><a href="#存储器性能指标" class="headerlink" title="存储器性能指标"></a>存储器性能指标</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/25/ComputerOrganization-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/23/ComputerOrganization-2/" class="post-title-link" itemprop="url">【知识总结】 第二章-数据的表示和运算</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-23 21:58:35" itemprop="dateCreated datePublished" datetime="2021-10-23T21:58:35+08:00">2021-10-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 22:24:27" itemprop="dateModified" datetime="2021-12-02T22:24:27+08:00">2021-12-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/10/23/ComputerOrganization-2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-数据的表示和运算" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/10/23/ComputerOrganization-2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/23/ComputerOrganization-2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="数制与编码"><a href="#数制与编码" class="headerlink" title="数制与编码"></a>数制与编码</h2><h3 id="进位计数制和数据间转换"><a href="#进位计数制和数据间转换" class="headerlink" title="进位计数制和数据间转换"></a>进位计数制和数据间转换</h3><p>计算机内部用二进制编码信息的原因</p>
-<ul>
-<li>成本方面：二进制两种状态，用有两个稳定状态的物理器件表示，制造成本低。</li>
-<li>功能方面：二进制的两种状态，对应逻辑值“真”和“假”，方便计算机实现逻辑运算、进行逻辑判断</li>
-<li>实现方面：二进制编码和运算简单，通过逻辑门电路很容易实现</li>
-</ul>
-<p>进位计数值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/23/ComputerOrganization-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/23/ComputerOrganization-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/23/ComputerOrganization-1/" class="post-title-link" itemprop="url">【知识总结】 第一章-计算机系统概述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-10-23 12:09:45 / 修改时间：22:05:51" itemprop="dateCreated datePublished" datetime="2021-10-23T12:09:45+08:00">2021-10-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/10/23/ComputerOrganization-1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第一章-计算机系统概述" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/10/23/ComputerOrganization-1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/23/ComputerOrganization-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成</li>
-<li>汇编语言：把机器指令表示为助记符，与机器语言指令一一对应</li>
-<li>高级语言：接近自然语言，按约定符号和规则写程序</li>
-<li>编译程序：把高级语言程序翻译成机器语言目标代码的系统软件</li>
-<li>汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件</li>
-<li>字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度</li>
-<li>系列机：一个厂家生产的，具有相同的系统结构，但具有不同组成和实现的一系列不同型号机器</li>
-<li>软件兼容：现有的软件在升级换代后的新机器上可以使用</li>
-<li>虚拟机器：从使用者角度，计算机系统是硬件上的虚拟机器；虚拟机依靠软件存在，软件扩充了系统功能</li>
-<li>二进制位：是数字计算机中信息最小的位</li>
-<li>字节：8个二进制数是1个字节。计算机系统存储器按字节编址。</li>
-<li>内存地址：给存储器每个位置编号，方便访问指定位置，该编号是内存地址</li>
-</ul>
-<h2 id="计算机系统层次结构"><a href="#计算机系统层次结构" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h2><h3 id="计算机系统的组成"><a href="#计算机系统的组成" class="headerlink" title="计算机系统的组成"></a>计算机系统的组成</h3><ul>
-<li>硬件系统：有形的物理设备，计算机系统中实际物理装置的总称</li>
-<li>软件系统：在硬件上运行的程序、相关数据、文档</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/23/ComputerOrganization-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1595,14 +1548,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1635,7 +1588,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
