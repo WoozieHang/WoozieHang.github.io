@@ -198,6 +198,167 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/07/calculus3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/07/calculus3/" class="post-title-link" itemprop="url">【知识总结】 第三章-一元函数积分学</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-07 07:51:41" itemprop="dateCreated datePublished" datetime="2021-12-07T07:51:41+08:00">2021-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-25 21:14:32" itemprop="dateModified" datetime="2021-12-25T21:14:32+08:00">2021-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E7%A7%AF%E5%88%86/" itemprop="url" rel="index"><span itemprop="name">微积分</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/07/calculus3/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第三章-一元函数积分学" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/07/calculus3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/07/calculus3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="原函数和不定积分"><a href="#原函数和不定积分" class="headerlink" title="原函数和不定积分"></a>原函数和不定积分</h2><ul>
+<li>原函数<ul>
+<li>若存在$F(x)$，使得$F’(x)=f(x)$，则$F(x)$是$f(x)$的原函数</li>
+<li>$F(x)+C$是$f(x)$的原函数一般形式</li>
+</ul>
+</li>
+<li>不定积分<ul>
+<li>原函数的一般形式即不定积分</li>
+<li>记为$\int f(x)dx=F(x)+C$</li>
+</ul>
+</li>
+<li>原函数存在性（不定积分存在性）<ul>
+<li>函数闭区间连续，则存在闭区间的原函数</li>
+<li>函数闭区间，若间断点只有振荡间断点，则存在闭区间的原函数</li>
+</ul>
+</li>
+</ul>
+<h2 id="定积分"><a href="#定积分" class="headerlink" title="定积分"></a>定积分</h2><ul>
+<li>定积分<ul>
+<li>分割、乘积、求和、取极限，若极限存在，则该极限为定积分</li>
+</ul>
+</li>
+<li>定积分存在性<ul>
+<li>函数闭区间连续，则存在该区间上的定积分</li>
+<li>函数闭区间有界，间断点有限，则存在该区间上的定积分</li>
+</ul>
+</li>
+<li>不定积分和定积分的关系<ul>
+<li>存在性互不相关</li>
+<li>若函数闭区间连续，则不定积分和定积分都存在<ul>
+<li>定积分表示原函数（变上限积分）：$F(x)=\int f(x)dx=\int_{a}^xf(t)dt+C$</li>
+<li>原函数表示定积分（牛顿-莱布尼兹定理）：$\int_a^{b}f(x)dx=F(b)-F(a)$</li>
+</ul>
+</li>
+<li>若函数闭区间有一个跳跃间断点，其余位置连续，设$F(x)=\int_{a}^xf(t)dt+C$<ul>
+<li>分析1：根据存在性判定，闭区间不存在原函数，但存在定积分，说明存在某些位置$F(x)$不可导，或$F’(x)\neq f(x)$</li>
+<li>结论1：$F(x)$闭区间连续</li>
+<li>结论2：非间断位置，$F’(x)=f(x)$</li>
+<li>结论3：间断位置，$F’_-(x)=f(x^-),F’_+(x)=f(x^+)$</li>
+<li>分析2：间断点$x_0$是跳跃间断点，则$F’_-(x_0)\neq F’_+(x_0)\Rightarrow F(x_0)$不可导</li>
+<li>分析3：间断点$x_0$如果改成可去间断点，则$F’(x_0)=\lim\limits_{x\rightarrow x_0} f(x)\neq f(x_0)$（不一定严谨，因为不清楚前面结论是否还成立）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>定积分的性质<ul>
+<li>$\forall x\in [a,b],f(x)\leq g(x)\Rightarrow \int_a^bf(x)dx\leq \int_a^b g(x)dx$</li>
+<li>在上面性质基础上，若闭区间连续且$\exists x_0,f(x_0)&lt;g(x_0)\Rightarrow \int_a^bf(x)dx&lt; \int_a^b g(x)dx$</li>
+<li>积分中值定理<ul>
+<li>见第二章的中值定理体系</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/07/calculus3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/06/calculus2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1551,165 +1712,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/28/ProbabilityAndStatistics3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/28/ProbabilityAndStatistics3/" class="post-title-link" itemprop="url">【知识总结】 第三章-多维随机变量及其概率分布</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-11-28 16:51:13 / 修改时间：22:00:32" itemprop="dateCreated datePublished" datetime="2021-11-28T16:51:13+08:00">2021-11-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率论与数理统计</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/28/ProbabilityAndStatistics3/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第三章-多维随机变量及其概率分布" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/28/ProbabilityAndStatistics3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/28/ProbabilityAndStatistics3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
-<li>笔记为个人整理，禁止商业用途</li>
-<li>如有疏漏，欢迎留言</li>
-</ul>
-<h2 id="二维离散型随机向量"><a href="#二维离散型随机向量" class="headerlink" title="二维离散型随机向量"></a>二维离散型随机向量</h2><ul>
-<li>联合概率分布<ul>
-<li>用二维的<strong>列联表</strong>表示</li>
-</ul>
-</li>
-<li>联合分布函数<ul>
-<li>$F(x,y)=P\{X\leq x,Y\leq y\}$</li>
-</ul>
-</li>
-<li>边缘分布<ul>
-<li>关于$X$和$Y$的边缘分布为$F_X(x)=P\{X\leq x\}$和$F_Y(y)=P\{Y\leq y\}$</li>
-<li>把列联表按行或按列累加</li>
-</ul>
-</li>
-<li>条件分布<ul>
-<li>一个条件对应列联表的某行或某列</li>
-<li>把该行或列标准化，写成一维表，表示条件分布律</li>
-</ul>
-</li>
-</ul>
-<h2 id="二维随机变量及其分布"><a href="#二维随机变量及其分布" class="headerlink" title="二维随机变量及其分布"></a>二维随机变量及其分布</h2><ul>
-<li>联合分布函数<ul>
-<li>$F(x,y)=P\{X\leq x,Y\leq y\}$</li>
-</ul>
-</li>
-<li>联合密度函数<ul>
-<li>存在非负可积二元函数$p(x,y)$使得$F(x,y)=\int_{-\infty}^x\int_{-\infty}^yp(u,v)dudv$</li>
-<li>$p(x,y)$即密度函数<ul>
-<li>非负</li>
-<li>平面上积分为1</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>边缘分布<ul>
-<li>$F_X(x)=F(x,+\infty)$</li>
-<li>$F_Y(y)=F(+\infty,y)$</li>
-</ul>
-</li>
-<li>边缘密度<ul>
-<li>$p_X(x)=\int_{-\infty}^{+\infty}p(x,v)dv$</li>
-<li>$p_Y(y)=\int_{-\infty}^{+\infty}p(u,y)du$</li>
-</ul>
-</li>
-<li>条件分布<ul>
-<li>$F_{Y|X=x}(y|x)=\int_{-\infty}^y\frac{p(x,v)}{P_X(x)}dv$</li>
-<li>$F_{X|Y=y}(x|y)=\int_{-\infty}^x\frac{p(u,y)}{P_Y(y)}du$</li>
-</ul>
-</li>
-<li>条件密度<ul>
-<li>$p_{Y|X=x}(y|x)=\frac{p(x,y)}{P_X(x)}$</li>
-<li>$p_{X|Y=y}(x|y)=\frac{p(x,y)}{P_Y(y)}$</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/28/ProbabilityAndStatistics3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1777,7 +1783,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
