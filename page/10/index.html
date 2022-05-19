@@ -74,7 +74,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -198,6 +202,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/19/algorithms1-hw/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/19/algorithms1-hw/" class="post-title-link" itemprop="url">【习题解答】 抽象算法设计与分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-19 20:10:49" itemprop="dateCreated datePublished" datetime="2021-03-19T20:10:49+08:00">2021-03-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 22:01:24" itemprop="dateModified" datetime="2022-05-19T22:01:24+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/03/19/algorithms1-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 抽象算法设计与分析" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/03/19/algorithms1-hw/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/19/algorithms1-hw/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>注：</em></strong>
+<em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em>
+##1.1 ###(1) 算法设计 <img src="/2021/03/19/algorithms1-hw/1_1.jpg" class title="this is algorithms"> ###(2)
+本问针对个人设计的算法，假设所有输入等可能出现，则： + 有<span class="math inline">\(\frac{1}{3}\)</span>可能性, <span class="math inline">\(D[2]\)</span>序最大, 进行第2、5行比较; + 有<span class="math inline">\(\frac{2}{3}\)</span>可能性, <span class="math inline">\(D[2]\)</span>序不为最大, 进行第2、5、7行比较;</p>
+<p><strong>最坏情况</strong> 需要进行3次比较。 <strong>平均情况</strong>
+需要进行<span class="math inline">\(\frac{1}{3}\times 2 +\frac{2}{3}
+\times 3=\frac{8}{3}\)</span>次比较</p>
+<p>###(3) 本问求最坏情况(面向所有输入)比较次数的下界(面向所有算法)。
+即<span class="math inline">\(\min\limits_{method}\max\limits_{in}
+cost(method,in)\)</span></p>
+<p>易得结果为3次，下面给出严格证明，分为两个步骤： +
+存在一个可行算法，使得最坏输入情况的比较次数等于3; +
+不存在一个可行的算法，最坏输入情况的比较次数都小于3。</p>
+<p>前者用举例证明：如第1小问设计的算法，最坏情况的比较次数就是3;
+后者用反证法：假设某可行算法进行了不到3次比较，通过改变输入，可以使得3个整数中至少有1对整数之间的序关系是未知的，那么就需要进行3次比较，产生矛盾。因此后者得证。
+<strong>综合上述，最坏情况比较次数的下界为3次。</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/19/algorithms1-hw/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/18/graphIntroduction-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -273,15 +394,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="2-连通图的性质"><a href="#2-连通图的性质" class="headerlink" title="2-连通图的性质"></a>2-连通图的性质</h2><h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><p>G是块：G是无割点的连通图<br>H是G的块：H是G中极大无割点连通子图</p>
-<h3 id="块的等价定义-G是-v-geq-3-的连通图"><a href="#块的等价定义-G是-v-geq-3-的连通图" class="headerlink" title="块的等价定义(G是$v\geq 3$的连通图)"></a>块的等价定义(G是$v\geq 3$的连通图)</h3><ul>
+          <h2 id="连通图的性质">2-连通图的性质</h2>
+<h3 id="块">块</h3>
+<p>G是块：G是无割点的连通图 H是G的块：H是G中极大无割点连通子图</p>
+<h3 id="块的等价定义g是vgeq-3的连通图">块的等价定义(G是<span class="math inline">\(v\geq 3\)</span>的连通图)</h3>
+<ul>
 <li>G是2-连通的(块)</li>
 <li>G的任二顶点共圈</li>
 <li>G的任一顶点与任一边共圈</li>
 <li>G的任二边共圈</li>
-<li>对 $\forall u,v\in V(G)$ 及 $\forall e \in E(G)$ 存在 $(u,v)$ 路含有边 $e$</li>
-<li>对 $\forall u,v,w\in V(G)$，存在 $(u,v)$ 路含有顶点 $w$</li>
-<li>对 $\forall u,v,w\in V(G)$，存在 $(u,v)$ 路不含有顶点 $w$</li>
+<li>对 <span class="math inline">\(\forall u,v\in V(G)\)</span> 及 <span class="math inline">\(\forall e \in E(G)\)</span> 存在 <span class="math inline">\((u,v)\)</span> 路含有边 <span class="math inline">\(e\)</span></li>
+<li>对 <span class="math inline">\(\forall u,v,w\in V(G)\)</span>，存在
+<span class="math inline">\((u,v)\)</span> 路含有顶点 <span class="math inline">\(w\)</span></li>
+<li>对 <span class="math inline">\(\forall u,v,w\in V(G)\)</span>，存在
+<span class="math inline">\((u,v)\)</span> 路不含有顶点 <span class="math inline">\(w\)</span></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -384,8 +510,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="割点和割边"><a href="#割点和割边" class="headerlink" title="割点和割边"></a>割点和割边</h2><h3 id="割点定义"><a href="#割点定义" class="headerlink" title="割点定义"></a>割点定义</h3><p>$v \in V(G):w(G-v)&gt;w(G)$</p>
-<h3 id="割点的一个定理"><a href="#割点的一个定理" class="headerlink" title="割点的一个定理"></a>割点的一个定理</h3><p>如果点v是简单图G的一个割点，则边集$E[G]$可划分为两个非空子集$E_1$和$E_2$，使得边导出子图$G[E_1]$和$G[E_2]$恰好有一个公共顶点v。</p>
+          <h2 id="割点和割边">割点和割边</h2>
+<h3 id="割点定义">割点定义</h3>
+<p><span class="math inline">\(v \in V(G):w(G-v)&gt;w(G)\)</span></p>
+<h3 id="割点的一个定理">割点的一个定理</h3>
+<p>如果点v是简单图G的一个割点，则边集<span class="math inline">\(E[G]\)</span>可划分为两个非空子集<span class="math inline">\(E_1\)</span>和<span class="math inline">\(E_2\)</span>，使得边导出子图<span class="math inline">\(G[E_1]\)</span>和<span class="math inline">\(G[E_2]\)</span>恰好有一个公共顶点v。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/11/graphIntroduction-2/#more" rel="contents">
@@ -443,7 +572,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:48:27" itemprop="dateModified" datetime="2021-04-05T13:48:27+08:00">2021-04-05</time>
+                <time title="修改时间：2022-05-19 21:59:20" itemprop="dateModified" datetime="2022-05-19T21:59:20+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -487,8 +616,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Double-Counting-Principle"><a href="#Double-Counting-Principle" class="headerlink" title="Double Counting Principle"></a>Double Counting Principle</h2><h3 id="数学含义"><a href="#数学含义" class="headerlink" title="数学含义"></a>数学含义</h3><p>$\sum_{i=1}^m\sum_{j=1}^n A[i][j]=\sum_{j=1}^n\sum_{i=1}^m A[i][j]$</p>
-<h3 id="lemma定理："><a href="#lemma定理：" class="headerlink" title="lemma定理："></a>lemma定理：</h3><p>$\sum\limits_{v\in V}deg(v)=2|E|$</p>
+          <h2 id="double-counting-principle">Double Counting Principle</h2>
+<h3 id="数学含义">数学含义</h3>
+<p><span class="math inline">\(\sum_{i=1}^m\sum_{j=1}^n
+A[i][j]=\sum_{j=1}^n\sum_{i=1}^m A[i][j]\)</span></p>
+<p>###lemma定理： <span class="math inline">\(\sum\limits_{v\in
+V}deg(v)=2|E|\)</span></p>
+<p><strong>lemma定理的证明</strong>:定义一个矩阵，行是顶点，列是边，当一个顶点是边的端点，则矩阵对应位置为1。使用double
+counting principle即可证得lemma定理。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/09/combinatorics-1/#more" rel="contents">
@@ -590,8 +725,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为<strong>顶点集</strong>，集合E是V中元素组成的某些无序对的集合，称为<strong>边集</strong>，顶点的数目$|V|$称为图的<strong>阶</strong>，边的数目$|E|$称为图的边数。</p>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p>定义：点表示顶点，线段表示边，绘制出平面表示图。</p>
+          <h2 id="基本概念">基本概念</h2>
+<h3 id="图">图</h3>
+<p>定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为<strong>顶点集</strong>，集合E是V中元素组成的某些无序对的集合，称为<strong>边集</strong>，顶点的数目<span class="math inline">\(|V|\)</span>称为图的<strong>阶</strong>，边的数目<span class="math inline">\(|E|\)</span>称为图的边数。</p>
+<h3 id="图示">图示</h3>
+<p>定义：点表示顶点，线段表示边，绘制出平面表示图。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/08/graphIntroduction-1/#more" rel="contents">
@@ -751,7 +889,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:45:47" itemprop="dateModified" datetime="2021-04-05T13:45:47+08:00">2021-04-05</time>
+                <time title="修改时间：2022-05-19 21:57:57" itemprop="dateModified" datetime="2022-05-19T21:57:57+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -795,8 +933,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input perturbation</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>现代神经网络在训练集和测试集样本来自同一个分布的时候效果很好。但现实世界部署的时候，往往测试集的分布是不受控制的。最近的工作表明，即使是输入不相关的数据，神经网络的预测结果也会偏高。对于分类器来说，遇到没见过的输入时给出一个不确定的反馈非常重要。因此，精确的检测OoD样本在视觉识别任务的实践中非常重要。</p>
+          <h2 id="abstract">Abstract</h2>
+<p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature
+scaling</strong>和<strong>input
+perturbation</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR
+at 95% TPR</strong>从34.7%降低到4.3%。</p>
+<h2 id="introduction">Introduction</h2>
+<p>现代神经网络在训练集和测试集样本来自同一个分布的时候效果很好。但现实世界部署的时候，往往测试集的分布是不受控制的。最近的工作表明，即使是输入不相关的数据，神经网络的预测结果也会偏高。对于分类器来说，遇到没见过的输入时给出一个不确定的反馈非常重要。因此，精确的检测OoD样本在视觉识别任务的实践中非常重要。</p>
 <p>一个看上去比较直接的OoD检测方式就是扩大In-Distribution集合和Out-of-Distribution集合的规模。而OoD的数据往往是很有限的，这让再训练变得昂贵且难以处理。此外，为了确保神经网络在准确的给ID进行分类的同时，也能正确的检测出OoD,可能需要很大的神经网络架构，这使得训练过程更加复杂。</p>
           <!--noindex-->
             <div class="post-button">
@@ -1001,9 +1144,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑样本检测中两个相关的问题：误分类和OoD。作者利用来自softmax分布的概率提出了一个检测的<strong>baseline</strong>。相比于错误分类的样本和OoD的样本，被正确分类的样本倾向于有更大的maximum softmax概率(<strong>后文统称为置信度</strong>)。接着，baseline的各方面性能通过关于计算机视觉、自然语言处理、自动语音识别的一些任务被进行评估。作者然后说明了baseline有时是可以被超越的，展示了这个检测领域的任务未来可探索的空间。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>当训练分布和测试分布有差异的时候，应用于现实任务的机器学习分类器往往会工作失败。更糟糕的是，面对错误，这些分类器仍然会给出较高的置信度而不会报错，即使错的离谱。分类器如果不能指出自己什么时候可能是错的，它的使用就会收到限制并可能导致严重事故。例如，一个医学的诊断模型可能始终以较高的置信度进行归类，即使模型应该把不太确定的困难样本标记并留给人工处理。由此导致的未标记的错误诊断会阻碍机器学习技术未来在医疗领域的发展。作者还指出一个更普遍而重要的事情：评估一个模型何时发生错误在人工智能安全领域中饱受关注。</p>
-<p>softmax输出经常产生高置信度的预测，这是因为softmax概率是由快速递增的指数函数所计算的。<br>因此给softmax的输入(<strong>logits</strong>)一个微小的增量，会导致输出分布的质变。因为softmax函数是指示函数的平滑近似，所以OoD样例输出一个均匀分布并不常见。实际上，随机高斯噪声输入到一个MNIST图像分类器会得到一个高达91%的预测置信度。作者在实验中表明softmax的预测概率和可信度相关性很弱。</p>
+          <h2 id="abstract">Abstract</h2>
+<p>本文考虑样本检测中两个相关的问题：误分类和OoD。作者利用来自softmax分布的概率提出了一个检测的<strong>baseline</strong>。相比于错误分类的样本和OoD的样本，被正确分类的样本倾向于有更大的maximum
+softmax概率(<strong>后文统称为置信度</strong>)。接着，baseline的各方面性能通过关于计算机视觉、自然语言处理、自动语音识别的一些任务被进行评估。作者然后说明了baseline有时是可以被超越的，展示了这个检测领域的任务未来可探索的空间。</p>
+<h2 id="introduction">Introduction</h2>
+<p>当训练分布和测试分布有差异的时候，应用于现实任务的机器学习分类器往往会工作失败。更糟糕的是，面对错误，这些分类器仍然会给出较高的置信度而不会报错，即使错的离谱。分类器如果不能指出自己什么时候可能是错的，它的使用就会收到限制并可能导致严重事故。例如，一个医学的诊断模型可能始终以较高的置信度进行归类，即使模型应该把不太确定的困难样本标记并留给人工处理。由此导致的未标记的错误诊断会阻碍机器学习技术未来在医疗领域的发展。作者还指出一个更普遍而重要的事情：评估一个模型何时发生错误在人工智能安全领域中饱受关注。</p>
+<p>softmax输出经常产生高置信度的预测，这是因为softmax概率是由快速递增的指数函数所计算的。
+因此给softmax的输入(<strong>logits</strong>)一个微小的增量，会导致输出分布的质变。因为softmax函数是指示函数的平滑近似，所以OoD样例输出一个均匀分布并不常见。实际上，随机高斯噪声输入到一个MNIST图像分类器会得到一个高达91%的预测置信度。作者在实验中表明softmax的预测概率和可信度相关性很弱。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/02/13/OoD-Baseline/#more" rel="contents">
@@ -1105,122 +1252,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在<strong>分类</strong>这件人类经常接触的问题上性能远超于人。</p>
-<p>DNN在I.I.D假设下工作良好，但遇到OoD样本时往往过分自信（给出偏高的分类置信度），这阻碍了在安全要求很高的系统中DNN的可采用性。例如，训练集中没有自行车，但汽车的分类器会错分类骑自行车的人。因此分类器需要加强分辨ID和OoD的机制。以往的论文中也提到了类似地检测不同域的样本的方法，例如outlier and novelty detection。</p>
+          <h2 id="abstract">Abstract</h2>
+<p>作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state
+of art)方法比较，有出色的结果。</p>
+<h2 id="introduction">Introduction</h2>
+<p>DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在<strong>分类</strong>这件人类经常接触的问题上性能远超于人。</p>
+<p>DNN在I.I.D假设下工作良好，但遇到OoD样本时往往过分自信（给出偏高的分类置信度），这阻碍了在安全要求很高的系统中DNN的可采用性。例如，训练集中没有自行车，但汽车的分类器会错分类骑自行车的人。因此分类器需要加强分辨ID和OoD的机制。以往的论文中也提到了类似地检测不同域的样本的方法，例如outlier
+and novelty detection。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/02/04/Detecting-OoD-Using-Early-layers/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/01/31/algorithms1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/31/algorithms1/" class="post-title-link" itemprop="url">【知识总结】 抽象算法设计与分析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-31 22:43:26" itemprop="dateCreated datePublished" datetime="2021-01-31T22:43:26+08:00">2021-01-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:46:52" itemprop="dateModified" datetime="2021-04-05T13:46:52+08:00">2021-04-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/01/31/algorithms1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 抽象算法设计与分析" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/01/31/algorithms1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/31/algorithms1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="RAM模型的引入"><a href="#RAM模型的引入" class="headerlink" title="RAM模型的引入"></a>RAM模型的引入</h2><h3 id="计算的基本概念"><a href="#计算的基本概念" class="headerlink" title="计算的基本概念"></a>计算的基本概念</h3><ul>
-<li>计算的关键特征：基于有限种类操作的灵活组合完成复杂的计算任务</li>
-<li>算法的宏观定义：一组计算机操作的序列，遵循算法的指示，计算机对任意合法输入执行一系列操作，并给出正确结果。</li>
-</ul>
-<h3 id="计算模型的基本概念"><a href="#计算模型的基本概念" class="headerlink" title="计算模型的基本概念"></a>计算模型的基本概念</h3><ul>
-<li>算法掌握的一种抽象原则，与编程语言和机器无关，假设在抽象机器上完成算法设计和分析。</li>
-<li>在不同具体机器上实例化算法时，虽然底层提供的基本操作不同，但是总是常数倍的关系，本质相同。</li>
-<li>上述的抽象机器就是计算模型，是抽象算法设计与分析的基础。图灵机是描述能力很强的计算模型，对于算法设计分析的基础知识来说，RAM模型更简单易用。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/31/algorithms1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1311,7 +1352,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

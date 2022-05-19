@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  伴随矩阵伴随矩阵的求法 定义法 伴随矩阵的第$i$行第$j$列的值是原矩阵第$j$行第$i$列的代数余子式 注意这里有一个转置操作   性质法 $\pmb{A}\pmb{A}^\star&#x3D;|\pmb{A}|\pmb{E}$ 注意这种方法求伴随矩阵要求$\pmb{A}">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  伴随矩阵 伴随矩阵的求法  定义法  伴随矩阵的第\(i\)行第\(j\)列的值是原矩阵第\(j\)行第\(i\)列的代数余子式 注意这里有一个转置操作  性质法  \(\pmb{A}\pmb{A}^\star&#x3D;|\pmb{A}|\pm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第二章-矩阵">
 <meta property="og:url" content="https://wooziehang.github.io/2021/11/12/linearAlgebra2/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  伴随矩阵伴随矩阵的求法 定义法 伴随矩阵的第$i$行第$j$列的值是原矩阵第$j$行第$i$列的代数余子式 注意这里有一个转置操作   性质法 $\pmb{A}\pmb{A}^\star&#x3D;|\pmb{A}|\pmb{E}$ 注意这种方法求伴随矩阵要求$\pmb{A}">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  伴随矩阵 伴随矩阵的求法  定义法  伴随矩阵的第\(i\)行第\(j\)列的值是原矩阵第\(j\)行第\(i\)列的代数余子式 注意这里有一个转置操作  性质法  \(\pmb{A}\pmb{A}^\star&#x3D;|\pmb{A}|\pm">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-12T15:32:19.000Z">
-<meta property="article:modified_time" content="2021-11-22T13:24:06.829Z">
+<meta property="article:modified_time" content="2022-05-19T14:34:09.388Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-22 21:24:06" itemprop="dateModified" datetime="2021-11-22T21:24:06+08:00">2021-11-22</time>
+                <time title="修改时间：2022-05-19 22:34:09" itemprop="dateModified" datetime="2022-05-19T22:34:09+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,238 +285,310 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="伴随矩阵"><a href="#伴随矩阵" class="headerlink" title="伴随矩阵"></a>伴随矩阵</h2><h3 id="伴随矩阵的求法"><a href="#伴随矩阵的求法" class="headerlink" title="伴随矩阵的求法"></a>伴随矩阵的求法</h3><ul>
-<li>定义法<ul>
-<li>伴随矩阵的第$i$行第$j$列的值是原矩阵第$j$行第$i$列的代数余子式</li>
+<h2 id="伴随矩阵">伴随矩阵</h2>
+<h3 id="伴随矩阵的求法">伴随矩阵的求法</h3>
+<ul>
+<li>定义法
+<ul>
+<li>伴随矩阵的第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列的值是原矩阵第<span class="math inline">\(j\)</span>行第<span class="math inline">\(i\)</span>列的代数余子式</li>
 <li>注意这里有一个转置操作</li>
+</ul></li>
+<li>性质法
+<ul>
+<li><span class="math inline">\(\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}\)</span></li>
+<li>注意这种方法求伴随矩阵要求<span class="math inline">\(\pmb{A}\)</span>可逆，此时<span class="math inline">\(\pmb{A}^\star=|\pmb{A}|\pmb{A}^{-1}\)</span></li>
+</ul></li>
 </ul>
-</li>
-<li>性质法<ul>
-<li>$\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}$</li>
-<li>注意这种方法求伴随矩阵要求$\pmb{A}$可逆，此时$\pmb{A}^\star=|\pmb{A}|\pmb{A}^{-1}$</li>
-</ul>
-</li>
-</ul>
-<h3 id="伴随矩阵相关证明"><a href="#伴随矩阵相关证明" class="headerlink" title="伴随矩阵相关证明"></a>伴随矩阵相关证明</h3><ul>
-<li>思路<ul>
-<li>一般会用到伴随矩阵的性质$\pmb{A}\pmb{A}^\star=\pmb{A}^\star\pmb{A}=|\pmb{A}|\pmb{E}$出发</li>
+<h3 id="伴随矩阵相关证明">伴随矩阵相关证明</h3>
+<ul>
+<li>思路
+<ul>
+<li>一般会用到伴随矩阵的性质<span class="math inline">\(\pmb{A}\pmb{A}^\star=\pmb{A}^\star\pmb{A}=|\pmb{A}|\pmb{E}\)</span>出发</li>
 <li>结合矩阵运算法则</li>
 <li>一般会用到表达式中其他操作的定义</li>
+</ul></li>
+<li>举例：证明<span class="math inline">\((\pmb{A}^\star)^{-1}=(\pmb{A^{-1}})^\star\)</span>
+<ul>
+<li>即证明<span class="math inline">\(\pmb{A}^\star(\pmb{A^{-1}})^\star=\pmb{E}\)</span>（可逆操作的定义）</li>
+<li>即证明<span class="math inline">\(\pmb{A}\pmb{A}^\star(\pmb{A^{-1}})^\star\pmb{A}^{-1}=\pmb{E}\)</span>（矩阵基本左乘右乘法则）</li>
+<li>即证明<span class="math inline">\((|\pmb{A}|\pmb{E})(|\pmb{A}|^{-1}\pmb{E})=|\pmb{A}\pmb{A}^{-1}|\pmb{E}=\pmb{E}\)</span>（伴随矩阵的性质、行列式运算法则）</li>
+</ul></li>
 </ul>
-</li>
-<li>举例：证明$(\pmb{A}^\star)^{-1}=(\pmb{A^{-1}})^\star$<ul>
-<li>即证明$\pmb{A}^\star(\pmb{A^{-1}})^\star=\pmb{E}$（可逆操作的定义）</li>
-<li>即证明$\pmb{A}\pmb{A}^\star(\pmb{A^{-1}})^\star\pmb{A}^{-1}=\pmb{E}$（矩阵基本左乘右乘法则）</li>
-<li>即证明$(|\pmb{A}|\pmb{E})(|\pmb{A}|^{-1}\pmb{E})=|\pmb{A}\pmb{A}^{-1}|\pmb{E}=\pmb{E}$（伴随矩阵的性质、行列式运算法则）</li>
-</ul>
-</li>
-</ul>
-<h2 id="初等变换"><a href="#初等变换" class="headerlink" title="初等变换"></a>初等变换</h2><ul>
-<li>初等变换<ul>
+<h2 id="初等变换">初等变换</h2>
+<ul>
+<li>初等变换
+<ul>
 <li>倍乘变换</li>
 <li>互换变换</li>
 <li>倍加变换</li>
-</ul>
-</li>
-<li>初等矩阵：对单位矩阵初等变换<ul>
+</ul></li>
+<li>初等矩阵：对单位矩阵初等变换
+<ul>
 <li>倍乘矩阵</li>
 <li>互换矩阵</li>
 <li>倍加矩阵</li>
-</ul>
-</li>
-<li>常用性质<ul>
-<li>性质1：左（右）乘初等矩阵$\Leftrightarrow$作对应的初等行（列）变换，不改变矩阵的型和秩</li>
-<li>性质2：可逆矩阵可以表示为有限个初等矩阵的乘积，即可以通过初等行变换转换为单位矩阵<ul>
+</ul></li>
+<li>常用性质
+<ul>
+<li>性质1：左（右）乘初等矩阵<span class="math inline">\(\Leftrightarrow\)</span>作对应的初等行（列）变换，不改变矩阵的型和秩</li>
+<li>性质2：可逆矩阵可以表示为有限个初等矩阵的乘积，即可以通过初等行变换转换为单位矩阵
+<ul>
 <li>后面矩阵初等变换分解的一个推论</li>
-</ul>
-</li>
-<li>性质3：两个矩阵是等价矩阵（关系符号是$\cong$）$\Leftrightarrow$两个矩阵可以通过有限次初等变换相互转换$\Leftrightarrow$两个矩阵同型且秩相同<ul>
+</ul></li>
+<li>性质3：两个矩阵是等价矩阵（关系符号是<span class="math inline">\(\cong\)</span>）<span class="math inline">\(\Leftrightarrow\)</span>两个矩阵可以通过有限次初等变换相互转换<span class="math inline">\(\Leftrightarrow\)</span>两个矩阵同型且秩相同
+<ul>
 <li>第一个到第二个：等价矩阵的定义</li>
 <li>第二个到第三个：初等变换不改变矩阵的型和秩</li>
 <li>第三个到第二个：先用矩阵的初等变换分解，再利用左右乘初等矩阵等价于作相应初等变换</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="可逆矩阵"><a href="#可逆矩阵" class="headerlink" title="可逆矩阵"></a>可逆矩阵</h2><h3 id="判断矩阵是否可逆"><a href="#判断矩阵是否可逆" class="headerlink" title="判断矩阵是否可逆"></a>判断矩阵是否可逆</h3><p><em>该问题是行列式一章中，判断行列式是否为0的镜像问题</em><br>下面条件是等价的</p>
+<h2 id="可逆矩阵">可逆矩阵</h2>
+<h3 id="判断矩阵是否可逆">判断矩阵是否可逆</h3>
+<p><em>该问题是行列式一章中，判断行列式是否为0的镜像问题</em></p>
+<p>下面条件是等价的</p>
 <ul>
-<li><strong>行列式</strong>：$|\pmb{A}|\neq 0$</li>
-<li><strong>矩阵</strong>：$\pmb{A}$可逆，即存在$\pmb{B}$，使得$\pmb{A}\pmb{B}=\pmb{E}$</li>
-<li><strong>秩</strong>：$r(\pmb{A})=n$</li>
-<li><strong>向量</strong>：$\pmb{A}$的各行（列）向量线性无关</li>
-<li><strong>线性方程组</strong>：$\pmb{Ax}=\pmb{0}$有唯一零解（根据线性方程组解的结构也可以说$\pmb{Ax}=\pmb{b}$有唯一解）</li>
-<li><strong>特征值</strong>：所有特征值$\lambda_i\neq 0$</li>
+<li><strong>行列式</strong>：<span class="math inline">\(|\pmb{A}|\neq
+0\)</span></li>
+<li><strong>矩阵</strong>：<span class="math inline">\(\pmb{A}\)</span>可逆，即存在<span class="math inline">\(\pmb{B}\)</span>，使得<span class="math inline">\(\pmb{A}\pmb{B}=\pmb{E}\)</span></li>
+<li><strong>秩</strong>：<span class="math inline">\(r(\pmb{A})=n\)</span></li>
+<li><strong>向量</strong>：<span class="math inline">\(\pmb{A}\)</span>的各行（列）向量线性无关</li>
+<li><strong>线性方程组</strong>：<span class="math inline">\(\pmb{Ax}=\pmb{0}\)</span>有唯一零解（根据线性方程组解的结构也可以说<span class="math inline">\(\pmb{Ax}=\pmb{b}\)</span>有唯一解）</li>
+<li><strong>特征值</strong>：所有特征值<span class="math inline">\(\lambda_i\neq 0\)</span></li>
 </ul>
-<h3 id="求逆矩阵基本思路"><a href="#求逆矩阵基本思路" class="headerlink" title="求逆矩阵基本思路"></a>求逆矩阵基本思路</h3><ul>
-<li>利用伴随矩阵的性质<ul>
-<li>$\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}\Rightarrow \pmb{A}^{-1}=\frac{\pmb{A}^\star}{|\pmb{A}|}$</li>
-</ul>
-</li>
-<li>初等变换法<ul>
-<li>$(\pmb{A},\pmb{E})$经过初等变换$(\pmb{E},\pmb{A}^{-1})$</li>
-</ul>
-</li>
-<li>可逆矩阵定义法<ul>
-<li>存在$\pmb{B}$，使得$\pmb{A}\pmb{B}=\pmb{E}$</li>
-</ul>
-</li>
-<li>已知$\pmb{A}^n=\pmb{O}$<ul>
-<li>根据$\pmb{E}=\pmb{E}^n-\pmb{A}^n=(\pmb{E}-\pmb{A})(\pmb{E}+\pmb{A}+\cdots+\pmb{A}^{n-1})$和可逆矩阵定义，可以得到$\pmb{E}-\pmb{A}$的逆矩阵</li>
-</ul>
-</li>
-</ul>
-<h2 id="秩的相关结论和证明"><a href="#秩的相关结论和证明" class="headerlink" title="秩的相关结论和证明"></a>秩的相关结论和证明</h2><p><em>本节利用线性方程组或向量组来证明结论，理解本节有利于思考其他的和秩有关的证明题</em></p>
+<h3 id="求逆矩阵基本思路">求逆矩阵基本思路</h3>
 <ul>
-<li>结论1：$\pmb{A}$有$n$列，$\pmb{B}$有$n$行，$\pmb{A}\pmb{B}=0\Rightarrow r(\pmb{A})+r(\pmb{B})\leq n$，从线性方程组角度证明：<ul>
-<li>根据$\pmb{B}$的每一列都是齐线性方程组$\pmb{A}\pmb{x}=\pmb{0}$的解向量</li>
-<li>线性无关的解向量个数为$n-r(\pmb{A})\Rightarrow r(\pmb{B})\leq n-r(\pmb{A})$</li>
-</ul>
-</li>
-<li>结论2：$r(\pmb{A}^T\pmb{A})=r(\pmb{A})$，从线性方程组角度证明：<ul>
-<li>$\pmb{A}\pmb{x}=\pmb{0}$的解向量是$\pmb{A}^T\pmb{A}\pmb{x}=\pmb{0}$的解向量<ul>
-<li>因为$\pmb{A}^T\pmb{A}\pmb{x}=\pmb{A}^T\pmb{0}=\pmb{0}$</li>
-</ul>
-</li>
-<li>$\pmb{A}^T\pmb{A}\pmb{x}=\pmb{0}$的解向量是$\pmb{A}\pmb{x}=\pmb{0}$的解向量<ul>
-<li>因为$\pmb{x}^T\pmb{A}^T\pmb{A}\pmb{x}=(\pmb{Ax})^T(\pmb{Ax})=0\Rightarrow \pmb{Ax}=\pmb{0}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>结论3：$r(\pmb{A}+\pmb{B})\leq r(\pmb{A})+r(\pmb{B})$，从列向量组角度证明：<ul>
-<li>$\pmb{A}$的所有列向量和$\pmb{B}$的所有列向量组构成的列向量组秩$r$不超过$r(\pmb{A})+r(\pmb{B})$</li>
-<li>$\pmb{A}+\pmb{B}$的列向量都是$\pmb{A}$的列向量和$\pmb{B}$的列向量的线性组合，则$r(\pmb{A}+\pmb{B})\leq r(\pmb{A})+r(\pmb{B})$</li>
-</ul>
-</li>
-<li>结论4：$r(\pmb{A}\pmb{B})\leq \min\{r(\pmb{A}),r(\pmb{B})\}$，从线性方程组角度证明：<ul>
-<li>$\pmb{B}\pmb{x}=\pmb{0}$的解向量是$\pmb{A}\pmb{B}\pmb{x}=\pmb{0}$的解向量<ul>
-<li>因此$r(\pmb{A}\pmb{B})\leq r(\pmb{B})$</li>
-</ul>
-</li>
-<li>$r(\pmb{A}\pmb{B})=r(\pmb{B}^T\pmb{A}^T)\leq \pmb{A}^T=\pmb{A}$<ul>
-<li>因此$r(\pmb{A}\pmb{B})\leq r(\pmb{A})$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>结论5：$r(\pmb{A})=n\Rightarrow r(\pmb{A}^\star)=n$，根据伴随矩阵性质以及结论4证明<ul>
-<li>$n= r(\pmb{A})\geq r(\pmb{A}\pmb{A}^\star)=r(|\pmb{A}|\pmb{E})=n$</li>
-</ul>
-</li>
-<li>结论6：$r(\pmb{A})=n-1\Rightarrow r(\pmb{A}^\star)=1$，根据伴随矩阵定义、性质以及结论1证明<ul>
-<li>$r(\pmb{A}\pmb{A}^\star)=r(|\pmb{A}|\pmb{E})=0\Rightarrow r(\pmb{A}^\star)\leq n-r(\pmb{A})=1$</li>
-<li>$r(\pmb{A})$有$n-1$阶子式行列式非零，则$r(\pmb{A})^\star\geq 1$</li>
-</ul>
-</li>
-<li>结论7：$r(\pmb{A})&lt;n-1\Rightarrow r(\pmb{A}^\star)=0$，根据伴随矩阵定义证明<ul>
-<li>$r(\pmb{A})$所有$n-1$阶子式行列式为零，则$r(\pmb{A})^\star=0$</li>
-</ul>
-</li>
-</ul>
-<h2 id="矩阵的分解"><a href="#矩阵的分解" class="headerlink" title="矩阵的分解"></a>矩阵的分解</h2><h3 id="矩阵的向量乘法分解"><a href="#矩阵的向量乘法分解" class="headerlink" title="矩阵的向量乘法分解"></a>矩阵的向量乘法分解</h3><p><em>把矩阵分解为向量矩阵的乘积</em></p>
+<li>利用伴随矩阵的性质
 <ul>
-<li>设$r(\pmb{A})=1$，则$\pmb{A}=\left [ \begin{matrix} a_1b_1&amp;a_1b_2&amp;\cdots&amp;a_1b_n\\ a_2b_1 &amp;a_2b_2 &amp;\cdots &amp;a_2b_n \\ \vdots &amp;\vdots&amp; \  &amp;\vdots\\ a_nb_1&amp;a_nb_2&amp;\cdots&amp;a_nb_n \end{matrix} \right ]$可以分解为两个向量矩阵的乘积$\pmb{\alpha}\pmb{\beta}^T=\left [ \begin{matrix} a_1\\ a_2 \\ \vdots \\ a_n\end{matrix} \right ]\left [ \begin{matrix} b_1&amp;b_2&amp;\cdots&amp;b_n\end{matrix} \right ]$</li>
-<li>作用1：矩阵的迹$tr(\pmb{A})=\pmb{\alpha}^T\pmb{\beta}=\pmb{\beta}^T\pmb{\alpha}=\left [ \begin{matrix} b_1&amp;b_2&amp;\cdots&amp;b_n\end{matrix} \right ]\left [ \begin{matrix} a_1\\ a_2 \\ \vdots \\ a_n\end{matrix} \right ]$</li>
-<li>作用2：$\pmb{A}^n=(\pmb{\alpha}\pmb{\beta}^T)^n=\pmb{\alpha}(\pmb{\beta}^T\pmb{\alpha})^{n-1}\pmb{\beta}=tr(\pmb{A})^{n-1}\pmb{A}$</li>
+<li><span class="math inline">\(\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}\Rightarrow
+\pmb{A}^{-1}=\frac{\pmb{A}^\star}{|\pmb{A}|}\)</span></li>
+</ul></li>
+<li>初等变换法
+<ul>
+<li><span class="math inline">\((\pmb{A},\pmb{E})\)</span>经过初等变换<span class="math inline">\((\pmb{E},\pmb{A}^{-1})\)</span></li>
+</ul></li>
+<li>可逆矩阵定义法
+<ul>
+<li>存在<span class="math inline">\(\pmb{B}\)</span>，使得<span class="math inline">\(\pmb{A}\pmb{B}=\pmb{E}\)</span></li>
+</ul></li>
+<li>已知<span class="math inline">\(\pmb{A}^n=\pmb{O}\)</span>
+<ul>
+<li>根据<span class="math inline">\(\pmb{E}=\pmb{E}^n-\pmb{A}^n=(\pmb{E}-\pmb{A})(\pmb{E}+\pmb{A}+\cdots+\pmb{A}^{n-1})\)</span>和可逆矩阵定义，可以得到<span class="math inline">\(\pmb{E}-\pmb{A}\)</span>的逆矩阵</li>
+</ul></li>
 </ul>
-<h3 id="矩阵的加法分解"><a href="#矩阵的加法分解" class="headerlink" title="矩阵的加法分解"></a>矩阵的加法分解</h3><ul>
-<li>分解操作为：$\pmb{A}=\pmb{B}+\pmb{C}$</li>
-<li>常见的用法<ul>
-<li>求$\pmb{A}$的高次幂：$\pmb{A}^n=(\pmb{B}+\pmb{E})^n$，结合二项式定理计算</li>
-<li>把行列式计算问题转化为求特征值问题：$|\pmb{A}|=|\lambda\pmb{E}-\pmb{B}|=\prod\limits_{i=1}^n(\lambda-\lambda_i)$<ul>
-<li>$\lambda$是已知量，在$\pmb{A}$被分解后即可确定</li>
-<li>$\lambda_i$是$\pmb{B}$的特征值</li>
+<h2 id="秩的相关结论和证明">秩的相关结论和证明</h2>
+<p><em>本节利用线性方程组或向量组来证明结论，理解本节有利于思考其他的和秩有关的证明题</em></p>
+<ul>
+<li>结论1：<span class="math inline">\(\pmb{A}\)</span>有<span class="math inline">\(n\)</span>列，<span class="math inline">\(\pmb{B}\)</span>有<span class="math inline">\(n\)</span>行，<span class="math inline">\(\pmb{A}\pmb{B}=0\Rightarrow
+r(\pmb{A})+r(\pmb{B})\leq n\)</span>，从线性方程组角度证明：
+<ul>
+<li>根据<span class="math inline">\(\pmb{B}\)</span>的每一列都是齐线性方程组<span class="math inline">\(\pmb{A}\pmb{x}=\pmb{0}\)</span>的解向量</li>
+<li>线性无关的解向量个数为<span class="math inline">\(n-r(\pmb{A})\Rightarrow r(\pmb{B})\leq
+n-r(\pmb{A})\)</span></li>
+</ul></li>
+<li>结论2：<span class="math inline">\(r(\pmb{A}^T\pmb{A})=r(\pmb{A})\)</span>，从线性方程组角度证明：
+<ul>
+<li><span class="math inline">\(\pmb{A}\pmb{x}=\pmb{0}\)</span>的解向量是<span class="math inline">\(\pmb{A}^T\pmb{A}\pmb{x}=\pmb{0}\)</span>的解向量
+<ul>
+<li>因为<span class="math inline">\(\pmb{A}^T\pmb{A}\pmb{x}=\pmb{A}^T\pmb{0}=\pmb{0}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\pmb{A}^T\pmb{A}\pmb{x}=\pmb{0}\)</span>的解向量是<span class="math inline">\(\pmb{A}\pmb{x}=\pmb{0}\)</span>的解向量
+<ul>
+<li>因为<span class="math inline">\(\pmb{x}^T\pmb{A}^T\pmb{A}\pmb{x}=(\pmb{Ax})^T(\pmb{Ax})=0\Rightarrow
+\pmb{Ax}=\pmb{0}\)</span></li>
+</ul></li>
+</ul></li>
+<li>结论3：<span class="math inline">\(r(\pmb{A}+\pmb{B})\leq
+r(\pmb{A})+r(\pmb{B})\)</span>，从列向量组角度证明：
+<ul>
+<li><span class="math inline">\(\pmb{A}\)</span>的所有列向量和<span class="math inline">\(\pmb{B}\)</span>的所有列向量组构成的列向量组秩<span class="math inline">\(r\)</span>不超过<span class="math inline">\(r(\pmb{A})+r(\pmb{B})\)</span></li>
+<li><span class="math inline">\(\pmb{A}+\pmb{B}\)</span>的列向量都是<span class="math inline">\(\pmb{A}\)</span>的列向量和<span class="math inline">\(\pmb{B}\)</span>的列向量的线性组合，则<span class="math inline">\(r(\pmb{A}+\pmb{B})\leq
+r(\pmb{A})+r(\pmb{B})\)</span></li>
+</ul></li>
+<li>结论4：<span class="math inline">\(r(\pmb{A}\pmb{B})\leq
+\min\{r(\pmb{A}),r(\pmb{B})\}\)</span>，从线性方程组角度证明：
+<ul>
+<li><span class="math inline">\(\pmb{B}\pmb{x}=\pmb{0}\)</span>的解向量是<span class="math inline">\(\pmb{A}\pmb{B}\pmb{x}=\pmb{0}\)</span>的解向量
+<ul>
+<li>因此<span class="math inline">\(r(\pmb{A}\pmb{B})\leq
+r(\pmb{B})\)</span></li>
+</ul></li>
+<li><span class="math inline">\(r(\pmb{A}\pmb{B})=r(\pmb{B}^T\pmb{A}^T)\leq
+\pmb{A}^T=\pmb{A}\)</span>
+<ul>
+<li>因此<span class="math inline">\(r(\pmb{A}\pmb{B})\leq
+r(\pmb{A})\)</span></li>
+</ul></li>
+</ul></li>
+<li>结论5：<span class="math inline">\(r(\pmb{A})=n\Rightarrow
+r(\pmb{A}^\star)=n\)</span>，根据伴随矩阵性质以及结论4证明
+<ul>
+<li><span class="math inline">\(n= r(\pmb{A})\geq
+r(\pmb{A}\pmb{A}^\star)=r(|\pmb{A}|\pmb{E})=n\)</span></li>
+</ul></li>
+<li>结论6：<span class="math inline">\(r(\pmb{A})=n-1\Rightarrow
+r(\pmb{A}^\star)=1\)</span>，根据伴随矩阵定义、性质以及结论1证明
+<ul>
+<li><span class="math inline">\(r(\pmb{A}\pmb{A}^\star)=r(|\pmb{A}|\pmb{E})=0\Rightarrow
+r(\pmb{A}^\star)\leq n-r(\pmb{A})=1\)</span></li>
+<li><span class="math inline">\(r(\pmb{A})\)</span>有<span class="math inline">\(n-1\)</span>阶子式行列式非零，则<span class="math inline">\(r(\pmb{A})^\star\geq 1\)</span></li>
+</ul></li>
+<li>结论7：<span class="math inline">\(r(\pmb{A})&lt;n-1\Rightarrow
+r(\pmb{A}^\star)=0\)</span>，根据伴随矩阵定义证明
+<ul>
+<li><span class="math inline">\(r(\pmb{A})\)</span>所有<span class="math inline">\(n-1\)</span>阶子式行列式为零，则<span class="math inline">\(r(\pmb{A})^\star=0\)</span></li>
+</ul></li>
 </ul>
-</li>
+<h2 id="矩阵的分解">矩阵的分解</h2>
+<h3 id="矩阵的向量乘法分解">矩阵的向量乘法分解</h3>
+<p><em>把矩阵分解为向量矩阵的乘积</em></p>
+<ul>
+<li>设<span class="math inline">\(r(\pmb{A})=1\)</span>，则<span class="math inline">\(\pmb{A}=\begin{bmatrix}
+a_1b_1&amp;a_1b_2&amp;\cdots&amp;a_1b_n\\ a_2b_1 &amp;a_2b_2 &amp;\cdots
+&amp;a_2b_n \\ \vdots &amp;\vdots&amp; \  &amp;\vdots\\
+a_nb_1&amp;a_nb_2&amp;\cdots&amp;a_nb_n
+\end{bmatrix}\)</span>可以分解为两个向量矩阵的乘积<span class="math inline">\(\pmb{\alpha}\pmb{\beta}^T=\begin{bmatrix} a_1\\
+a_2 \\ \vdots \\ a_n\end{bmatrix} \begin{bmatrix}
+b_1&amp;b_2&amp;\cdots&amp;b_n\end{bmatrix}\)</span></li>
+<li>作用1：矩阵的迹<span class="math inline">\(tr(\pmb{A})=\pmb{\alpha}^T\pmb{\beta}=\pmb{\beta}^T\pmb{\alpha}=\begin{bmatrix}
+b_1&amp;b_2&amp;\cdots&amp;b_n\end{bmatrix} \begin{bmatrix} a_1\\ a_2 \\
+\vdots \\ a_n\end{bmatrix}\)</span></li>
+<li>作用2：<span class="math inline">\(\pmb{A}^n=(\pmb{\alpha}\pmb{\beta}^T)^n=\pmb{\alpha}(\pmb{\beta}^T\pmb{\alpha})^{n-1}\pmb{\beta}=tr(\pmb{A})^{n-1}\pmb{A}\)</span></li>
 </ul>
-</li>
+<h3 id="矩阵的加法分解">矩阵的加法分解</h3>
+<ul>
+<li>分解操作为：<span class="math inline">\(\pmb{A}=\pmb{B}+\pmb{C}\)</span></li>
+<li>常见的用法
+<ul>
+<li>求<span class="math inline">\(\pmb{A}\)</span>的高次幂：<span class="math inline">\(\pmb{A}^n=(\pmb{B}+\pmb{E})^n\)</span>，结合二项式定理计算</li>
+<li>把行列式计算问题转化为求特征值问题：<span class="math inline">\(|\pmb{A}|=|\lambda\pmb{E}-\pmb{B}|=\prod\limits_{i=1}^n(\lambda-\lambda_i)\)</span>
+<ul>
+<li><span class="math inline">\(\lambda\)</span>是已知量，在<span class="math inline">\(\pmb{A}\)</span>被分解后即可确定</li>
+<li><span class="math inline">\(\lambda_i\)</span>是<span class="math inline">\(\pmb{B}\)</span>的特征值</li>
+</ul></li>
+</ul></li>
 </ul>
-<h3 id="矩阵的初等变换分解"><a href="#矩阵的初等变换分解" class="headerlink" title="矩阵的初等变换分解"></a>矩阵的初等变换分解</h3><ul>
-<li>已知$m\times n$矩阵$\pmb{A}$的秩为$r$，则<ul>
-<li>$\pmb{A}$的等价标准形是$\pmb{\Lambda}=\left [ \begin{matrix}\pmb{E}_r&amp; \pmb{O}_{r\times (n-r)}\\\pmb{O}_{(m-r)\times r} &amp; \pmb{O}_{(m-r)\times (n-r)}  \end{matrix} \right ]$</li>
-<li>存在可逆矩阵$\pmb{P}$和$\pmb{Q}$，使得$\pmb{A}=\pmb{P}\pmb{\Lambda}\pmb{Q}$</li>
+<h3 id="矩阵的初等变换分解">矩阵的初等变换分解</h3>
+<ul>
+<li>已知<span class="math inline">\(m\times n\)</span>矩阵<span class="math inline">\(\pmb{A}\)</span>的秩为<span class="math inline">\(r\)</span>，则
+<ul>
+<li><span class="math inline">\(\pmb{A}\)</span>的等价标准形是<span class="math inline">\(\pmb{\Lambda}= \begin{bmatrix}\pmb{E}_r&amp;
+\pmb{O}_{r\times (n-r)}\\\pmb{O}_{(m-r)\times r} &amp;
+\pmb{O}_{(m-r)\times (n-r)} \end{bmatrix}\)</span></li>
+<li>存在可逆矩阵<span class="math inline">\(\pmb{P}\)</span>和<span class="math inline">\(\pmb{Q}\)</span>，使得<span class="math inline">\(\pmb{A}=\pmb{P}\pmb{\Lambda}\pmb{Q}\)</span></li>
+</ul></li>
 </ul>
-</li>
+<h3 id="矩阵的相似对角化分解">矩阵的相似对角化分解</h3>
+<ul>
+<li>根据特征值的定义
+<ul>
+<li><span class="math inline">\(\pmb{A}\pmb{\alpha}_i=\lambda_i
+\pmb{\alpha}_i\)</span></li>
+<li><span class="math inline">\(\pmb{A}\)</span>的特征向量为<span class="math inline">\(\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n\)</span></li>
+<li>特征矩阵<span class="math inline">\(\pmb{P}=\begin{bmatrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n
+\end{bmatrix}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\pmb{A}\pmb{P}=\begin{bmatrix}\pmb{A}\pmb{\alpha}_1,\pmb{A}\pmb{\alpha}_2,\cdots,\pmb{A}\pmb{\alpha}_n
+\end{bmatrix} =
+\begin{bmatrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n
+\end{bmatrix} diag\{\lambda_1,\lambda_2,\cdots,\lambda_n\}\)</span></li>
+<li><span class="math inline">\(\pmb{A}\pmb{P}=\pmb{P}diag\{\lambda_1,\lambda_2,\cdots,\lambda_n\}\)</span></li>
+<li>当<span class="math inline">\(\pmb{P}\)</span>可逆时，<span class="math inline">\(\pmb{A}=\pmb{P}diag\{\lambda_1,\lambda_2,\cdots,\lambda_n\}\pmb{P}^{-1}\)</span></li>
 </ul>
-<h3 id="矩阵的相似对角化分解"><a href="#矩阵的相似对角化分解" class="headerlink" title="矩阵的相似对角化分解"></a>矩阵的相似对角化分解</h3><ul>
-<li>根据特征值的定义<ul>
-<li>$\pmb{A}\pmb{\alpha}_i=\lambda_i \pmb{\alpha}_i$</li>
-<li>$\pmb{A}$的特征向量为$\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n$</li>
-<li>特征矩阵$\pmb{P}=\left [ \begin{matrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n \end{matrix} \right ]$</li>
-</ul>
-</li>
-<li>$\pmb{A}\pmb{P}=\left [ \begin{matrix}\pmb{A}\pmb{\alpha}_1,\pmb{A}\pmb{\alpha}_2,\cdots,\pmb{A}\pmb{\alpha}_n \end{matrix} \right ]=\left [ \begin{matrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\cdots,\pmb{\alpha}_n \end{matrix} \right ]diag\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$</li>
-<li>$\pmb{A}\pmb{P}=\pmb{P}diag\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$</li>
-<li>当$\pmb{P}$可逆时，$\pmb{A}=\pmb{P}diag\{\lambda_1,\lambda_2,\cdots,\lambda_n\}\pmb{P}^{-1}$</li>
-</ul>
-<h3 id="矩阵的分块分解"><a href="#矩阵的分块分解" class="headerlink" title="矩阵的分块分解"></a>矩阵的分块分解</h3><ul>
+<h3 id="矩阵的分块分解">矩阵的分块分解</h3>
+<ul>
 <li>含义：把矩阵分块为行向量或列向量</li>
 <li>应用：主要和其他问题结合使用，详见后面的“矩阵乘法分解”、“矩阵乘法等式转化”</li>
 </ul>
-<h3 id="矩阵的矩阵乘法分解"><a href="#矩阵的矩阵乘法分解" class="headerlink" title="矩阵的矩阵乘法分解"></a>矩阵的矩阵乘法分解</h3><ul>
+<h3 id="矩阵的矩阵乘法分解">矩阵的矩阵乘法分解</h3>
+<ul>
 <li>含义：矩阵以行（列）向量分块分解的形式给出，可以将其分解为两个矩阵的乘积</li>
-<li>方法：比如矩阵$\pmb{A}$以列向量分块分解形式给出<ul>
-<li>$\pmb{A}$的列向量的极大无关组按列排成矩阵$\pmb{B}$</li>
-<li>因为极大无关组可以表示原向量组，因此$\pmb{A}$可以分解为$\pmb{B}$和一个矩阵的乘积</li>
+<li>方法：比如矩阵<span class="math inline">\(\pmb{A}\)</span>以列向量分块分解形式给出
+<ul>
+<li><span class="math inline">\(\pmb{A}\)</span>的列向量的极大无关组按列排成矩阵<span class="math inline">\(\pmb{B}\)</span></li>
+<li>因为极大无关组可以表示原向量组，因此<span class="math inline">\(\pmb{A}\)</span>可以分解为<span class="math inline">\(\pmb{B}\)</span>和一个矩阵的乘积</li>
+</ul></li>
+<li>举例：<span class="math inline">\(\begin{bmatrix}\pmb{\alpha}_1,\pmb{\alpha}_2-\pmb{\alpha}_1,2\pmb{\alpha}_3
+\end{bmatrix} =
+\begin{bmatrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\pmb{\alpha}_3
+\end{bmatrix} \begin{bmatrix}1&amp;-1&amp;0\\ 0&amp;1&amp;0\\
+0&amp;0&amp; 2 \end{bmatrix}\)</span></li>
 </ul>
-</li>
-<li>举例：$\left [ \begin{matrix}\pmb{\alpha}_1,\pmb{\alpha}_2-\pmb{\alpha}_1,2\pmb{\alpha}_3 \end{matrix} \right]=\left [ \begin{matrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\pmb{\alpha}_3 \end{matrix} \right]\left [ \begin{matrix}1&amp;-1&amp;0\\ 0&amp;1&amp;0\\ 0&amp;0&amp; 2 \end{matrix} \right]$</li>
-</ul>
-<h2 id="矩阵的乘法"><a href="#矩阵的乘法" class="headerlink" title="矩阵的乘法"></a>矩阵的乘法</h2><h3 id="对角矩阵的乘法"><a href="#对角矩阵的乘法" class="headerlink" title="对角矩阵的乘法"></a>对角矩阵的乘法</h3><ul>
-<li>$\left [ \begin{matrix} a_1&amp;\ &amp;\ &amp;\ \\ \ &amp;a_2\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\ &amp;a_n \end{matrix} \right ]\left [ \begin{matrix} b_1&amp;\ &amp;\ &amp;\ \\ \ &amp;b_2\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\ &amp;b_n \end{matrix} \right ]=\left [ \begin{matrix} a_1b_1&amp;\ &amp;\ &amp;\ \\ \ &amp;a_2b_2\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\ &amp;a_nb_n \end{matrix} \right ]$</li>
+<h2 id="矩阵的乘法">矩阵的乘法</h2>
+<h3 id="对角矩阵的乘法">对角矩阵的乘法</h3>
+<ul>
+<li><span class="math inline">\(\begin{bmatrix} a_1&amp;\ &amp;\ &amp;\
+\\ \ &amp;a_2\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\
+&amp;a_n \end{bmatrix} \begin{bmatrix} b_1&amp;\ &amp;\ &amp;\ \\ \
+&amp;b_2\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\
+&amp;b_n \end{bmatrix} =\begin{bmatrix} a_1b_1&amp;\ &amp;\ &amp;\ \\ \
+&amp;a_2b_2\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\
+&amp;a_nb_n \end{bmatrix}\)</span></li>
 <li>推广1：对角矩阵的高次幂运算</li>
 <li>推广2：对角矩阵的逆矩阵求解</li>
 <li>推广3：分块对角矩阵的乘法、幂运算</li>
 </ul>
-<h3 id="求矩阵的高次幂"><a href="#求矩阵的高次幂" class="headerlink" title="求矩阵的高次幂"></a>求矩阵的高次幂</h3><ul>
-<li>向量乘法分解法<ul>
+<h3 id="求矩阵的高次幂">求矩阵的高次幂</h3>
+<ul>
+<li>向量乘法分解法
+<ul>
 <li>前面矩阵向量乘法分解小节提到过</li>
-<li>当$r(\pmb{A})=1$，$\pmb{A}^n=tr(\pmb{A})^{n-1}\pmb{A}$</li>
-</ul>
-</li>
-<li>加法分解法<ul>
+<li>当<span class="math inline">\(r(\pmb{A})=1\)</span>，<span class="math inline">\(\pmb{A}^n=tr(\pmb{A})^{n-1}\pmb{A}\)</span></li>
+</ul></li>
+<li>加法分解法
+<ul>
 <li>前面矩阵加法分解小节提到过</li>
-<li>$\pmb{A}^n=(\pmb{B}+\pmb{E})^n$</li>
+<li><span class="math inline">\(\pmb{A}^n=(\pmb{B}+\pmb{E})^n\)</span></li>
 <li>需要再使用<strong>二项式定理</strong>展开</li>
-</ul>
-</li>
-<li>对角分块矩阵法<ul>
+</ul></li>
+<li>对角分块矩阵法
+<ul>
 <li>前面对角矩阵乘法小节提到过</li>
-<li>$\left [ \begin{matrix} \pmb{A_1}&amp;\ &amp;\ &amp;\ \\ \ &amp;\pmb{A_2}\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\ &amp;\pmb{A_n} \end{matrix} \right ]^n=\left [ \begin{matrix} \pmb{A_1}^n&amp;\ &amp;\ &amp;\ \\ \ &amp;\pmb{A_2}^n\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\ &amp;\pmb{A_n}^n \end{matrix} \right ]$</li>
-</ul>
-</li>
-<li>相似对角化分解法<ul>
+<li><span class="math inline">\(\begin{bmatrix} \pmb{A_1}&amp;\ &amp;\
+&amp;\ \\ \ &amp;\pmb{A_2}\ &amp;\ \\ \ &amp;\ &amp; \ddots &amp;\ \\ \
+&amp;\ &amp;\ &amp;\pmb{A_n} \end{bmatrix} ^n= \begin{bmatrix}
+\pmb{A_1}^n&amp;\ &amp;\ &amp;\ \\ \ &amp;\pmb{A_2}^n\ &amp;\ \\ \
+&amp;\ &amp; \ddots &amp;\ \\ \ &amp;\ &amp;\ &amp;\pmb{A_n}^n
+\end{bmatrix}\)</span></li>
+</ul></li>
+<li>相似对角化分解法
+<ul>
 <li>前面相似对角分解小节提到过</li>
 <li>当矩阵有n个线性无关的特征向量，把矩阵相似对角化后再计算高次幂</li>
-</ul>
-</li>
-<li>规律归纳法<ul>
+</ul></li>
+<li>规律归纳法
+<ul>
 <li>当矩阵秩不高的时候，尝试计算几次幂，找规律</li>
 <li>如果需要严格证明，则使用数学归纳法</li>
+</ul></li>
 </ul>
-</li>
+<h3 id="矩阵乘法的转化">矩阵乘法的转化</h3>
+<p><em>使用前面所说的矩阵的分块分解法，把矩阵乘法等式条件，转化为等价的条件形式，方便处理</em></p>
+<h4 id="转化为线性方程组条件">转化为线性方程组条件</h4>
+<ul>
+<li>矩阵乘法等式：<span class="math inline">\(\pmb{A}\pmb{B}=\pmb{0}\)</span></li>
+<li>转化方法
+<ul>
+<li>把<span class="math inline">\(\pmb{A}\)</span>和<span class="math inline">\(\pmb{0}\)</span>分块为行向量，<span class="math inline">\(\pmb{A}\)</span>的每一行都是齐次线性方程组<span class="math inline">\(\pmb{x}^{T}\pmb{B}=\pmb{0}^{T}\)</span>的解</li>
+<li>或把<span class="math inline">\(\pmb{B}\)</span>和<span class="math inline">\(\pmb{0}\)</span>分块为列向量，<span class="math inline">\(\pmb{B}\)</span>的每一列都是齐次线性方程组<span class="math inline">\(\pmb{A}\pmb{x}=\pmb{0}\)</span>的解</li>
+</ul></li>
 </ul>
-<h3 id="矩阵乘法的转化"><a href="#矩阵乘法的转化" class="headerlink" title="矩阵乘法的转化"></a>矩阵乘法的转化</h3><p><em>使用前面所说的矩阵的分块分解法，把矩阵乘法等式条件，转化为等价的条件形式，方便处理</em> </p>
-<h4 id="转化为线性方程组条件"><a href="#转化为线性方程组条件" class="headerlink" title="转化为线性方程组条件"></a>转化为线性方程组条件</h4><ul>
-<li>矩阵乘法等式：$\pmb{A}\pmb{B}=\pmb{0}$</li>
-<li>转化方法<ul>
-<li>把$\pmb{A}$和$\pmb{0}$分块为行向量，$\pmb{A}$的每一行都是齐次线性方程组$\pmb{x}^{T}\pmb{B}=\pmb{0}^{T}$的解</li>
-<li>或把$\pmb{B}$和$\pmb{0}$分块为列向量，$\pmb{B}$的每一列都是齐次线性方程组$\pmb{A}\pmb{x}=\pmb{0}$的解</li>
-</ul>
-</li>
-</ul>
-<h4 id="转化为向量组线性表示条件"><a href="#转化为向量组线性表示条件" class="headerlink" title="转化为向量组线性表示条件"></a>转化为向量组线性表示条件</h4><ul>
-<li>矩阵乘法等式：$\pmb{A}\pmb{B}=\pmb{C}$</li>
-<li>转化方法<ul>
-<li>把$\pmb{A}$和$\pmb{C}$分块为列向量，$\pmb{C}$的列向量都可以由$\pmb{A}$的列向量线性表示<ul>
+<h4 id="转化为向量组线性表示条件">转化为向量组线性表示条件</h4>
+<ul>
+<li>矩阵乘法等式：<span class="math inline">\(\pmb{A}\pmb{B}=\pmb{C}\)</span></li>
+<li>转化方法
+<ul>
+<li>把<span class="math inline">\(\pmb{A}\)</span>和<span class="math inline">\(\pmb{C}\)</span>分块为列向量，<span class="math inline">\(\pmb{C}\)</span>的列向量都可以由<span class="math inline">\(\pmb{A}\)</span>的列向量线性表示
+<ul>
 <li>可以结合前面的<strong>矩阵的矩阵乘法分解</strong>小节的例子进行思考</li>
-<li>$\left [ \begin{matrix}\pmb{\alpha}_1,\pmb{\alpha}_2-\pmb{\alpha}_1,2\pmb{\alpha}_3 \end{matrix} \right]=\left [ \begin{matrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\pmb{\alpha}_3 \end{matrix} \right]\left [ \begin{matrix}1&amp;-1&amp;0\\ 0&amp;1&amp;0\\ 0&amp;0&amp; 2 \end{matrix} \right]$</li>
-</ul>
-</li>
-<li>或把$\pmb{B}$和$\pmb{C}$分块为行向量，$\pmb{C}$的行向量都可以由$\pmb{B}$的行向量线性表示</li>
-</ul>
-</li>
+<li><span class="math inline">\(\begin{bmatrix}\pmb{\alpha}_1,\pmb{\alpha}_2-\pmb{\alpha}_1,2\pmb{\alpha}_3
+\end{bmatrix} =
+\begin{bmatrix}\pmb{\alpha}_1,\pmb{\alpha}_2,\pmb{\alpha}_3
+\end{bmatrix} \begin{bmatrix}1&amp;-1&amp;0\\ 0&amp;1&amp;0\\
+0&amp;0&amp; 2 \end{bmatrix}\)</span></li>
+</ul></li>
+<li>或把<span class="math inline">\(\pmb{B}\)</span>和<span class="math inline">\(\pmb{C}\)</span>分块为行向量，<span class="math inline">\(\pmb{C}\)</span>的行向量都可以由<span class="math inline">\(\pmb{B}\)</span>的行向量线性表示</li>
+</ul></li>
 </ul>
 
     </div>
@@ -629,7 +705,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

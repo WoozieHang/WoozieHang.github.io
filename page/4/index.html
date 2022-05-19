@@ -74,7 +74,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -198,6 +202,181 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/20/linearAlgebra4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/20/linearAlgebra4/" class="post-title-link" itemprop="url">【知识总结】 第四章-线性方程组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-20 16:45:35" itemprop="dateCreated datePublished" datetime="2021-11-20T16:45:35+08:00">2021-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 17:55:46" itemprop="dateModified" datetime="2022-05-19T17:55:46+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/20/linearAlgebra4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-线性方程组" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/20/linearAlgebra4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/20/linearAlgebra4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="克拉姆法则">克拉姆法则</h2>
+<ul>
+<li>克拉姆法则
+<ul>
+<li>当且仅当<span class="math inline">\(\vert\pmb{A}\vert\neq
+0\)</span>，方程<span class="math inline">\(\pmb{A}\pmb{x}=\pmb{b}\)</span>的唯一解是<span class="math inline">\(x_i=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i=1,2,\cdots,n\)</span></li>
+<li>其中<span class="math inline">\(\vert\pmb{A}_i\vert\)</span>的第<span class="math inline">\(i\)</span>列是右端向量<span class="math inline">\(\pmb{b}\)</span>，其他列同<span class="math inline">\(\pmb{A}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\vert\pmb{A}\vert\neq
+0\)</span>则方程有唯一解的原理
+<ul>
+<li><span class="math inline">\(\pmb{x}=\pmb{A}^{-1}\pmb{b}=\frac{\pmb{A}^{\star}\pmb{b}}{|\pmb{A}|}\)</span></li>
+<li><span class="math inline">\(x_i=\frac{\begin{bmatrix}A_{1i}&amp;
+A_{2i}&amp; \cdots&amp; A_{ni} \end{bmatrix}
+\pmb{b}}{|\pmb{A}|}=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert}\)</span></li>
+<li>由此直接把唯一解算出来了</li>
+</ul></li>
+<li><span class="math inline">\(\vert\pmb{A}\vert=
+0\)</span>则方程无解或无穷解的原理
+<ul>
+<li>把不可逆矩阵<span class="math inline">\(\pmb{A}\)</span>可看作不可逆线性变换，理解成单射（没有逆映射）</li>
+<li>没有逆映射有两种原因
+<ul>
+<li>新坐标系中的向量<span class="math inline">\(\pmb{b}\)</span>无法映射到原坐标系的向量（对应方程组无解情况）</li>
+<li>新坐标系中的向量<span class="math inline">\(\pmb{b}\)</span>映射到原坐标系的多个向量（对应方程组无穷解情况）</li>
+</ul></li>
+</ul></li>
+<li>线性方程组的主要运算在于求逆矩阵
+<ul>
+<li>因为求逆矩阵时，伴随矩阵法比初等变换法复杂得多，很少使用</li>
+<li>所以解线性方程组时，克拉姆法则比高斯消元法复杂得多，很少使用</li>
+</ul></li>
+</ul>
+<h2 id="齐次线性方程组">齐次线性方程组</h2>
+<ul>
+<li>形式:<span class="math inline">\(\pmb{A}_{m\times
+n}\pmb{x}=\pmb{0}\)</span></li>
+<li>有解条件：一定有零解</li>
+<li>基础解系
+<ul>
+<li>所有解向量的极大线性无关组</li>
+<li>课本的表述为线性无关，且可以线性表出所有解向量的向量组</li>
+<li>一定是<span class="math inline">\(n\)</span>维非零向量</li>
+</ul></li>
+<li>基础解系向量个数
+<ul>
+<li><span class="math inline">\(n-r(\pmb{A})\)</span></li>
+<li>从向量空间角度理解
+<ul>
+<li>基础解系，就是找到所有的线性无关的非零列向量，和<span class="math inline">\(\pmb{A}\)</span>的行向量正交</li>
+<li>本质是，在<span class="math inline">\(n\)</span>维度向量空间中，正交于<span class="math inline">\(r(\pmb{A})\)</span>维子空间（由<span class="math inline">\(\pmb{A}\)</span>行向量张成）的非零且线性无关的向量有<span class="math inline">\(n-r(\pmb{A})\)</span>个</li>
+<li>例如三维空间中，和某个二维平面垂直的线性无关非零向量，最多找到一个</li>
+</ul></li>
+</ul></li>
+<li>通解：由基础解系线性表出即可</li>
+<li>通解求法
+<ul>
+<li>初等行变换把<span class="math inline">\(\pmb{A}\)</span>变成行阶梯型矩阵
+<ul>
+<li>接下来只需要解同解方程组</li>
+<li>本质就是高斯消元法</li>
+</ul></li>
+<li><span class="math inline">\(r\)</span>个独立变量和<span class="math inline">\(n-r\)</span>个自由变量
+<ul>
+<li>每次只选一个自由变量取<span class="math inline">\(1\)</span>，其他取<span class="math inline">\(0\)</span>，算出独立变量，得到一个解向量</li>
+<li>选<span class="math inline">\(n-r\)</span>次自由变量，得到基础解系</li>
+</ul></li>
+</ul></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/20/linearAlgebra4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/18/operatingSystem5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -273,30 +452,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="IO管理基础"><a href="#IO管理基础" class="headerlink" title="IO管理基础"></a>IO管理基础</h2><h3 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h3><ul>
+          <h2 id="io管理基础">IO管理基础</h2>
+<h3 id="设备">设备</h3>
+<ul>
 <li>详见计组第7章的基本概念、外部设备、IO接口</li>
-<li>补充：IO设备的分类<ul>
-<li>按功能分类<ul>
+<li>补充：IO设备的分类
+<ul>
+<li>按功能分类
+<ul>
 <li>人机交互设备：打印机、显示器、鼠标、键盘</li>
 <li>存储设备：磁盘、磁带、光盘</li>
 <li>网络通信设备：网络接口</li>
-</ul>
-</li>
-<li>按传输速率分类<ul>
+</ul></li>
+<li>按传输速率分类
+<ul>
 <li>低速设备：键盘、鼠标</li>
 <li>中速设备：打印机</li>
 <li>高速设备：磁盘、磁带、光盘</li>
-</ul>
-</li>
-<li>按信息交换单元分类<ul>
+</ul></li>
+<li>按信息交换单元分类
+<ul>
 <li>块设备：磁盘</li>
 <li>字符设备：打印机、键盘</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="IO控制方式"><a href="#IO控制方式" class="headerlink" title="IO控制方式"></a>IO控制方式</h3><ul>
+<h3 id="io控制方式">IO控制方式</h3>
+<ul>
 <li>详见计组第7章的IO方式</li>
 </ul>
           <!--noindex-->
@@ -356,7 +538,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-03 00:15:39" itemprop="dateModified" datetime="2021-12-03T00:15:39+08:00">2021-12-03</time>
+                <time title="修改时间：2022-05-19 17:54:09" itemprop="dateModified" datetime="2022-05-19T17:54:09+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -405,26 +587,38 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="向量的表示"><a href="#向量的表示" class="headerlink" title="向量的表示"></a>向量的表示</h2><ul>
-<li>一般默认是列向量，比如$\pmb{\alpha}=(a_1,a_2,\cdots,a_n)^T$</li>
-<li>行向量需要转置列向量，比如$\pmb{\alpha}^{T}=(a_1,a_2,\cdots,a_n)$</li>
+<h2 id="向量的表示">向量的表示</h2>
+<ul>
+<li>一般默认是列向量，比如<span class="math inline">\(\pmb{\alpha}=(a_1,a_2,\cdots,a_n)^T\)</span></li>
+<li>行向量需要转置列向量，比如<span class="math inline">\(\pmb{\alpha}^{T}=(a_1,a_2,\cdots,a_n)\)</span></li>
 <li>在计算时，对向量的行、列判断要清晰</li>
 </ul>
-<h2 id="线性相关性"><a href="#线性相关性" class="headerlink" title="线性相关性"></a>线性相关性</h2><ul>
-<li>线性相关的等价条件<ul>
-<li>存在不全为$0$的数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}$</li>
-<li>存在不全为$0$的数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{0}$</li>
-<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$的秩小于$n$（根据齐次线性方程组知识）</li>
-<li>第一章行列式为$0$的等价条件都适合此处</li>
-</ul>
-</li>
-<li>线性无关的等价条件<ul>
-<li>不存在不全为$0$的数$k_1,\cdots,k_n$，使得$k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}$</li>
-<li>不存在不全为$0$的数$k_1,\cdots,k_n$，使得$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]\left [ \begin{matrix}k_1\\k_2\\\vdots\\k_n \end{matrix} \right ]=\pmb{0}$</li>
-<li>$\left [ \begin{matrix}\pmb{\alpha}_1 &amp; \pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{matrix} \right ]$的秩等于$n$（根据齐次线性方程组知识）</li>
+<h2 id="线性相关性">线性相关性</h2>
+<ul>
+<li>线性相关的等价条件
+<ul>
+<li>存在不全为<span class="math inline">\(0\)</span>的数<span class="math inline">\(k_1,\cdots,k_n\)</span>，使得<span class="math inline">\(k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}\)</span></li>
+<li>存在不全为<span class="math inline">\(0\)</span>的数<span class="math inline">\(k_1,\cdots,k_n\)</span>，使得<span class="math inline">\(\begin{bmatrix}\pmb{\alpha}_1 &amp;
+\pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{bmatrix}
+\begin{bmatrix}k_1\\k_2\\\vdots\\k_n \end{bmatrix}
+=\pmb{0}\)</span></li>
+<li><span class="math inline">\(\begin{bmatrix}\pmb{\alpha}_1 &amp;
+\pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n
+\end{bmatrix}\)</span>的秩小于<span class="math inline">\(n\)</span>（根据齐次线性方程组知识）</li>
+<li>第一章行列式为<span class="math inline">\(0\)</span>的等价条件都适合此处</li>
+</ul></li>
+<li>线性无关的等价条件
+<ul>
+<li>不存在不全为<span class="math inline">\(0\)</span>的数<span class="math inline">\(k_1,\cdots,k_n\)</span>，使得<span class="math inline">\(k_1\pmb{\alpha}_1+\cdots+k_n\pmb{\alpha}_n=\pmb{0}\)</span></li>
+<li>不存在不全为<span class="math inline">\(0\)</span>的数<span class="math inline">\(k_1,\cdots,k_n\)</span>，使得<span class="math inline">\(\begin{bmatrix}\pmb{\alpha}_1 &amp;
+\pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n \end{bmatrix}
+\begin{bmatrix}k_1\\k_2\\\vdots\\k_n \end{bmatrix}
+=\pmb{0}\)</span></li>
+<li><span class="math inline">\(\begin{bmatrix}\pmb{\alpha}_1 &amp;
+\pmb{\alpha}_2&amp; \cdots &amp;\pmb{\alpha}_n
+\end{bmatrix}\)</span>的秩等于<span class="math inline">\(n\)</span>（根据齐次线性方程组知识）</li>
 <li>第二章可逆矩阵的等价条件都适合此处</li>
-</ul>
-</li>
+</ul></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -483,7 +677,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-15 23:28:35" itemprop="dateModified" datetime="2021-12-15T23:28:35+08:00">2021-12-15</time>
+                <time title="修改时间：2022-05-19 22:32:37" itemprop="dateModified" datetime="2022-05-19T22:32:37+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -527,20 +721,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+          <h2 id="文件">文件</h2>
+<h3 id="基本概念">基本概念</h3>
+<ul>
 <li>文件：以硬盘为载体存储在计算机中的信息集合，是用户输入输出的基本单位</li>
 <li>文件系统：维护和管理文件，并向用户提供系统调用，如建立、打开、关闭、撤销、读写等</li>
 <li>基本数据项：最小逻辑数据单元、原子数据，比如一个对象某个属性的一个值</li>
 <li>组合数据项：多个基本数据项组成</li>
 <li>记录：数据项的集合，描述一个对象的某个属性</li>
-<li>文件的划分<ul>
+<li>文件的划分
+<ul>
 <li>记录式：由相似的记录组成</li>
 <li>流式：看作是字符流</li>
-</ul>
-</li>
+</ul></li>
 <li>文件的属性</li>
 </ul>
-<h3 id="文件元数据"><a href="#文件元数据" class="headerlink" title="文件元数据"></a>文件元数据</h3><p>即文件的属性，包括</p>
+<h3 id="文件元数据">文件元数据</h3>
+<p>即文件的属性，包括</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/16/operatingSystem4/#more" rel="contents">
@@ -598,7 +795,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-16 00:12:39" itemprop="dateModified" datetime="2021-11-16T00:12:39+08:00">2021-11-16</time>
+                <time title="修改时间：2022-05-19 22:32:04" itemprop="dateModified" datetime="2022-05-19T22:32:04+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -642,51 +839,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="内存管理基础"><a href="#内存管理基础" class="headerlink" title="内存管理基础"></a>内存管理基础</h2><h3 id="内存管理基本概念"><a href="#内存管理基本概念" class="headerlink" title="内存管理基本概念"></a>内存管理基本概念</h3><p>内存管理的功能</p>
+          <h2 id="内存管理基础">内存管理基础</h2>
+<h3 id="内存管理基本概念">内存管理基本概念</h3>
+<p>内存管理的功能</p>
 <ul>
-<li>地址转换：内存管理提供从逻辑地址到物理地址的变换机制<ul>
-<li>逻辑地址空间<ul>
+<li>地址转换：内存管理提供从逻辑地址到物理地址的变换机制
+<ul>
+<li>逻辑地址空间
+<ul>
 <li>编译后的目标模块从0单元开始编址</li>
 <li>各个模块按顺序链接后构成统一的从0单元开始的逻辑地址空间</li>
 <li>用户可见</li>
-</ul>
-</li>
-<li>物理地址空间<ul>
+</ul></li>
+<li>物理地址空间
+<ul>
 <li>主存中实际的物理地址</li>
 <li>可执行代码装入内存时，要进行地址重定位，即把逻辑地址转换为物理地址</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>内存共享：允许多个进程访问内存同一个部分，比如同一个数据块</li>
-<li>内存保护<ul>
+<li>内存保护
+<ul>
 <li>含义：内存分配前，保护操作系统不受用户影响、保护用户之间不相互影响</li>
-<li>方法有两种<ul>
+<li>方法有两种
+<ul>
 <li>在CPU中设置用户作业上下限寄存器，存放用户作业在主存中的上限、下限地址</li>
 <li>把逻辑地址和界地址寄存器（限长寄存器）比较，判断是否越界；不越界的情况，把逻辑地址和重定位寄存器（基址寄存器）相加，得到物理地址</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>内存分配和回收<ul>
+</ul></li>
+</ul></li>
+<li>内存分配和回收
+<ul>
 <li>由操作系统管理主存空间的分配和回收，程序员不需要考虑</li>
-</ul>
-</li>
-<li>内存扩充：利用外存扩充内存的容量，有两种方法<ul>
-<li>覆盖<ul>
+</ul></li>
+<li>内存扩充：利用外存扩充内存的容量，有两种方法
+<ul>
+<li>覆盖
+<ul>
 <li>思想：把用户空间分成固定区、覆盖区，活跃内容放固定区，其他即将访问的内容放覆盖区，其他暂时不用的内容放外存（需要时从外存替换入覆盖区）</li>
 <li>特点：内存容量可以小于单进程总信息量；内存容量需要大于单进程任何运行时刻需要的信息量；主要应用于单进程；属于被淘汰的历史技术</li>
-</ul>
-</li>
-<li>交换<ul>
+</ul></li>
+<li>交换
+<ul>
 <li>思想：把等待态的进程换出到外存，把调度使用CPU的进程换入到内存（进程中级调度就是交换技术）</li>
 <li>特点：交换时间希望短于进程执行时间；适合多进程或多作业情况；目前主流的技术</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="连续分配管理方式"><a href="#连续分配管理方式" class="headerlink" title="连续分配管理方式"></a>连续分配管理方式</h3>
+<h3 id="连续分配管理方式">连续分配管理方式</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/13/operatingSystem3/#more" rel="contents">
@@ -744,7 +943,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-22 21:24:06" itemprop="dateModified" datetime="2021-11-22T21:24:06+08:00">2021-11-22</time>
+                <time title="修改时间：2022-05-19 22:34:09" itemprop="dateModified" datetime="2022-05-19T22:34:09+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -793,19 +992,21 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="伴随矩阵"><a href="#伴随矩阵" class="headerlink" title="伴随矩阵"></a>伴随矩阵</h2><h3 id="伴随矩阵的求法"><a href="#伴随矩阵的求法" class="headerlink" title="伴随矩阵的求法"></a>伴随矩阵的求法</h3><ul>
-<li>定义法<ul>
-<li>伴随矩阵的第$i$行第$j$列的值是原矩阵第$j$行第$i$列的代数余子式</li>
+<h2 id="伴随矩阵">伴随矩阵</h2>
+<h3 id="伴随矩阵的求法">伴随矩阵的求法</h3>
+<ul>
+<li>定义法
+<ul>
+<li>伴随矩阵的第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列的值是原矩阵第<span class="math inline">\(j\)</span>行第<span class="math inline">\(i\)</span>列的代数余子式</li>
 <li>注意这里有一个转置操作</li>
+</ul></li>
+<li>性质法
+<ul>
+<li><span class="math inline">\(\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}\)</span></li>
+<li>注意这种方法求伴随矩阵要求<span class="math inline">\(\pmb{A}\)</span>可逆，此时<span class="math inline">\(\pmb{A}^\star=|\pmb{A}|\pmb{A}^{-1}\)</span></li>
+</ul></li>
 </ul>
-</li>
-<li>性质法<ul>
-<li>$\pmb{A}\pmb{A}^\star=|\pmb{A}|\pmb{E}$</li>
-<li>注意这种方法求伴随矩阵要求$\pmb{A}$可逆，此时$\pmb{A}^\star=|\pmb{A}|\pmb{A}^{-1}$</li>
-</ul>
-</li>
-</ul>
-<h3 id="伴随矩阵相关证明"><a href="#伴随矩阵相关证明" class="headerlink" title="伴随矩阵相关证明"></a>伴随矩阵相关证明</h3>
+<h3 id="伴随矩阵相关证明">伴随矩阵相关证明</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/12/linearAlgebra2/#more" rel="contents">
@@ -863,7 +1064,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-13 19:39:31" itemprop="dateModified" datetime="2021-11-13T19:39:31+08:00">2021-11-13</time>
+                <time title="修改时间：2022-05-19 22:33:39" itemprop="dateModified" datetime="2022-05-19T22:33:39+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -912,12 +1113,24 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="拉普拉斯展开式"><a href="#拉普拉斯展开式" class="headerlink" title="拉普拉斯展开式"></a>拉普拉斯展开式</h2><ul>
-<li>$\pmb{A}$和$\pmb{B}$分别是$m$阶矩阵和$n$阶矩阵</li>
-<li>$\left | \begin{matrix} \pmb{A}&amp; \pmb{\star} \\ \pmb{O}&amp; \pmb{B} \\ \end{matrix} \right |=\left | \begin{matrix} \pmb{A}&amp; \pmb{O} \\ \pmb{\star}&amp; \pmb{B} \\ \end{matrix} \right |=|\pmb{A}|\cdot|\pmb{B}|$</li>
-<li>$\left | \begin{matrix} \pmb{O}&amp; \pmb{A} \\ \pmb{B}&amp; \pmb{\star} \\ \end{matrix} \right |=\left | \begin{matrix} \pmb{\star}&amp; \pmb{A} \\ \pmb{B}&amp; \pmb{O} \\ \end{matrix} \right |=(-1)^{mn}|\pmb{A}|\cdot|\pmb{B}|$</li>
+<h2 id="拉普拉斯展开式">拉普拉斯展开式</h2>
+<ul>
+<li><span class="math inline">\(\pmb{A}\)</span>和<span class="math inline">\(\pmb{B}\)</span>分别是<span class="math inline">\(m\)</span>阶矩阵和<span class="math inline">\(n\)</span>阶矩阵</li>
+<li><span class="math inline">\(\begin{vmatrix} \pmb{A}&amp; \pmb{\star}
+\\ \pmb{O}&amp; \pmb{B} \\ \end{vmatrix} =\begin{vmatrix} \pmb{A}&amp;
+\pmb{O} \\ \pmb{\star}&amp; \pmb{B} \\ \end{vmatrix}
+=|\pmb{A}|\cdot|\pmb{B}|\)</span></li>
+<li><span class="math inline">\(\begin{vmatrix} \pmb{O}&amp; \pmb{A} \\
+\pmb{B}&amp; \pmb{\star} \\ \end{vmatrix}=\begin{vmatrix}
+\pmb{\star}&amp; \pmb{A} \\ \pmb{B}&amp; \pmb{O} \\ \end{vmatrix}
+=(-1)^{mn}|\pmb{A}|\cdot|\pmb{B}|\)</span></li>
 </ul>
-<h2 id="范德蒙行列式"><a href="#范德蒙行列式" class="headerlink" title="范德蒙行列式"></a>范德蒙行列式</h2><p>$\left | \begin{matrix} 1&amp; 1&amp; \cdots&amp; 1 \\ x_1&amp; x_2&amp; \cdots&amp; x_n \\ {x_1}^2&amp; {x_2}^2&amp; \cdots&amp; {x_n}^2 \\ \vdots&amp; \vdots&amp; \ &amp; \vdots \\ {x_1}^{n-1}&amp; {x_2}^{n-1}&amp; \cdots&amp; {x_n}^{n-1} \end{matrix} \right |=\prod\limits_{1\leq j\leq i\leq n}(x_i-x_j)$</p>
+<h2 id="范德蒙行列式">范德蒙行列式</h2>
+<p><span class="math inline">\(\begin{vmatrix} 1&amp; 1&amp; \cdots&amp;
+1 \\ x_1&amp; x_2&amp; \cdots&amp; x_n \\ {x_1}^2&amp; {x_2}^2&amp;
+\cdots&amp; {x_n}^2 \\ \vdots&amp; \vdots&amp; \ &amp; \vdots \\
+{x_1}^{n-1}&amp; {x_2}^{n-1}&amp; \cdots&amp; {x_n}^{n-1} \end{vmatrix}
+=\prod\limits_{1\leq j\leq i\leq n}(x_i-x_j)\)</span></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/12/linearAlgebra1/#more" rel="contents">
@@ -975,7 +1188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-15 21:20:30" itemprop="dateModified" datetime="2021-12-15T21:20:30+08:00">2021-12-15</time>
+                <time title="修改时间：2022-05-19 22:31:31" itemprop="dateModified" datetime="2022-05-19T22:31:31+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1019,30 +1232,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程基本概念"><a href="#进程基本概念" class="headerlink" title="进程基本概念"></a>进程基本概念</h3><ul>
-<li>进程的定义<ul>
+          <h2 id="进程">进程</h2>
+<h3 id="进程基本概念">进程基本概念</h3>
+<ul>
+<li>进程的定义
+<ul>
 <li>具有独立功能的程序在一个数据集合上的一次执行过程（活动）</li>
 <li>资源分配和调度的基本单位</li>
-</ul>
-</li>
-<li>进程控制块PCB<ul>
+</ul></li>
+<li>进程控制块PCB
+<ul>
 <li>描述进程基本情况和运行状态的数据结构</li>
 <li>系统通过PCB感知进程、控制和管理进程</li>
 <li>创建进程时创建PCB，撤销进程时撤销PCB，PCB是进程存在的唯一标志</li>
 <li>PCB包括进程的描述信息、控制管理信息、资源分配清单、处理机有关信息</li>
 <li>状态相同的各进程的PCB可以用索引表统一管理，每个表项指向一个PCB</li>
-</ul>
-</li>
-<li>进程的特征<ul>
+</ul></li>
+<li>进程的特征
+<ul>
 <li>动态性：有动态的生命周期，比如：创建、活动、暂停、终止</li>
 <li>并发性：多个进程实体在同一段时间内，在内存中运行，并发是引入进程的目的</li>
 <li>独立性：进程实体能独立运行、获得资源、调度</li>
 <li>异步性：各进程按不可预测的速度推进</li>
 <li>结构性：每个进程一个PCB，进程实体包括程序段、数据段、PCB</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="进程状态和转换"><a href="#进程状态和转换" class="headerlink" title="进程状态和转换"></a>进程状态和转换</h3><h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4>
+<h3 id="进程状态和转换">进程状态和转换</h3>
+<h4 id="状态">状态</h4>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/10/operatingSystem2/#more" rel="contents">
@@ -1144,30 +1360,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+          <h2 id="基本概念">基本概念</h2>
+<h3 id="概念">概念</h3>
+<ul>
 <li>定义：操作系统是管理分配计算机系统软硬件资源，组织调度计算机工作，为用户和其他软件提供接口环境的程序集合</li>
 <li>地位：操作系统是计算机系统最基本的系统软件</li>
 </ul>
-<h3 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h3><ul>
-<li>并发<ul>
+<h3 id="基本特征">基本特征</h3>
+<ul>
+<li>并发
+<ul>
 <li>通过引入进程，使得计算机系统有处理和调度多个程序同时间间隔运行的能力</li>
 <li>和并行有区别，并行指的是同时刻，并发指的是同间隔</li>
-</ul>
-</li>
-<li>共享<ul>
+</ul></li>
+<li>共享
+<ul>
 <li>即资源共享，包括互斥共享方式、同时访问方式</li>
 <li>互斥共享方式：对于临界资源（独占资源），一段时间只允许一个进程访问，如打印机和磁带</li>
 <li>同时访问方式：一段时间内可以分时的共享某资源，宏观上是同时访问资源，如磁盘设备</li>
 <li>并发和共享相互依存，是操作系统<strong>最基本的特征</strong></li>
-</ul>
-</li>
-<li>虚拟<ul>
+</ul></li>
+<li>虚拟
+<ul>
 <li>虚拟技术把实体变成用户感觉的逻辑对应物</li>
 <li>虚拟处理器技术（时分复用技术）：分时的使用一个实体CPU，逻辑上变成多个虚拟CPU供每个用户使用</li>
 <li>虚拟存储器技术（空分复用技术）：通过外存实现内存容量的扩展，使得用户感觉到更大的（虚拟）内存容量</li>
 <li>虚拟设备技术：把一台IO物理设备虚拟为多台逻辑IO设备，逻辑上变成多个虚拟IO设备供每个用户使用</li>
-</ul>
-</li>
+</ul></li>
 <li>异步：指进程的执行断断续续，以不可预测速度推进，操作系统处于随机的环境中</li>
 </ul>
           <!--noindex-->
@@ -1227,7 +1446,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 20:41:32" itemprop="dateModified" datetime="2021-12-14T20:41:32+08:00">2021-12-14</time>
+                <time title="修改时间：2022-05-19 22:28:09" itemprop="dateModified" datetime="2022-05-19T22:28:09+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1271,170 +1490,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+          <h2 id="基本概念">基本概念</h2>
+<ul>
 <li>输入：信息从外部送到主机</li>
 <li>输出：信息从主机送到外部</li>
 <li>接口：外设和主机传输数据进行协调（比如速度匹配、电平和格式转换）的逻辑部件</li>
-<li>外部设备：输入输出设备或通过输入输出接口才能访问的外存储设备<ul>
+<li>外部设备：输入输出设备或通过输入输出接口才能访问的外存储设备
+<ul>
 <li>输入设备：键盘、鼠标</li>
 <li>输出设备：打印机、显示器</li>
 <li>外存设备：硬磁盘、光盘、U盘</li>
-</ul>
-</li>
-<li>IO系统构成<ul>
-<li>IO软件<ul>
+</ul></li>
+<li>IO系统构成
+<ul>
+<li>IO软件
+<ul>
 <li>包括：驱动程序、用户程序、管理程序、升级补丁</li>
 <li>通过IO指令和通道指令（详见后面IO控制方式的通道方式）实现CPU和IO设备信息交换</li>
-</ul>
-</li>
-<li>IO硬件：<ul>
+</ul></li>
+<li>IO硬件：
+<ul>
 <li>包括：外部设备、设备控制器和接口、IO总线</li>
 <li>设备控制器控制IO设备</li>
 <li>IO接口（或设备控制器、适配器）和总线相连</li>
 <li>IO端口是接口电路的一些寄存器，可被CPU访问；IO接口是主机和外部的交接面（详见IO接口小节）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>IO控制方式<ul>
+</ul></li>
+</ul></li>
+<li>IO控制方式
+<ul>
 <li>程序查询方式：CPU通过程序查询IO设备是否可用</li>
 <li>程序中断方式：IO设备可用时向CPU发出中断请求</li>
 <li>DMA方式：用于主存和IO设备的数据交换，无需调用中断服务程序</li>
-<li>通道方式<ul>
+<li>通道方式
+<ul>
 <li>系统设置通道控制部件，每个通道挂接若干外设</li>
 <li>通道程序保存在主存，由通道执行通道指令</li>
 <li>通道指令实现数据传送，即执行IO操作（包括读、写、磁盘走带、寻道等）</li>
 <li>IO指令实现启停IO设备、查询通道和IO设备状态、对通道进行控制等</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="外部设备"><a href="#外部设备" class="headerlink" title="外部设备"></a>外部设备</h2><h3 id="输入设备"><a href="#输入设备" class="headerlink" title="输入设备"></a>输入设备</h3><ul>
-<li>键盘<ul>
+<h2 id="外部设备">外部设备</h2>
+<h3 id="输入设备">输入设备</h3>
+<ul>
+<li>键盘
+<ul>
 <li>矩阵形式排列按键</li>
 <li>按下键电信号连通；松开键电信号断开</li>
 <li>键盘输入信息步骤：查出按哪个键、翻译为ASCII码、编码传给主机</li>
-</ul>
-</li>
-<li>鼠标<ul>
+</ul></li>
+<li>鼠标
+<ul>
 <li>控制光标位置的定位输入设备</li>
 <li>分为机械式和光电式</li>
 <li>鼠标底部有传感器，可能检测运动的方向和距离</li>
-</ul>
-</li>
+</ul></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/06/ComputerOrganization-7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/05/ComputerOrganization-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/05/ComputerOrganization-6/" class="post-title-link" itemprop="url">【知识总结】 第六章-总线</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-05 20:18:20" itemprop="dateCreated datePublished" datetime="2021-11-05T20:18:20+08:00">2021-11-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-10 01:32:24" itemprop="dateModified" datetime="2021-12-10T01:32:24+08:00">2021-12-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/05/ComputerOrganization-6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-总线" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/05/ComputerOrganization-6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/05/ComputerOrganization-6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="总线概述"><a href="#总线概述" class="headerlink" title="总线概述"></a>总线概述</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="总线定义"><a href="#总线定义" class="headerlink" title="总线定义"></a>总线定义</h4><ul>
-<li>定义：一组能为多个部件<strong>分时</strong>和<strong>共享</strong>公共信息的传送线路</li>
-<li>这里的分时和共享是总线的两个特点（时间方面和空间方面）</li>
-<li>分时：同一时刻只允许一个部件使用总线，多个部件需要分时</li>
-<li>共享：总线可以挂接多个部件</li>
-</ul>
-<h4 id="总线设备分类"><a href="#总线设备分类" class="headerlink" title="总线设备分类"></a>总线设备分类</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/05/ComputerOrganization-6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1525,7 +1639,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

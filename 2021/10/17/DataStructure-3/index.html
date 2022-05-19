@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="栈定义 只能在栈顶进行插入和删除的线性表 后进先出结构 重要的数学结论：n个不同的元素，进栈顺序已知，则出栈顺序不同的排列有$\frac{C_{2n}^{n}}{n+1}$  顺序存储 利用连续存储单元存放元素，同时附设一个栈顶指针top top可以表示栈顶元素的下标（非空情况从0开始），也可以表示栈顶元素的位序(数值上等于栈大小，非空情况从1开始) 前者空栈时，top为-1；后者空栈时top为0">
+  <meta name="description" content="栈 定义  只能在栈顶进行插入和删除的线性表 后进先出结构 重要的数学结论：n个不同的元素，进栈顺序已知，则出栈顺序不同的排列有\(\frac{C_{2n}^{n}}{n+1}\)  顺序存储  利用连续存储单元存放元素，同时附设一个栈顶指针top top可以表示栈顶元素的下标（非空情况从0开始），也可以表示栈顶元素的位序(数值上等于栈大小，非空情况从1开始) 前者空栈时，t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第三章-栈、队列和数组">
 <meta property="og:url" content="https://wooziehang.github.io/2021/10/17/DataStructure-3/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="栈定义 只能在栈顶进行插入和删除的线性表 后进先出结构 重要的数学结论：n个不同的元素，进栈顺序已知，则出栈顺序不同的排列有$\frac{C_{2n}^{n}}{n+1}$  顺序存储 利用连续存储单元存放元素，同时附设一个栈顶指针top top可以表示栈顶元素的下标（非空情况从0开始），也可以表示栈顶元素的位序(数值上等于栈大小，非空情况从1开始) 前者空栈时，top为-1；后者空栈时top为0">
+<meta property="og:description" content="栈 定义  只能在栈顶进行插入和删除的线性表 后进先出结构 重要的数学结论：n个不同的元素，进栈顺序已知，则出栈顺序不同的排列有\(\frac{C_{2n}^{n}}{n+1}\)  顺序存储  利用连续存储单元存放元素，同时附设一个栈顶指针top top可以表示栈顶元素的下标（非空情况从0开始），也可以表示栈顶元素的位序(数值上等于栈大小，非空情况从1开始) 前者空栈时，t">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-17T06:20:07.000Z">
-<meta property="article:modified_time" content="2021-12-07T07:23:56.735Z">
+<meta property="article:modified_time" content="2022-05-19T14:20:06.980Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-07 15:23:56" itemprop="dateModified" datetime="2021-12-07T15:23:56+08:00">2021-12-07</time>
+                <time title="修改时间：2022-05-19 22:20:06" itemprop="dateModified" datetime="2022-05-19T22:20:06+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,154 +280,184 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+        <h2 id="栈">栈</h2>
+<h3 id="定义">定义</h3>
+<ul>
 <li>只能在栈顶进行插入和删除的线性表</li>
 <li>后进先出结构</li>
-<li>重要的数学结论：n个不同的元素，进栈顺序已知，则出栈顺序不同的排列有$\frac{C_{2n}^{n}}{n+1}$</li>
+<li>重要的数学结论：n个不同的元素，进栈顺序已知，则出栈顺序不同的排列有<span class="math inline">\(\frac{C_{2n}^{n}}{n+1}\)</span></li>
 </ul>
-<h3 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h3><ul>
+<h3 id="顺序存储">顺序存储</h3>
+<ul>
 <li>利用连续存储单元存放元素，同时附设一个栈顶指针top</li>
 <li>top可以表示栈顶元素的下标（非空情况从0开始），也可以表示栈顶元素的位序(数值上等于栈大小，非空情况从1开始)</li>
 <li>前者空栈时，top为-1；后者空栈时top为0</li>
-<li>前者进栈为$S.data[++S.top]$，后者进栈为$S.data[S.top++]$</li>
-<li>前者出栈为$S.data[S.top-\ -]$，后者出栈为$S.data[-\ -S.top]$</li>
-<li>共享栈<ul>
+<li>前者进栈为<span class="math inline">\(S.data[++S.top]\)</span>，后者进栈为<span class="math inline">\(S.data[S.top++]\)</span></li>
+<li>前者出栈为<span class="math inline">\(S.data[S.top--]\)</span>，后者出栈为<span class="math inline">\(S.data[--S.top]\)</span></li>
+<li>共享栈
+<ul>
 <li>将两个栈的栈底设置在一维数组的两端，栈顶向内延申共享空间。</li>
-<li>以top表示栈顶元素下标为例<ul>
-<li>$top1=-1$时1栈为空</li>
-<li>$top2=Maxsize$时2栈为空</li>
-<li>$top1=top2-1$时栈满</li>
+<li>以top表示栈顶元素下标为例
+<ul>
+<li><span class="math inline">\(top1=-1\)</span>时1栈为空</li>
+<li><span class="math inline">\(top2=Maxsize\)</span>时2栈为空</li>
+<li><span class="math inline">\(top1=top2-1\)</span>时栈满</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h3><ul>
+<h3 id="链式存储">链式存储</h3>
+<ul>
 <li>采用链式存储的栈，优点是便于多个栈共享存储空间，提高效率，不存在栈满上溢的情况。</li>
 <li>通常用单链表实现，所有操作在表头进行</li>
 <li>对于带头结点和不带头结点的链栈，具体的实现会有不同</li>
 </ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
+<h2 id="队列">队列</h2>
+<h3 id="定义-1">定义</h3>
+<ul>
 <li>只能在队头删除，在队尾插入的受限线性表</li>
 <li>先进先出</li>
 </ul>
-<h3 id="顺序存储-1"><a href="#顺序存储-1" class="headerlink" title="顺序存储"></a>顺序存储</h3><ul>
+<h3 id="顺序存储-1">顺序存储</h3>
+<ul>
 <li>使用连续的存储单元存放队列中的元素，附设指针front和rear。（不同教材指针定义不唯一，本笔记规定front表示队头位置，rear表示队尾元素的下一个位置）</li>
 <li>使用顺序队列存在假溢出问题，即下标到了Maxsize，但是数组中还有空位置</li>
-<li>可以改进为循环队列<ul>
-<li>初始：$front=rear=0$</li>
-<li>入队：$rear=(rear+1)\ mod\ Maxsize$</li>
-<li>出队：$front=(front+1)\ mod\ Maxsize$</li>
-<li>队长：$(rear+Maxsize-front)\ mod\ Maxsize$</li>
-<li>这里可以发现，最大容量实际上到不了$Maxsize$，原因队空和队满的判断都是$rear=front$，处理方法有三种<ul>
-<li>牺牲一个单元，默认情况，即队满判断是$(rear+1)\ mod\ Maxsize=front$</li>
+<li>可以改进为循环队列
+<ul>
+<li>初始：<span class="math inline">\(front=rear=0\)</span></li>
+<li>入队：<span class="math inline">\(rear=(rear+1) mod
+Maxsize\)</span></li>
+<li>出队：<span class="math inline">\(front=(front+1) mod
+Maxsize\)</span></li>
+<li>队长：<span class="math inline">\((rear+Maxsize-front) mod
+Maxsize\)</span></li>
+<li>这里可以发现，最大容量实际上到不了<span class="math inline">\(Maxsize\)</span>，原因队空和队满的判断都是<span class="math inline">\(rear=front\)</span>，处理方法有三种
+<ul>
+<li>牺牲一个单元，默认情况，即队满判断是<span class="math inline">\((rear+1) mod Maxsize=front\)</span></li>
 <li>增加一个size记录元素个数，以此区分队满和队空</li>
 <li>增设tag标记，删除元素后tag为0，插入元素后tag为1。初始tag为0。以此记录最近一次操作是插入还是删除来判断队满和队空</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="链式存储-1"><a href="#链式存储-1" class="headerlink" title="链式存储"></a>链式存储</h3><ul>
+<h3 id="链式存储-1">链式存储</h3>
+<ul>
 <li>队列的链式称为链队列</li>
 <li>本质上是同时带有队头指针和队尾指针的单链表</li>
-<li>不带头结点情况<ul>
+<li>不带头结点情况
+<ul>
 <li>当front和rear都是NULL时，队列为空</li>
 <li>出队先判断是否空，空则无法出队；不空则front指向其后继。若没有后继，则front和rear都置NULL</li>
 <li>入队先判断是否空，不空则将新结点插入到rear的后面并更新rear；空则设置front和rear都指向新结点</li>
-</ul>
-</li>
-<li>带头结点情况（统一了操作，更方便，front此时就是头结点）<ul>
+</ul></li>
+<li>带头结点情况（统一了操作，更方便，front此时就是头结点）
+<ul>
 <li>当front=rear时，队列为空</li>
 <li>入队插入到rear后并更新rear</li>
 <li>出队判断是否空，空则无法出队；不空则删除front的后继。若front后继为rear，则rear=front</li>
-</ul>
-</li>
-<li>双端队列<ul>
+</ul></li>
+<li>双端队列
+<ul>
 <li>普通情况：在两端都可以入队或出队</li>
 <li>输出受限：只能在一端出队，可在两端入队</li>
 <li>输入受限：只能在一端入队，可在两端出队</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="栈和队列的应用"><a href="#栈和队列的应用" class="headerlink" title="栈和队列的应用"></a>栈和队列的应用</h2><h3 id="括号匹配"><a href="#括号匹配" class="headerlink" title="括号匹配"></a>括号匹配</h3><ul>
+<h2 id="栈和队列的应用">栈和队列的应用</h2>
+<h3 id="括号匹配">括号匹配</h3>
+<ul>
 <li>问题：假设输入表达式包含圆括号方括号，任意嵌套，要求判断表达式合法性</li>
 <li>算法：利用栈，遇到左括号压栈，遇到右括号则和栈中左括号进行匹配消解，不匹配则不合法。</li>
 </ul>
-<h3 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h3><ul>
+<h3 id="表达式求值">表达式求值</h3>
+<ul>
 <li>后缀表达式的值计算：遇到操作数压栈，遇到操作符则弹出操作数进行计算，结果压栈</li>
-<li>中缀表达式转后缀表达式：<ul>
+<li>中缀表达式转后缀表达式：
+<ul>
 <li>人脑方法：利用二叉树的中序遍历和后序遍历得到结果</li>
-<li>计算机算法<ul>
+<li>计算机算法
+<ul>
 <li>遇到数字直接输出到后缀表达式</li>
-<li>遇到’(‘入栈</li>
-<li>遇到’)’依次弹出栈，加到后缀表达式，直到弹出了’(‘，不用加到后缀表达式</li>
+<li>遇到'('入栈</li>
+<li>遇到')'依次弹出栈，加到后缀表达式，直到弹出了'('，不用加到后缀表达式</li>
 <li>遇到其他运算符根据优先级规定，可能入栈，可能连续弹出，因为不好记，所以直接对照人脑方法得出的答案即可（仅限笔试）。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ul>
+<h3 id="递归">递归</h3>
+<ul>
 <li>任何递归算法都可以用栈改成非递归算法</li>
 <li>当然除了用栈，也可以根据状态转移方程用dp来做</li>
 </ul>
-<h3 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><p>又叫做层次遍历，队列的应用</p>
-<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><p>队列在操作系统的资源管理中也有应用：</p>
+<h3 id="广度优先遍历">广度优先遍历</h3>
+<p>又叫做层次遍历，队列的应用</p>
+<h3 id="计算机系统">计算机系统</h3>
+<p>队列在操作系统的资源管理中也有应用：</p>
 <ul>
 <li>打印机数据缓冲区就是一个数据队列</li>
 <li>cpu资源竞争也是进程的队列。</li>
 </ul>
-<h2 id="数组和特殊矩阵"><a href="#数组和特殊矩阵" class="headerlink" title="数组和特殊矩阵"></a>数组和特殊矩阵</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><ul>
-<li>数组是由$n$个($n\geq 1$)同类型数据元素构成的有限序列，每个数据元素称为一个数组元素</li>
+<h2 id="数组和特殊矩阵">数组和特殊矩阵</h2>
+<h3 id="定义-2">定义</h3>
+<ul>
+<li>数组是由<span class="math inline">\(n\)</span>个(<span class="math inline">\(n\geq
+1\)</span>)同类型数据元素构成的有限序列，每个数据元素称为一个数组元素</li>
 <li>数组下标取值范围叫做维界</li>
-<li>数组是线性表的推广<ul>
+<li>数组是线性表的推广
+<ul>
 <li>一维数组可以看作是线性表</li>
 <li>二维数组可以看作是数据元素是定长线性表的线性表</li>
 <li>数组一旦被定义，维数和维界都不变</li>
 <li>除了初始化和销毁，数组只能存取元素、修改元素（不能叫插入和删除，这个应该是和线性表的区别）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><ul>
+<h3 id="存储结构">存储结构</h3>
+<ul>
 <li>数组本身是逻辑结构，但是大部分计算机语言都提供数组数据类型</li>
 <li>逻辑意义上的数组可以用计算机语言中的数组数据类型进行存储</li>
-<li>$LOC(a_i)=LOC(a_0)+i\times L(0\leq i&lt;n)$，$L$是每个元素所占的存储单元个数</li>
-<li>多维数组映射方法(假设m行n列)<ul>
-<li>行优先：$LOC(a_{i,j})=LOC(a_{0,0})+[n\times(i)+j]\times L$</li>
-<li>列优先：$LOC(a_{i,j})=LOC(a_{0,0})+[m\times(j)+i]\times L$</li>
+<li><span class="math inline">\(LOC(a_i)=LOC(a_0)+i\times L(0\leq
+i&lt;n)\)</span>，<span class="math inline">\(L\)</span>是每个元素所占的存储单元个数</li>
+<li>多维数组映射方法(假设m行n列)
+<ul>
+<li>行优先：<span class="math inline">\(LOC(a_{i,j})=LOC(a_{0,0})+[n\times(i)+j]\times
+L\)</span></li>
+<li>列优先：<span class="math inline">\(LOC(a_{i,j})=LOC(a_{0,0})+[m\times(j)+i]\times
+L\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="矩阵的压缩存储"><a href="#矩阵的压缩存储" class="headerlink" title="矩阵的压缩存储"></a>矩阵的压缩存储</h3><ul>
+<h3 id="矩阵的压缩存储">矩阵的压缩存储</h3>
+<ul>
 <li>压缩存储：相同值元素只分配一个存储空间，零元素不分配空间，能节约存储</li>
-<li>特殊矩阵<ul>
+<li>特殊矩阵
+<ul>
 <li>矩阵有很多相同的元素，或很多零元素，并且这些元素分布有一定规律。</li>
 <li>常见的特殊矩阵：对称矩阵、上三角矩阵、下三角矩阵、对角矩阵、三对角矩阵</li>
+</ul></li>
 </ul>
-</li>
+<h3 id="对称矩阵">对称矩阵</h3>
+<ul>
+<li>只存放下三角部分，包括对角元素，把<span class="math inline">\(A[n][n]\)</span>用<span class="math inline">\(B[\frac{n^2+n}{2}]\)</span>压缩表示</li>
+<li>对于<span class="math inline">\(A[i][j]\)</span>，<span class="math inline">\(i\geq j\)</span>，其前面有元素个数<span class="math inline">\(x=1+2+\cdots+i-1+j\)</span>（二维矩阵按行优先展开为一维数组，后同），故其对应于<span class="math inline">\(B[x]\)</span>。数组下标都是从0开始的。</li>
 </ul>
-<h3 id="对称矩阵"><a href="#对称矩阵" class="headerlink" title="对称矩阵"></a>对称矩阵</h3><ul>
-<li>只存放下三角部分，包括对角元素，把$A[n][n]$用$B[\frac{n^2+n}{2}]$压缩表示</li>
-<li>对于$A[i][j]$，$i\geq j$，其前面有元素个数$x=1+2+\cdots+i-1+j$（二维矩阵按行优先展开为一维数组，后同），故其对应于$B[x]$。数组下标都是从0开始的。</li>
-</ul>
-<h3 id="三角矩阵"><a href="#三角矩阵" class="headerlink" title="三角矩阵"></a>三角矩阵</h3><ul>
+<h3 id="三角矩阵">三角矩阵</h3>
+<ul>
 <li>下三角矩阵上三角区域元素为常数</li>
 <li>上三角矩阵下三角区域元素为常数</li>
 <li>注意在数学里，这个常数大都是0，但这里认为是某常数C</li>
 <li>存储和对称矩阵类似，但要多一个位置存储该常数即可</li>
 </ul>
-<h3 id="三对角矩阵"><a href="#三对角矩阵" class="headerlink" title="三对角矩阵"></a>三对角矩阵</h3><ul>
+<h3 id="三对角矩阵">三对角矩阵</h3>
+<ul>
 <li>又叫做带状矩阵，所有非零元素都集中在以主对角线为中心的3条对角线区域</li>
 <li>同样可以按行优先方式展开到一维数组中</li>
 </ul>
-<h3 id="稀疏矩阵"><a href="#稀疏矩阵" class="headerlink" title="稀疏矩阵"></a>稀疏矩阵</h3><ul>
+<h3 id="稀疏矩阵">稀疏矩阵</h3>
+<ul>
 <li>对于非零元素个数远少于矩阵元素个数的情况，矩阵为稀疏矩阵</li>
 <li>采用三元组(行标，列标，值)的方式进行压缩</li>
 <li>稀疏矩阵压缩后无法随机存取</li>
 <li>稀疏矩阵的三元组可以用数组存储也可以用十字链表存储</li>
 </ul>
-<h4 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h4><ul>
+<h4 id="十字链表">十字链表</h4>
+<ul>
 <li>每一行都有行头结点</li>
 <li>每一列都有列头结点</li>
 <li>数据结点除了三元组，还包括列后继指针，行后继指针</li>
@@ -543,7 +577,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

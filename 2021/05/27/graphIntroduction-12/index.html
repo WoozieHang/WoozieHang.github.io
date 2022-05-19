@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="有序对 无序对： 含有1个或2个元素的集合 $(v_1,v_2)&#x3D;\{v_1,v_2\}$，$(v_2,v_2)&#x3D;{v_2}$   有序对：$\langle a_1,b_1\rangle&#x3D;\langle a_2,b_2\rangle$ 当且仅当 $a_1&#x3D;a_2$ 且 $b_1&#x3D;b_2$ 有序对的集合表示：$\langle a,b\rangle&#x3D;\{\{a\},\{a,b\}\}$  有向图和弧">
+  <meta name="description" content="有序对  无序对：  含有1个或2个元素的集合 \((v_1,v_2)&#x3D;\{v_1,v_2\}\)，\((v_2,v_2)&#x3D;{v_2}\)  有序对：\(\langle a_1,b_1\rangle&#x3D;\langle a_2,b_2\rangle\) 当且仅当 \(a_1&#x3D;a_2\) 且 \(b_1&#x3D;b_2\) 有序对的集合表示：\(\langle a,b\rangle&#x3D;\{\{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 有向图">
 <meta property="og:url" content="https://wooziehang.github.io/2021/05/27/graphIntroduction-12/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="有序对 无序对： 含有1个或2个元素的集合 $(v_1,v_2)&#x3D;\{v_1,v_2\}$，$(v_2,v_2)&#x3D;{v_2}$   有序对：$\langle a_1,b_1\rangle&#x3D;\langle a_2,b_2\rangle$ 当且仅当 $a_1&#x3D;a_2$ 且 $b_1&#x3D;b_2$ 有序对的集合表示：$\langle a,b\rangle&#x3D;\{\{a\},\{a,b\}\}$  有向图和弧">
+<meta property="og:description" content="有序对  无序对：  含有1个或2个元素的集合 \((v_1,v_2)&#x3D;\{v_1,v_2\}\)，\((v_2,v_2)&#x3D;{v_2}\)  有序对：\(\langle a_1,b_1\rangle&#x3D;\langle a_2,b_2\rangle\) 当且仅当 \(a_1&#x3D;a_2\) 且 \(b_1&#x3D;b_2\) 有序对的集合表示：\(\langle a,b\rangle&#x3D;\{\{">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-27T05:23:57.000Z">
 <meta property="article:modified_time" content="2021-05-27T06:06:01.539Z">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -270,76 +274,90 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="有序对"><a href="#有序对" class="headerlink" title="有序对"></a>有序对</h2><ul>
-<li>无序对：<ul>
+        <h2 id="有序对">有序对</h2>
+<ul>
+<li>无序对：
+<ul>
 <li>含有1个或2个元素的集合</li>
-<li>$(v_1,v_2)=\{v_1,v_2\}$，$(v_2,v_2)={v_2}$</li>
+<li><span class="math inline">\((v_1,v_2)=\{v_1,v_2\}\)</span>，<span class="math inline">\((v_2,v_2)={v_2}\)</span></li>
+</ul></li>
+<li>有序对：<span class="math inline">\(\langle a_1,b_1\rangle=\langle
+a_2,b_2\rangle\)</span> 当且仅当 <span class="math inline">\(a_1=a_2\)</span> 且 <span class="math inline">\(b_1=b_2\)</span></li>
+<li>有序对的集合表示：<span class="math inline">\(\langle
+a,b\rangle=\{\{a\},\{a,b\}\}\)</span></li>
 </ul>
-</li>
-<li>有序对：$\langle a_1,b_1\rangle=\langle a_2,b_2\rangle$ 当且仅当 $a_1=a_2$ 且 $b_1=b_2$</li>
-<li>有序对的集合表示：$\langle a,b\rangle=\{\{a\},\{a,b\}\}$</li>
-</ul>
-<h2 id="有向图和弧"><a href="#有向图和弧" class="headerlink" title="有向图和弧"></a>有向图和弧</h2><ul>
-<li>$G=\langle V,A \rangle$<ul>
-<li>$V$：顶点集</li>
-<li>$A$：弧集，一个有向对的集合。弧又称为有向边</li>
-</ul>
-</li>
-<li>一些术语<ul>
+<h2 id="有向图和弧">有向图和弧</h2>
+<ul>
+<li><span class="math inline">\(G=\langle V,A \rangle\)</span>
+<ul>
+<li><span class="math inline">\(V\)</span>：顶点集</li>
+<li><span class="math inline">\(A\)</span>：弧集，一个有向对的集合。弧又称为有向边</li>
+</ul></li>
+<li>一些术语
+<ul>
 <li>弧的尾</li>
 <li>弧的头</li>
 <li>环弧：头尾相同的弧</li>
 <li>并行弧：具有相同头的相同尾的弧</li>
 <li>简单有向图：无环弧，无并行弧</li>
 <li>反向弧：简单有向图中头尾相反的弧</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="度和邻点"><a href="#度和邻点" class="headerlink" title="度和邻点"></a>度和邻点</h2><ul>
-<li>出度：$d^+(v)$</li>
-<li>入度：$d^-(v)$</li>
-<li>最小出度：$\delta^+$</li>
-<li>最小入度：$\delta^-$</li>
-<li>最大出度：$\Delta^+$</li>
-<li>最大入度：$\Delta^-$</li>
+<h2 id="度和邻点">度和邻点</h2>
+<ul>
+<li>出度：<span class="math inline">\(d^+(v)\)</span></li>
+<li>入度：<span class="math inline">\(d^-(v)\)</span></li>
+<li>最小出度：<span class="math inline">\(\delta^+\)</span></li>
+<li>最小入度：<span class="math inline">\(\delta^-\)</span></li>
+<li>最大出度：<span class="math inline">\(\Delta^+\)</span></li>
+<li>最大入度：<span class="math inline">\(\Delta^-\)</span></li>
 <li>出邻点和入邻点</li>
 </ul>
-<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>对任何有向图$G$，都有$\sum\limits_{v\in V(G)}d^+(v)=\sum\limits_{v\in V(G)}d^-(v)=\sum\limits_{v\in V(G)}\frac{d(v)}{2}=\epsilon$</p>
-<h2 id="途径、迹、路、圈"><a href="#途径、迹、路、圈" class="headerlink" title="途径、迹、路、圈"></a>途径、迹、路、圈</h2><ul>
-<li>有向途径<ul>
+<h2 id="定理">定理</h2>
+<p>对任何有向图<span class="math inline">\(G\)</span>，都有<span class="math inline">\(\sum\limits_{v\in V(G)}d^+(v)=\sum\limits_{v\in
+V(G)}d^-(v)=\sum\limits_{v\in V(G)}\frac{d(v)}{2}=\epsilon\)</span></p>
+<h2 id="途径迹路圈">途径、迹、路、圈</h2>
+<ul>
+<li>有向途径
+<ul>
 <li>顶点和弧交替出现的序列</li>
 <li>与弧的方向一致</li>
-</ul>
-</li>
+</ul></li>
 <li>有向迹：弧不重复出现</li>
 <li>有向路：顶点不重复出现</li>
 <li>有向圈：起点和终点相同</li>
 </ul>
-<h2 id="底图和定向"><a href="#底图和定向" class="headerlink" title="底图和定向"></a>底图和定向</h2><ul>
-<li>底图：有向图 $\rightarrow$ 无向图</li>
-<li>定向：无向图 $\rightarrow$ 有向图<ul>
+<h2 id="底图和定向">底图和定向</h2>
+<ul>
+<li>底图：有向图 <span class="math inline">\(\rightarrow\)</span>
+无向图</li>
+<li>定向：无向图 <span class="math inline">\(\rightarrow\)</span> 有向图
+<ul>
 <li>不唯一</li>
 <li>竞赛图：完全图的定向</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="连通"><a href="#连通" class="headerlink" title="连通"></a>连通</h2><ul>
+<h2 id="连通">连通</h2>
+<ul>
 <li>弱连通：底图是连通的</li>
 <li>强连通：任取顶点u和v，存在从u到v的有向路</li>
 <li>强连通分支：极大强连通子图</li>
 <li>强连通分支之间不存在公共顶点</li>
 <li>强连通分支图不存在有向圈</li>
 </ul>
-<h2 id="强连通的充要条件"><a href="#强连通的充要条件" class="headerlink" title="强连通的充要条件"></a>强连通的充要条件</h2><p>$G$是强连通有向图的充要条件是$G$的所有顶点在一条有向闭途径上</p>
-<h2 id="强连通定向"><a href="#强连通定向" class="headerlink" title="强连通定向"></a>强连通定向</h2><p>无向图$G$可定向成强连通图的充分必要条件为：$G$连通且无割边。</p>
-<h2 id="竞赛图"><a href="#竞赛图" class="headerlink" title="竞赛图"></a>竞赛图</h2><ul>
-<li>王<ul>
+<h2 id="强连通的充要条件">强连通的充要条件</h2>
+<p><span class="math inline">\(G\)</span>是强连通有向图的充要条件是<span class="math inline">\(G\)</span>的所有顶点在一条有向闭途径上</p>
+<h2 id="强连通定向">强连通定向</h2>
+<p>无向图<span class="math inline">\(G\)</span>可定向成强连通图的充分必要条件为：<span class="math inline">\(G\)</span>连通且无割边。</p>
+<h2 id="竞赛图">竞赛图</h2>
+<ul>
+<li>王
+<ul>
 <li>到其他任何顶点都有长度不超过2的有向路</li>
 <li>不一定唯一</li>
-</ul>
-</li>
+</ul></li>
 <li>定理：竞赛图中出度最大的顶点一定是王</li>
-<li>竞赛图中一个顶点$v$是唯一的王当且仅当$v$的出度是$v-1$</li>
+<li>竞赛图中一个顶点<span class="math inline">\(v\)</span>是唯一的王当且仅当<span class="math inline">\(v\)</span>的出度是<span class="math inline">\(v-1\)</span></li>
 </ul>
 
     </div>
@@ -440,7 +458,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E5%AF%B9"><span class="nav-number">1.</span> <span class="nav-text">有序对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E5%92%8C%E5%BC%A7"><span class="nav-number">2.</span> <span class="nav-text">有向图和弧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%A6%E5%92%8C%E9%82%BB%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">度和邻点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%94%E5%BE%84%E3%80%81%E8%BF%B9%E3%80%81%E8%B7%AF%E3%80%81%E5%9C%88"><span class="nav-number">5.</span> <span class="nav-text">途径、迹、路、圈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%95%E5%9B%BE%E5%92%8C%E5%AE%9A%E5%90%91"><span class="nav-number">6.</span> <span class="nav-text">底图和定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A"><span class="nav-number">7.</span> <span class="nav-text">连通</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">强连通的充要条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%AE%9A%E5%90%91"><span class="nav-number">9.</span> <span class="nav-text">强连通定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%9E%E8%B5%9B%E5%9B%BE"><span class="nav-number">10.</span> <span class="nav-text">竞赛图</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E5%AF%B9"><span class="nav-number">1.</span> <span class="nav-text">有序对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E5%92%8C%E5%BC%A7"><span class="nav-number">2.</span> <span class="nav-text">有向图和弧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%A6%E5%92%8C%E9%82%BB%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">度和邻点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%94%E5%BE%84%E8%BF%B9%E8%B7%AF%E5%9C%88"><span class="nav-number">5.</span> <span class="nav-text">途径、迹、路、圈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%95%E5%9B%BE%E5%92%8C%E5%AE%9A%E5%90%91"><span class="nav-number">6.</span> <span class="nav-text">底图和定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A"><span class="nav-number">7.</span> <span class="nav-text">连通</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E7%9A%84%E5%85%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">强连通的充要条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%AE%9A%E5%90%91"><span class="nav-number">9.</span> <span class="nav-text">强连通定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%9E%E8%B5%9B%E5%9B%BE"><span class="nav-number">10.</span> <span class="nav-text">竞赛图</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -456,7 +474,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

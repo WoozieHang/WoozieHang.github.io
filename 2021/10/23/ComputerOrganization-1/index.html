@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="基本概念 机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成 汇编语言：把机器指令表示为助记符，与机器语言指令一一对应 高级语言：接近自然语言，按约定符号和规则写程序 编译程序：把高级语言程序翻译成机器语言目标代码的系统软件 汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件 字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度 系列机：一个厂家生产的">
+  <meta name="description" content="基本概念  机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成 汇编语言：把机器指令表示为助记符，与机器语言指令一一对应 高级语言：接近自然语言，按约定符号和规则写程序 编译程序：把高级语言程序翻译成机器语言目标代码的系统软件 汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件 字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度 系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第一章-计算机系统概述">
 <meta property="og:url" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-1/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="基本概念 机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成 汇编语言：把机器指令表示为助记符，与机器语言指令一一对应 高级语言：接近自然语言，按约定符号和规则写程序 编译程序：把高级语言程序翻译成机器语言目标代码的系统软件 汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件 字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度 系列机：一个厂家生产的">
+<meta property="og:description" content="基本概念  机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成 汇编语言：把机器指令表示为助记符，与机器语言指令一一对应 高级语言：接近自然语言，按约定符号和规则写程序 编译程序：把高级语言程序翻译成机器语言目标代码的系统软件 汇编程序：把汇编语言程序翻译成机器语言目标代码的系统软件 字长：运算器能并行参与运算的数据位数，取决于CPU内部寄存器的数据宽度 系列">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-23T04:09:45.000Z">
-<meta property="article:modified_time" content="2021-12-13T11:08:27.853Z">
+<meta property="article:modified_time" content="2022-05-19T14:25:15.140Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-13 19:08:27" itemprop="dateModified" datetime="2021-12-13T19:08:27+08:00">2021-12-13</time>
+                <time title="修改时间：2022-05-19 22:25:15" itemprop="dateModified" datetime="2022-05-19T22:25:15+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,7 +280,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+        <h2 id="基本概念">基本概念</h2>
+<ul>
 <li>机器语言：计算机能直接识别执行的语言，机器语言的程序由0、1代码序列组成</li>
 <li>汇编语言：把机器指令表示为助记符，与机器语言指令一一对应</li>
 <li>高级语言：接近自然语言，按约定符号和规则写程序</li>
@@ -290,11 +295,15 @@
 <li>字节：8个二进制数是1个字节。计算机系统存储器按字节编址。</li>
 <li>内存地址：给存储器每个位置编号，方便访问指定位置，该编号是内存地址</li>
 </ul>
-<h2 id="计算机系统层次结构"><a href="#计算机系统层次结构" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h2><h3 id="计算机系统的组成"><a href="#计算机系统的组成" class="headerlink" title="计算机系统的组成"></a>计算机系统的组成</h3><ul>
+<h2 id="计算机系统层次结构">计算机系统层次结构</h2>
+<h3 id="计算机系统的组成">计算机系统的组成</h3>
+<ul>
 <li>硬件系统：有形的物理设备，计算机系统中实际物理装置的总称</li>
 <li>软件系统：在硬件上运行的程序、相关数据、文档</li>
 </ul>
-<h3 id="计算机硬件的基本组成"><a href="#计算机硬件的基本组成" class="headerlink" title="计算机硬件的基本组成"></a>计算机硬件的基本组成</h3><h4 id="早期冯诺依曼机"><a href="#早期冯诺依曼机" class="headerlink" title="早期冯诺依曼机"></a>早期冯诺依曼机</h4><p>冯诺依曼提出了“存储程序”概念（指令以代码形式事先输入主存储器，按程序首地址开始按顺序执行直至程序结束）和二进制原理，以此概念原理为基础的各种计算机通称为冯诺依曼机，特点如下：</p>
+<h3 id="计算机硬件的基本组成">计算机硬件的基本组成</h3>
+<h4 id="早期冯诺依曼机">早期冯诺依曼机</h4>
+<p>冯诺依曼提出了“存储程序”概念（指令以代码形式事先输入主存储器，按程序首地址开始按顺序执行直至程序结束）和二进制原理，以此概念原理为基础的各种计算机通称为冯诺依曼机，特点如下：</p>
 <ul>
 <li>计算机硬件系统由运算器、存储器、控制器、输入设备、输出设备5个部分组成</li>
 <li>指令和数据以同等地位存到存储器中，按址访问</li>
@@ -302,12 +311,14 @@
 <li>指令由操作码和地址码组成，操作码是操作的类型，地址码指出操作的地址</li>
 <li>指令在存储器内按顺序存放。通常是顺序执行，特定条件下可以改变执行顺序</li>
 </ul>
-<h4 id="现代计算机组织结构"><a href="#现代计算机组织结构" class="headerlink" title="现代计算机组织结构"></a>现代计算机组织结构</h4><ul>
+<h4 id="现代计算机组织结构">现代计算机组织结构</h4>
+<ul>
 <li><strong>早期的冯诺依曼机以运算器为中心</strong>，输出输出设备通过运算器与存储器传送数据</li>
 <li><strong>现代计算机以存储器为中心</strong>，输入输出尽量绕过CPU，提高效率。</li>
 <li>现代计算机仍然遵循存储程序的设计思想</li>
 </ul>
-<h4 id="硬件组成和功能"><a href="#硬件组成和功能" class="headerlink" title="硬件组成和功能"></a>硬件组成和功能</h4><p>现代计算机虽然结构和冯诺依曼机有区别，但硬件组成和功能相同，具体如下</p>
+<h4 id="硬件组成和功能">硬件组成和功能</h4>
+<p>现代计算机虽然结构和冯诺依曼机有区别，但硬件组成和功能相同，具体如下</p>
 <ul>
 <li>输入设备：用于输入原始数据和程序，如键盘、鼠标</li>
 <li>输出设备：用于输出计算机处理结果，如显示器、打印机</li>
@@ -315,67 +326,74 @@
 <li>控制器：是整个计算机的指挥中心，在指令执行过程中产生指挥各个部件协同工作的控制信号</li>
 <li>存储器：用于存放原始数据、程序、中间运算结果、最终处理结果。分为主（内）存储器和辅（外）存储器。CPU（即中央处理器，是运算器和控制器集成的芯片）能直接访问的程序和数据在主存储器中。此外，CPU和主存构成主机，外存和IO设备是外部设备。</li>
 </ul>
-<h3 id="计算机系统软件分类"><a href="#计算机系统软件分类" class="headerlink" title="计算机系统软件分类"></a>计算机系统软件分类</h3><ul>
-<li>系统软件<ul>
+<h3 id="计算机系统软件分类">计算机系统软件分类</h3>
+<ul>
+<li>系统软件
+<ul>
 <li>一组保证计算机系统高效正确运行的基础软件，作为系统资源供用户使用。</li>
 <li>主要包括操作系统（OS）、数据库管理系统（DBMS）、语言处理程序、分布式软件系统、网络软件系统、标准库程序、服务性程序</li>
-</ul>
-</li>
-<li>应用软件<ul>
+</ul></li>
+<li>应用软件
+<ul>
 <li>用户为了解决某个应用领域的问题编写的程序</li>
 <li>例如科学计算程序、工程设计程序、数据统计处理程序</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="计算机软件和硬件的关系"><a href="#计算机软件和硬件的关系" class="headerlink" title="计算机软件和硬件的关系"></a>计算机软件和硬件的关系</h3><ul>
-<li>是完整计算机系统中相互依存的两大部分<ul>
+<h3 id="计算机软件和硬件的关系">计算机软件和硬件的关系</h3>
+<ul>
+<li>是完整计算机系统中相互依存的两大部分
+<ul>
 <li>硬件是软件工作的物质基础，支持软件发挥性能</li>
 <li>软件是硬件发挥作用的途径，完善的软件系统能充分发挥硬件各种功能</li>
-</ul>
-</li>
-<li>软件和硬件有逻辑等价性<ul>
+</ul></li>
+<li>软件和硬件有逻辑等价性
+<ul>
 <li>软件能完成的工作硬件也能完成</li>
 <li>硬件能完成的工作软件大多也能完成</li>
 <li>软件实现更灵活、可复制</li>
 <li>硬件实现更高效</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="计算机工作原理"><a href="#计算机工作原理" class="headerlink" title="计算机工作原理"></a>计算机工作原理</h3><h4 id="存储程序工作方式"><a href="#存储程序工作方式" class="headerlink" title="存储程序工作方式"></a>存储程序工作方式</h4><p>计算机的工作过程是</p>
+<h3 id="计算机工作原理">计算机工作原理</h3>
+<h4 id="存储程序工作方式">存储程序工作方式</h4>
+<p>计算机的工作过程是</p>
 <ul>
 <li>把数据和程序装入主存储器</li>
 <li>将源程序转换成可执行文件，并保存到磁盘上</li>
 <li>存储程序工作方式：把可执行文件保存到主存储器中，并从首地址开始逐条执行指令</li>
 </ul>
-<h4 id="高级语言程序与机器语言程序转换"><a href="#高级语言程序与机器语言程序转换" class="headerlink" title="高级语言程序与机器语言程序转换"></a>高级语言程序与机器语言程序转换</h4><ul>
-<li>解释方式<ul>
+<h4 id="高级语言程序与机器语言程序转换">高级语言程序与机器语言程序转换</h4>
+<ul>
+<li>解释方式
+<ul>
 <li>用专门的解释器将源程序逐行翻译为机器代码并立刻执行，不形成目标程序</li>
 <li>每次执行都需要翻译一次，运行效率低，且不能脱离解释器独立运行</li>
 <li>优点是只要提供特定平台的解释器，就可以方便实现源程序级别的跨平台移植</li>
-</ul>
-</li>
-<li>编译方式<ul>
+</ul></li>
+<li>编译方式
+<ul>
 <li>专用的编译器，一次将高级语言源程序翻译成机器语言程序，编译后生成，可执行目标程序可以脱离开发环境独立运行，效率高</li>
 <li>如果需要移植到其他平台，则需要采用特定平台编译器重新编译</li>
 <li>大部分编译程序直接产生机器语言目标文件，也有的先产生汇编语言代码文件，再用汇编程序处理产生可执行机器语言目标文件</li>
-<li>举一个GCC编译器的例子<ul>
+<li>举一个GCC编译器的例子
+<ul>
 <li>预处理阶段：输入源文件hello.c，经过预处理器cpp对源文件的“#”开头命令进行处理，去掉注释，输出hello.i</li>
 <li>编译阶段：编译器ccl对预处理后的源程序进行编译，生成汇编语言源程序hello.s</li>
 <li>汇编阶段：汇编器as把hello.s翻译成机器语言指令，并打包成可重定位目标文件hello.o，这是二进制文件，文本编辑器打开是乱码</li>
 <li>链接阶段：链接器ld把多个可重定位目标文件和标准库函数合并为一个可执行目标文件hello，最终保存到磁盘上。</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="程序与指令的执行过程"><a href="#程序与指令的执行过程" class="headerlink" title="程序与指令的执行过程"></a>程序与指令的执行过程</h4><p>程序的第一条地址存在PC中，完成一条指令，会计算下一条指令的地址，程序和指令的执行过程分为三个阶段：</p>
+<h4 id="程序与指令的执行过程">程序与指令的执行过程</h4>
+<p>程序的第一条地址存在PC中，完成一条指令，会计算下一条指令的地址，程序和指令的执行过程分为三个阶段：</p>
 <ul>
 <li>取指令</li>
 <li>分析指令</li>
 <li>执行指令</li>
 </ul>
-<h3 id="计算机系统层次结构-1"><a href="#计算机系统层次结构-1" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h3><ul>
-<li><p>层次划分为</p>
+<h3 id="计算机系统层次结构-1">计算机系统层次结构</h3>
+<ul>
+<li>层次划分为
 <ul>
 <li>第0级机器：硬联逻辑级。由门电路、触发器等逻辑电路构成</li>
 <li>第1级机器：微程序级。根据各指令操作的控制时序，用微指令写微程序，控制信息在部件之间传送</li>
@@ -384,19 +402,18 @@
 <li>第4级机器：汇编语言机器。用汇编语言编写的程序，先由汇编程序翻译成第3级或第2级语言，再由相应机器解释。</li>
 <li>第5级机器：高级语言机器。用高级语言写的程序由编译程序翻译成第4级或第3级机器上的语言，个别高级语言也用解释方式实现</li>
 <li>第6级机器：应用语言机器。非计算机专业人员可以直接使用计算机，在用户终端用键盘或其他方式发出服务请求即可进入该级的信息处理系统</li>
-</ul>
-</li>
-<li><p>在特定计算机系统中，有些级可能不存在</p>
-</li>
-<li>划分层次的意义<ul>
+</ul></li>
+<li>在特定计算机系统中，有些级可能不存在</li>
+<li>划分层次的意义
+<ul>
 <li>便于分开研究层内和层间的关系，优化系统结构</li>
 <li>便于理解计算机系统软件硬件逻辑等价性</li>
-</ul>
-</li>
+</ul></li>
 <li>虚拟机的概念：在硬件上由于软件的发展，扩充了计算机系统功能，不同语言用户面对的是不同层次的虚拟机</li>
 <li>0-2层是没有软件配置的裸机，3-6层是虚拟机</li>
 </ul>
-<h2 id="计算机性能指标"><a href="#计算机性能指标" class="headerlink" title="计算机性能指标"></a>计算机性能指标</h2><p>主要衡量性能的指标有存储容量和速度，常见的具体指标如下</p>
+<h2 id="计算机性能指标">计算机性能指标</h2>
+<p>主要衡量性能的指标有存储容量和速度，常见的具体指标如下</p>
 <ul>
 <li>机器字长：计算机进行一次整数运算所能处理的二进制数据的位数，和CPU寄存器位数、加法器有关，通常是字节的整数倍</li>
 <li>数据通路带宽：外部总线一次能传送的信息位数</li>
@@ -407,27 +424,35 @@
 <li>主频：CPU时钟周期的倒数，机器内部时钟的频率，单位HZ</li>
 <li>CPI：平均每条指令执行需要的时钟周期数</li>
 <li>IPC：每个时钟周期执行的指令条数</li>
-<li>CPU执行时间：等于时钟周期数$\times$时钟周期，等于(指令数$\times$ CPI)$\times$时钟周期。这里的指令数、CPI、主频是相互制约的。</li>
-<li>MIPS：每秒执行多少百万条的指令数（同时考虑了主频和CPI），等于指令条数/（$10^6\times$ 执行时间）= 1/（$10^6\times$ 每条指令执行时间）= 主频/（$10^6\times$ CPI）。这种指标有缺陷，因为不同机器的指令集不同。</li>
-<li>MFLOPS：每秒执行多少百万次浮点运算，等于浮点操作次数/(执行时间$\times 10^6$)</li>
-<li>GFLOPS：每秒执行多少十亿次浮点运算，等于浮点操作次数/(执行时间$\times 10^9$)</li>
-<li>TFLOPS：每秒执行多少万亿次浮点运算，等于浮点操作次数/(执行时间$\times 10^{12}$)</li>
-<li>PFLOPS：等于浮点操作次数/(执行时间$\times 10^{15}$)</li>
-<li>EFLOPS：等于浮点操作次数/(执行时间$\times 10^{18}$)</li>
-<li>ZFLOPS：等于浮点操作次数/(执行时间$\times 10^{21}$)</li>
+<li>CPU执行时间：等于时钟周期数<span class="math inline">\(\times\)</span>时钟周期，等于(指令数<span class="math inline">\(\times\)</span> CPI)<span class="math inline">\(\times\)</span>时钟周期。这里的指令数、CPI、主频是相互制约的。</li>
+<li>MIPS：每秒执行多少百万条的指令数（同时考虑了主频和CPI），等于指令条数/（<span class="math inline">\(10^6\times\)</span> 执行时间）= 1/（<span class="math inline">\(10^6\times\)</span> 每条指令执行时间）=
+主频/（<span class="math inline">\(10^6\times\)</span>
+CPI）。这种指标有缺陷，因为不同机器的指令集不同。</li>
+<li>MFLOPS：每秒执行多少百万次浮点运算，等于浮点操作次数/(执行时间<span class="math inline">\(\times 10^6\)</span>)</li>
+<li>GFLOPS：每秒执行多少十亿次浮点运算，等于浮点操作次数/(执行时间<span class="math inline">\(\times 10^9\)</span>)</li>
+<li>TFLOPS：每秒执行多少万亿次浮点运算，等于浮点操作次数/(执行时间<span class="math inline">\(\times 10^{12}\)</span>)</li>
+<li>PFLOPS：等于浮点操作次数/(执行时间<span class="math inline">\(\times
+10^{15}\)</span>)</li>
+<li>EFLOPS：等于浮点操作次数/(执行时间<span class="math inline">\(\times
+10^{18}\)</span>)</li>
+<li>ZFLOPS：等于浮点操作次数/(执行时间<span class="math inline">\(\times
+10^{21}\)</span>)</li>
 </ul>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="关于常用前缀"><a href="#关于常用前缀" class="headerlink" title="关于常用前缀"></a>关于常用前缀</h3><ul>
+<h2 id="补充">补充</h2>
+<h3 id="关于常用前缀">关于常用前缀</h3>
+<ul>
 <li>描述存储容量、文件大小时，K、M、G、T是2的幂次，如1Kb=1024b</li>
 <li>描述速度、频率时，k、M、G、T，是10的幂次，如1kb/s=1000b/s</li>
 <li>前者用大写的K，后者用小写的k，其他的都用大写</li>
 </ul>
-<h3 id="关于透明性"><a href="#关于透明性" class="headerlink" title="关于透明性"></a>关于透明性</h3><ul>
+<h3 id="关于透明性">关于透明性</h3>
+<ul>
 <li>计算机领域的透明性，指的是<strong>不可见</strong>的事物</li>
-<li>比如<ul>
+<li>比如
+<ul>
 <li>高级语言程序员，不可见乘法指令、浮点数格式</li>
 <li>机器语言或汇编程序员不可见IR、MAR、MDR</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
     </div>
@@ -544,7 +569,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

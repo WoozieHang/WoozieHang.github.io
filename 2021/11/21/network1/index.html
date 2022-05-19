@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="计算机网络基本概念定义三种观点定义网络  广义观点 定义：能实现远程信息处理甚至资源共享的系统 评价：资源共享能力弱，处于计算机网络发展低级阶段   资源共享观点 定义：以资源共享方式互联的自治计算机系统集合 评价：资源共享、由独立自治计算机组成、遵循网络协议，符合目前计算机的基本特征   用户透明观点 定义：存在一个网络操作系统管理资源，用户无需关心网络的存在、资源位置 评价：未来的网络发展目标">
+  <meta name="description" content="计算机网络基本概念 定义 三种观点定义网络  广义观点  定义：能实现远程信息处理甚至资源共享的系统 评价：资源共享能力弱，处于计算机网络发展低级阶段  资源共享观点  定义：以资源共享方式互联的自治计算机系统集合 评价：资源共享、由独立自治计算机组成、遵循网络协议，符合目前计算机的基本特征  用户透明观点  定义：存在一个网络操作系统管理资源，用户无需关心网络的存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第一章-计算机网络概述">
 <meta property="og:url" content="https://wooziehang.github.io/2021/11/21/network1/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="计算机网络基本概念定义三种观点定义网络  广义观点 定义：能实现远程信息处理甚至资源共享的系统 评价：资源共享能力弱，处于计算机网络发展低级阶段   资源共享观点 定义：以资源共享方式互联的自治计算机系统集合 评价：资源共享、由独立自治计算机组成、遵循网络协议，符合目前计算机的基本特征   用户透明观点 定义：存在一个网络操作系统管理资源，用户无需关心网络的存在、资源位置 评价：未来的网络发展目标">
+<meta property="og:description" content="计算机网络基本概念 定义 三种观点定义网络  广义观点  定义：能实现远程信息处理甚至资源共享的系统 评价：资源共享能力弱，处于计算机网络发展低级阶段  资源共享观点  定义：以资源共享方式互联的自治计算机系统集合 评价：资源共享、由独立自治计算机组成、遵循网络协议，符合目前计算机的基本特征  用户透明观点  定义：存在一个网络操作系统管理资源，用户无需关心网络的存">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-21T05:29:12.000Z">
-<meta property="article:modified_time" content="2021-12-01T03:38:16.184Z">
+<meta property="article:modified_time" content="2022-05-19T14:36:16.202Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-01 11:38:16" itemprop="dateModified" datetime="2021-12-01T11:38:16+08:00">2021-12-01</time>
+                <time title="修改时间：2022-05-19 22:36:16" itemprop="dateModified" datetime="2022-05-19T22:36:16+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,300 +280,315 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="计算机网络基本概念"><a href="#计算机网络基本概念" class="headerlink" title="计算机网络基本概念"></a>计算机网络基本概念</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>三种观点定义网络</p>
+        <h2 id="计算机网络基本概念">计算机网络基本概念</h2>
+<h3 id="定义">定义</h3>
+<p>三种观点定义网络</p>
 <ul>
-<li>广义观点<ul>
+<li>广义观点
+<ul>
 <li>定义：能实现远程信息处理甚至资源共享的系统</li>
 <li>评价：资源共享能力弱，处于计算机网络发展低级阶段</li>
-</ul>
-</li>
-<li>资源共享观点<ul>
+</ul></li>
+<li>资源共享观点
+<ul>
 <li>定义：以资源共享方式互联的自治计算机系统集合</li>
 <li>评价：资源共享、由独立自治计算机组成、遵循网络协议，符合目前计算机的基本特征</li>
-</ul>
-</li>
-<li>用户透明观点<ul>
+</ul></li>
+<li>用户透明观点
+<ul>
 <li>定义：存在一个网络操作系统管理资源，用户无需关心网络的存在、资源位置</li>
 <li>评价：未来的网络发展目标</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>有三种组成的说法</p>
+<h3 id="组成">组成</h3>
+<p>有三种组成的说法</p>
 <ul>
-<li>由边缘和核心组成<ul>
-<li>边缘指的是用户主机（端系统）<ul>
+<li>由边缘和核心组成
+<ul>
+<li>边缘指的是用户主机（端系统）
+<ul>
 <li>作用是通信和资源共享</li>
-</ul>
-</li>
-<li>核心指的是大量的网络和路由器<ul>
+</ul></li>
+<li>核心指的是大量的网络和路由器
+<ul>
 <li>作用是提供连通和交换服务</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>由硬件、软件和协议组成<ul>
+</ul></li>
+</ul></li>
+<li>由硬件、软件和协议组成
+<ul>
 <li>硬件：主机、通信链路（比如双绞线和光纤）、交换设备（比如交换机和路由器）、通信处理机（比如网卡）</li>
 <li>软件：如网络操作系统，邮件软件，FTP程序，聊天软件</li>
 <li>协议：网络传输数据时的规范</li>
-</ul>
-</li>
-<li>由通信子网和资源子网组成<ul>
+</ul></li>
+<li>由通信子网和资源子网组成
+<ul>
 <li>通信子网：包括传输介质、传输设备、协议</li>
 <li>资源子网：包括资源共享设备和软件</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>主要的功能有五个</p>
+<h3 id="功能">功能</h3>
+<p>主要的功能有五个</p>
 <ul>
-<li>数据通信<ul>
+<li>数据通信
+<ul>
 <li>最基本和重要的功能</li>
-</ul>
-</li>
-<li>资源共享<ul>
+</ul></li>
+<li>资源共享
+<ul>
 <li>软件、数据、硬件的共享</li>
-</ul>
-</li>
-<li>分布式处理<ul>
+</ul></li>
+<li>分布式处理
+<ul>
 <li>分解分配，解决复杂任务</li>
-</ul>
-</li>
-<li>提高可靠性<ul>
+</ul></li>
+<li>提高可靠性
+<ul>
 <li>各计算机互为替代机</li>
-</ul>
-</li>
-<li>负载均衡<ul>
+</ul></li>
+<li>负载均衡
+<ul>
 <li>任务均衡的分配给各计算机</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
-<li>按分布范围<ul>
+<h3 id="分类">分类</h3>
+<ul>
+<li>按分布范围
+<ul>
 <li>广域网WAN：长距离跨城市的范围</li>
 <li>城域网MAN：覆盖城市的范围</li>
 <li>局域网LAN：百到千米，比如教学楼</li>
 <li>个人区域网PAN：约10米，比如手机热点</li>
-</ul>
-</li>
-<li>按传输技术<ul>
-<li>广播式网络<ul>
+</ul></li>
+<li>按传输技术
+<ul>
+<li>广播式网络
+<ul>
 <li>举例：局域网、广域网的无线卫星通信</li>
-</ul>
-</li>
-<li>点对点网络<ul>
+</ul></li>
+<li>点对点网络
+<ul>
 <li>采用<strong>分组存储转发</strong>和<strong>路由选择机制</strong>（和广播式的重要区别）</li>
 <li>举例：大部分的广域网</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按拓扑结构<ul>
+</ul></li>
+</ul></li>
+<li>按拓扑结构
+<ul>
 <li>总线结构：单根线串主机，局域网使用</li>
 <li>星形结构：各主机直接连中央设备（交换机或路由器），局域网使用</li>
 <li>环形结构：计算机串成环，局域网使用</li>
 <li>网状结构：大部分结点都有多个边，广域网使用</li>
-</ul>
-</li>
-<li>按使用者<ul>
+</ul></li>
+<li>按使用者
+<ul>
 <li>公用网：电信建造的大型网络，付费使用</li>
 <li>专用网：部门内部自建的网络，不对外开放</li>
-</ul>
-</li>
-<li>按交换技术<ul>
-<li>电路交换网<ul>
+</ul></li>
+<li>按交换技术
+<ul>
+<li>电路交换网
+<ul>
 <li>电路交换：源点和目标点建立专用通路，需要建立连接、传输、断开几个阶段</li>
 <li>举例：传统的固定电话网络</li>
-</ul>
-</li>
-<li>报文交换网（存储转发网）<ul>
+</ul></li>
+<li>报文交换网（存储转发网）
+<ul>
 <li>报文交换：数据整体打包为报文，加上源地址、目的地址等信息，存储转发到相邻结点</li>
 <li>特点：报文长度不固定，缓冲难管理</li>
-</ul>
-</li>
-<li>分组交换网（包交换网）<ul>
+</ul></li>
+<li>分组交换网（包交换网）
+<ul>
 <li>分组交换：数据划分为多个等长的分组，各自加上源地址、目的地址等信息，存储转发到相邻结点</li>
 <li>特点：分组长度固定，缓冲好管理</li>
 <li>举例：目前主流的网络都是分组交换</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按传输介质<ul>
+</ul></li>
+</ul></li>
+<li>按传输介质
+<ul>
 <li>有线网：如双绞线网络、同心电缆网络</li>
 <li>无线网：如蓝牙网、无线电网</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><ul>
-<li>带宽<ul>
+<h3 id="性能指标">性能指标</h3>
+<ul>
+<li>带宽
+<ul>
 <li>在通信领域指频带范围，单位Hz</li>
 <li>在网络领域指最高数据传输速率，单位b/s</li>
-</ul>
-</li>
-<li>时延<ul>
-<li>发送时延（传输时延）<ul>
+</ul></li>
+<li>时延
+<ul>
+<li>发送时延（传输时延）
+<ul>
 <li>从分组第一个比特开始传送，到最后一个比特发送完毕的时间</li>
 <li>等于分组长度/信道带宽</li>
-</ul>
-</li>
-<li>传播时延<ul>
+</ul></li>
+<li>传播时延
+<ul>
 <li>电磁波传播需要时间</li>
 <li>等于信道长度/电磁波在信道上的速度</li>
-</ul>
-</li>
-<li>处理时延<ul>
+</ul></li>
+<li>处理时延
+<ul>
 <li>存储转发时的处理耗时，默认情况忽略</li>
-</ul>
-</li>
-<li>排队时延<ul>
+</ul></li>
+<li>排队时延
+<ul>
 <li>输入和输出路由器时，数据需要排队的时间，默认情况忽略</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>时延带宽积<ul>
+</ul></li>
+</ul></li>
+<li>时延带宽积
+<ul>
 <li>信道可容纳的比特数</li>
-<li>等于信道的带宽 $\times$ 传播时延</li>
-</ul>
-</li>
-<li>往返时延（RTT）<ul>
+<li>等于信道的带宽 <span class="math inline">\(\times\)</span>
+传播时延</li>
+</ul></li>
+<li>往返时延（RTT）
+<ul>
 <li>包括发送方传播时延、中间结点的处理、排队时延、转发数据的发送时延</li>
 <li>注意，不包括<strong>发送方传输时延</strong>和<strong>接收方确认</strong>的传输时延</li>
-</ul>
-</li>
-<li>吞吐量<ul>
+</ul></li>
+<li>吞吐量
+<ul>
 <li>单位时间通过某网络的实际数据量</li>
-</ul>
-</li>
-<li>速率（数据传输率）<ul>
+</ul></li>
+<li>速率（数据传输率）
+<ul>
 <li>信道中的实际数据传送速度，单位b/s</li>
-</ul>
-</li>
-<li>信道利用率<ul>
+</ul></li>
+<li>信道利用率
+<ul>
 <li>某信道被使用的时间占总时间的比例</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h2><h3 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h3><h4 id="有关概念"><a href="#有关概念" class="headerlink" title="有关概念"></a>有关概念</h4><ul>
-<li>网络体系结构：各层和各层协议的集合<ul>
+<h2 id="计算机网络体系结构">计算机网络体系结构</h2>
+<h3 id="分层结构">分层结构</h3>
+<h4 id="有关概念">有关概念</h4>
+<ul>
+<li>网络体系结构：各层和各层协议的集合
+<ul>
 <li>网络分层不需要考虑具体的功能实现，这由设备厂家确定</li>
-</ul>
-</li>
+</ul></li>
 <li>实体：可发送、接收信息的硬件或软件进程</li>
 <li>对等层：不同机器的同一层</li>
-<li>报文组成<ul>
+<li>报文组成
+<ul>
 <li>服务数据单元SDU：某层的原始数据</li>
 <li>协议控制信息PCI：某层的控制信息</li>
-<li>协议数据单元PDU：由该层的SDU和PCI打包而成，并作为下层的SDU<ul>
+<li>协议数据单元PDU：由该层的SDU和PCI打包而成，并作为下层的SDU
+<ul>
 <li>n-PDU=n-SDU+n-PCI=(n-1)-SDU</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="层次结构含义"><a href="#层次结构含义" class="headerlink" title="层次结构含义"></a>层次结构含义</h4><ul>
+<h4 id="层次结构含义">层次结构含义</h4>
+<ul>
 <li>同主机：高层使用低层提供的服务，但注意只能调用相邻低层的接口</li>
 <li>不同主机：对等层逻辑上直接通信，下层的服务是透明的</li>
 </ul>
-<h3 id="协议、接口、服务"><a href="#协议、接口、服务" class="headerlink" title="协议、接口、服务"></a>协议、接口、服务</h3><ul>
-<li>协议：对等实体通信的规则<ul>
+<h3 id="协议接口服务">协议、接口、服务</h3>
+<ul>
+<li>协议：对等实体通信的规则
+<ul>
 <li>包括语法格式、语义功能、同步时序</li>
-</ul>
-</li>
-<li>接口：同主机的相邻层交换信息的连接点<ul>
-<li>典型的接口比如服务访问点SAP，每层的SAP是相邻上层能直接访问服务的位置<ul>
+</ul></li>
+<li>接口：同主机的相邻层交换信息的连接点
+<ul>
+<li>典型的接口比如服务访问点SAP，每层的SAP是相邻上层能直接访问服务的位置
+<ul>
 <li>物理层SAP：网卡接口</li>
 <li>数据链路层SAP：MAC地址</li>
 <li>网络层SAP：IP地址</li>
 <li>传输层SAP：端口号</li>
 <li>应用层SAP：用户界面</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>服务：同主机的下层为相邻上层提供服务<ul>
+</ul></li>
+</ul></li>
+<li>服务：同主机的下层为相邻上层提供服务
+<ul>
 <li>服务是垂直的，协议是水平的</li>
-<li>OSI模型的服务原语（设A是用户主机，B是服务器主机）<ul>
+<li>OSI模型的服务原语（设A是用户主机，B是服务器主机）
+<ul>
 <li>请求：A的高层发送给A的低层</li>
 <li>指示：B的低层发送给B的高层</li>
 <li>响应：B的高层发送给B的低层</li>
 <li>证实：A的低层发送给A的高层</li>
-</ul>
-</li>
-<li>分类<ul>
+</ul></li>
+<li>分类
+<ul>
 <li>面向连接服务和无连接服务（最大努力交付）：通信前是否需要建立连接</li>
 <li>可靠服务和不可靠服务：是否通过检错、纠错、应答来保证数据正确</li>
 <li>有应答服务和无应答服务：接收方是否应答</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="ISO-OSI模型"><a href="#ISO-OSI模型" class="headerlink" title="ISO/OSI模型"></a>ISO/OSI模型</h3><ul>
+<h3 id="isoosi模型">ISO/OSI模型</h3>
+<ul>
 <li>协议栈共7层，低3层是通信子网，高3层是资源子网</li>
-<li>物理层<ul>
+<li>物理层
+<ul>
 <li>传输单位：比特</li>
 <li>功能：传输原始比特流</li>
 <li>协议举例：EIA-232C、EIA/TIA RS-449、CCITT的X.21</li>
-</ul>
-</li>
-<li>数据链路层<ul>
+</ul></li>
+<li>数据链路层
+<ul>
 <li>传输单位：帧</li>
-<li>功能：提供点到点的通信（主机之间）<ul>
+<li>功能：提供点到点的通信（主机之间）
+<ul>
 <li>成帧、差错控制、流量控制、传输管理</li>
-</ul>
-</li>
+</ul></li>
 <li>协议举例：SDLC、HDLC、PPP、STP、帧中继</li>
-</ul>
-</li>
-<li>网络层<ul>
+</ul></li>
+<li>网络层
+<ul>
 <li>传输单位：数据报或分组（包）</li>
 <li>功能：分组路由、流量控制、拥塞控制、差错控制、网络互联</li>
 <li>协议举例：IP、IPX、ICMP、IGMP、ARP、RARP、OSPF</li>
-</ul>
-</li>
-<li>传输层<ul>
+</ul></li>
+<li>传输层
+<ul>
 <li>传输单位：报文段TCP或用户数据报UDP</li>
-<li>功能：提供端到端的可靠通信服务（跨主机的进程之间）<ul>
+<li>功能：提供端到端的可靠通信服务（跨主机的进程之间）
+<ul>
 <li>数据传输和管理、流量控制、差错控制</li>
-</ul>
-</li>
+</ul></li>
 <li>协议举例：TCP、UDP</li>
-</ul>
-</li>
-<li>会话层<ul>
+</ul></li>
+<li>会话层
+<ul>
 <li>功能：建立同步，管理各主机的会话进程，设置校验同步点以在通信失效时恢复通信</li>
-</ul>
-</li>
-<li>表示层<ul>
+</ul></li>
+<li>表示层
+<ul>
 <li>功能：数据压缩、加密、解密等</li>
-</ul>
-</li>
-<li>应用层<ul>
+</ul></li>
+<li>应用层
+<ul>
 <li>传输单位：报文</li>
 <li>功能：用户和网络的界面，应用多种多样</li>
 <li>协议：文件传送FTP、电子邮件SMTP、万维网HTTP、域名解析DNS</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="TCP-IP模型"><a href="#TCP-IP模型" class="headerlink" title="TCP/IP模型"></a>TCP/IP模型</h3><ul>
+<h3 id="tcpip模型">TCP/IP模型</h3>
+<ul>
 <li>协议栈共4层，国际广泛使用的标准</li>
 <li>网络接口层：类似于OSI的物理层和数据链路层</li>
-<li>网际层：类似于OSI的网络层<ul>
+<li>网际层：类似于OSI的网络层
+<ul>
 <li>协议举例：IPV4和IPV6</li>
-</ul>
-</li>
+</ul></li>
 <li>传输层：类似于OSI的传输层</li>
 <li>应用层：类似于OSI的会话层、表示层、应用层</li>
-<li>与OSI模型的区别<ul>
-<li>OSI的网络层支持无连接<strong>或</strong>连接通信，TCP/IP的网际层只支持无连接通信<ul>
+<li>与OSI模型的区别
+<ul>
+<li>OSI的网络层支持无连接<strong>或</strong>连接通信，TCP/IP的网际层只支持无连接通信
+<ul>
 <li>网络层无法同时支持无连接和连接的通信（数据报方式和虚电路方式二选一）</li>
-</ul>
-</li>
+</ul></li>
 <li>OSI的传输层只有面向连接的通信，TCP/IP的传输层支持无连接<strong>和</strong>连接通信</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="折中模型"><a href="#折中模型" class="headerlink" title="折中模型"></a>折中模型</h3><ul>
+<h3 id="折中模型">折中模型</h3>
+<ul>
 <li>协议栈5层，学习网络时常用的模型</li>
 <li>物理层、数据链路层、网络层、传输层、应用层</li>
 </ul>
@@ -672,7 +691,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">计算机网络基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.</span> <span class="nav-text">性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">分层结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.1.</span> <span class="nav-text">有关概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%90%AB%E4%B9%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">层次结构含义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E3%80%81%E6%8E%A5%E5%8F%A3%E3%80%81%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">协议、接口、服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISO-OSI%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">ISO&#x2F;OSI模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">TCP&#x2F;IP模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E4%B8%AD%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">折中模型</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">计算机网络基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.</span> <span class="nav-text">性能指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">分层结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.1.</span> <span class="nav-text">有关概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%90%AB%E4%B9%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">层次结构含义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E6%8E%A5%E5%8F%A3%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">协议、接口、服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isoosi%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">ISO&#x2F;OSI模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcpip%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">TCP&#x2F;IP模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E4%B8%AD%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">折中模型</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -688,7 +707,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

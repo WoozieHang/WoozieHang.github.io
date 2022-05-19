@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="排序基本概念 输入n个记录，根据记录的关键字大小，输出该序列的重排，使得关键字有序 稳定算法：关键字大小相等的两条记录，在输入和输出中的先后顺序不变 内部排序：排序期间元素全部存放在内存，大部分内部排序是基于比较来移动记录顺序 外部排序：排序期间元素无法全部同时存放在内存，需要不断地在内外存之间移动的排序  插入排序直接插入排序算法步骤">
+  <meta name="description" content="排序基本概念  输入n个记录，根据记录的关键字大小，输出该序列的重排，使得关键字有序 稳定算法：关键字大小相等的两条记录，在输入和输出中的先后顺序不变 内部排序：排序期间元素全部存放在内存，大部分内部排序是基于比较来移动记录顺序 外部排序：排序期间元素无法全部同时存放在内存，需要不断地在内外存之间移动的排序  插入排序 直接插入排序 算法步骤">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第八章-排序">
 <meta property="og:url" content="https://wooziehang.github.io/2021/10/20/DataStructure-8/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="排序基本概念 输入n个记录，根据记录的关键字大小，输出该序列的重排，使得关键字有序 稳定算法：关键字大小相等的两条记录，在输入和输出中的先后顺序不变 内部排序：排序期间元素全部存放在内存，大部分内部排序是基于比较来移动记录顺序 外部排序：排序期间元素无法全部同时存放在内存，需要不断地在内外存之间移动的排序  插入排序直接插入排序算法步骤">
+<meta property="og:description" content="排序基本概念  输入n个记录，根据记录的关键字大小，输出该序列的重排，使得关键字有序 稳定算法：关键字大小相等的两条记录，在输入和输出中的先后顺序不变 内部排序：排序期间元素全部存放在内存，大部分内部排序是基于比较来移动记录顺序 外部排序：排序期间元素无法全部同时存放在内存，需要不断地在内外存之间移动的排序  插入排序 直接插入排序 算法步骤">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-20T13:08:17.000Z">
-<meta property="article:modified_time" content="2021-12-13T09:53:53.382Z">
+<meta property="article:modified_time" content="2022-05-19T14:23:52.479Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-13 17:53:53" itemprop="dateModified" datetime="2021-12-13T17:53:53+08:00">2021-12-13</time>
+                <time title="修改时间：2022-05-19 22:23:52" itemprop="dateModified" datetime="2022-05-19T22:23:52+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,36 +280,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="排序基本概念"><a href="#排序基本概念" class="headerlink" title="排序基本概念"></a>排序基本概念</h2><ul>
+        <h2 id="排序基本概念">排序基本概念</h2>
+<ul>
 <li>输入n个记录，根据记录的关键字大小，输出该序列的重排，使得关键字有序</li>
 <li>稳定算法：关键字大小相等的两条记录，在输入和输出中的先后顺序不变</li>
 <li>内部排序：排序期间元素全部存放在内存，大部分内部排序是基于比较来移动记录顺序</li>
 <li>外部排序：排序期间元素无法全部同时存放在内存，需要不断地在内外存之间移动的排序</li>
 </ul>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><p>算法步骤</p>
+<h2 id="插入排序">插入排序</h2>
+<h3 id="直接插入排序">直接插入排序</h3>
+<p>算法步骤</p>
 <ul>
-<li>假设排序表$L[1\cdots n]$在排序过程中处于以下状态：有序序列$L[1\cdots i-1],L[i],$无序序列$L[i+1\cdots n]$</li>
-<li>备份$L[i]$</li>
-<li>找到元素$L[i]$在$L[1\cdots i-1]$中的插入位置$k$</li>
-<li>将$L[k\cdots i-1]$整体依次后移1位，本步骤和上一步可以同时进行，即边移边找</li>
-<li>将备份的$L[i]$放入$L[k]$</li>
+<li>假设排序表<span class="math inline">\(L[1\cdots
+n]\)</span>在排序过程中处于以下状态：有序序列<span class="math inline">\(L[1\cdots i-1],L[i],\)</span>无序序列<span class="math inline">\(L[i+1\cdots n]\)</span></li>
+<li>备份<span class="math inline">\(L[i]\)</span></li>
+<li>找到元素<span class="math inline">\(L[i]\)</span>在<span class="math inline">\(L[1\cdots i-1]\)</span>中的插入位置<span class="math inline">\(k\)</span></li>
+<li>将<span class="math inline">\(L[k\cdots
+i-1]\)</span>整体依次后移1位，本步骤和上一步可以同时进行，即边移边找</li>
+<li>将备份的<span class="math inline">\(L[i]\)</span>放入<span class="math inline">\(L[k]\)</span></li>
 </ul>
 <p>算法性能</p>
 <ul>
-<li>常数个辅助单元，空间开销$O(1)$</li>
-<li>时间开销，最好情况$O(n)$，平均和最坏情况$O(n^2)$</li>
+<li>常数个辅助单元，空间开销<span class="math inline">\(O(1)\)</span></li>
+<li>时间开销，最好情况<span class="math inline">\(O(n)\)</span>，平均和最坏情况<span class="math inline">\(O(n^2)\)</span></li>
 <li>稳定排序算法</li>
 <li>适用于顺序存储或链式存储的线性表</li>
 </ul>
-<h3 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h3><ul>
+<h3 id="折半插入排序">折半插入排序</h3>
+<ul>
 <li>对直接插入排序的优化：将比较和移动操作分离，先折半查找插入点，再统一进行移动</li>
-<li>减少了比较元素的开销至$O(log\ n)$，但最坏时间复杂度还是$O(n^2)$</li>
+<li>减少了比较元素的开销至<span class="math inline">\(O(log\
+n)\)</span>，但最坏时间复杂度还是<span class="math inline">\(O(n^2)\)</span></li>
 <li>稳定排序算法</li>
 <li>适用于顺序存储的线性表</li>
 </ul>
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>算法步骤</p>
+<h3 id="希尔排序">希尔排序</h3>
+<p>算法步骤</p>
 <ul>
-<li>取小于$n$的步长$d_1$，距离间隔$d_1$的记录看作在同一组，组内直接插入排序</li>
+<li>取小于<span class="math inline">\(n\)</span>的步长<span class="math inline">\(d_1\)</span>，距离间隔<span class="math inline">\(d_1\)</span>的记录看作在同一组，组内直接插入排序</li>
 <li>继续选更小的步长，重复该过程</li>
 <li>直到步长选为1</li>
 <li>注：目前对于步长序列怎么选择最好还没有定论</li>
@@ -313,11 +325,13 @@
 <p>算法性能</p>
 <ul>
 <li>空间开销O(1)</li>
-<li>时间开销分析比较困难，最坏情况是$O(n^2)$；当n在特定范围，时间复杂度$O(n^{1.3})$,</li>
+<li>时间开销分析比较困难，最坏情况是<span class="math inline">\(O(n^2)\)</span>；当n在特定范围，时间复杂度<span class="math inline">\(O(n^{1.3})\)</span>,</li>
 <li>不是稳定排序算法</li>
 <li>适合顺序存储线性表</li>
 </ul>
-<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>算法步骤</p>
+<h2 id="交换排序">交换排序</h2>
+<h3 id="冒泡排序">冒泡排序</h3>
+<p>算法步骤</p>
 <ul>
 <li>从前往后或从后往前扫描，比较相邻元素，逆序则交换</li>
 <li>第k轮扫描，可以把第k大的元素放到倒数第k个位置，或把第k小的元素放到第k个位置</li>
@@ -326,12 +340,13 @@
 </ul>
 <p>算法性能</p>
 <ul>
-<li>空间开销$O(1)$</li>
-<li>最坏情况和平均情况时间开销都是$O(n^2)$，最好情况可以优化到$O(n)$</li>
+<li>空间开销<span class="math inline">\(O(1)\)</span></li>
+<li>最坏情况和平均情况时间开销都是<span class="math inline">\(O(n^2)\)</span>，最好情况可以优化到<span class="math inline">\(O(n)\)</span></li>
 <li>稳定排序算法</li>
 <li>不同于插入排序，冒泡排序的有序子序列一定是全局有序（小于或大于所有无序序列的元素）</li>
 </ul>
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>算法步骤</p>
+<h3 id="快速排序">快速排序</h3>
+<p>算法步骤</p>
 <ul>
 <li>选择一个基准pivot，例如第一个元素</li>
 <li>将排序表划分为小于基准和大于等于基准两个部分，此时基准的位置是最终的位置</li>
@@ -340,43 +355,50 @@
 </ul>
 <p>划分函数</p>
 <ul>
-<li>双向法<ul>
+<li>双向法
+<ul>
 <li>例如基准为第一个元素，设置i和j两个指针，i指向基准，j指向最后的元素</li>
 <li>先令j从后往前遍历，遇到比基准小的元素，则交换i和j元素</li>
 <li>交换后令i从前往后遍历，遇到比基准大的元素，交换i和j元素</li>
 <li>直到i和j相遇</li>
 <li>事实上基准元素可以先进行备份，等确定最终位置再一次性放好</li>
-</ul>
-</li>
-<li>单向法<ul>
+</ul></li>
+<li>单向法
+<ul>
 <li>例如基准为第一个元素，设置i指针指向基准，j指针指向i下一个元素</li>
 <li>令j从i+1位置向后遍历，遇到比基准小的元素，则交换i+1位置和j位置元素，再交换i和i+1位置元素</li>
 <li>直到j扫描完整个表</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>性能分析</p>
 <ul>
-<li>需要栈进行递归，平均空间开销$O(log\ n)$，最坏情况$O(n)$</li>
-<li>平均时间复杂度$O(nlog\ n)$，最坏时间复杂度$O(n^2)$，可以尽量随机的选基准元素，使得最坏情况基本不发生</li>
+<li>需要栈进行递归，平均空间开销<span class="math inline">\(O(log\
+n)\)</span>，最坏情况<span class="math inline">\(O(n)\)</span></li>
+<li>平均时间复杂度<span class="math inline">\(O(nlog\
+n)\)</span>，最坏时间复杂度<span class="math inline">\(O(n^2)\)</span>，可以尽量随机的选基准元素，使得最坏情况基本不发生</li>
 <li>不是稳定算法，无论是划分函数是双向法还是单向法，因为交换元素时可能会导致不稳定</li>
 </ul>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><p>算法步骤</p>
+<h2 id="选择排序">选择排序</h2>
+<h3 id="简单选择排序">简单选择排序</h3>
+<p>算法步骤</p>
 <ul>
 <li>n-1次循环</li>
-<li>第i次循环从$L[i\cdots n]$中选出最小值和$L[i]$交换</li>
-<li>第i次循环也可以从$L[1\cdots n+1-i]$中选出最大值和$L[n+1-i]$交换</li>
+<li>第i次循环从<span class="math inline">\(L[i\cdots
+n]\)</span>中选出最小值和<span class="math inline">\(L[i]\)</span>交换</li>
+<li>第i次循环也可以从<span class="math inline">\(L[1\cdots
+n+1-i]\)</span>中选出最大值和<span class="math inline">\(L[n+1-i]\)</span>交换</li>
 </ul>
 <p>性能分析</p>
 <ul>
-<li>空间开销$O(1)$</li>
-<li>最好、平均、最坏时间开销都是$O(n^2)$，主要是比较的开销，移动的开销较小</li>
-<li>默认数组实现不是稳定算法，比如$5,6,5,2$，用$2$替换左侧的$5$，破坏了两个$5$的顺序<ul>
+<li>空间开销<span class="math inline">\(O(1)\)</span></li>
+<li>最好、平均、最坏时间开销都是<span class="math inline">\(O(n^2)\)</span>，主要是比较的开销，移动的开销较小</li>
+<li>默认数组实现不是稳定算法，比如<span class="math inline">\(5,6,5,2\)</span>，用<span class="math inline">\(2\)</span>替换左侧的<span class="math inline">\(5\)</span>，破坏了两个<span class="math inline">\(5\)</span>的顺序
+<ul>
 <li>用链表实现则是稳定的</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆结构</p>
+<h3 id="堆排序">堆排序</h3>
+<p>堆结构</p>
 <ul>
 <li>将一维数组看作完全二叉树，任意结点的值是对应子树的最大值或最小值</li>
 <li>前者叫最大堆，后者叫最小堆</li>
@@ -384,85 +406,93 @@
 <p>堆修复</p>
 <ul>
 <li>假设堆顶缺失，对于结构上的修复，可以用数组末尾的结尾补到堆顶</li>
-<li>对于性质上的修复，以最大堆为例，从堆顶开始，跟左右子结点比较<ul>
+<li>对于性质上的修复，以最大堆为例，从堆顶开始，跟左右子结点比较
+<ul>
 <li>如果比左右子结点大，则完成修复</li>
 <li>反之，将堆顶和左右子结点较大者交换，并继续修复子结点对应的子堆</li>
-</ul>
-</li>
-<li>修复的复杂度是$O(log\ n)$</li>
+</ul></li>
+<li>修复的复杂度是<span class="math inline">\(O(log\ n)\)</span></li>
 </ul>
 <p>堆构建</p>
 <ul>
-<li>非递归法<ul>
+<li>非递归法
+<ul>
 <li>从最后一个有孩子的结点开始进行堆修复</li>
 <li>复杂度O(n)，可以直接求和计算</li>
-</ul>
-</li>
-<li>递归法<ul>
+</ul></li>
+<li>递归法
+<ul>
 <li>先递归的将左右子树部分构建为堆</li>
 <li>再对堆顶进行修复</li>
 <li>复杂度O(n)，根据主定理算</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>堆排序步骤</p>
 <ul>
-<li>以最大堆$H[1\cdots n]$为例，堆顶$H[1]$和堆末尾元素$H[n]$交换</li>
-<li>修复堆$H[1\cdots n-1]$</li>
+<li>以最大堆<span class="math inline">\(H[1\cdots
+n]\)</span>为例，堆顶<span class="math inline">\(H[1]\)</span>和堆末尾元素<span class="math inline">\(H[n]\)</span>交换</li>
+<li>修复堆<span class="math inline">\(H[1\cdots n-1]\)</span></li>
 <li>重复拿出堆顶，修复堆即可</li>
 </ul>
 <p>堆插入</p>
 <ul>
 <li>虽然堆排序用不到，这里补充一下堆结构的插入</li>
 <li>思想是把插入元素放到末尾，再从底向上进行调整</li>
-<li>开销是$O(log\ n)$</li>
+<li>开销是<span class="math inline">\(O(log\ n)\)</span></li>
 </ul>
 <p>堆排序性能</p>
 <ul>
-<li>空间开销$O(1)$</li>
-<li>时间开销$O(nlog\ n)$</li>
+<li>空间开销<span class="math inline">\(O(1)\)</span></li>
+<li>时间开销<span class="math inline">\(O(nlog\ n)\)</span></li>
 <li>不是稳定排序算法</li>
 </ul>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><ul>
+<h2 id="归并排序">归并排序</h2>
+<ul>
 <li>归并排序是基于Merge操作的</li>
-<li>Merge操作把两个有序表合并，开销$O(n)$</li>
+<li>Merge操作把两个有序表合并，开销<span class="math inline">\(O(n)\)</span></li>
 <li>归并排序先分治的排序两部分，再把两部分合并</li>
-<li>空间复杂度$O(n)$</li>
-<li>时间复杂度$O(nlog\ n)$</li>
+<li>空间复杂度<span class="math inline">\(O(n)\)</span></li>
+<li>时间复杂度<span class="math inline">\(O(nlog\ n)\)</span></li>
 <li>稳定排序算法</li>
-<li>如果是k路归并，由主定理，容易知道时间开销还是$O(nlog\ n)$</li>
+<li>如果是k路归并，由主定理，容易知道时间开销还是<span class="math inline">\(O(nlog\ n)\)</span></li>
 </ul>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><ul>
+<h2 id="基数排序">基数排序</h2>
+<ul>
 <li>一种特殊的不基于比较的排序方法，而是基于关键字各个位的大小</li>
 <li>可以按最高位优先MSD，也可以最低位优先LSD，但后者更常用和方便</li>
-<li>假设关键字是d位，r进制数，以LSD为例<ul>
-<li>需要$q[0]$到$q[r-1]$，$r$个链队列进行分配</li>
+<li>假设关键字是d位，r进制数，以LSD为例
+<ul>
+<li>需要<span class="math inline">\(q[0]\)</span>到<span class="math inline">\(q[r-1]\)</span>，<span class="math inline">\(r\)</span>个链队列进行分配</li>
 <li>重复进行分配和收集</li>
 <li>第i次分配，根据关键字的低位起第i位的值，将关键字分配给对应的链队列</li>
-<li>第i次收集，把各个链队列从$q[0]$到$q[r-1]$串起来</li>
+<li>第i次收集，把各个链队列从<span class="math inline">\(q[0]\)</span>到<span class="math inline">\(q[r-1]\)</span>串起来</li>
 <li>第i次分配和收集完成后，关键字的低i位是有序的</li>
 <li>进行d次分配和收集后，排序完成</li>
-<li>空间复杂度$O(r)$，即队头指针、队尾指针</li>
-<li>每次的分配复杂度$O(n)$,收集复杂度$O(r)$,总的时间复杂度$O(d(n+r))$，与序列初始输入状态无关</li>
+<li>空间复杂度<span class="math inline">\(O(r)\)</span>，即队头指针、队尾指针</li>
+<li>每次的分配复杂度<span class="math inline">\(O(n)\)</span>,收集复杂度<span class="math inline">\(O(r)\)</span>,总的时间复杂度<span class="math inline">\(O(d(n+r))\)</span>，与序列初始输入状态无关</li>
 <li>稳定的排序算法</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="排序算法应用"><a href="#排序算法应用" class="headerlink" title="排序算法应用"></a>排序算法应用</h2><ul>
+<h2 id="排序算法应用">排序算法应用</h2>
+<ul>
 <li>若n较小，可以采用直接插入排序或简单选择排序</li>
 <li>若初始序列基本有序，适合采用直接插入排序或冒泡排序</li>
-<li>n较大时可以采用$O(nlog\ n)$的时间复杂度算法，如快速排序、堆排序、归并排序<ul>
+<li>n较大时可以采用<span class="math inline">\(O(nlog\
+n)\)</span>的时间复杂度算法，如快速排序、堆排序、归并排序
+<ul>
 <li>快速排序是基于比较的内部排序中最好的方法，平均情况时间最短，但不是稳定排序</li>
-<li>堆排序辅助空间少于快排，且最坏情况也是$O(nlog\ n)$，但不是稳定排序</li>
+<li>堆排序辅助空间少于快排，且最坏情况也是<span class="math inline">\(O(nlog\ n)\)</span>，但不是稳定排序</li>
 <li>归并排序是稳定排序，但空间开销较大。此外，可以考虑在序列较小时先直接插入排序，再高层归并，这样改进后还是稳定的。</li>
-</ul>
-</li>
-<li>基于比较的排序算法最坏时间复杂度下界是$O(nlog\ n)$，可以用判定树证明</li>
+</ul></li>
+<li>基于比较的排序算法最坏时间复杂度下界是<span class="math inline">\(O(nlog\ n)\)</span>，可以用判定树证明</li>
 <li>如果n很大，且关键字位数少、可以分解的情况适合用基数排序</li>
 <li>如果记录信息量大不适合频繁移动，可以选择链表作为存储结构</li>
 </ul>
-<h2 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>当对大文件进行排序时，因为文件太多，无法一次将整个文件放入内存，需要将待排序记录存储在外存，排序时再把数据一部分一部分调入内存排序，在排序过程中需要多次进行内存外存的交换，这种排序方法叫外部排序。</p>
-<h3 id="外部排序的方法"><a href="#外部排序的方法" class="headerlink" title="外部排序的方法"></a>外部排序的方法</h3><ul>
+<h2 id="外部排序">外部排序</h2>
+<h3 id="基本概念">基本概念</h3>
+<p>当对大文件进行排序时，因为文件太多，无法一次将整个文件放入内存，需要将待排序记录存储在外存，排序时再把数据一部分一部分调入内存排序，在排序过程中需要多次进行内存外存的交换，这种排序方法叫外部排序。</p>
+<h3 id="外部排序的方法">外部排序的方法</h3>
+<ul>
 <li>主要考虑访问磁盘的次数，即IO次数</li>
 <li>首先根据内存情况，将文件分成若干子文件，依次读入内存进行内部排序</li>
 <li>排序好后的子文件写回外存，这些子文件称为归并串或者顺串</li>
@@ -479,22 +509,28 @@
 <li>可以看出，增加归并路数、减小初始归并串数都可以减少归并轮数，从而减少IO次数</li>
 <li>记忆：单轮归并中，每个记录都是进内存一次，出内存一次</li>
 </ul>
-<h3 id="多路平衡归并和败者树"><a href="#多路平衡归并和败者树" class="headerlink" title="多路平衡归并和败者树"></a>多路平衡归并和败者树</h3><ul>
+<h3 id="多路平衡归并和败者树">多路平衡归并和败者树</h3>
+<ul>
 <li>增加归并路数可以减少读写磁盘的次数，但是增加了内部归并时的开销</li>
-<li>具体来说，r个初始段，归并轮数$\lceil log_k\ r\rceil$，每轮归并$n$个元素，比较次数$(n-1)(k-1)$，总比较次数和$\frac{k-1}{log\ k}$有关，随着k增大而增大</li>
-<li>解决方法是败者树<ul>
+<li>具体来说，r个初始段，归并轮数<span class="math inline">\(\lceil
+log_k\ r\rceil\)</span>，每轮归并<span class="math inline">\(n\)</span>个元素，比较次数<span class="math inline">\((n-1)(k-1)\)</span>，总比较次数和<span class="math inline">\(\frac{k-1}{log\
+k}\)</span>有关，随着k增大而增大</li>
+<li>解决方法是败者树
+<ul>
 <li>一种完全二叉树</li>
 <li>k个叶结点存放k个归并段当前参加比较的记录，内部结点用来保存失败者（较大者失败），胜利者继续向上比较，最终得到的胜利者就是当前选出的最小值</li>
-<li>胜利者结点删除后，进来新的结点，只需要把新的结点到根的路径上的比较重进行一次即可更新败者树，因此可以认为每轮比较次数由$(n-1)(k-1)$优化到了$(n-1)\lceil log_2 k\rceil$，从而总的比较次数和$k$无关</li>
+<li>胜利者结点删除后，进来新的结点，只需要把新的结点到根的路径上的比较重进行一次即可更新败者树，因此可以认为每轮比较次数由<span class="math inline">\((n-1)(k-1)\)</span>优化到了<span class="math inline">\((n-1)\lceil log_2
+k\rceil\)</span>，从而总的比较次数和<span class="math inline">\(k\)</span>无关</li>
 <li>个人认为，用最小堆也可以起到差不多的效果</li>
-</ul>
-</li>
+</ul></li>
 <li>多路平衡归并的k也不是越大越好，因为路数k增加，需要增加输入缓冲区的个数，这对内存空间有要求，如果内存不够了，只能减小缓冲区大小，这样同样会使得读写外存次数增加</li>
 </ul>
-<h3 id="置换-选择排序"><a href="#置换-选择排序" class="headerlink" title="置换-选择排序"></a>置换-选择排序</h3><ul>
+<h3 id="置换-选择排序">置换-选择排序</h3>
+<ul>
 <li>减少初始归并串数可以减少读写磁盘次数</li>
 <li>采用内部排序法得到的初始归并串，依赖于可用内存工作区的大小</li>
-<li>置换选择算法初始归并串的步骤如下（FI为输入文件，W为可容纳w个记录的内存工作区，FO为输出文件）<ul>
+<li>置换选择算法初始归并串的步骤如下（FI为输入文件，W为可容纳w个记录的内存工作区，FO为输出文件）
+<ul>
 <li>从FI中读w个记录到W</li>
 <li>选W中关键字最小的记录，记为X，并加入到FO</li>
 <li>若FI不空，则取1个记录到W</li>
@@ -502,19 +538,21 @@
 <li>重复前2步</li>
 <li>如果W中选不出比X大的最小记录，且W不空，则FO中输出一个初始归并串的结束标记</li>
 <li>从第2步开始继续，直至W为空</li>
-</ul>
-</li>
+</ul></li>
 <li>置换选择算法中的取最小，可以使用败者树，也可以用最小堆</li>
 </ul>
-<h3 id="最佳归并树"><a href="#最佳归并树" class="headerlink" title="最佳归并树"></a>最佳归并树</h3><ul>
+<h3 id="最佳归并树">最佳归并树</h3>
+<ul>
 <li>采用置换-选择排序得到的初始归并串，长度不一定相同，因此，平衡归并不一定是最佳的归并顺序，有IO次数更少的归并顺序</li>
-<li>利用哈夫曼树，叶结点表示初始归并段，权重为归并串长度（记录数），则WPL带权路径长度就是总读记录数，总读写记录数为2WPL<ul>
+<li>利用哈夫曼树，叶结点表示初始归并段，权重为归并串长度（记录数），则WPL带权路径长度就是总读记录数，总读写记录数为2WPL
+<ul>
 <li>前面平衡树的轮数就是层数，WPL就是记录数乘以轮数，就是总读记录数</li>
-</ul>
-</li>
+</ul></li>
 <li>原理上就是希望记录少的初始归并串先归并，记录多的初始归并串后归并</li>
 <li>哈夫曼树是严格的k叉树，如果初始归并段不足，则可以认为存在长度为0的虚初始段，参与归并</li>
-<li>计算的方法是利用$n_0+n_k=k\times n_k+1$，则$n_0=(k-1)\times n_k+1$，由此只需要补充叶结点数为k-1的整数倍加1即可</li>
+<li>计算的方法是利用<span class="math inline">\(n_0+n_k=k\times
+n_k+1\)</span>，则<span class="math inline">\(n_0=(k-1)\times
+n_k+1\)</span>，由此只需要补充叶结点数为k-1的整数倍加1即可</li>
 </ul>
 
     </div>
@@ -631,7 +669,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+  <meta name="description" content="8.28 第六问的复杂度和正确性部分，把第三行的图中“每个顶点，其能到达的顶点都是标记的”改完“每个标记的顶点，其能到达的顶点都是标记的” 9.11 对于书上的109页算法，一方面要修改第3行的判断条件；另一方面在第7-10行关于邻点的处理完成后还要再进行非邻点的处理。复杂度是O(V^2)的。 12.2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【习题解答】 题解勘误">
 <meta property="og:url" content="https://wooziehang.github.io/2021/07/03/algorithms-revision/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+<meta property="og:description" content="8.28 第六问的复杂度和正确性部分，把第三行的图中“每个顶点，其能到达的顶点都是标记的”改完“每个标记的顶点，其能到达的顶点都是标记的” 9.11 对于书上的109页算法，一方面要修改第3行的判断条件；另一方面在第7-10行关于邻点的处理完成后还要再进行非邻点的处理。复杂度是O(V^2)的。 12.2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-03T14:56:20.000Z">
-<meta property="article:modified_time" content="2021-07-09T15:05:45.966Z">
+<meta property="article:modified_time" content="2022-05-19T14:17:37.776Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Problem Set Solutions">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-09 23:05:45" itemprop="dateModified" datetime="2021-07-09T23:05:45+08:00">2021-07-09</time>
+                <time title="修改时间：2022-05-19 22:17:37" itemprop="dateModified" datetime="2022-05-19T22:17:37+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,22 +280,73 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
-  <script id="hbeData" type="hbeData" data-hmacdigest="e3eb6a4539800d2d85be07125977b422392cefc1a2606c3343cde59850fd87df">757ff964fcfd9532ba69fc6fadfc1252eb09ce1986feccadb66dcf2cef6bec7f8ac130c638614de6e4768ae9fdd7e4fccd2d725faad7e57002c0a597d5814bc76643d9e1c3633af154d1c13988ad06258a55f81bd447deb4d0a8927237b527b5bb0dec256603944ee4bfb22f52c27b1cb4a3c6aaae3591d4be0b994d88497cd83439bc33c29c4f083ee0b52b2b7ab11910429db82d147de34f2ff239132d3a40f4924abde9157a985a9ac37b91ab1b6c02338f2ba921dc2df5ccf4409ee40959c0ab9701ce82b208ed9c97227819227ec020bafb26e2be8054a84c7a5269d0a4c5d16db2e226c7971b4142e46c640769914a33bd3a9e9b158434fedab3e3e86167749346e6d031f783a881614f7db24511a9645487494160d6f68494d3ed18c73b37262f33f08d28569d58e03758820905f24437cbe94658359127656594f4e6bf554ee0f96beb801203ce6e3b6dfa8a052ae2f0e70d185b986989d590eead7e2079d5d8aced3397970302a9b5c9bf3c1561e110a23ef8b35e90d8f0d8d53132de152ff51c7e02fcdccdf7ce38aeba0a5ab9cd48e9fb97ff2a5dcc9cad47e1a77fedb205ac60f9b1a79670d6d0c40e45debb326230099379ffa7767de50b08a5c42e88fc6d77216259306750d0f8a8542afb824e6313ae240d899f1536f56426f207d55d969b236b8e1e9149db7284abff8dbf046f52c9c3b75574af754162a2ee8fd5288a5b9ef9309befa48ed240c08b1e04265e8d60f7ccf0f0f783b405fcb5595d47952828529b60bb89f3ea7172fbd7b7f77be63ae9e21b2bf787478f2861143107700730c5e5081324c003f6b1386550d6100c18b1882ad208233fe7ec23bf02581894cc862bd7114031d600170bf6753d85ba908143f320e632277107c0a4c74a88b9cfaa71c505e0c6e739341274f3995244b964f5d64eb6b2f16f37bdc048d3e321195c8a5cf6dd78efa093a5563d32ce1a5b642a027e30ddd3a1b7dfe8a077f317ee1a8e898eafea9f02705dd2d68b222bfbf858fee9402fd0e6ff92b50087e3c09538637517efbb93bf93a0e25cdf9e3afc5b35645737a94ce2e688f53a57bfe6d82bf69c4d7ff185889c1af6ba160be86835e304dcae11131c426f3ed9c1e825c9ac7e8b3a21eafdfb329a648eb8b59e43d0f6632398ddb22d45e9a6103a8a50224ab186efdde58d05b8689afbe73e64df3af26fa1a02851cd6ccc3d13d4fd7ae3904bd104c10263f1e9af509c78ab326438761e80fbb8db612c821d3c0f85ab50a32e1c25a22ddcbb174cf3089d957f49ddb8c05d89d0fa91217a8ca2e2db432d292ff859e6cf1f2083106e6963790f078ddd2426456394972db933a624100ca2f031250ae5e6cbe5e40d28006e45dbf21a0d214ebb12502b6e603877bc8376c75f462dc991312c0dcba6c94aa070b1347511016d5e9eae72cc4050c03508a00c604a03211906b995351ef4f4b2c12dff3b0c6434770aaabbbb0fa297df686d19e4cf554133a4b59c322bbd8949541c5f3ec8e6fe888c59498b8474e088e8357dee4eec67d991c371837c6084ed9438170b77f76f8ba79ceec6adb9b253638f17b60cbe48a24ae19671183573294b1d8592be88ee4caa876b7058da5b083db687ff4a5052f123c2b4742810c17ea391b68b941e0c7a57f7a2da39542bdcc96e40dac6a1986747985e908be5e8347633fb47eed28a61d1f257197664bd4223a508cbb605069abf9494aff6e956552fa42fff6adee9fc05a0b00015fbb903b9b1b2329dab477d45ffce75ab23dc2ec80778a9c5b7a0ac5dfcdd415f59fab2e6736e59a412b8054cd5df9c7488bf352377f86af574c1d0e8f712b49d67f8594305d08d0160a18bcfd8956388ede37fe53507952604166904ef5f0c9bbfbe09173d075888a991974ab683a9c3d3fa36c50c4522a0eafab6cbb552f377e33e2df43a62d7ceba0be73e67d1626d9ad58038b2f6e4932d1c69aa06cb04b1645845252a330a0623a1489871880e7aae1e9aff484fb3ee597d4174ac02d6ee890c4f33f6acbe3a08d1b4c652ac718c1bac0078bce4b9b9fd77bbd74a6eddedf526cee62d7a294b28f6d8309bf95740d0b7af5d81bce5d0e56201dcf735f8121fab4d99b2f5b25b15f3d3a5c8a2160dc3ee4ad7e8c050e46ff3d883deba0032b30c7440cdbcdaec3e20cf41e64ba07c221ee624587cb0eedc4c01ca2a9509ae85a551726fe4520dadb083cfe62b5185021ad0aeac04fa77c92d599599a3a2b94f97ce7505fa20b68ffc82711e6d162304a555f172b5d9d7ad6975f3894299abf815f78fff05b45f875b591474800cdb89ba6e7d82ff4b4f5e395daa80814490d8c06041303006da9f8ac512ce6ad2a919dee0e158bc44f4cfc5a073411183d79d12bf79e5d96b049696e4adb68a37f22bfff294dc79f5fd2518a8c55f032b85af8322043ee72f22fa93043ebfebfd11aaad7509a90bfd16a59db61c5339738a10ea62c2f234b804847450fc5c7754d851351059acc19c13a8007473492398ae5f19a0b4fc0b37ed1e212900bc585b9d5e199cb5350d0d17a0409c69c388caf8b2de05fc3597f5d51ff52bf827f041a5ed074d3741b01ad1ab86439974d6dc578f41c972478c27da37b454e95a4ade76c6d47a52cb0b939446865a4717417b40872caf6427369d6bcb3129463e582e8785b0c55165a7086c53af6ca226b9f4ebed628a286d3fabdc943268105a01946661c7c5f8b46200332e5cae00d2e9ee64c4263e874af414ec9534984f99f3fb783b688ac2df151a194ba73528368afdba152db871d96031eb81a5cd8746b402b88d04c2861a9093542f37c36fb2fde9d3f98d6a0cab195ca240c96d79bd37017d4bc52e7e6622588b6f855e347f1f48887b40a1afe3737284d59a29d337583e1f20ce8f36c7ba06e1c48de9417b73f9ad4bfb6683872d5ae5eddad85870007361b1d33d3041822cee8b09e0402f589b4a24706a31609f3de5bc4c10c999ce02dad5295a48389de00ddf6d3abfa0f046c9926c1d107f3260f04946b84ea62890d0d853a44d2f1a12c15492c5c9372fef98dd7784e804be062112645391db63121eaf773d416faafe8b21db0ab5cc5ed619d2062a73deef808e3e6637b3358ca8dade3d84885fff8162790b75c51a525d5dfd696e6c861c63ec2b3256ef2807ff4ef7ed45b1a0379255a5c487cd8e1314094429bbc668be5b7181d6054f7b247a0e245c671cdff62e31cadddb70721e95f28973db963446747005f508f6599415d887c7adc9aa2abd71c3b556bb1013192480ce66785cec69c147971a7219a9348f03566552f35079f5256152067d81ddb8fdacf8333db7dc4af97e6ffdd25476032bb98c93ec128d0680d220cb88bce5569c7f893d19251be0692932a4e9e9e07bff22a33d7c154d53f3a0d185bfa242fa960968ba7300b4f9215b963a57e8a61d58b3c6d7ed1f1fe58208a108338556d76efeadc5b63f64535c9233867fa083abdb2952e74a5e890e3854c08ceb3dcd11bb50d45fd508ea9ef4d69975a8b40df63163aa53db5b9a66b1ca53c0f930ae8a8f0c5bbc607136a785531aeccf9975d0ccc90c55b175393a70f0e499bc0e76323bee4ea0cb14d3d41160c96b790e302a90a7c41dfb0b0a955d8d2d9f05eb389af035488a60de059678454055dfe60cbbefbd6323231621ea5f3e982f740bd4eaae81fee17901d3aba984f0bbb5e3d8b8cd7d0c60d789d0e5d31ee11cb3922202f2483ed50519b958837a11bc82f8d3addba03354fd6731d86ed38ba47e56780c953cb64e9fc00da128d1e168f58dfb4e52904bad616911c18a95a842b2a976bc5f1e00616d079d5ca5adf0cdbcc82b23f4f10faed567891ee1c0d5c5c738b3205c8d9466d54968c1aa70e30a0eb54e00969b2c6e67ef9032d0611c8c944bc81acfb80401bf09661552c275f67eddb20c0f82f416857a177952c966d9d5b1867a5444a3be9e2e4aaad30464457b5d52831ddf4c802b8134c7a438b443dfeec3141e12a830cfd8dde7adcb1be3bfe6f2ab719f5e0d01f84892d177cb6ca789e5a994bac0b948dc9b33c3a22cc3440262750b814f0173bd2a0eb9413f5e6ea448f951c948c1ff555332bdf25f69ebed47b60a814a01e313e6ab4839341241864b1beaa3bc29f498f495add445ec5d8db0aefca2befa503792aa7efdfa96e1fd73f4ab895167c57023ab4c0e9bf3b4f2f09766e5d0160bfc24c651ec6facea64932e9c9971943b9ef7c013159535dbece69cd06d300a00f87505a97240c9e1d902b8b906cd146c25542edc8bb3a0b2b30b87004496f982117754ddae617a26af8d45b25fc4d099216cb477d33d2e898facee2587e997a3e1da776844a76a0bd50d377b566fa35ba6dec614030d01f687461e884023d375dbafd9d9ed7974296db1a4739b282c89fcd67d5bd119d8692a79329d1867bed6f019d550a1cc68d7ed33b69106fa7a260fa6ad21d0af53a621d698789543c954dac90bcefeefc785f20a</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <h2 id="section">8.28</h2>
+<p>第六问的复杂度和正确性部分，把第三行的图中“每个顶点，其能到达的顶点都是标记的”改完“每个标记的顶点，其能到达的顶点都是标记的”</p>
+<h2 id="section-1">9.11</h2>
+<p>对于书上的109页算法，一方面要修改第3行的判断条件；另一方面在第7-10行关于邻点的处理完成后还要再进行非邻点的处理。复杂度是O(V^2)的。</p>
+<h2 id="section-2">12.2</h2>
+<p>“每次选择与“最短路径树”相邻的且capcity值最小的点”改为“每次选择与“最短路径树”相邻的且capcity值最大的点”</p>
+<h2 id="section-3">20.5</h2>
+<ul>
+<li>本题使用q算法解决p问题，注意到p随着调用的嵌套是一个变动的值；q是一个固定值，因为q是算法是已知算法</li>
+<li>如果删除至还剩余k个元素，且k小于q时，此时q算法无法被调用。但此时还需要<span class="math inline">\(O(q^2)\)</span>的固定代价额外处理即可</li>
+</ul>
+<h2 id="section-4">21.5</h2>
+<p>第2问状态转移方程改成<span class="math inline">\(dp[i][w] =
+\max\{dp[i-1][w],\ dp[i-1][w - wt[i]] + val[i]\}\)</span></p>
+<p><strong>勘误致谢（字母序）：ljw、枸杞（匿名群昵称）、zyb、zjj、zzh</strong></p>
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
     </div>
 
     
@@ -390,6 +445,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">1.</span> <span class="nav-text">8.28</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-1"><span class="nav-number">2.</span> <span class="nav-text">9.11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-2"><span class="nav-number">3.</span> <span class="nav-text">12.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-3"><span class="nav-number">4.</span> <span class="nav-text">20.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-4"><span class="nav-number">5.</span> <span class="nav-text">21.5</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,7 +461,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

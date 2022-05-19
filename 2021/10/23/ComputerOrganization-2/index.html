@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="数制与编码进位计数制和数据间转换计算机内部用二进制编码信息的原因  成本方面：二进制两种状态，用有两个稳定状态的物理器件表示，制造成本低。 功能方面：二进制的两种状态，对应逻辑值“真”和“假”，方便计算机实现逻辑运算、进行逻辑判断 实现方面：二进制编码和运算简单，通过逻辑门电路很容易实现  进位计数值">
+  <meta name="description" content="数制与编码 进位计数制和数据间转换 计算机内部用二进制编码信息的原因  成本方面：二进制两种状态，用有两个稳定状态的物理器件表示，制造成本低。 功能方面：二进制的两种状态，对应逻辑值“真”和“假”，方便计算机实现逻辑运算、进行逻辑判断 实现方面：二进制编码和运算简单，通过逻辑门电路很容易实现  进位计数值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第二章-数据的表示和运算">
 <meta property="og:url" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="数制与编码进位计数制和数据间转换计算机内部用二进制编码信息的原因  成本方面：二进制两种状态，用有两个稳定状态的物理器件表示，制造成本低。 功能方面：二进制的两种状态，对应逻辑值“真”和“假”，方便计算机实现逻辑运算、进行逻辑判断 实现方面：二进制编码和运算简单，通过逻辑门电路很容易实现  进位计数值">
+<meta property="og:description" content="数制与编码 进位计数制和数据间转换 计算机内部用二进制编码信息的原因  成本方面：二进制两种状态，用有两个稳定状态的物理器件表示，制造成本低。 功能方面：二进制的两种状态，对应逻辑值“真”和“假”，方便计算机实现逻辑运算、进行逻辑判断 实现方面：二进制编码和运算简单，通过逻辑门电路很容易实现  进位计数值">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/unsign_mul.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/complement_mul.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/23/ComputerOrganization-2/div.png">
 <meta property="article:published_time" content="2021-10-23T13:58:35.000Z">
-<meta property="article:modified_time" content="2021-12-13T12:55:39.869Z">
+<meta property="article:modified_time" content="2022-05-19T14:28:11.829Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -81,7 +81,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -236,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-13 20:55:39" itemprop="dateModified" datetime="2021-12-13T20:55:39+08:00">2021-12-13</time>
+                <time title="修改时间：2022-05-19 22:28:11" itemprop="dateModified" datetime="2022-05-19T22:28:11+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,7 +284,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="数制与编码"><a href="#数制与编码" class="headerlink" title="数制与编码"></a>数制与编码</h2><h3 id="进位计数制和数据间转换"><a href="#进位计数制和数据间转换" class="headerlink" title="进位计数制和数据间转换"></a>进位计数制和数据间转换</h3><p>计算机内部用二进制编码信息的原因</p>
+        <h2 id="数制与编码">数制与编码</h2>
+<h3 id="进位计数制和数据间转换">进位计数制和数据间转换</h3>
+<p>计算机内部用二进制编码信息的原因</p>
 <ul>
 <li>成本方面：二进制两种状态，用有两个稳定状态的物理器件表示，制造成本低。</li>
 <li>功能方面：二进制的两种状态，对应逻辑值“真”和“假”，方便计算机实现逻辑运算、进行逻辑判断</li>
@@ -290,7 +296,8 @@
 <ul>
 <li>常用的有十进制、二进制、八进制、十六进制等</li>
 <li>基数：进位计数法中每个数位用到的数码个数，每满基数则向高位进位</li>
-<li>r进制数($K_nK_{n-1}\cdots K_0K_{-1}\cdots K_{-m}$)可以表示为$K_nr^n+K_{n-1}r^{n-1}+\cdots+K_0r_0+\cdots+K_{-m}r^{-m}$，其中$K_i$是数码，$r$是基数，$r^i$是位权</li>
+<li>r进制数(<span class="math inline">\(K_nK_{n-1}\cdots K_0K_{-1}\cdots
+K_{-m}\)</span>)可以表示为<span class="math inline">\(K_nr^n+K_{n-1}r^{n-1}+\cdots+K_0r_0+\cdots+K_{-m}r^{-m}\)</span>，其中<span class="math inline">\(K_i\)</span>是数码，<span class="math inline">\(r\)</span>是基数，<span class="math inline">\(r^i\)</span>是位权</li>
 <li>十六进制的基数16，每一位可以取0-9，A-F（代表10-15）中的任意一个，4位二进制数码对应1位十六进制数码</li>
 </ul>
 <p>不同进制数的互相转换</p>
@@ -301,351 +308,377 @@
 <li>十进制转任意进制数：对整数部分除基数取余（相当于对应进制的整数右移溢出最后一位）；对小数部分乘以基数取整（相当于对应进制的小数左移，溢出第一位）</li>
 <li>不是每个十进制小数都能转换成准确的二进制；每个二进制小数都可以转换成准确的十进制</li>
 </ul>
-<h3 id="定点数的编码表示"><a href="#定点数的编码表示" class="headerlink" title="定点数的编码表示"></a>定点数的编码表示</h3><p>从下面<strong>数的划分</strong>中清晰的展现了知识脉络</p>
+<h3 id="定点数的编码表示">定点数的编码表示</h3>
+<p>从下面<strong>数的划分</strong>中清晰的展现了知识脉络</p>
 <ul>
 <li>真值：用户使用的进位计数值编码的各种进制数</li>
-<li>机器数：计算机内部使用的数值数据，根据小数点位置是否固定分为<ul>
-<li>定点数<ul>
+<li>机器数：计算机内部使用的数值数据，根据小数点位置是否固定分为
+<ul>
+<li>定点数
+<ul>
 <li>无符号：直接用真值的二进制形式表示的数</li>
-<li>有符号 <ul>
+<li>有符号
+<ul>
 <li>通常用二进制最高位作为符号位，放在数字前面（原码表示）</li>
 <li>具体的编码方式有原码、补码、反码、移码</li>
 <li>每种编码方式都分为定点纯整数和定点纯小数的编码</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>浮点数：一定有符号</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>原码、补码、反码、移码详细定义</p>
+<p>原码、补码、反码、移码详细定义 + 原码 *
+纯整数：最高位是符号位，0为正，1为负，其余位为绝对值 *
+纯小数：最高位即小数点左1位是符号位，其余位为绝对值 + 补码 *
+纯整数：正数表示同原码，负数表示为其绝对值原码的取反加1。补码的符号位可以看作位权是<span class="math inline">\(-2^n\)</span>，这里n表示非符号的数字位数 *
+纯小数：正数表示同原码，负数表示为其绝对值原码的取反加1（加到最右边的小数位）
++ 反码 * 纯整数：正数表示同原码，负数表示位其绝对值原码的取反 *
+纯小数：正数表示同原码，负数表示位其绝对值原码的取反 + 移码 *
+n位移码是在真值上加一个偏置<span class="math inline">\(2^{n-1}\)</span>
+* 0的移码是<span class="math inline">\(100\cdots\)</span>，共<span class="math inline">\(n-1\)</span>个<span class="math inline">\(0\)</span> * 真值的移码和补码仅符号位不同</p>
+<h2 id="运算方法和运算电路">运算方法和运算电路</h2>
+<h3 id="运算器">运算器</h3>
 <ul>
-<li>原码<ul>
-<li>纯整数：最高位是符号位，0为正，1为负，其余位为绝对值</li>
-<li>纯小数：最高位即小数点左1位是符号位，其余位为绝对值</li>
-</ul>
-</li>
-<li>补码<ul>
-<li>纯整数：正数表示同原码，负数表示为其绝对值原码的取反加1。补码的符号位可以看作位权是$-2^n$，这里n表示非符号的数字位数</li>
-<li>纯小数：正数表示同原码，负数表示为其绝对值原码的取反加1（加到最右边的小数位）</li>
-</ul>
-</li>
-<li>反码<ul>
-<li>纯整数：正数表示同原码，负数表示位其绝对值原码的取反</li>
-<li>纯小数：正数表示同原码，负数表示位其绝对值原码的取反</li>
-</ul>
-</li>
-<li>移码<ul>
-<li>n位移码是在真值上加一个偏置$2^{n-1}$</li>
-<li>0的移码是$100\cdots$，共$n-1$个$0$</li>
-<li>真值的移码和补码仅符号位不同</li>
-</ul>
-</li>
-</ul>
-<h2 id="运算方法和运算电路"><a href="#运算方法和运算电路" class="headerlink" title="运算方法和运算电路"></a>运算方法和运算电路</h2><h3 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h3><ul>
-<li>运算器组成<ul>
+<li>运算器组成
+<ul>
 <li>ALU：核心部件，完成各种算术和逻辑运算</li>
 <li>ACC：常用部件，可以提供源操作数，同时作为运算结果的目的操作数存放地</li>
-<li>PSW：重要部件，存放状态标志位，包括<ul>
+<li>PSW：重要部件，存放状态标志位，包括
+<ul>
 <li>CF：进位或借位标志，无符号数运算是否超过范围</li>
 <li>OF：溢出标志，带符号数运算是否超过范围</li>
 <li>SF：符号标志，负为1，非负为0</li>
 <li>ZF：零标志，运算结果是否为零</li>
 <li>PF：奇偶标志，运算结果低8位中1的个数是否位偶数，是则1，否则0</li>
-</ul>
-</li>
+</ul></li>
 <li>通用寄存器组：必要部件，用户编程可用，暂存参与运算的操作数和结果，存取快，数量少</li>
 <li>专用/特殊寄存器组：用户编程不可使用，运算器内部寄存器</li>
-</ul>
-</li>
-<li>运算器结构<ul>
+</ul></li>
+<li>运算器结构
+<ul>
 <li>单总线结构：1条总线，3个周期（存源操作数1、存源操作数2、存计算结果），操作慢，电路简单</li>
 <li>双总线结构：2条总线，2个周期（存源操作数1和源操作数2、存计算结果），操作较快，电路较复杂</li>
 <li>三总线结构：3条总线，1个周期（存源操作数1和源操作数2并计算结果），操作快，电路复杂</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="基本运算部件"><a href="#基本运算部件" class="headerlink" title="基本运算部件"></a>基本运算部件</h3><h4 id="加法器"><a href="#加法器" class="headerlink" title="加法器"></a>加法器</h4><p>不带标志位的加法器，只能无符号数使用</p>
+<h3 id="基本运算部件">基本运算部件</h3>
+<h4 id="加法器">加法器</h4>
+<p>不带标志位的加法器，只能无符号数使用</p>
 <ul>
-<li>一位全加器<ul>
-<li>输入$A_i,B_i,C_{i-1}$，输出$S_i,C_{i}$</li>
-<li>$S_i=A_i\oplus B_i \oplus C_{i-1}$</li>
-<li>$C_i=A_iB_i+(A_i\oplus B_i)C_{i-1}$</li>
-</ul>
-</li>
-<li>串行加法器<ul>
+<li>一位全加器
+<ul>
+<li>输入<span class="math inline">\(A_i,B_i,C_{i-1}\)</span>，输出<span class="math inline">\(S_i,C_{i}\)</span></li>
+<li><span class="math inline">\(S_i=A_i\oplus B_i \oplus
+C_{i-1}\)</span></li>
+<li><span class="math inline">\(C_i=A_iB_i+(A_i\oplus
+B_i)C_{i-1}\)</span></li>
+</ul></li>
+<li>串行加法器
+<ul>
 <li>只有一个全加器，数据逐行串行送入加法器</li>
 <li>n位操作数要进行n次操作，每次产生1位和</li>
 <li>成本低，运算慢</li>
-</ul>
-</li>
-<li>并行加法器<ul>
+</ul></li>
+<li>并行加法器
+<ul>
 <li>由多个加法器组成，位数和机器字长相同，并行运算</li>
 <li>运算时间主要是由进位的传递时间决定，加法器本身是次要因素</li>
-<li>$C_i=A_iB_i+(A_i\oplus B_i)C_{i-1}$</li>
-<li>记$G_i=A_iB_i$为进位产生函数</li>
-<li>记$P_i=(A_i\oplus B_i)$为进位传递函数</li>
+<li><span class="math inline">\(C_i=A_iB_i+(A_i\oplus
+B_i)C_{i-1}\)</span></li>
+<li>记<span class="math inline">\(G_i=A_iB_i\)</span>为进位产生函数</li>
+<li>记<span class="math inline">\(P_i=(A_i\oplus
+B_i)\)</span>为进位传递函数</li>
 <li>串行进位（波进位）：n个全加器串接，低位进位产生时间影响高位运算，位数越多延迟越多</li>
-<li>并行进位（先行进位）：把高位进位在表达式上转化成最低位进位<ul>
-<li>$C_1=G_1+P_1C_0$</li>
-<li>$C_2=G_2+P_2C_1=G_2+P_2G_1+P_2P_1C_0$</li>
+<li>并行进位（先行进位）：把高位进位在表达式上转化成最低位进位
+<ul>
+<li><span class="math inline">\(C_1=G_1+P_1C_0\)</span></li>
+<li><span class="math inline">\(C_2=G_2+P_2C_1=G_2+P_2G_1+P_2P_1C_0\)</span></li>
 <li>以此类推</li>
 <li>这种进位和字长无关，是快速的</li>
 <li>但位数太多时电路非常复杂</li>
-</ul>
-</li>
-<li>分组并行进位：把n位全加器分成若干组，组内并行进位，组间串或并行进位<ul>
+</ul></li>
+<li>分组并行进位：把n位全加器分成若干组，组内并行进位，组间串或并行进位
+<ul>
 <li>单级先行进位：组内并行（例如4位先行进位电路CLA），组间串行</li>
 <li>多级先行进位：组内并行（例如组内修改成4位成组先行进位电路BCLA），组间并行（CLA）</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="算术逻辑部件"><a href="#算术逻辑部件" class="headerlink" title="算术逻辑部件"></a>算术逻辑部件</h4><ul>
-<li>带标志加法器<ul>
-<li>溢出标志$OF=C_n\oplus C_{n-1}$，标志供有符号数使用</li>
-<li>符号标志$SF$：和的符号</li>
-<li>零标志$ZF$：和为0</li>
-<li>进位/借位标志$CF=C_{out}\oplus C_{in}$，前者即$C_n$，后者加法为0，减法为1，标志供无符号数使用</li>
-</ul>
-</li>
-<li>算术逻辑单元ALU<ul>
+<h4 id="算术逻辑部件">算术逻辑部件</h4>
+<ul>
+<li>带标志加法器
+<ul>
+<li>溢出标志<span class="math inline">\(OF=C_n\oplus
+C_{n-1}\)</span>，标志供有符号数使用</li>
+<li>符号标志<span class="math inline">\(SF\)</span>：和的符号</li>
+<li>零标志<span class="math inline">\(ZF\)</span>：和为0</li>
+<li>进位/借位标志<span class="math inline">\(CF=C_{out}\oplus
+C_{in}\)</span>，前者即<span class="math inline">\(C_n\)</span>，后者加法为0，减法为1，标志供无符号数使用</li>
+</ul></li>
+<li>算术逻辑单元ALU
+<ul>
 <li>能实现多种算术运算和逻辑运算</li>
 <li>核心是带标志加法器</li>
-<li>输入包括<ul>
-<li>$A、B$两个n位操作数，</li>
-<li>$C_{in}$进位输入</li>
+<li>输入包括
+<ul>
+<li><span class="math inline">\(A、B\)</span>两个n位操作数，</li>
+<li><span class="math inline">\(C_{in}\)</span>进位输入</li>
 <li>ALUop操作控制输入</li>
-</ul>
-</li>
-<li>输出包括<ul>
-<li>$C_{out}$进位输出</li>
-<li>$F$输出</li>
+</ul></li>
+<li>输出包括
+<ul>
+<li><span class="math inline">\(C_{out}\)</span>进位输出</li>
+<li><span class="math inline">\(F\)</span>输出</li>
 <li>各种标志位</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="加减运算"><a href="#加减运算" class="headerlink" title="加减运算"></a>加减运算</h3><p>补码加减运算器可以实现无符号数和带符号数的加减操作，原理如下</p>
+<h3 id="加减运算">加减运算</h3>
+<p>补码加减运算器可以实现无符号数和带符号数的加减操作，原理如下</p>
 <ul>
 <li>减法看作是加上相反数（以补码的规则<strong>按位取反加1</strong>）</li>
-<li>在加法器基础上，增加一个2选1多路选择器，根据$sub$控制信号来选择加还是减<ul>
+<li>在加法器基础上，增加一个2选1多路选择器，根据<span class="math inline">\(sub\)</span>控制信号来选择加还是减
+<ul>
 <li>如果选加则直接输入，如果选减，则减数<strong>按位取反</strong></li>
-</ul>
-</li>
-<li>$sub$控制信号作为$C_{in}$输入加法器，<strong>表示减数加1</strong></li>
+</ul></li>
+<li><span class="math inline">\(sub\)</span>控制信号作为<span class="math inline">\(C_{in}\)</span>输入加法器，<strong>表示减数加1</strong></li>
 <li>ZF零标志对于有符号无符号数都有意义</li>
-<li>CF进/借位标志，等于$sub\oplus C_{out}$，无符号数使用</li>
-<li>OF溢出标志，有符号数使用，判定方法有<ul>
+<li>CF进/借位标志，等于<span class="math inline">\(sub\oplus
+C_{out}\)</span>，无符号数使用</li>
+<li>OF溢出标志，有符号数使用，判定方法有
+<ul>
 <li>单符号判定法：输入两个正数输出负数，或输入两个负数输出正数</li>
 <li>双符号判定法：两个符号位不一致则溢出，较高位为实际符号</li>
 <li>进位判定法：符号位进位和最高数位进位相同则没有溢出（异或运算）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="乘除运算"><a href="#乘除运算" class="headerlink" title="乘除运算"></a>乘除运算</h3><h4 id="乘除运算基本原理"><a href="#乘除运算基本原理" class="headerlink" title="乘除运算基本原理"></a>乘除运算基本原理</h4><ul>
-<li>原码1位乘法<ul>
+<h3 id="乘除运算">乘除运算</h3>
+<h4 id="乘除运算基本原理">乘除运算基本原理</h4>
+<ul>
+<li>原码1位乘法
+<ul>
 <li>原理：符号位单独运算，数值部分进行类似于笔算的步骤，从被乘数的低位开始，反复做加法和右移</li>
-<li>算法：设$[X]_原=x_s.x_1x_2\cdots x_n,[Y]_原=y_s.y_1y_2\cdots y_n$<ul>
-<li>符号位为$x_s\oplus y_s$，数值取绝对值进行计算</li>
+<li>算法：设<span class="math inline">\([X]_原=x_s.x_1x_2\cdots
+x_n,[Y]_原=y_s.y_1y_2\cdots y_n\)</span>
+<ul>
+<li>符号位为<span class="math inline">\(x_s\oplus
+y_s\)</span>，数值取绝对值进行计算</li>
 <li>部分积取双符号位，初值为0</li>
-<li>从乘数最低位$y_n$开始判断：为1则部分积加$|X|$，为0则部分积加0。</li>
+<li>从乘数最低位<span class="math inline">\(y_n\)</span>开始判断：为1则部分积加<span class="math inline">\(|X|\)</span>，为0则部分积加0。</li>
 <li>部分积右移1位</li>
 <li>重复n次判断</li>
-</ul>
-</li>
+</ul></li>
 <li>分析：累加n次，移位n次</li>
-</ul>
-</li>
-<li>补码1位乘法（Booth算法）<ul>
-<li>原理：<ul>
+</ul></li>
+<li>补码1位乘法（Booth算法）
+<ul>
+<li>原理：
+<ul>
 <li>符号位参与运算</li>
-<li>$[X\cdot Y]_补=[X]_补\cdot [0.y_1y_2\cdots y_n]-[X]_补\cdot y_s$</li>
-<li>即$[X\cdot Y]_补=[X]_补\cdot[(y_1-y_s)+(y_2-y_1)\cdot2^{-1}+\cdots+(y_{n+1}-y_n)\cdot2^{-n}]$</li>
-</ul>
-</li>
-<li>算法：设$[X]_补=x_s.x_1x_2\cdots x_n,[Y]_补=y_s.y_1y_2\cdots y_n$<ul>
+<li><span class="math inline">\([X\cdot Y]_补=[X]_补\cdot
+[0.y_1y_2\cdots y_n]-[X]_补\cdot y_s\)</span></li>
+<li>即<span class="math inline">\([X\cdot
+Y]_补=[X]_补\cdot[(y_1-y_s)+(y_2-y_1)\cdot2^{-1}+\cdots+(y_{n+1}-y_n)\cdot2^{-n}]\)</span></li>
+</ul></li>
+<li>算法：设<span class="math inline">\([X]_补=x_s.x_1x_2\cdots
+x_n,[Y]_补=y_s.y_1y_2\cdots y_n\)</span>
+<ul>
 <li>符号位参与运算，数取补码表示</li>
 <li>部分积取双符号位，初值为0</li>
-<li>从乘数最低位的差值$y_{n+1}-y_n$开始判断（这里$y_{n+1}$是最低非0位后面的第一个0）：为1则加$[X]_补$，为0则加0，为-1则加$[-X]_补$</li>
+<li>从乘数最低位的差值<span class="math inline">\(y_{n+1}-y_n\)</span>开始判断（这里<span class="math inline">\(y_{n+1}\)</span>是最低非0位后面的第一个0）：为1则加<span class="math inline">\([X]_补\)</span>，为0则加0，为-1则加<span class="math inline">\([-X]_补\)</span></li>
 <li>部分积右移1位</li>
-<li>重复n次判断（判断至$y_2-y_1$）</li>
-<li>判断最后一次$y_1-y_s$，为1则加$[X]_补$，为0则加0，为-1则加$[-X]_补$</li>
-</ul>
-</li>
+<li>重复n次判断（判断至<span class="math inline">\(y_2-y_1\)</span>）</li>
+<li>判断最后一次<span class="math inline">\(y_1-y_s\)</span>，为1则加<span class="math inline">\([X]_补\)</span>，为0则加0，为-1则加<span class="math inline">\([-X]_补\)</span></li>
+</ul></li>
 <li>分析：累加n+1次，移位n次（因为最后一次不需要移位）</li>
-</ul>
-</li>
-<li>原码除法（恢复余数法）<ul>
-<li>原理：<ul>
+</ul></li>
+<li>原码除法（恢复余数法）
+<ul>
+<li>原理：
+<ul>
 <li>符号位单独运算</li>
 <li>数值部分进行类似于笔算的步骤，只考虑被除数和除数都非0的情况，从被除数的高位开始，反复做减法和左移，注意余数不够减时需要恢复到减之前的余数</li>
-</ul>
-</li>
-<li>算法：设$[X]_原=x_s.x_1x_2\cdots x_n,[Y]_原=y_s.y_1y_2\cdots y_n$<ul>
-<li>符号位为$x_s\oplus y_s$，数值取绝对值进行计算</li>
+</ul></li>
+<li>算法：设<span class="math inline">\([X]_原=x_s.x_1x_2\cdots
+x_n,[Y]_原=y_s.y_1y_2\cdots y_n\)</span>
+<ul>
+<li>符号位为<span class="math inline">\(x_s\oplus
+y_s\)</span>，数值取绝对值进行计算</li>
 <li>先用被除数减除数，得到余数</li>
-<li>余数为正，上商“1”，左移余数后减除数（即$R&gt;0\Rightarrow R=2R-|Y|$）</li>
-<li>余数为负，上商“0”，先恢复到减之前的余数，再左移余数后减除数（即$R&lt;0\Rightarrow R=2(R+|Y|)-|Y|$）。</li>
-<li>商的小数点后面需要上n个数，若末位上1，即余数为正则算法结束；若末位上0，即余数为负，需要恢复到减之前的余数，即余数加上$|Y|$</li>
-</ul>
-</li>
+<li>余数为正，上商“1”，左移余数后减除数（即<span class="math inline">\(R&gt;0\Rightarrow R=2R-|Y|\)</span>）</li>
+<li>余数为负，上商“0”，先恢复到减之前的余数，再左移余数后减除数（即<span class="math inline">\(R&lt;0\Rightarrow R=2(R+|Y|)-|Y|\)</span>）。</li>
+<li>商的小数点后面需要上n个数，若末位上1，即余数为正则算法结束；若末位上0，即余数为负，需要恢复到减之前的余数，即余数加上<span class="math inline">\(|Y|\)</span></li>
+</ul></li>
 <li>分析：n+1次减法，每次减法都有可能需要恢复余数（0到n+1次加法），n次移位</li>
-</ul>
-</li>
-<li>原码除法（不恢复余数法/加减交替法）<ul>
-<li>原理：<ul>
+</ul></li>
+<li>原码除法（不恢复余数法/加减交替法）
+<ul>
+<li>原理：
+<ul>
 <li>符号位单独运算</li>
 <li>数值部分计算几乎和恢复余数法相同，只是对余数恢复步骤进行了优化</li>
-</ul>
-</li>
-<li>算法：设$[X]_原=x_s.x_1x_2\cdots x_n,[Y]_原=y_s.y_1y_2\cdots y_n$<ul>
-<li>符号位为$x_s\oplus y_s$，数值取绝对值进行计算</li>
-<li>先用被除数减除数，得到余数</li>
-<li>余数为正，上商“1”，左移余数后减除数（即$R&gt;0\Rightarrow R=2R-|Y|$）</li>
-<li>余数为负，上商“0”，左移余数后加除数（即$R&lt;0\Rightarrow R=2R+|Y|$）。</li>
-<li>商的小数点后面需要上n个数，若末位上1，即余数为正则算法结束；若末位上0，即余数为负，需要恢复到减之前的余数，即余数加上$|Y|$</li>
-</ul>
-</li>
-<li>分析：n+1次减法，最后一次减法后可能需要恢复余数（0或1次加法），n次移位</li>
-</ul>
-</li>
-<li><p>补码除法（加减交替法）</p>
+</ul></li>
+<li>算法：设<span class="math inline">\([X]_原=x_s.x_1x_2\cdots
+x_n,[Y]_原=y_s.y_1y_2\cdots y_n\)</span>
 <ul>
-<li>原理：<ul>
+<li>符号位为<span class="math inline">\(x_s\oplus
+y_s\)</span>，数值取绝对值进行计算</li>
+<li>先用被除数减除数，得到余数</li>
+<li>余数为正，上商“1”，左移余数后减除数（即<span class="math inline">\(R&gt;0\Rightarrow R=2R-|Y|\)</span>）</li>
+<li>余数为负，上商“0”，左移余数后加除数（即<span class="math inline">\(R&lt;0\Rightarrow R=2R+|Y|\)</span>）。</li>
+<li>商的小数点后面需要上n个数，若末位上1，即余数为正则算法结束；若末位上0，即余数为负，需要恢复到减之前的余数，即余数加上<span class="math inline">\(|Y|\)</span></li>
+</ul></li>
+<li>分析：n+1次减法，最后一次减法后可能需要恢复余数（0或1次加法），n次移位</li>
+</ul></li>
+<li>补码除法（加减交替法）
+<ul>
+<li>原理：
+<ul>
 <li>符号位参与运算</li>
 <li>被除数和除数都用补码表示，商和余数也用补码表示</li>
 <li>商用单符号，被除数、除数、余数都用双符号表示</li>
-</ul>
-</li>
-<li><p>算法：设$[X]_补=x_s.x_1x_2\cdots x_n,[Y]_补=y_s.y_1y_2\cdots y_n$</p>
+</ul></li>
+<li>算法：设<span class="math inline">\([X]_补=x_s.x_1x_2\cdots
+x_n,[Y]_补=y_s.y_1y_2\cdots y_n\)</span>
 <ul>
 <li>被除数和除数，如果同号则被除数减除数；如果异号则被除数加除数</li>
 <li>余数和除数，同号则商上“1”，余数左移1位再减除数；异号则商上“0”，余数左移1位再加除数</li>
 <li>重复上一步n次，再把末位置1</li>
+</ul></li>
+<li>分析：n+1次减法，n次移位，商末位恒设置为1</li>
+</ul></li>
 </ul>
-</li>
-<li><p>分析：n+1次减法，n次移位，商末位恒设置为1</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>注：</p>
+<p>注： +
+从原理上，乘法把两个n位数变为2n位；除法用2n位数除以n位数得到n位数 +
+前面的原理总结是关于纯小数的乘法和除法，而整数的乘法除法基本差不多步骤，需要注意的是被除数高位或低位补0使得变为2n位
++
+记忆：乘法右移n次，除法左移n次，原码乘法加n次，补码乘法加n+1次（符号位参与运算，相邻位作差），原码恢复余数除法减2n+1到4n+2次，原码不恢复余数法减2n+1到2n+2次，补码加减交替除法减2n+1次（符号参与运算，同号上1减，异号上0加）</p>
+<h4 id="乘法电路和除法电路基本结构">乘法电路和除法电路基本结构</h4>
+<p>32位无符号乘法运算电路基本结构 <img src="/2021/10/23/ComputerOrganization-2/unsign_mul.png" class title="this is unsign multiply circuit"></p>
+<p>32位补码一位乘法运算电路基本结构（对应Booth算法） <img src="/2021/10/23/ComputerOrganization-2/complement_mul.png" class title="this is complement multiply circuit"></p>
+<p>32位除法运算电路基本结构（对应原码的不恢复余数法/补码加减交替法）
+<img src="/2021/10/23/ComputerOrganization-2/div.png" class title="this is div circuit">
+可以看出，如果该图的控制逻辑中考虑除数的符号，则对应补码的加减交替法</p>
+<h3 id="移位运算">移位运算</h3>
 <ul>
-<li>从原理上，乘法把两个n位数变为2n位；除法用2n位数除以n位数得到n位数</li>
-<li>前面的原理总结是关于纯小数的乘法和除法，而整数的乘法除法基本差不多步骤，需要注意的是被除数高位或低位补0使得变为2n位</li>
-<li>记忆：乘法右移n次，除法左移n次，原码乘法加n次，补码乘法加n+1次（符号位参与运算，相邻位作差），原码恢复余数除法减2n+1到4n+2次，原码不恢复余数法减2n+1到2n+2次，补码加减交替除法减2n+1次（符号参与运算，同号上1减，异号上0加）</li>
-</ul>
-<h4 id="乘法电路和除法电路基本结构"><a href="#乘法电路和除法电路基本结构" class="headerlink" title="乘法电路和除法电路基本结构"></a>乘法电路和除法电路基本结构</h4><p>32位无符号乘法运算电路基本结构<br><img src="/2021/10/23/ComputerOrganization-2/unsign_mul.png" class title="this is unsign multiply circuit"></p>
-<p>32位补码一位乘法运算电路基本结构（对应Booth算法）<br><img src="/2021/10/23/ComputerOrganization-2/complement_mul.png" class title="this is complement multiply circuit"></p>
-<p>32位除法运算电路基本结构（对应原码的不恢复余数法/补码加减交替法）<br><img src="/2021/10/23/ComputerOrganization-2/div.png" class title="this is div circuit"><br>可以看出，如果该图的控制逻辑中考虑除数的符号，则对应补码的加减交替法</p>
-<h3 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h3><ul>
-<li>逻辑移位<ul>
+<li>逻辑移位
+<ul>
 <li>操作数视为无符号数</li>
 <li>不丢失有效数值位的情况下，左移等价于乘以2，右移等价于除以2</li>
 <li>空位补0</li>
-</ul>
-</li>
-<li>算术移位<ul>
+</ul></li>
+<li>算术移位
+<ul>
 <li>操作数视为有符号数</li>
 <li>不丢失有效数值位的情况下，左移等价于乘以2，右移等价于除以2</li>
 <li>由上一条易知，负数补码右移时空位补1，负数反码左移右移空位都补1，其他情况空位补0</li>
-</ul>
-</li>
-<li>循环移位<ul>
+</ul></li>
+<li>循环移位
+<ul>
 <li>小循环左移：不带CF的循环左移，CF不参与循环，CF=MSB，LSB=MSB</li>
 <li>小循环右移：不带CF的循环右移，CF不参与循环，CF=LSB，MSB=LSB</li>
 <li>大循环左移：带CF的循环左移，CF参与循环，CF=MSB，LSB=CF</li>
-<li>大循环右移：带CF的循环右移，CF参与循环，CF=LSB，MSB=CF </li>
+<li>大循环右移：带CF的循环右移，CF参与循环，CF=LSB，MSB=CF</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="整数的表示和运算"><a href="#整数的表示和运算" class="headerlink" title="整数的表示和运算"></a>整数的表示和运算</h2><h3 id="无符号整数的表示和运算"><a href="#无符号整数的表示和运算" class="headerlink" title="无符号整数的表示和运算"></a>无符号整数的表示和运算</h3><ul>
+<h2 id="整数的表示和运算">整数的表示和运算</h2>
+<h3 id="无符号整数的表示和运算">无符号整数的表示和运算</h3>
+<ul>
 <li>直接表示为二进制串</li>
 <li>无符号整数的加法、乘法、除法前面都提到过，基本和带符号正数的原码运算规则类似</li>
 <li>无符号整数的移位对应逻辑移位</li>
 </ul>
-<h3 id="带符号整数的表示和运算"><a href="#带符号整数的表示和运算" class="headerlink" title="带符号整数的表示和运算"></a>带符号整数的表示和运算</h3><ul>
+<h3 id="带符号整数的表示和运算">带符号整数的表示和运算</h3>
+<ul>
 <li>通常用补码表示</li>
 <li>补码的加法、乘法、除法规则前面都提到过</li>
 <li>带符号整数的移位相当于算术移位</li>
 </ul>
-<h3 id="整数的类型转换"><a href="#整数的类型转换" class="headerlink" title="整数的类型转换"></a>整数的类型转换</h3><ul>
+<h3 id="整数的类型转换">整数的类型转换</h3>
+<ul>
 <li>带符号数和无符号数的转换：不改变机器码的二进制串，但是改变机器码的解释，因此真值改变</li>
-<li>不同字长数的转换<ul>
+<li>不同字长数的转换
+<ul>
 <li>大字节转小字节：直接截断</li>
 <li>小字节转大字节：不改变机器码的解释，因此不希望真值改变，从而根据机器码类型补0或1</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="浮点数的表示和运算"><a href="#浮点数的表示和运算" class="headerlink" title="浮点数的表示和运算"></a>浮点数的表示和运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><ul>
-<li>浮点数表示为$N=r^E\times M$，其中底数r通常是2，E和M都是带符号定点数，前者是阶码，后者是尾数</li>
+<h2 id="浮点数的表示和运算">浮点数的表示和运算</h2>
+<h3 id="浮点数的表示">浮点数的表示</h3>
+<ul>
+<li>浮点数表示为<span class="math inline">\(N=r^E\times
+M\)</span>，其中底数r通常是2，E和M都是带符号定点数，前者是阶码，后者是尾数</li>
 <li>阶码一般用移码或补码表示，尾数一般用原码或补码表示</li>
 <li>规范化浮点数：尾数最高位是1</li>
 <li>左规：尾数算术左移1位，阶码减1，可能需要多次</li>
 <li>右规：运算溢出时（双符号位01或10），则尾数算术右移1位，阶码加1，只需要一次</li>
 <li>浮点数范围：从小到大分别为，负上溢、负数范围、负下溢、0、正下溢、正数范围、正上溢</li>
 <li>规格化后的运算结果超过浮点数范围则为溢出，浮点数下溢时计算机通常当0处理</li>
-<li><strong>IEEE754标准</strong><ul>
-<li>单精度浮点数float（1位符号S、8位阶码E、23位尾数M、共32位）表示为$(-1)^s\times 1.M\times 2^{E-127}$，符号S取0或1，阶码E取1-254</li>
-<li>双精度浮点数double（1位符号S，11位阶码E，52位尾数M，共64位）表示为$(-1)^s\times 1.M\times 2^{E-1023}$，符号S取0或1，阶码E取1-2046</li>
+<li><strong>IEEE754标准</strong>
+<ul>
+<li>单精度浮点数float（1位符号S、8位阶码E、23位尾数M、共32位）表示为<span class="math inline">\((-1)^s\times 1.M\times
+2^{E-127}\)</span>，符号S取0或1，阶码E取1-254</li>
+<li>双精度浮点数double（1位符号S，11位阶码E，52位尾数M，共64位）表示为<span class="math inline">\((-1)^s\times 1.M\times
+2^{E-1023}\)</span>，符号S取0或1，阶码E取1-2046</li>
 <li>阶码的移码偏置是127/1023，因为可以空出全1表示无穷大</li>
 <li>尾数含有隐藏的1在小数点前面，尾数只保存小数点后面的值</li>
 <li>0用全0表示，根据符号位可以分为+0和-0</li>
 <li>无法规范化的数称为非规范化数，即阶码全0。此时偏置为126或1022，即阶码0和1对应值相等，同时非规范化数的尾数不包含隐藏的1，这样设置阶码和尾数的目的是为了平滑的从规范化数过渡到非规范化数</li>
 <li>非规范化数提供了一种表示0的方式，但0不是非规范化数，最小的非规范化数是非0的</li>
 <li>阶码全1，尾数全0，表示无穷大，根据符号位分为正无穷负无穷</li>
-<li>阶码全1，尾数非全0，表示NaN（Not a Number），即用于无意义的数或在初始化时使用。</li>
-</ul>
-</li>
+<li>阶码全1，尾数非全0，表示NaN（Not a
+Number），即用于无意义的数或在初始化时使用。</li>
+</ul></li>
 <li>同样数值位长度的浮点数和定点数相比，表示范围增大，但精度降低</li>
 </ul>
-<h3 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h3><ul>
-<li>对阶：小阶向大阶对齐，即阶码小的尾数（算术）右移阶加1，直到两个数阶码相等。右移时舍掉有效位会影响精度。计算时可以先算阶码的差$\Delta E$</li>
+<h3 id="浮点数加减运算">浮点数加减运算</h3>
+<ul>
+<li>对阶：小阶向大阶对齐，即阶码小的尾数（算术）右移阶加1，直到两个数阶码相等。右移时舍掉有效位会影响精度。计算时可以先算阶码的差<span class="math inline">\(\Delta E\)</span></li>
 <li>尾数求和：对阶后的尾数按定点数补码加减运算处理，带上双符号位，减法等于加补码对应的负数</li>
 <li>规格化:左规或右规至补码最高数值位和符号位不同</li>
 <li>舍入：右规造成的低位丢失，可以0舍1入，也可以末尾恒置1。前者的“1入”情况如果造成上溢，需要再右规一次，后者根据末尾原先的情况，可能造成结果变大或变小</li>
 <li>溢出判断和处理：规格化尾数后，根据阶码是否超过范围来判断溢出情况，即补码表示的双符号位不一致（10下溢，01上溢）。</li>
 </ul>
-<h3 id="浮点数类型转换"><a href="#浮点数类型转换" class="headerlink" title="浮点数类型转换"></a>浮点数类型转换</h3><ul>
+<h3 id="浮点数类型转换">浮点数类型转换</h3>
+<ul>
 <li>int转float，不会溢出；可能有数据舍入从而丢失精度</li>
 <li>int或float转double，不会溢出；且保持精度</li>
 <li>double转float，可能溢出；可能有数据舍入从而丢失精度</li>
 <li>double或float转int，可能溢出；可能有数据截断从而丢失精度</li>
 <li>以上类型转换尽量保持真值不变，但由于编码方式不同，因此存储的二进制串会有改变</li>
 <li>溢出主要看编码的表示范围</li>
-<li>精度主要看编码的有效位数和表示范围的相对关系<ul>
+<li>精度主要看编码的有效位数和表示范围的相对关系
+<ul>
 <li>同样的有效位数，表示范围约大，精度越低，比如float和int都是32个有效位，float范围大，精度低</li>
 <li>同样的表示范围，编码有效位数越多，精度越高</li>
 <li>注意到double相比float和int，即使表示范围更大，但因为有效位数更大，精度更大</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="数据的存储和排列"><a href="#数据的存储和排列" class="headerlink" title="数据的存储和排列"></a>数据的存储和排列</h2><h3 id="大端方式和小端方式"><a href="#大端方式和小端方式" class="headerlink" title="大端方式和小端方式"></a>大端方式和小端方式</h3><ul>
+<h2 id="数据的存储和排列">数据的存储和排列</h2>
+<h3 id="大端方式和小端方式">大端方式和小端方式</h3>
+<ul>
 <li>用最低有效字节LSB和最高有效字节MSB表示数的最高位和最低位</li>
 <li>大端方式：按MSB到LSB的顺序存储数据</li>
 <li>小端方式：按LSB到MSB的顺序存储数据</li>
 <li>注意：一个地址内（一个字节）的数据无论按大端或小端存储，其机器级代码的文本形式中都是以实际值方式呈现</li>
 </ul>
-<h3 id="边界对齐"><a href="#边界对齐" class="headerlink" title="边界对齐"></a>边界对齐</h3><ul>
+<h3 id="边界对齐">边界对齐</h3>
+<ul>
 <li>以<strong>32位存储字长的机器</strong>为例</li>
 <li>字节：8位二进制长度，每个地址对应存储单元的大小</li>
 <li>半字：半个存储字长，对应16位、2字节</li>
 <li>字：存储字长，对应32位、4字节</li>
-<li>边界对齐方式<ul>
+<li>边界对齐方式
+<ul>
 <li>半字地址一定是2的整数倍，字地址一定是4的整数倍</li>
 <li>数据无论是字节、半字、字都可以一次取出</li>
 <li>不满足上述条件可以通过填充0满足条件，浪费空间但提高取指令和取数的速度</li>
-</ul>
-</li>
-<li>非边界对齐方式<ul>
+</ul></li>
+<li>非边界对齐方式
+<ul>
 <li>充分利用存储空间</li>
 <li>半字长和字长的数据可能在两个存储字中，需要两次访存，还要对高低字节进行位置调整和连接，影响指令执行效率</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
     </div>
@@ -762,7 +795,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  可分离变量微分方程 形式：$y$和$x$可分离到等式两侧 方法：分离变量至两次后，两端积分即可  齐次微分方程 形式：$\frac{dy}{dx}&#x3D;f(\frac{y}{x})$ 思路：换元令$t&#x3D;\frac{y}{x}$ 注意：所有的换元操作在解出微分方程后都需要">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  可分离变量微分方程  形式：\(y\)和\(x\)可分离到等式两侧 方法：分离变量至两次后，两端积分即可  齐次微分方程  形式：\(\frac{dy}{dx}&#x3D;f(\frac{y}{x})\) 思路：换元令\(t&#x3D;\frac{y}{x}\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第八章-常微分方程">
 <meta property="og:url" content="https://wooziehang.github.io/2021/12/11/calculus8/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  可分离变量微分方程 形式：$y$和$x$可分离到等式两侧 方法：分离变量至两次后，两端积分即可  齐次微分方程 形式：$\frac{dy}{dx}&#x3D;f(\frac{y}{x})$ 思路：换元令$t&#x3D;\frac{y}{x}$ 注意：所有的换元操作在解出微分方程后都需要">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  可分离变量微分方程  形式：\(y\)和\(x\)可分离到等式两侧 方法：分离变量至两次后，两端积分即可  齐次微分方程  形式：\(\frac{dy}{dx}&#x3D;f(\frac{y}{x})\) 思路：换元令\(t&#x3D;\frac{y}{x}\">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-11T06:43:10.000Z">
-<meta property="article:modified_time" content="2021-12-13T08:01:49.516Z">
+<meta property="article:modified_time" content="2022-05-19T14:44:44.088Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-13 16:01:49" itemprop="dateModified" datetime="2021-12-13T16:01:49+08:00">2021-12-13</time>
+                <time title="修改时间：2022-05-19 22:44:44" itemprop="dateModified" datetime="2022-05-19T22:44:44+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,126 +285,143 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="可分离变量微分方程"><a href="#可分离变量微分方程" class="headerlink" title="可分离变量微分方程"></a>可分离变量微分方程</h2><ul>
-<li>形式：$y$和$x$可分离到等式两侧</li>
+<h2 id="可分离变量微分方程">可分离变量微分方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(y\)</span>和<span class="math inline">\(x\)</span>可分离到等式两侧</li>
 <li>方法：分离变量至两次后，两端积分即可</li>
 </ul>
-<h2 id="齐次微分方程"><a href="#齐次微分方程" class="headerlink" title="齐次微分方程"></a>齐次微分方程</h2><ul>
-<li>形式：$\frac{dy}{dx}=f(\frac{y}{x})$</li>
-<li>思路：换元令$t=\frac{y}{x}$</li>
+<h2 id="齐次微分方程">齐次微分方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(\frac{dy}{dx}=f(\frac{y}{x})\)</span></li>
+<li>思路：换元令<span class="math inline">\(t=\frac{y}{x}\)</span></li>
 <li>注意：所有的换元操作在解出微分方程后都需要把原变量带回去，结果中的变量必须是原始的</li>
 </ul>
-<h2 id="一阶线性方程"><a href="#一阶线性方程" class="headerlink" title="一阶线性方程"></a>一阶线性方程</h2><ul>
-<li>形式：$\frac{dy}{dx}+P(x)y=Q(x)$</li>
-<li>思路<ul>
-<li>背公式$y=e^{-\int P(x)dx}\times(\int Q(x)e^{\int P(x)dx}dx+C)$</li>
+<h2 id="一阶线性方程">一阶线性方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(\frac{dy}{dx}+P(x)y=Q(x)\)</span></li>
+<li>思路
+<ul>
+<li>背公式<span class="math inline">\(y=e^{-\int P(x)dx}\times(\int
+Q(x)e^{\int P(x)dx}dx+C)\)</span></li>
 <li>注意：因为是一阶微分方程，只带一个常数C，公式中的不定积分不需要带上常数</li>
+</ul></li>
 </ul>
-</li>
+<h2 id="伯努利方程">伯努利方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(\frac{dy}{dx}+P(x)y=Q(x)y^n\)</span></li>
+<li>思路
+<ul>
+<li>换元令<span class="math inline">\(u=y^{1-n},du=(1-n)y^{-n}dy\)</span></li>
+<li>替换掉原式的<span class="math inline">\(dy\)</span>即可转化为一阶线性方程</li>
+</ul></li>
 </ul>
-<h2 id="伯努利方程"><a href="#伯努利方程" class="headerlink" title="伯努利方程"></a>伯努利方程</h2><ul>
-<li>形式：$\frac{dy}{dx}+P(x)y=Q(x)y^n$</li>
-<li>思路<ul>
-<li>换元令$u=y^{1-n},du=(1-n)y^{-n}dy$</li>
-<li>替换掉原式的$dy$即可转化为一阶线性方程</li>
+<h2 id="全微分方程">全微分方程</h2>
+<ul>
+<li>形式<span class="math inline">\(P(x,y)dx+Q(x,y)dy=0\)</span>，<span class="math inline">\(P,Q\)</span>有一阶连续偏导数，且<span class="math inline">\(\frac{\partial P}{\partial y}=\frac{\partial
+Q}{\partial x}\)</span></li>
+<li>思路：凑积分或偏积分求全微分的原函数，<span class="math inline">\(P(x,y)dx+Q(x,y)dy=du(x,y)=0\)</span></li>
 </ul>
-</li>
+<h2 id="对称情况">对称情况</h2>
+<ul>
+<li>形式：有可能出现<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>的位置对调的情况</li>
+<li>思路：把<span class="math inline">\(y\)</span>当<span class="math inline">\(x\)</span>，<span class="math inline">\(x\)</span>当<span class="math inline">\(y\)</span>来处理即可</li>
 </ul>
-<h2 id="全微分方程"><a href="#全微分方程" class="headerlink" title="全微分方程"></a>全微分方程</h2><ul>
-<li>形式$P(x,y)dx+Q(x,y)dy=0$，$P,Q$有一阶连续偏导数，且$\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}$</li>
-<li>思路：凑积分或偏积分求全微分的原函数，$P(x,y)dx+Q(x,y)dy=du(x,y)=0$</li>
-</ul>
-<h2 id="对称情况"><a href="#对称情况" class="headerlink" title="对称情况"></a>对称情况</h2><ul>
-<li>形式：有可能出现$x$和$y$的位置对调的情况</li>
-<li>思路：把$y$当$x$，$x$当$y$来处理即可</li>
-</ul>
-<h2 id="可降阶的高阶微分方程"><a href="#可降阶的高阶微分方程" class="headerlink" title="可降阶的高阶微分方程"></a>可降阶的高阶微分方程</h2><ul>
-<li>一般只有三种形式<ul>
-<li>$y^{(n)}=f(x)$</li>
-<li>$y’’=f(x,y’)$</li>
-<li>$y’’=f(y,y’)$</li>
-</ul>
-</li>
-<li>思路分别对应如下<ul>
+<h2 id="可降阶的高阶微分方程">可降阶的高阶微分方程</h2>
+<ul>
+<li>一般只有三种形式
+<ul>
+<li><span class="math inline">\(y^{(n)}=f(x)\)</span></li>
+<li><span class="math inline">\(y&#39;&#39;=f(x,y&#39;)\)</span></li>
+<li><span class="math inline">\(y&#39;&#39;=f(y,y&#39;)\)</span></li>
+</ul></li>
+<li>思路分别对应如下
+<ul>
 <li>反复积分降阶</li>
-<li>换元令$y’=u,y’’=\frac{du}{dx}$，降阶为$u$和$x$的一阶方程$\frac{du}{dx}=f(x,u)$</li>
-<li>换元令$y’=u,y’’=\frac{du}{dx}=\frac{du}{dy}\frac{dy}{dx}=\frac{du}{dy}u$，降阶为$u$和$y$一阶方程$\frac{du}{dy}u=f(y,u)$</li>
+<li>换元令<span class="math inline">\(y&#39;=u,y&#39;&#39;=\frac{du}{dx}\)</span>，降阶为<span class="math inline">\(u\)</span>和<span class="math inline">\(x\)</span>的一阶方程<span class="math inline">\(\frac{du}{dx}=f(x,u)\)</span></li>
+<li>换元令<span class="math inline">\(y&#39;=u,y&#39;&#39;=\frac{du}{dx}=\frac{du}{dy}\frac{dy}{dx}=\frac{du}{dy}u\)</span>，降阶为<span class="math inline">\(u\)</span>和<span class="math inline">\(y\)</span>一阶方程<span class="math inline">\(\frac{du}{dy}u=f(y,u)\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="线性方程解的结构"><a href="#线性方程解的结构" class="headerlink" title="线性方程解的结构"></a>线性方程解的结构</h2><ul>
-<li>齐次方程<ul>
+<h2 id="线性方程解的结构">线性方程解的结构</h2>
+<ul>
+<li>齐次方程
+<ul>
 <li>方程的阶数即线性无关的解个数</li>
 <li>通解：阶数个线性无关的解的线性组合</li>
-</ul>
-</li>
-<li>非齐次方程：非齐次方程的通解 = 非齐次方程的一个特解 + 对应齐次方程的通解</li>
-<li>叠加原理<ul>
+</ul></li>
+<li>非齐次方程：非齐次方程的通解 = 非齐次方程的一个特解 +
+对应齐次方程的通解</li>
+<li>叠加原理
+<ul>
 <li>用的比较少</li>
-<li>指的是，已知两个非齐次微分方程的特解$y_1,y_2$，则把两个非齐次方程右侧的x多项式相加后得到的非齐次方程的特解是$y_1+y_2$</li>
+<li>指的是，已知两个非齐次微分方程的特解<span class="math inline">\(y_1,y_2\)</span>，则把两个非齐次方程右侧的x多项式相加后得到的非齐次方程的特解是<span class="math inline">\(y_1+y_2\)</span></li>
 <li>不用背，按定义很容易推导</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="线性常系数齐次方程"><a href="#线性常系数齐次方程" class="headerlink" title="线性常系数齐次方程"></a>线性常系数齐次方程</h2><ul>
-<li>形式：$y^{(n)}+p_1y^{(n-1)}+\cdots+p_{n-1}y’+p_ny=0$</li>
-<li>求解步骤<ul>
-<li>解特征方程$y^{n}+p_1y^{n-1}+\cdots+p_{n-1}y+p_n=0$（即k阶导换成k次方）</li>
+<h2 id="线性常系数齐次方程">线性常系数齐次方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(y^{(n)}+p_1y^{(n-1)}+\cdots+p_{n-1}y&#39;+p_ny=0\)</span></li>
+<li>求解步骤
+<ul>
+<li>解特征方程<span class="math inline">\(y^{n}+p_1y^{n-1}+\cdots+p_{n-1}y+p_n=0\)</span>（即k阶导换成k次方）</li>
 <li>每一重实根对应着一个线性无关的解，每一重<strong>复根对</strong>对应两个线性无关的解，对应如下</li>
-<li>单实根$r$<ul>
-<li>$Ce^{rx}$</li>
+<li>单实根<span class="math inline">\(r\)</span>
+<ul>
+<li><span class="math inline">\(Ce^{rx}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(k\)</span>重实根<span class="math inline">\(r\)</span>
+<ul>
+<li><span class="math inline">\((C_1+C_2x+\cdots+C_kx^{k-1})e^{rx}\)</span></li>
+</ul></li>
+<li>单重复根对<span class="math inline">\(a\pm bi\)</span>
+<ul>
+<li><span class="math inline">\([C_1cos(bx)+C_2sin(bx)]e^{ax}\)</span></li>
+</ul></li>
+<li>k重复根对<span class="math inline">\(a\pm bi\)</span>
+<ul>
+<li><span class="math inline">\([(C_1+C_2x+\cdots+C_kx^{k-1})cos(bx)+(D_1+D_2x+\cdots+D_kx^{k-1})sin(bx)]e^{ax}\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>$k$重实根$r$<ul>
-<li>$(C_1+C_2x+\cdots+C_kx^{k-1})e^{rx}$</li>
-</ul>
-</li>
-<li>单重复根对$a\pm bi$<ul>
-<li>$[C_1cos(bx)+C_2sin(bx)]e^{ax}$</li>
-</ul>
-</li>
-<li>k重复根对$a\pm bi$<ul>
-<li>$[(C_1+C_2x+\cdots+C_kx^{k-1})cos(bx)+(D_1+D_2x+\cdots+D_kx^{k-1})sin(bx)]e^{ax}$</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="线性常系数非齐次方程"><a href="#线性常系数非齐次方程" class="headerlink" title="线性常系数非齐次方程"></a>线性常系数非齐次方程</h2><ul>
-<li>形式：$y^{(n)}+p_1y^{(n-1)}+\cdots+p_{n-1}y’+p_ny=f(x)$</li>
-<li>求解步骤<ul>
+<h2 id="线性常系数非齐次方程">线性常系数非齐次方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(y^{(n)}+p_1y^{(n-1)}+\cdots+p_{n-1}y&#39;+p_ny=f(x)\)</span></li>
+<li>求解步骤
+<ul>
 <li>解对应齐次方程的通解</li>
 <li>寻找一个非齐次方程的特解</li>
-<li>利用线性方程解的结构，非齐次方程特解 + 齐次方程通解 = 非齐次方程通解</li>
-</ul>
-</li>
-<li>非齐次方程特解求解方法<ul>
-<li>已知$f(x)=e^{ax}[P_m(x)cos(bx)+P_n(x)sin(bx)]$</li>
-<li>$P_m$和$P_n$是两个给定的$m$次、$n$次多项式</li>
-<li>设特解为$y^\star=x^ke^{ax}[Q_l(x)cos(bx)+R_l(x)sin(bx)]$</li>
-<li>$k$为特征方程的复根对$a\pm bi$的重数</li>
-<li>$l=\max\{m,n\}$</li>
-<li>$Q_l$和$R_l$是两个待定系数的$l$次多项式</li>
+<li>利用线性方程解的结构，非齐次方程特解 + 齐次方程通解 =
+非齐次方程通解</li>
+</ul></li>
+<li>非齐次方程特解求解方法
+<ul>
+<li>已知<span class="math inline">\(f(x)=e^{ax}[P_m(x)cos(bx)+P_n(x)sin(bx)]\)</span></li>
+<li><span class="math inline">\(P_m\)</span>和<span class="math inline">\(P_n\)</span>是两个给定的<span class="math inline">\(m\)</span>次、<span class="math inline">\(n\)</span>次多项式</li>
+<li>设特解为<span class="math inline">\(y^\star=x^ke^{ax}[Q_l(x)cos(bx)+R_l(x)sin(bx)]\)</span></li>
+<li><span class="math inline">\(k\)</span>为特征方程的复根对<span class="math inline">\(a\pm bi\)</span>的重数</li>
+<li><span class="math inline">\(l=\max\{m,n\}\)</span></li>
+<li><span class="math inline">\(Q_l\)</span>和<span class="math inline">\(R_l\)</span>是两个待定系数的<span class="math inline">\(l\)</span>次多项式</li>
 <li>特解待定系数带入原微分方程，算出特解</li>
+</ul></li>
 </ul>
-</li>
+<h2 id="欧拉方程">欧拉方程</h2>
+<ul>
+<li>形式：<span class="math inline">\(x^ny^{(n)}+p_1x^{n-1}y^{(n-1)}+p_2x^{n-2}y^{(n-2)}+\cdots+p_{n-1}y=f(x)\)</span></li>
+<li>思路
+<ul>
+<li>这是<span class="math inline">\(y\)</span>关于<span class="math inline">\(x\)</span>线性微分方程，但不是常系数</li>
+<li>设<span class="math inline">\(t=lnx\)</span>，则<span class="math inline">\(x^ky^{(k)}=D(D-1)\cdots(D-k+1)y\)</span>，<span class="math inline">\(D=\frac{d}{dt}\)</span></li>
+<li>上面一条把<span class="math inline">\(y\)</span>关于<span class="math inline">\(x\)</span>的<span class="math inline">\(k\)</span>阶导数换成了<span class="math inline">\(y\)</span>关于<span class="math inline">\(t\)</span>的<span class="math inline">\(k\)</span>的阶导数。推导不难，但步骤比较繁琐，可以推但没必要，建议背下来直接使用。</li>
+<li>换元后变成关于<span class="math inline">\(y\)</span>关于<span class="math inline">\(t\)</span>的线性常系数微分方程，用前面的方法求解</li>
+<li>求解后把<span class="math inline">\(t\)</span>换回<span class="math inline">\(x\)</span></li>
+</ul></li>
 </ul>
-<h2 id="欧拉方程"><a href="#欧拉方程" class="headerlink" title="欧拉方程"></a>欧拉方程</h2><ul>
-<li>形式：$x^ny^{(n)}+p_1x^{n-1}y^{(n-1)}+p_2x^{n-2}y^{(n-2)}+\cdots+p_{n-1}y=f(x)$</li>
-<li>思路<ul>
-<li>这是$y$关于$x$线性微分方程，但不是常系数</li>
-<li>设$t=lnx$，则$x^ky^{(k)}=D(D-1)\cdots(D-k+1)y$，$D=\frac{d}{dt}$</li>
-<li>上面一条把$y$关于$x$的$k$阶导数换成了$y$关于$t$的$k$的阶导数。推导不难，但步骤比较繁琐，可以推但没必要，建议背下来直接使用。</li>
-<li>换元后变成关于$y$关于$t$的线性常系数微分方程，用前面的方法求解</li>
-<li>求解后把$t$换回$x$</li>
-</ul>
-</li>
-</ul>
-<h2 id="已知通解求方程"><a href="#已知通解求方程" class="headerlink" title="已知通解求方程"></a>已知通解求方程</h2><ul>
-<li>根据通解$y$，求出$y’$和$y’’$</li>
+<h2 id="已知通解求方程">已知通解求方程</h2>
+<ul>
+<li>根据通解<span class="math inline">\(y\)</span>，求出<span class="math inline">\(y&#39;\)</span>和<span class="math inline">\(y&#39;&#39;\)</span></li>
 <li>消去上面的常量即可得到微分方程</li>
 </ul>
-<h2 id="微分方程应用题"><a href="#微分方程应用题" class="headerlink" title="微分方程应用题"></a>微分方程应用题</h2><ul>
+<h2 id="微分方程应用题">微分方程应用题</h2>
+<ul>
 <li>根据题干条件思考变量之间的微分关系</li>
 <li>列出微分方程</li>
 <li>求解微分方程</li>
@@ -520,7 +541,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

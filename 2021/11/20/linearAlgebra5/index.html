@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  特征值和特征向量定义和理解 定义：$\pmb{A}\pmb{\alpha}&#x3D;\lambda\pmb{\alpha}$且$\pmb{\alpha}\neq 0$ $\lambda$为$\pmb{A}$的特征值 $\pmb{\alpha}$为$\pmb{A}$的特征向量">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  特征值和特征向量 定义和理解  定义：\(\pmb{A}\pmb{\alpha}&#x3D;\lambda\pmb{\alpha}\)且\(\pmb{\alpha}\neq 0\)  \(\lambda\)为\(\pmb{A}\)的特征值 \(\pmb{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第五章-特征值和特征向量">
 <meta property="og:url" content="https://wooziehang.github.io/2021/11/20/linearAlgebra5/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  特征值和特征向量定义和理解 定义：$\pmb{A}\pmb{\alpha}&#x3D;\lambda\pmb{\alpha}$且$\pmb{\alpha}\neq 0$ $\lambda$为$\pmb{A}$的特征值 $\pmb{\alpha}$为$\pmb{A}$的特征向量">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  特征值和特征向量 定义和理解  定义：\(\pmb{A}\pmb{\alpha}&#x3D;\lambda\pmb{\alpha}\)且\(\pmb{\alpha}\neq 0\)  \(\lambda\)为\(\pmb{A}\)的特征值 \(\pmb{">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-20T12:04:15.000Z">
 <meta property="article:modified_time" content="2021-11-22T13:27:08.049Z">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -281,118 +285,117 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h2><h3 id="定义和理解"><a href="#定义和理解" class="headerlink" title="定义和理解"></a>定义和理解</h3><ul>
-<li>定义：$\pmb{A}\pmb{\alpha}=\lambda\pmb{\alpha}$且$\pmb{\alpha}\neq 0$<ul>
-<li>$\lambda$为$\pmb{A}$的特征值</li>
-<li>$\pmb{\alpha}$为$\pmb{A}$的特征向量</li>
-</ul>
-</li>
-<li>向量空间角度理解<ul>
+<h2 id="特征值和特征向量">特征值和特征向量</h2>
+<h3 id="定义和理解">定义和理解</h3>
+<ul>
+<li>定义：<span class="math inline">\(\pmb{A}\pmb{\alpha}=\lambda\pmb{\alpha}\)</span>且<span class="math inline">\(\pmb{\alpha}\neq 0\)</span>
+<ul>
+<li><span class="math inline">\(\lambda\)</span>为<span class="math inline">\(\pmb{A}\)</span>的特征值</li>
+<li><span class="math inline">\(\pmb{\alpha}\)</span>为<span class="math inline">\(\pmb{A}\)</span>的特征向量</li>
+</ul></li>
+<li>向量空间角度理解
+<ul>
 <li>把矩阵看作线性变换，特征向量经过该变换后发生了伸缩</li>
+</ul></li>
+<li>线性方程组角度
+<ul>
+<li>相等于<span class="math inline">\((\lambda\pmb{E}-\pmb{A})\pmb{\alpha}=\pmb{0}\)</span>且<span class="math inline">\(\pmb{\alpha}\neq 0\)</span></li>
+</ul></li>
 </ul>
-</li>
-<li>线性方程组角度<ul>
-<li>相等于$(\lambda\pmb{E}-\pmb{A})\pmb{\alpha}=\pmb{0}$且$\pmb{\alpha}\neq 0$</li>
+<h3 id="相关概念">相关概念</h3>
+<ul>
+<li>特征方程
+<ul>
+<li><span class="math inline">\(\vert\lambda\pmb{E}-\pmb{A}\vert=0\)</span></li>
+</ul></li>
+<li>特征多项式
+<ul>
+<li><span class="math inline">\(\vert\lambda\pmb{E}-\pmb{A}\vert=\prod(\lambda-\lambda_i)\)</span></li>
+<li><span class="math inline">\(\lambda_i\)</span>是特征值</li>
+</ul></li>
+<li>特征矩阵
+<ul>
+<li><span class="math inline">\(\lambda\pmb{E}-\pmb{A}\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
-<li>特征方程<ul>
-<li>$\vert\lambda\pmb{E}-\pmb{A}\vert=0$</li>
-</ul>
-</li>
-<li>特征多项式<ul>
-<li>$\vert\lambda\pmb{E}-\pmb{A}\vert=\prod(\lambda-\lambda_i)$</li>
-<li>$\lambda_i$是特征值</li>
-</ul>
-</li>
-<li>特征矩阵<ul>
-<li>$\lambda\pmb{E}-\pmb{A}$</li>
-</ul>
-</li>
-</ul>
-<h3 id="两个性质"><a href="#两个性质" class="headerlink" title="两个性质"></a>两个性质</h3><ul>
+<h3 id="两个性质">两个性质</h3>
+<ul>
 <li>特征值的和 = 矩阵的迹</li>
 <li>特征值的积 = 矩阵的行列式</li>
 </ul>
-<h3 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h3><ul>
-<li>具体矩阵：先利用特征多项式等于0解出特征值，再用特征方程解特征向量</li>
-<li>抽象矩阵：使用定义求解<ul>
-<li>结论：$\pmb{A}$的特征值是$\lambda$，则$f(\pmb{A})$的特征值一般是$f(\lambda)$，特征向量一般不变</li>
-<li>补充说明<ul>
-<li>具体计算需要按定义，该结论仅供验证结果</li>
-<li>如果$f$是多项式函数，该结论是正确的</li>
-<li>该结论一般不显式的提问，而是作为中间处理的一步，因此需要有主动使用的意识</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="证明两个矩阵特征值相等"><a href="#证明两个矩阵特征值相等" class="headerlink" title="证明两个矩阵特征值相等"></a>证明两个矩阵特征值相等</h3><p>思路包括</p>
+<h3 id="求解方法">求解方法</h3>
 <ul>
-<li>证明特征多项式相等<ul>
-<li>最常用的方法，等价条件</li>
+<li>具体矩阵：先利用特征多项式等于0解出特征值，再用特征方程解特征向量</li>
+<li>抽象矩阵：使用定义求解
+<ul>
+<li>结论：<span class="math inline">\(\pmb{A}\)</span>的特征值是<span class="math inline">\(\lambda\)</span>，则<span class="math inline">\(f(\pmb{A})\)</span>的特征值一般是<span class="math inline">\(f(\lambda)\)</span>，特征向量一般不变</li>
+<li>补充说明
+<ul>
+<li>具体计算需要按定义，该结论仅供验证结果</li>
+<li>如果<span class="math inline">\(f\)</span>是多项式函数，该结论是正确的</li>
+<li>该结论一般不显式的提问，而是作为中间处理的一步，因此需要有主动使用的意识</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>证明两个矩阵相似<ul>
-<li>是特征值相等的充分条件</li>
-</ul>
-</li>
-<li>按特征值定义证明<ul>
-<li>构造特征向量是一个难点</li>
-</ul>
-</li>
-</ul>
-<h2 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h2><ul>
-<li>定义：$\pmb{A}\sim \pmb{B}$即存在可逆矩阵$\pmb{P}$，使得$\pmb{A}\pmb{P}=\pmb{P}\pmb{B}$<ul>
-<li>相似变换指的是$\pmb{B}=\pmb{P}^{-1}\pmb{A}\pmb{P}$，$\pmb{P}$是可逆矩阵</li>
-</ul>
-</li>
+<h3 id="证明两个矩阵特征值相等">证明两个矩阵特征值相等</h3>
+<p>思路包括 + 证明特征多项式相等 * 最常用的方法，等价条件 +
+证明两个矩阵相似 * 是特征值相等的充分条件 + 按特征值定义证明 *
+构造特征向量是一个难点</p>
+<h2 id="相似矩阵">相似矩阵</h2>
+<ul>
+<li>定义：<span class="math inline">\(\pmb{A}\sim
+\pmb{B}\)</span>即存在可逆矩阵<span class="math inline">\(\pmb{P}\)</span>，使得<span class="math inline">\(\pmb{A}\pmb{P}=\pmb{P}\pmb{B}\)</span>
+<ul>
+<li>相似变换指的是<span class="math inline">\(\pmb{B}=\pmb{P}^{-1}\pmb{A}\pmb{P}\)</span>，<span class="math inline">\(\pmb{P}\)</span>是可逆矩阵</li>
+</ul></li>
 <li>必要条件：相似矩阵的特征值、特征多项式、秩相同</li>
 <li>相似关系是等价关系，有自反性、对称性、传递性</li>
 </ul>
-<h2 id="相似对角化"><a href="#相似对角化" class="headerlink" title="相似对角化"></a>相似对角化</h2><ul>
+<h2 id="相似对角化">相似对角化</h2>
+<ul>
 <li>相似对角化方法：详见第二章，矩阵的相似对角化分解</li>
 <li>对角化后的矩阵是原矩阵的相似标准形</li>
-<li>重要结论<ul>
-<li>不同特征值对应特征向量线性无关<ul>
+<li>重要结论
+<ul>
+<li>不同特征值对应特征向量线性无关
+<ul>
 <li>向量线性无关的定义 + 特征向量的定义即可证明</li>
-</ul>
-</li>
-<li>任一特征值的线性无关的特征向量个数<strong>小于等于</strong>该特征值的重数<ul>
+</ul></li>
+<li>任一特征值的线性无关的特征向量个数<strong>小于等于</strong>该特征值的重数
+<ul>
 <li>证明麻烦，建议记住</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="实对称矩阵的对角化"><a href="#实对称矩阵的对角化" class="headerlink" title="实对称矩阵的对角化"></a>实对称矩阵的对角化</h2><ul>
-<li>重要结论<ul>
-<li>实对称矩阵一定可以相似对角化<ul>
-<li>说明存在可逆矩阵$\pmb{P}$使得$\pmb{A}\pmb{P}=\pmb{P}\pmb{\Lambda}$</li>
-</ul>
-</li>
-<li>实对称矩阵不同特征值对应特征向量正交<ul>
-<li>说明存在正交矩阵$\pmb{Q}$使得$\pmb{A}\pmb{Q}=\pmb{Q}\pmb{\Lambda}$</li>
+<h2 id="实对称矩阵的对角化">实对称矩阵的对角化</h2>
+<ul>
+<li>重要结论
+<ul>
+<li>实对称矩阵一定可以相似对角化
+<ul>
+<li>说明存在可逆矩阵<span class="math inline">\(\pmb{P}\)</span>使得<span class="math inline">\(\pmb{A}\pmb{P}=\pmb{P}\pmb{\Lambda}\)</span></li>
+</ul></li>
+<li>实对称矩阵不同特征值对应特征向量正交
+<ul>
+<li>说明存在正交矩阵<span class="math inline">\(\pmb{Q}\)</span>使得<span class="math inline">\(\pmb{A}\pmb{Q}=\pmb{Q}\pmb{\Lambda}\)</span></li>
 <li>即实对称矩阵一定可以正交相似对角化</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>对角化步骤：同一般矩阵，核心是求特征值和特征向量，详见第二章，矩阵的相似对角化分解</li>
-<li>正交对角化步骤<ul>
+<li>正交对角化步骤
+<ul>
 <li>不同特征值的特征向量已经正交，只需要把同一个特征值的各特征向量正交化即可（正交化方法见第三章）</li>
 <li>把所有特征向量单位化，此时所有特征向量是标准正交列向量组，按特征值对应顺序组成正交矩阵</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="已知特征值特征向量反求矩阵"><a href="#已知特征值特征向量反求矩阵" class="headerlink" title="已知特征值特征向量反求矩阵"></a>已知特征值特征向量反求矩阵</h2><ul>
-<li>利用相似对角化的结论$\pmb{A}\pmb{P}=\pmb{P}\pmb{\Lambda}$<ul>
-<li>$\pmb{P}$可逆时，直接矩阵运算即可</li>
-<li>$\pmb{P}$不可逆时，转置等式两侧，相当于计算多个非齐次线性方程组</li>
-</ul>
-</li>
-<li>如果$\pmb{A}$是实对称矩阵，可以用正交矩阵来算，用转置运算代替较繁琐的求逆步骤</li>
+<h2 id="已知特征值特征向量反求矩阵">已知特征值特征向量反求矩阵</h2>
+<ul>
+<li>利用相似对角化的结论<span class="math inline">\(\pmb{A}\pmb{P}=\pmb{P}\pmb{\Lambda}\)</span>
+<ul>
+<li><span class="math inline">\(\pmb{P}\)</span>可逆时，直接矩阵运算即可</li>
+<li><span class="math inline">\(\pmb{P}\)</span>不可逆时，转置等式两侧，相当于计算多个非齐次线性方程组</li>
+</ul></li>
+<li>如果<span class="math inline">\(\pmb{A}\)</span>是实对称矩阵，可以用正交矩阵来算，用转置运算代替较繁琐的求逆步骤</li>
 </ul>
 
     </div>
@@ -509,7 +512,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

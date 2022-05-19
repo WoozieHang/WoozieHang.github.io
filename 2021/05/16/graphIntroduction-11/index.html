@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="边染色相关概念 边$k$染色 $E(G)\rightarrow \{1,2,\cdots,k\}$ $E_i$：色为$i$的边集   边正常$k$染色：相邻的边不同色 边$k$色可染的： 能找到一个边正常$k$染色 边色数： 边$k$色可染的最小$k$ 记作$\chi’$   只考虑无环图，可以有重边  边色数的性质和意义 $\Delta\leq \chi’ \leq \epsilon$ $\ch">
+  <meta name="description" content="边染色 相关概念  边\(k\)染色  \(E(G)\rightarrow \{1,2,\cdots,k\}\) \(E_i\)：色为\(i\)的边集  边正常\(k\)染色：相邻的边不同色 边\(k\)色可染的： 能找到一个边正常\(k\)染色 边色数：  边\(k\)色可染的最小\(k\) 记作\(\chi&#39;\)  只考虑无环图，可以有重边  边色">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 边染色、点染色和面染色">
 <meta property="og:url" content="https://wooziehang.github.io/2021/05/16/graphIntroduction-11/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="边染色相关概念 边$k$染色 $E(G)\rightarrow \{1,2,\cdots,k\}$ $E_i$：色为$i$的边集   边正常$k$染色：相邻的边不同色 边$k$色可染的： 能找到一个边正常$k$染色 边色数： 边$k$色可染的最小$k$ 记作$\chi’$   只考虑无环图，可以有重边  边色数的性质和意义 $\Delta\leq \chi’ \leq \epsilon$ $\ch">
+<meta property="og:description" content="边染色 相关概念  边\(k\)染色  \(E(G)\rightarrow \{1,2,\cdots,k\}\) \(E_i\)：色为\(i\)的边集  边正常\(k\)染色：相邻的边不同色 边\(k\)色可染的： 能找到一个边正常\(k\)染色 边色数：  边\(k\)色可染的最小\(k\) 记作\(\chi&#39;\)  只考虑无环图，可以有重边  边色">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-16T12:18:05.000Z">
 <meta property="article:modified_time" content="2021-05-27T05:38:35.386Z">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -276,124 +280,152 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="边染色"><a href="#边染色" class="headerlink" title="边染色"></a>边染色</h2><h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
-<li>边$k$染色<ul>
-<li>$E(G)\rightarrow \{1,2,\cdots,k\}$</li>
-<li>$E_i$：色为$i$的边集</li>
-</ul>
-</li>
-<li>边正常$k$染色：相邻的边不同色</li>
-<li>边$k$色可染的： 能找到一个边正常$k$染色</li>
-<li>边色数：<ul>
-<li>边$k$色可染的最小$k$</li>
-<li>记作$\chi’$</li>
-</ul>
-</li>
+        <h2 id="边染色">边染色</h2>
+<h3 id="相关概念">相关概念</h3>
+<ul>
+<li>边<span class="math inline">\(k\)</span>染色
+<ul>
+<li><span class="math inline">\(E(G)\rightarrow
+\{1,2,\cdots,k\}\)</span></li>
+<li><span class="math inline">\(E_i\)</span>：色为<span class="math inline">\(i\)</span>的边集</li>
+</ul></li>
+<li>边正常<span class="math inline">\(k\)</span>染色：相邻的边不同色</li>
+<li>边<span class="math inline">\(k\)</span>色可染的：
+能找到一个边正常<span class="math inline">\(k\)</span>染色</li>
+<li>边色数：
+<ul>
+<li>边<span class="math inline">\(k\)</span>色可染的最小<span class="math inline">\(k\)</span></li>
+<li>记作<span class="math inline">\(\chi&#39;\)</span></li>
+</ul></li>
 <li>只考虑无环图，可以有重边</li>
 </ul>
-<h3 id="边色数的性质和意义"><a href="#边色数的性质和意义" class="headerlink" title="边色数的性质和意义"></a>边色数的性质和意义</h3><ul>
-<li>$\Delta\leq \chi’ \leq \epsilon$</li>
-<li>$\chi’$和匹配的联系：<ul>
-<li>$E(G)$至少要被划分成$\chi’(G)$个匹配</li>
-<li>如果$E(G)$能被划分为$m$个匹配，则$\chi’(G)\leq m$</li>
+<h3 id="边色数的性质和意义">边色数的性质和意义</h3>
+<ul>
+<li><span class="math inline">\(\Delta\leq \chi&#39; \leq
+\epsilon\)</span></li>
+<li><span class="math inline">\(\chi&#39;\)</span>和匹配的联系：
+<ul>
+<li><span class="math inline">\(E(G)\)</span>至少要被划分成<span class="math inline">\(\chi&#39;(G)\)</span>个匹配</li>
+<li>如果<span class="math inline">\(E(G)\)</span>能被划分为<span class="math inline">\(m\)</span>个匹配，则<span class="math inline">\(\chi&#39;(G)\leq m\)</span></li>
+</ul></li>
 </ul>
-</li>
+<h3 id="最佳边k染色">最佳边k染色</h3>
+<ul>
+<li>对于边<span class="math inline">\(k\)</span>染色<span class="math inline">\(c\)</span>，用<span class="math inline">\(c(v)\)</span>表示顶点<span class="math inline">\(v\)</span>出现的色数</li>
+<li>若<span class="math inline">\(\sum c&#39;(v)&gt;\sum
+c(v)\)</span>，则称<span class="math inline">\(c&#39;\)</span>是<span class="math inline">\(c\)</span>的一个改进</li>
+<li>不能改进的边<span class="math inline">\(k\)</span>染色称作最佳边<span class="math inline">\(k\)</span>染色（未必是边正常<span class="math inline">\(k\)</span>染色）</li>
 </ul>
-<h3 id="最佳边k染色"><a href="#最佳边k染色" class="headerlink" title="最佳边k染色"></a>最佳边k染色</h3><ul>
-<li>对于边$k$染色$c$，用$c(v)$表示顶点$v$出现的色数</li>
-<li>若$\sum c’(v)&gt;\sum c(v)$，则称$c’$是$c$的一个改进</li>
-<li>不能改进的边$k$染色称作最佳边$k$染色（未必是边正常$k$染色）</li>
+<h3 id="vizing定理">Vizing定理</h3>
+<p>对于简单图<span class="math inline">\(G\)</span>，<span class="math inline">\(\Delta\leq \chi&#39;\leq \Delta+1\)</span></p>
+<h3 id="简单图的分类">简单图的分类</h3>
+<ul>
+<li>第一类图：<span class="math inline">\(\chi&#39;=\Delta\)</span></li>
+<li>第二类图：<span class="math inline">\(\chi&#39;=\Delta+1\)</span></li>
 </ul>
-<h3 id="Vizing定理"><a href="#Vizing定理" class="headerlink" title="Vizing定理"></a>Vizing定理</h3><p>对于简单图$G$，$\Delta\leq \chi’\leq \Delta+1$</p>
-<h3 id="简单图的分类"><a href="#简单图的分类" class="headerlink" title="简单图的分类"></a>简单图的分类</h3><ul>
-<li>第一类图：$\chi’=\Delta$</li>
-<li>第二类图：$\chi’=\Delta+1$</li>
-</ul>
-<h3 id="二部图的边色数"><a href="#二部图的边色数" class="headerlink" title="二部图的边色数"></a>二部图的边色数</h3><ul>
-<li>对于二部图$G$，$\chi’=\Delta$</li>
-<li>二部图的边正常$\Delta$染色算法<ul>
-<li>$k$正则二部图有$k$个边不重的完美匹配</li>
-<li>算法思路<ul>
-<li>将二部图扩展成$\Delta$正则二部图</li>
+<h3 id="二部图的边色数">二部图的边色数</h3>
+<ul>
+<li>对于二部图<span class="math inline">\(G\)</span>，<span class="math inline">\(\chi&#39;=\Delta\)</span></li>
+<li>二部图的边正常<span class="math inline">\(\Delta\)</span>染色算法
+<ul>
+<li><span class="math inline">\(k\)</span>正则二部图有<span class="math inline">\(k\)</span>个边不重的完美匹配</li>
+<li>算法思路
+<ul>
+<li>将二部图扩展成<span class="math inline">\(\Delta\)</span>正则二部图</li>
 <li>反复的求最大匹配，即完美匹配，染色后从图中删去</li>
 <li>忽略添加的顶点和边</li>
+</ul></li>
+<li>二部图边染色复杂度：目前最快的算法是<span class="math inline">\(O(mlog\Delta)\)</span>；</li>
+<li>一般简单图的边染色：多项式时间内可以做到<span class="math inline">\(\Delta+1\)</span>染色</li>
+</ul></li>
 </ul>
-</li>
-<li>二部图边染色复杂度：目前最快的算法是$O(mlog\Delta)$；</li>
-<li>一般简单图的边染色：多项式时间内可以做到$\Delta+1$染色</li>
+<h2 id="点染色">点染色</h2>
+<h3 id="相关概念-1">相关概念</h3>
+<ul>
+<li><span class="math inline">\(k\)</span>染色
+<ul>
+<li><span class="math inline">\(V(G)\rightarrow
+\{1,2,\cdots,k\}\)</span></li>
+<li><span class="math inline">\(V_i\)</span>：色为<span class="math inline">\(i\)</span>的顶点集</li>
+</ul></li>
+<li>正常<span class="math inline">\(k\)</span>染色：相邻的顶点不同色</li>
+<li><span class="math inline">\(k\)</span>色可染的： 能找到一个正常<span class="math inline">\(k\)</span>染色</li>
+<li>色数：
+<ul>
+<li><span class="math inline">\(k\)</span>色可染的最小<span class="math inline">\(k\)</span></li>
+<li>记作<span class="math inline">\(\chi\)</span></li>
+</ul></li>
 </ul>
-</li>
+<h3 id="色数的性质和意义">色数的性质和意义</h3>
+<ul>
+<li><span class="math inline">\(\chi \leq v\)</span></li>
+<li><span class="math inline">\(\chi\)</span>和点独立集的联系：
+<ul>
+<li><span class="math inline">\(v(G)\)</span>至少要被划分成<span class="math inline">\(\chi(G)\)</span>个点独立集</li>
+<li>如果<span class="math inline">\(V(G)\)</span>能被划分为<span class="math inline">\(m\)</span>个点独立集，则<span class="math inline">\(\chi(G)\leq m\)</span></li>
+</ul></li>
 </ul>
-<h2 id="点染色"><a href="#点染色" class="headerlink" title="点染色"></a>点染色</h2><h3 id="相关概念-1"><a href="#相关概念-1" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
-<li>$k$染色<ul>
-<li>$V(G)\rightarrow \{1,2,\cdots,k\}$</li>
-<li>$V_i$：色为$i$的顶点集</li>
-</ul>
-</li>
-<li>正常$k$染色：相邻的顶点不同色</li>
-<li>$k$色可染的： 能找到一个正常$k$染色</li>
-<li>色数：<ul>
-<li>$k$色可染的最小$k$</li>
-<li>记作$\chi$</li>
-</ul>
-</li>
-</ul>
-<h3 id="色数的性质和意义"><a href="#色数的性质和意义" class="headerlink" title="色数的性质和意义"></a>色数的性质和意义</h3><ul>
-<li>$\chi \leq v$</li>
-<li>$\chi$和点独立集的联系：<ul>
-<li>$v(G)$至少要被划分成$\chi(G)$个点独立集</li>
-<li>如果$V(G)$能被划分为$m$个点独立集，则$\chi(G)\leq m$</li>
-</ul>
-</li>
-</ul>
-<h3 id="色临界图及其性质"><a href="#色临界图及其性质" class="headerlink" title="色临界图及其性质"></a>色临界图及其性质</h3><ul>
-<li>$k$临界的：$\chi=k$的极小图</li>
-<li>$k$色图一定包含一个$k$临界子图</li>
+<h3 id="色临界图及其性质">色临界图及其性质</h3>
+<ul>
+<li><span class="math inline">\(k\)</span>临界的：<span class="math inline">\(\chi=k\)</span>的极小图</li>
+<li><span class="math inline">\(k\)</span>色图一定包含一个<span class="math inline">\(k\)</span>临界子图</li>
 <li>色临界图一定是连通的简单图</li>
-<li>对于$k$临界图$G$中的任一顶点$v$，能找到一个正常$k$染色使得$v$的色独一无二且与其他$k-1$种色都相邻</li>
-<li>$k$临界图满足$\Delta\geq k-1$</li>
-<li>对于$k$临界图$G$中的任一边$e$，$G-e$的任一正常$k-1$染色都使得$e$的两个端点同色</li>
+<li>对于<span class="math inline">\(k\)</span>临界图<span class="math inline">\(G\)</span>中的任一顶点<span class="math inline">\(v\)</span>，能找到一个正常<span class="math inline">\(k\)</span>染色使得<span class="math inline">\(v\)</span>的色独一无二且与其他<span class="math inline">\(k-1\)</span>种色都相邻</li>
+<li><span class="math inline">\(k\)</span>临界图满足<span class="math inline">\(\Delta\geq k-1\)</span></li>
+<li>对于<span class="math inline">\(k\)</span>临界图<span class="math inline">\(G\)</span>中的任一边<span class="math inline">\(e\)</span>，<span class="math inline">\(G-e\)</span>的任一正常<span class="math inline">\(k-1\)</span>染色都使得<span class="math inline">\(e\)</span>的两个端点同色</li>
 <li>色临界图的点割集不是团（两两相邻的顶点子集）</li>
 <li>每个色临界图都是块（无割点的连通图）</li>
-<li>色临界图若有2-点割集$\{u,v\}$，则$u$和$v$不相邻</li>
+<li>色临界图若有2-点割集<span class="math inline">\(\{u,v\}\)</span>，则<span class="math inline">\(u\)</span>和<span class="math inline">\(v\)</span>不相邻</li>
 </ul>
-<h3 id="色数的界和正常染色算法"><a href="#色数的界和正常染色算法" class="headerlink" title="色数的界和正常染色算法"></a>色数的界和正常染色算法</h3><h4 id="贪心算法一"><a href="#贪心算法一" class="headerlink" title="贪心算法一"></a>贪心算法一</h4><ul>
-<li>假设可以染的色为$1,2,\cdots$</li>
-<li>对于顶点$v_1,v_2,\cdots,v_n$按任意序染色，总选择不冲突的下标最小的色</li>
-<li>最多需要$\Delta+1$种颜色</li>
-<li>$\chi\leq \Delta+1$</li>
+<h3 id="色数的界和正常染色算法">色数的界和正常染色算法</h3>
+<h4 id="贪心算法一">贪心算法一</h4>
+<ul>
+<li>假设可以染的色为<span class="math inline">\(1,2,\cdots\)</span></li>
+<li>对于顶点<span class="math inline">\(v_1,v_2,\cdots,v_n\)</span>按任意序染色，总选择不冲突的下标最小的色</li>
+<li>最多需要<span class="math inline">\(\Delta+1\)</span>种颜色</li>
+<li><span class="math inline">\(\chi\leq \Delta+1\)</span></li>
 </ul>
-<h4 id="贪心算法二"><a href="#贪心算法二" class="headerlink" title="贪心算法二"></a>贪心算法二</h4><ul>
-<li>假设可以染的色为$1,2,\cdots$</li>
-<li>对于顶点$v_1,v_2,\cdots,v_n$按度降序染色，总选择不冲突的下标最小的色</li>
-<li>$\chi\leq \max_i\min\{d(v_i)+1,i\}=1+\max_i\min\{d(v_i),i-1\}\leq \Delta+1$</li>
-<li>初期$i$较小，后期$d(v_i)$较小，因此总体较小</li>
+<h4 id="贪心算法二">贪心算法二</h4>
+<ul>
+<li>假设可以染的色为<span class="math inline">\(1,2,\cdots\)</span></li>
+<li>对于顶点<span class="math inline">\(v_1,v_2,\cdots,v_n\)</span>按度降序染色，总选择不冲突的下标最小的色</li>
+<li><span class="math inline">\(\chi\leq
+\max_i\min\{d(v_i)+1,i\}=1+\max_i\min\{d(v_i),i-1\}\leq
+\Delta+1\)</span></li>
+<li>初期<span class="math inline">\(i\)</span>较小，后期<span class="math inline">\(d(v_i)\)</span>较小，因此总体较小</li>
 </ul>
-<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>除完全图和奇圈以外的连通简单图$G$满足$\chi\leq \Delta$</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
-<li>对于$k&gt;2$，判断一个图是否$k$色可染是NP-完全问题</li>
-<li>一般意义上的求色数更是$NP-hard$问题</li>
+<h4 id="定理">定理</h4>
+<p>除完全图和奇圈以外的连通简单图<span class="math inline">\(G\)</span>满足<span class="math inline">\(\chi\leq
+\Delta\)</span></p>
+<h4 id="其他">其他</h4>
+<ul>
+<li>对于<span class="math inline">\(k&gt;2\)</span>，判断一个图是否<span class="math inline">\(k\)</span>色可染是NP-完全问题</li>
+<li>一般意义上的求色数更是<span class="math inline">\(NP-hard\)</span>问题</li>
 <li>找到一个近似比为常数的近似算法同样困难</li>
 </ul>
-<h2 id="面染色"><a href="#面染色" class="headerlink" title="面染色"></a>面染色</h2><h3 id="相关概念-2"><a href="#相关概念-2" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
-<li>面$k$染色</li>
-<li>面正常$k$染色：边界有公共边的面不同色</li>
-<li>面$k$色可染的</li>
+<h2 id="面染色">面染色</h2>
+<h3 id="相关概念-2">相关概念</h3>
+<ul>
+<li>面<span class="math inline">\(k\)</span>染色</li>
+<li>面正常<span class="math inline">\(k\)</span>染色：边界有公共边的面不同色</li>
+<li>面<span class="math inline">\(k\)</span>色可染的</li>
 <li>面色数</li>
 </ul>
-<h3 id="五色定理"><a href="#五色定理" class="headerlink" title="五色定理"></a>五色定理</h3><ul>
-<li>定理：对于任何平面图$G$,$\chi(G)\leq 5$</li>
+<h3 id="五色定理">五色定理</h3>
+<ul>
+<li>定理：对于任何平面图<span class="math inline">\(G\)</span>,<span class="math inline">\(\chi(G)\leq 5\)</span></li>
 <li>推论：由对偶图都是平面图，故平面图一定是面5色可染的</li>
 </ul>
-<h3 id="四色猜想"><a href="#四色猜想" class="headerlink" title="四色猜想"></a>四色猜想</h3><ul>
-<li>猜想：对任何平面图$G$，$\chi(G)\leq 4$</li>
+<h3 id="四色猜想">四色猜想</h3>
+<ul>
+<li>猜想：对任何平面图<span class="math inline">\(G\)</span>，<span class="math inline">\(\chi(G)\leq 4\)</span></li>
 <li>三角剖分平面图：每个面的度数都为3的简单平面图</li>
 <li>构形：每个内部面的度数都为3的简单平面图</li>
-<li>极小反例：<ul>
-<li>$\chi&gt;4$的简单平面图中阶最小的一个</li>
+<li>极小反例：
+<ul>
+<li><span class="math inline">\(\chi&gt;4\)</span>的简单平面图中阶最小的一个</li>
 <li>不失一般性，设其为三角剖分平面图，如果不是也可以加边使之成为三角剖分平面图，且还是极小反例。</li>
-</ul>
-</li>
+</ul></li>
 <li>不可免集：构形的集合，任何一个极小反例至少包含其中一个构形</li>
 <li>如果找到一个不可免集，其中每个构形都不可能出现在极小反例中，称作可约的，则出现了矛盾，因此极小反例不存在，四色猜想得证。</li>
 </ul>
@@ -496,7 +528,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E6%9F%93%E8%89%B2"><span class="nav-number">1.</span> <span class="nav-text">边染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%89%B2%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">边色数的性质和意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E8%BE%B9k%E6%9F%93%E8%89%B2"><span class="nav-number">1.3.</span> <span class="nav-text">最佳边k染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vizing%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">Vizing定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%9B%BE%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">简单图的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%83%A8%E5%9B%BE%E7%9A%84%E8%BE%B9%E8%89%B2%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">二部图的边色数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%B9%E6%9F%93%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">点染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-1"><span class="nav-number">2.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">色数的性质和意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E4%B8%B4%E7%95%8C%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">2.3.</span> <span class="nav-text">色临界图及其性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%95%B0%E7%9A%84%E7%95%8C%E5%92%8C%E6%AD%A3%E5%B8%B8%E6%9F%93%E8%89%B2%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">色数的界和正常染色算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%80"><span class="nav-number">2.4.1.</span> <span class="nav-text">贪心算法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%BA%8C"><span class="nav-number">2.4.2.</span> <span class="nav-text">贪心算法二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">2.4.3.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">2.4.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E6%9F%93%E8%89%B2"><span class="nav-number">3.</span> <span class="nav-text">面染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-2"><span class="nav-number">3.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E8%89%B2%E5%AE%9A%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">五色定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E8%89%B2%E7%8C%9C%E6%83%B3"><span class="nav-number">3.3.</span> <span class="nav-text">四色猜想</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E6%9F%93%E8%89%B2"><span class="nav-number">1.</span> <span class="nav-text">边染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%89%B2%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">边色数的性质和意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E8%BE%B9k%E6%9F%93%E8%89%B2"><span class="nav-number">1.3.</span> <span class="nav-text">最佳边k染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vizing%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">Vizing定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%9B%BE%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">简单图的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%83%A8%E5%9B%BE%E7%9A%84%E8%BE%B9%E8%89%B2%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">二部图的边色数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%B9%E6%9F%93%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">点染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-1"><span class="nav-number">2.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">色数的性质和意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E4%B8%B4%E7%95%8C%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">2.3.</span> <span class="nav-text">色临界图及其性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E6%95%B0%E7%9A%84%E7%95%8C%E5%92%8C%E6%AD%A3%E5%B8%B8%E6%9F%93%E8%89%B2%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">色数的界和正常染色算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B8%80"><span class="nav-number">2.4.1.</span> <span class="nav-text">贪心算法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%BA%8C"><span class="nav-number">2.4.2.</span> <span class="nav-text">贪心算法二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">2.4.3.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">2.4.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E6%9F%93%E8%89%B2"><span class="nav-number">3.</span> <span class="nav-text">面染色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-2"><span class="nav-number">3.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E8%89%B2%E5%AE%9A%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">五色定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E8%89%B2%E7%8C%9C%E6%83%B3"><span class="nav-number">3.3.</span> <span class="nav-text">四色猜想</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -512,7 +544,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

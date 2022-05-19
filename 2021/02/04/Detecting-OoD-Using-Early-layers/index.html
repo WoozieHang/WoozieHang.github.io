@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Abstract作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。 IntroductionDNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在分类这件人类经常接触的问题上性能远超于人。 DNN在I.I">
+  <meta name="description" content="Abstract 作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。 Introduction DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在分类这件人类经常接触的问题上性能远超于人。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【阅读笔记】 Detecting Out-of-Distribution Inputs in Deep Neural Networks Using an Early-Layer Output">
 <meta property="og:url" content="https://wooziehang.github.io/2021/02/04/Detecting-OoD-Using-Early-layers/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="Abstract作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。 IntroductionDNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在分类这件人类经常接触的问题上性能远超于人。 DNN在I.I">
+<meta property="og:description" content="Abstract 作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。 Introduction DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在分类这件人类经常接触的问题上性能远超于人。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/04/Detecting-OoD-Using-Early-layers/algo1.jpg">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared1.jpg">
@@ -82,7 +82,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -281,93 +285,134 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state of art)方法比较，有出色的结果。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在<strong>分类</strong>这件人类经常接触的问题上性能远超于人。</p>
-<p>DNN在I.I.D假设下工作良好，但遇到OoD样本时往往过分自信（给出偏高的分类置信度），这阻碍了在安全要求很高的系统中DNN的可采用性。例如，训练集中没有自行车，但汽车的分类器会错分类骑自行车的人。因此分类器需要加强分辨ID和OoD的机制。以往的论文中也提到了类似地检测不同域的样本的方法，例如outlier and novelty detection。</p>
-<p>作者接着介绍了常见的一些OoD检测方法。首先是Hendrycks和Gimpel提出的基于max-softmax的baseline。这个方法引入了阈值去辨别OoD(max-softmax低于阈值就认为是OoD)。这个方法对深度模型没有任何假设且没有使用OoD的数据进行训练。它可直接对训练好的模型使用，但是它的性能不是特别令人满意。其他的方法性能比max-softmax好，但它们有的限制了深度模型的结构；有的给定了深度特征的分布假设；有的不能应用于已经训练好的模型；有的需要OoD的训练样本去提高性能…在以上背景下，作者认为，没有上述的种种限制并且比max-softmax的性能更好依然是一个挑战。在本篇文章中，作者致力于提出一种检测手段，不需要重新训练网络，也不限制网络的结构。</p>
+        <h2 id="abstract">Abstract</h2>
+<p>作者在本文提出了一种新的OoD检测方法，不需要OoD的训练样本。检测器是一个单分类器，用原始网络的前几层的输出结果训练的。测试时使用的高维和低维的测试集，和其他先进的(state
+of art)方法比较，有出色的结果。</p>
+<h2 id="introduction">Introduction</h2>
+<p>DNN在现代软工中是不可或缺的部分，如自动驾驶、物联网、医疗等领域。深度神经网络在<strong>分类</strong>这件人类经常接触的问题上性能远超于人。</p>
+<p>DNN在I.I.D假设下工作良好，但遇到OoD样本时往往过分自信（给出偏高的分类置信度），这阻碍了在安全要求很高的系统中DNN的可采用性。例如，训练集中没有自行车，但汽车的分类器会错分类骑自行车的人。因此分类器需要加强分辨ID和OoD的机制。以往的论文中也提到了类似地检测不同域的样本的方法，例如outlier
+and novelty detection。</p>
+<p>作者接着介绍了常见的一些OoD检测方法。首先是Hendrycks和Gimpel提出的基于max-softmax的baseline。这个方法引入了阈值去辨别OoD(max-softmax低于阈值就认为是OoD)。这个方法对深度模型没有任何假设且没有使用OoD的数据进行训练。它可直接对训练好的模型使用，但是它的性能不是特别令人满意。其他的方法性能比max-softmax好，但它们有的限制了深度模型的结构；有的给定了深度特征的分布假设；有的不能应用于已经训练好的模型；有的需要OoD的训练样本去提高性能...在以上背景下，作者认为，没有上述的种种限制并且比max-softmax的性能更好依然是一个挑战。在本篇文章中，作者致力于提出一种检测手段，不需要重新训练网络，也不限制网络的结构。</p>
 <p>现有的一些方法本质上都依赖于深度神经网络的倒数第二层。这一层的特征对于ID自身的分类非常重要,但是用于OoD检测还是比较困难,作者用图片可视化的方法证明了区分的困难性。随后作者提出了本文的方法：不基于softmax层，性能不亚于现有的先进方法，且不需要OoD数据来训练模型也不需要重训练网络。作者主要的观点是：<strong>假设存在一个潜在的空间可以将ID和OoD区分开，并且变换到这个空间的函数可以由网络的某一层良好估计。</strong>这个观点使得基于此空间特征的检测器是可以学习的。在此指导下，作者训练了第二个模型作为检测器，应用于低纬度和高维度的数据集并将其和baseline、先进的方法比较，结果在多个指标上有显著改进。</p>
 <p>文章接下来几个部分，分别介绍了相关工作、作者的方法（如何检测OoD以及如何找到合适的潜在空间）、实验结果、实验结论和未来工作的建议方向。</p>
-<h2 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h2><p>首先是max-softmax的这个baseline，简单易用但是性能不理想。</p>
-<p>然后是在此基础上改进的ODIN的方法。加入了两个额外的组成：temperature scaling和input preprocessing。temperature是用来校准softmax的值，input preprocessing用来提高ID的maximum的值。这个方法需要OoD的样本。但是实际操作时无法获得全面的OoD样本，并且Input preprocessing也会引入额外的训练时间开销（两次正向和一次反向传播）。</p>
+<h2 id="related-work">Related work</h2>
+<p>首先是max-softmax的这个baseline，简单易用但是性能不理想。</p>
+<p>然后是在此基础上改进的ODIN的方法。加入了两个额外的组成：temperature
+scaling和input preprocessing。temperature是用来校准softmax的值，input
+preprocessing用来提高ID的maximum的值。这个方法需要OoD的样本。但是实际操作时无法获得全面的OoD样本，并且Input
+preprocessing也会引入额外的训练时间开销（两次正向和一次反向传播）。</p>
 <p>在ODIN的基础上进行改进，比如Lee的方法。使得深度网络分类器输出对于OoD是接近均匀分布的。这个主要的思想是训练一个分类器和一个生成器，生成器在数据流行的边界产生OoD样本，分类器则用一个特殊设计的损失函数训练：对于生成器生成的OoD更容易得到均匀分布的结果。这个方法需要昂贵的重训练开销，并且需要假设OoD的数据遍布整个数据流行的边界，但这对于高维数据是很难的。</p>
-<p>接着作者介绍了其他人的方法。比如，DeVries and Taylor的方法：利用不确定性来检测OoD，即训练一个分类器输出uncertainty这个指标。Shalev, Adi, and Keshet&amp;Vyas的方法：使用集成计算置信度估计。这些方法和Lee的方法一样不能直接用在训练好的原网络模型。</p>
-<p>MC-dropout的方法也可以度量模型的不确定性，依靠多重推理计算不确定性可能并不实用。而且只能被用于有dropout层的网络模型中。此后，Geifman and EL-Yaniv使用这个方法刻画风险-覆盖曲线来对已经训练好的模型检测OoD,并且指出性能和max-softmax相似。基于不确定性的方法非常适合检测模型训练的类的边界上的混乱输入。对于非常远离ID的数据，uncertainty-based的方法的性能不好。</p>
-<p>使用生成式的模型也是另一个检测OoD输入的重要方法。这些方法要么依赖于重建误差(reconstruction error)，要么依赖于潜在表征的密度估计，或者是依赖于两者的结合。这些方法有一些不足，比如对于某些OoD数据会给出较高的ID可能性。并且，生成式模型很难在高维度的数据上进行拓展应用。</p>
+<p>接着作者介绍了其他人的方法。比如，DeVries and
+Taylor的方法：利用不确定性来检测OoD，即训练一个分类器输出uncertainty这个指标。Shalev,
+Adi, and
+Keshet&amp;Vyas的方法：使用集成计算置信度估计。这些方法和Lee的方法一样不能直接用在训练好的原网络模型。</p>
+<p>MC-dropout的方法也可以度量模型的不确定性，依靠多重推理计算不确定性可能并不实用。而且只能被用于有dropout层的网络模型中。此后，Geifman
+and
+EL-Yaniv使用这个方法刻画风险-覆盖曲线来对已经训练好的模型检测OoD,并且指出性能和max-softmax相似。基于不确定性的方法非常适合检测模型训练的类的边界上的混乱输入。对于非常远离ID的数据，uncertainty-based的方法的性能不好。</p>
+<p>使用生成式的模型也是另一个检测OoD输入的重要方法。这些方法要么依赖于重建误差(reconstruction
+error)，要么依赖于潜在表征的密度估计，或者是依赖于两者的结合。这些方法有一些不足，比如对于某些OoD数据会给出较高的ID可能性。并且，生成式模型很难在高维度的数据上进行拓展应用。</p>
 <p>Lee等人此后提出了一种方法，基于高斯判别分析得到每个类的条件高斯分布。这产生了一个基于马氏距离的置信度来检测OoD输入。他们提出了两种方法:a):logits层前一层特征的马氏距离;b):各层马氏距离的集成模型。前者和他们之前的ODIN的方法性能差不多，后者用OoD数据对每个OoD数据集训练了一个回归模型。事实上，几个OoD的数据集就需要训练几个回归模型，这是他们第二个方法的主要的局限性。Lee还使用了对抗样本来训练回归模型，这导致检测性能的降低。此外，a和b方法中，每个类的特征的分布必须假设满足多元高斯分布，但这个假设是没有理论保证的。</p>
-<p>接下来，作者准备介绍本文的方法，和Lee的方法有些类似：都用到了深度模型学习到的特征，但有几个重要的地方是不同的：</p>
-<ul>
-<li>没有用到logits层的特征，因为此前已经说明这一层不适合用来区分OoD和ID；</li>
-<li>不需要OoD的样本和对抗样本，但测试对所有的OoD数据集都适用;</li>
-<li>本方法找到合适的特征空间来区分OoD和ID,因此不需要依赖集成。</li>
-<li>不需要假设特征满足多元高斯分布</li>
-</ul>
-<h2 id="Proposed-solution"><a href="#Proposed-solution" class="headerlink" title="Proposed solution"></a>Proposed solution</h2><p>这个部分，作者介绍了他们方法的基本元素，包括对于一个具体的潜在空间检测的性能如何，如何发现这样的潜在空间、如何用输入预处理的方式加强结果等。</p>
-<h3 id="OoD-detection"><a href="#OoD-detection" class="headerlink" title="OoD detection"></a>OoD detection</h3><p>先给定如下假设：</p>
-<ul>
-<li>$Q:R^n \to [0,1]^c$ : 深度网络</li>
-<li>$x \in R^n$ : 输入</li>
-<li>$c$ : 类别的数量</li>
-<li>$Q_i$ : 网络对第i个类的概率输出</li>
-<li>$X = \{x_1,…,x_m\}$ : 训练集</li>
-<li>$L$ : 网络层数</li>
-<li>$q^l$ : 第$l$层的输出($q^0 = x$)，即前$l$层非线性变换到隐空间的结果。每一层都提取了关于输入的特征，例如最后一层的特征对区分ID内部的分类很重要。</li>
-<li>存在一个适合区分ID和OoD的隐空间，由某层特征输出表示的 :<em>optimal OoD discernment layer（OODL）</em></li>
-<li>$l_o$ : OODL层</li>
-<li>$Q^{l_o}$ : 第$l_o$层的概率输出</li>
-<li>$S^{l_o}$ : 基于特征$Q^{l_o}$训练的区分ID和OoD的分类器。</li>
-</ul>
-<p>为了不用OoD数据进行训练，分类设定为单分类问题(One Class Classification)。现有的许多单分类方法都可以使用，本文中作者使用的是One-class SVM。OoD检测机制是<br>\begin{equation}<br>O_{l_o}(x;\delta)=<br>\begin{cases}<br>0&amp; \delta \geq S^{l_o}(q^{l_o}(x)) \\<br>1&amp; \text{otherwise}<br>\end{cases}<br>\end{equation}<br>其中$O_{l_o}$是检测函数，基于OODL $l_o$的特征和阈值$\delta$。作者提到，如果$l_o$是卷积层，那么$q^{l_o}$会非常高维，不利用OSVM的效果，因此计算每个频道的均值用于降维。即假设$f^{l_o} \in R^{w\times h\times d}$是卷积层$l_o$的特征，$w$, $h$, $d$是宽、高、深度。$f^{l_o}_{ijk}$是特征$f^{l_o}$的第($i$, $j$, $k$)个元素，那么降维后的特征$q^{l_o}=(q^{l_o}_k \in R^d)$由下式得到：<br>\begin{equation}<br>q^{l_o}_k=\frac{1}{w\times h}\sum_{i=1}^{w}\sum_{j=1}^{h}|f^{l_o}_{ijk}|<br>\end{equation}<br>作者提到，传统OCC方法例如OCSVM在高维数据性能不佳，在本文的方法中，提到了OODL，允许方法在高维数据上良好工作。另一个好处是可以利用训练好的原网络模型，这比抓取ID数据重训练一个OCC模型更有效。（注：个人理解是原神经网络起到一个特征提取的作用，当然比用原始ID更有效）。作者提到这是以往没有用过的OoD检测方法。</p>
-<h3 id="Finding-optimal-OoD-discernment-layer-OODL"><a href="#Finding-optimal-OoD-discernment-layer-OODL" class="headerlink" title="Finding optimal OoD discernment layer (OODL)"></a>Finding optimal OoD discernment layer (OODL)</h3><p>首先，需要找到网络$Q$的OODL。作者提到，需要度量基于公式1的检测的误差，误差最小的层就是OODL。下面是具体的算法。<br><img src="/2021/02/04/Detecting-OoD-Using-Early-layers/algo1.jpg" class title="this is algo1"><br>使用OoD数据集去寻找OODL会有一个问题，那就是这个层偏向于区分所选的OoD数据集所具有的特征。接着，作者用实验表明，对于不同的OoD Dataset，在同一个网络和ID的情况下，最后选取的OODL基本一致；同时，网络模型的选取和ID的选取对OODL的结果影响比较大。<br>实验配置和结果的情况为:</p>
-<ul>
-<li>用CIFAR-10 作为ID dataset</li>
-<li>用ResNet model作为网络模型</li>
-<li>横坐标是层，纵坐标是检测误差</li>
-<li>验证的OoD dataset分别为TinyImageNet、LSUN、ISUN、SVHN</li>
-<li>结果是，四个OODL都选在第13层（这一层的检测误差最小）。</li>
-</ul>
+<p>接下来，作者准备介绍本文的方法，和Lee的方法有些类似：都用到了深度模型学习到的特征，但有几个重要的地方是不同的：
++ 没有用到logits层的特征，因为此前已经说明这一层不适合用来区分OoD和ID；
++ 不需要OoD的样本和对抗样本，但测试对所有的OoD数据集都适用; +
+本方法找到合适的特征空间来区分OoD和ID,因此不需要依赖集成。 +
+不需要假设特征满足多元高斯分布</p>
+<h2 id="proposed-solution">Proposed solution</h2>
+<p>这个部分，作者介绍了他们方法的基本元素，包括对于一个具体的潜在空间检测的性能如何，如何发现这样的潜在空间、如何用输入预处理的方式加强结果等。</p>
+<h3 id="ood-detection">OoD detection</h3>
+<p>先给定如下假设： + <span class="math inline">\(Q:R^n \to
+[0,1]^c\)</span> : 深度网络 + <span class="math inline">\(x \in
+R^n\)</span> : 输入 + <span class="math inline">\(c\)</span> :
+类别的数量 + <span class="math inline">\(Q_i\)</span> :
+网络对第i个类的概率输出 + <span class="math inline">\(X =
+\{x_1,...,x_m\}\)</span> : 训练集 + <span class="math inline">\(L\)</span> : 网络层数 + <span class="math inline">\(q^l\)</span> : 第<span class="math inline">\(l\)</span>层的输出(<span class="math inline">\(q^0
+= x\)</span>)，即前<span class="math inline">\(l\)</span>层非线性变换到隐空间的结果。每一层都提取了关于输入的特征，例如最后一层的特征对区分ID内部的分类很重要。
++ 存在一个适合区分ID和OoD的隐空间，由某层特征输出表示的 :<em>optimal OoD
+discernment layer（OODL）</em> + <span class="math inline">\(l_o\)</span> : OODL层 + <span class="math inline">\(Q^{l_o}\)</span> : 第<span class="math inline">\(l_o\)</span>层的概率输出 + <span class="math inline">\(S^{l_o}\)</span> : 基于特征<span class="math inline">\(Q^{l_o}\)</span>训练的区分ID和OoD的分类器。</p>
+<p>为了不用OoD数据进行训练，分类设定为单分类问题(One Class
+Classification)。现有的许多单分类方法都可以使用，本文中作者使用的是One-class
+SVM。OoD检测机制是 <span class="math display">\[\begin{equation}
+O_{l_o}(x;\delta)=
+\begin{cases}
+0&amp; \delta \geq S^{l_o}(q^{l_o}(x)) \\
+1&amp; \text{otherwise}
+\end{cases}
+\end{equation}\]</span> 其中<span class="math inline">\(O_{l_o}\)</span>是检测函数，基于OODL <span class="math inline">\(l_o\)</span>的特征和阈值<span class="math inline">\(\delta\)</span>。作者提到，如果<span class="math inline">\(l_o\)</span>是卷积层，那么<span class="math inline">\(q^{l_o}\)</span>会非常高维，不利用OSVM的效果，因此计算每个频道的均值用于降维。即假设<span class="math inline">\(f^{l_o} \in R^{w\times h\times
+d}\)</span>是卷积层<span class="math inline">\(l_o\)</span>的特征，<span class="math inline">\(w\)</span>, <span class="math inline">\(h\)</span>, <span class="math inline">\(d\)</span>是宽、高、深度。<span class="math inline">\(f^{l_o}_{ijk}\)</span>是特征<span class="math inline">\(f^{l_o}\)</span>的第(<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>, <span class="math inline">\(k\)</span>)个元素，那么降维后的特征<span class="math inline">\(q^{l_o}=(q^{l_o}_k \in R^d)\)</span>由下式得到：
+<span class="math display">\[\begin{equation}
+q^{l_o}_k=\frac{1}{w\times h}\sum_{i=1}^{w}\sum_{j=1}^{h}|f^{l_o}_{ijk}|
+\end{equation}\]</span>
+作者提到，传统OCC方法例如OCSVM在高维数据性能不佳，在本文的方法中，提到了OODL，允许方法在高维数据上良好工作。另一个好处是可以利用训练好的原网络模型，这比抓取ID数据重训练一个OCC模型更有效。（注：个人理解是原神经网络起到一个特征提取的作用，当然比用原始ID更有效）。作者提到这是以往没有用过的OoD检测方法。</p>
+<h3 id="finding-optimal-ood-discernment-layer-oodl">Finding optimal OoD
+discernment layer (OODL)</h3>
+<p>首先，需要找到网络<span class="math inline">\(Q\)</span>的OODL。作者提到，需要度量基于公式1的检测的误差，误差最小的层就是OODL。下面是具体的算法。
+<img src="/2021/02/04/Detecting-OoD-Using-Early-layers/algo1.jpg" class title="this is algo1">
+使用OoD数据集去寻找OODL会有一个问题，那就是这个层偏向于区分所选的OoD数据集所具有的特征。接着，作者用实验表明，对于不同的OoD
+Dataset，在同一个网络和ID的情况下，最后选取的OODL基本一致；同时，网络模型的选取和ID的选取对OODL的结果影响比较大。
+实验配置和结果的情况为: + 用CIFAR-10 作为ID dataset + 用ResNet
+model作为网络模型 + 横坐标是层，纵坐标是检测误差 + 验证的OoD
+dataset分别为TinyImageNet、LSUN、ISUN、SVHN +
+结果是，四个OODL都选在第13层（这一层的检测误差最小）。</p>
 <p>作者认为OODL往往选在较低的层，因为高层特征往往是分类的特征，和ID内的分类有关；而较低层特征是整体大概的特征，用来表征ID分布本身。那么到目前为止，实验表明了用倒数第二层有利于做ID内的分类，而OODL有利于做OoD的检测。</p>
-<h3 id="Input-preprocessing"><a href="#Input-preprocessing" class="headerlink" title="Input preprocessing"></a>Input preprocessing</h3><p>这是源自ODIN的方法，是用来增大max-softmax类别概率的。在本文中，作者用这个方法来增强ID的特征，这样OSVM分类器就更容易检测出ID的输入。作者还提到，即使不用输入预处理的方式，本文的方法也比其他很多方法性能要好。具体的Input proprocessing的方法是：对于测试阶段的一个输入数据$x$，用如下公式计算$x’$<br>\begin{equation}<br>x’=x-\epsilon\cdot sign(-\nabla_{x}log(\max_{i}Q_{i}(x)))<br>\end{equation}<br>其中$\epsilon$是一个微扰程度，而微扰的大小由梯度(max-softmax关于x)反向传播计算。</p>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>作者对几个ID和OoD dataset在不同的网络模型上运用了本文的方法。作者把性能和max-softmax,ODIN,MD进行了比较。正如前文所讨论的，本文的方法关注的是不用OoD数据参与分类器的训练，然而，为了遵守文献中的传统，作者还是使用了input preprocessing(需要访问OoD数据)的方法作为一个补充选项。和基于不确定度的方法的对比在附加材料中提到。作者的方法是开源可复现的。</p>
-<h3 id="ID-datasets-and-models"><a href="#ID-datasets-and-models" class="headerlink" title="ID datasets and models"></a>ID datasets and models</h3><ul>
+<h3 id="input-preprocessing">Input preprocessing</h3>
+<p>这是源自ODIN的方法，是用来增大max-softmax类别概率的。在本文中，作者用这个方法来增强ID的特征，这样OSVM分类器就更容易检测出ID的输入。作者还提到，即使不用输入预处理的方式，本文的方法也比其他很多方法性能要好。具体的Input
+proprocessing的方法是：对于测试阶段的一个输入数据<span class="math inline">\(x\)</span>，用如下公式计算<span class="math inline">\(x&#39;\)</span> <span class="math display">\[\begin{equation}
+x&#39;=x-\epsilon\cdot sign(-\nabla_{x}log(\max_{i}Q_{i}(x)))
+\end{equation}\]</span> 其中<span class="math inline">\(\epsilon\)</span>是一个微扰程度，而微扰的大小由梯度(max-softmax关于x)反向传播计算。</p>
+<h2 id="experiments">Experiments</h2>
+<p>作者对几个ID和OoD
+dataset在不同的网络模型上运用了本文的方法。作者把性能和max-softmax,ODIN,MD进行了比较。正如前文所讨论的，本文的方法关注的是不用OoD数据参与分类器的训练，然而，为了遵守文献中的传统，作者还是使用了input
+preprocessing(需要访问OoD数据)的方法作为一个补充选项。和基于不确定度的方法的对比在附加材料中提到。作者的方法是开源可复现的。</p>
+<h3 id="id-datasets-and-models">ID datasets and models</h3>
+<ul>
 <li>ID datasets包括：MNIST, CIFAR-10, CIFAR-100</li>
 <li>MNIST的模型：两个卷积层两个全连接层的CNN，测试集精确度99.22%</li>
-<li>CIFAR-10:的模型： VGG-16(by Simonyan and Zisserman 2014)和ResNet(by He et al. 2015)。测试集精度为93.56%和92.01%</li>
+<li>CIFAR-10:的模型： VGG-16(by Simonyan and Zisserman 2014)和ResNet(by
+He et al. 2015)。测试集精度为93.56%和92.01%</li>
 <li>CIFAR-100的模型：同CIFAR-10，测试集精度为70.48%和69.17%</li>
 </ul>
-<h3 id="OoD-datasets"><a href="#OoD-datasets" class="headerlink" title="OoD datasets"></a>OoD datasets</h3><p>作者用OoD的数据集进行测试评估，并保持ID和OoD的相同的测试规模，具体的数据集如下:</p>
+<h3 id="ood-datasets">OoD datasets</h3>
+<p>作者用OoD的数据集进行测试评估，并保持ID和OoD的相同的测试规模，具体的数据集如下:
++ Fashion-MNIST + Omniglot + TinyImageNet + LSUN + iSUN + SVHN +
+Gaussian noise + Uniform noise</p>
+<h3 id="evaluation-metrics">Evaluation metrics</h3>
+<p>本节对方法评估的指标进行说明。 + FPR at 95% TPR：FPR是<span class="math inline">\(\frac{FP}{FP+TN}\)</span>，TPR是<span class="math inline">\(\frac{TP}{TP+FN}\)</span>。ID是正例。 + Detection
+error at 95% TPR：假设测试集正反例同规模，则该指标等价于<span class="math inline">\(0.5\times(1-TPR)+0.5\times(FPR)\)</span> +
+AUROC：Area Under the Receiver Operating Characteristic
+curve，即正例相比于反例获得更高detecton score的可能性。 + AUPR：Area
+Under the Precision-Recall curve, 即查准率和查全率的曲线</p>
+<h3 id="osvm-and-hyper-parameters">OSVM and hyper parameters</h3>
 <ul>
-<li>Fashion-MNIST</li>
-<li>Omniglot</li>
-<li>TinyImageNet</li>
-<li>LSUN</li>
-<li>iSUN</li>
-<li>SVHN</li>
-<li>Gaussian noise</li>
-<li>Uniform noise</li>
-</ul>
-<h3 id="Evaluation-metrics"><a href="#Evaluation-metrics" class="headerlink" title="Evaluation metrics"></a>Evaluation metrics</h3><p>本节对方法评估的指标进行说明。</p>
-<ul>
-<li>FPR at 95% TPR：FPR是$\frac{FP}{FP+TN}$，TPR是$\frac{TP}{TP+FN}$。ID是正例。</li>
-<li>Detection error at 95% TPR：假设测试集正反例同规模，则该指标等价于$0.5\times(1-TPR)+0.5\times(FPR)$</li>
-<li>AUROC：Area Under the Receiver Operating Characteristic curve，即正例相比于反例获得更高detecton score的可能性。</li>
-<li>AUPR：Area Under the Precision-Recall curve, 即查准率和查全率的曲线</li>
-</ul>
-<h3 id="OSVM-and-hyper-parameters"><a href="#OSVM-and-hyper-parameters" class="headerlink" title="OSVM and hyper parameters"></a>OSVM and hyper parameters</h3><ul>
-<li>使用 $rbf$ 核作为 kernel，比其他核效果好；</li>
-<li>training error $nu = 0.001$；</li>
-<li>temperature scale的T设置为1000，因为根据以为的paper，这是最理想的数值；</li>
-<li>扰动级别$\epsilon$由FPR at 95% TPR来优化，随机使用20%的OoD datasets；</li>
+<li>使用 <span class="math inline">\(rbf\)</span> 核作为
+kernel，比其他核效果好；</li>
+<li>training error <span class="math inline">\(nu =
+0.001\)</span>；</li>
+<li>temperature
+scale的T设置为1000，因为根据以为的paper，这是最理想的数值；</li>
+<li>扰动级别<span class="math inline">\(\epsilon\)</span>由FPR at 95%
+TPR来优化，随机使用20%的OoD datasets；</li>
 <li>F-MNIST和TinyImageNet数据集用来寻找OODLs。每个ID和相应的模型都确定一个OODL；</li>
 <li>用CIFAR-10和CIFAR-100训练的VGG-16模型的OODLs分别为第二个卷积层和第一个max-polling层；</li>
-<li>用CIFAR-10和CIFAR-100训练的ResNet模型的OODLs分别为第13层和第9层residual layers；</li>
-<li>更多的参数细节在补充材料中…</li>
+<li>用CIFAR-10和CIFAR-100训练的ResNet模型的OODLs分别为第13层和第9层residual
+layers；</li>
+<li>更多的参数细节在补充材料中...</li>
 </ul>
-<h3 id="Detection-results"><a href="#Detection-results" class="headerlink" title="Detection results"></a>Detection results</h3><p>1.对于MNIST&amp;CUSTOM-CNN，结果如下($\uparrow$ 表示值高性能好，$\downarrow$ 表示值低性能好):<br><img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared1.jpg" class title="this is performance_compared"></p>
+<h3 id="detection-results">Detection results</h3>
+<p>1.对于MNIST&amp;CUSTOM-CNN，结果如下(<span class="math inline">\(\uparrow\)</span> 表示值高性能好，<span class="math inline">\(\downarrow\)</span> 表示值低性能好):
+<img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared1.jpg" class title="this is performance_compared"></p>
 <p>可以发现，作者的方法在各个指标性能都能胜出。</p>
-<p>2.对于CIFAR-10 and CIFAR-100 &amp; 使用输入预处理，结果如下：<br><img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared2.jpg" class title="this is performance_compared"></p>
+<p>2.对于CIFAR-10 and CIFAR-100 &amp; 使用输入预处理，结果如下：
+<img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared2.jpg" class title="this is performance_compared"></p>
 <p>本文方法的性能在两个数据集上都胜出，同时，作者的方法有能力完全的检测出不同模型下的高维和低维的噪声。</p>
-<p>3.对于作者的方法，不使用输入预处理和其他使用输入预处理的方法比较，结果如下图：<br><img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared3.jpg" class title="this is performance_compared"><br>可以看到除了TinyImageNet for CIFAR-100,本文的方法性能都胜出。作者的方法有明显更优秀的AUROC，但detection error 和FPR at 95% TPR仅仅比ODIN的方法略好一点。有趣的是，MD的方法有时候比max-softmax更差。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>检测DNN中的OoD inputs在安全相关的领域非常重要，比如自动驾驶和医疗领域。大部分OoD检测的方法都是基于DNN的倒数第二层提取的特征，这样的层用来区别ID的分类比较适合。与这些方法相反，本文提出的依赖于一个关键的思想，那就是寻找最适合的中间较低层作为OODL，来提供了一个容易分离ID和OoD的隐藏空间。结果指导我们训练一个单分类器检测OoD输入，不需要OoD的样本参与训练。当然，如果允许使用OoD的样本，本文的方法可以补充拓展为使用input preprocessing的改进版本。作者用几个低维和高维的数据集在不同的深度网络模型上评估了本文的方法。结果表明对于baseline和state-of-the-art的一些方法，在很多指标上都有明显进步。作者提出，他们未来的工作主要是使用一个专用的损失函数去改进OODL层提取的特征，以便更好地进行OoD检测和ID的类别的划分。</p>
+<p>3.对于作者的方法，不使用输入预处理和其他使用输入预处理的方法比较，结果如下图：
+<img src="/2021/02/04/Detecting-OoD-Using-Early-layers/performance_compared3.jpg" class title="this is performance_compared"> 可以看到除了TinyImageNet for
+CIFAR-100,本文的方法性能都胜出。作者的方法有明显更优秀的AUROC，但detection
+error 和FPR at 95%
+TPR仅仅比ODIN的方法略好一点。有趣的是，MD的方法有时候比max-softmax更差。</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>检测DNN中的OoD
+inputs在安全相关的领域非常重要，比如自动驾驶和医疗领域。大部分OoD检测的方法都是基于DNN的倒数第二层提取的特征，这样的层用来区别ID的分类比较适合。与这些方法相反，本文提出的依赖于一个关键的思想，那就是寻找最适合的中间较低层作为OODL，来提供了一个容易分离ID和OoD的隐藏空间。结果指导我们训练一个单分类器检测OoD输入，不需要OoD的样本参与训练。当然，如果允许使用OoD的样本，本文的方法可以补充拓展为使用input
+preprocessing的改进版本。作者用几个低维和高维的数据集在不同的深度网络模型上评估了本文的方法。结果表明对于baseline和state-of-the-art的一些方法，在很多指标上都有明显进步。作者提出，他们未来的工作主要是使用一个专用的损失函数去改进OODL层提取的特征，以便更好地进行OoD检测和ID的类别的划分。</p>
 
     </div>
 
@@ -467,7 +512,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-work"><span class="nav-number">3.</span> <span class="nav-text">Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proposed-solution"><span class="nav-number">4.</span> <span class="nav-text">Proposed solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OoD-detection"><span class="nav-number">4.1.</span> <span class="nav-text">OoD detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finding-optimal-OoD-discernment-layer-OODL"><span class="nav-number">4.2.</span> <span class="nav-text">Finding optimal OoD discernment layer (OODL)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-preprocessing"><span class="nav-number">4.3.</span> <span class="nav-text">Input preprocessing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID-datasets-and-models"><span class="nav-number">5.1.</span> <span class="nav-text">ID datasets and models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OoD-datasets"><span class="nav-number">5.2.</span> <span class="nav-text">OoD datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-metrics"><span class="nav-number">5.3.</span> <span class="nav-text">Evaluation metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSVM-and-hyper-parameters"><span class="nav-number">5.4.</span> <span class="nav-text">OSVM and hyper parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Detection-results"><span class="nav-number">5.5.</span> <span class="nav-text">Detection results</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">6.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">3.</span> <span class="nav-text">Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proposed-solution"><span class="nav-number">4.</span> <span class="nav-text">Proposed solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ood-detection"><span class="nav-number">4.1.</span> <span class="nav-text">OoD detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finding-optimal-ood-discernment-layer-oodl"><span class="nav-number">4.2.</span> <span class="nav-text">Finding optimal OoD
+discernment layer (OODL)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#input-preprocessing"><span class="nav-number">4.3.</span> <span class="nav-text">Input preprocessing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id-datasets-and-models"><span class="nav-number">5.1.</span> <span class="nav-text">ID datasets and models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ood-datasets"><span class="nav-number">5.2.</span> <span class="nav-text">OoD datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#evaluation-metrics"><span class="nav-number">5.3.</span> <span class="nav-text">Evaluation metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#osvm-and-hyper-parameters"><span class="nav-number">5.4.</span> <span class="nav-text">OSVM and hyper parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#detection-results"><span class="nav-number">5.5.</span> <span class="nav-text">Detection results</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">6.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -483,7 +529,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

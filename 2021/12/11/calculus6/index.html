@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分二重积分 性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分 $ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta$   技巧1：根据积分域的对称性和被积函数的奇偶性简化计算 情况一：积分域关于坐标轴对">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分 二重积分  性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分  \(ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta\)  技巧1：根据积分域的对称性和被积函数的奇偶性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第六章-多元函数积分学">
 <meta property="og:url" content="https://wooziehang.github.io/2021/12/11/calculus6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分二重积分 性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分 $ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta$   技巧1：根据积分域的对称性和被积函数的奇偶性简化计算 情况一：积分域关于坐标轴对">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  重积分 二重积分  性质：和一元积分类似，有保号性和中值定理 计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分  \(ds&#x3D;dx\cdot dy&#x3D;dr\cdot rd\theta\)  技巧1：根据积分域的对称性和被积函数的奇偶性">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-11T03:09:54.000Z">
-<meta property="article:modified_time" content="2021-12-12T15:23:50.864Z">
+<meta property="article:modified_time" content="2022-05-19T14:43:51.091Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-12 23:23:50" itemprop="dateModified" datetime="2021-12-12T23:23:50+08:00">2021-12-12</time>
+                <time title="修改时间：2022-05-19 22:43:51" itemprop="dateModified" datetime="2022-05-19T22:43:51+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,198 +285,230 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="重积分"><a href="#重积分" class="headerlink" title="重积分"></a>重积分</h2><h3 id="二重积分"><a href="#二重积分" class="headerlink" title="二重积分"></a>二重积分</h3><ul>
+<h2 id="重积分">重积分</h2>
+<h3 id="二重积分">二重积分</h3>
+<ul>
 <li>性质：和一元积分类似，有保号性和中值定理</li>
-<li>计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分<ul>
-<li>$ds=dx\cdot dy=dr\cdot rd\theta$</li>
-</ul>
-</li>
-<li>技巧1：根据积分域的对称性和被积函数的奇偶性简化计算<ul>
-<li>情况一：积分域关于坐标轴对称，被积函数有奇偶性<ul>
-<li>积分等于$0$或两倍的半积分域上的积分</li>
-</ul>
-</li>
-<li>情况二：积分域关于$y=x$对称（即积分域表达式调换$x,y$不改变积分域）<ul>
-<li>被积函数调换$x,y$不改变积分结果</li>
-</ul>
-</li>
+<li>计算：直角坐标、极坐标，注意用合适的积分次序计算累次积分
+<ul>
+<li><span class="math inline">\(ds=dx\cdot dy=dr\cdot
+rd\theta\)</span></li>
+</ul></li>
+<li>技巧1：根据积分域的对称性和被积函数的奇偶性简化计算
+<ul>
+<li>情况一：积分域关于坐标轴对称，被积函数有奇偶性
+<ul>
+<li>积分等于<span class="math inline">\(0\)</span>或两倍的半积分域上的积分</li>
+</ul></li>
+<li>情况二：积分域关于<span class="math inline">\(y=x\)</span>对称（即积分域表达式调换<span class="math inline">\(x,y\)</span>不改变积分域）
+<ul>
+<li>被积函数调换<span class="math inline">\(x,y\)</span>不改变积分结果</li>
+</ul></li>
 <li>其他情况：对称性也可以不是关于坐标轴，而是平行于坐标轴的直线</li>
-</ul>
-</li>
+</ul></li>
 <li>技巧2：极坐标的极点也可以不选在原点</li>
-<li>技巧3：利用形心<ul>
+<li>技巧3：利用形心
+<ul>
 <li>本质还是利用对称性</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h3><ul>
+<h3 id="三重积分">三重积分</h3>
+<ul>
 <li>性质：保号性、中值定理</li>
-<li>计算：直角坐标、柱坐标、球坐标，注意用合适的积分次序计算累次积分<ul>
-<li>$ds=dx\cdot dy\cdot dz=dr\cdot rd\theta \cdot dz=rsin\varphi d\theta \cdot rd\varphi\cdot dr$</li>
-</ul>
-</li>
+<li>计算：直角坐标、柱坐标、球坐标，注意用合适的积分次序计算累次积分
+<ul>
+<li><span class="math inline">\(ds=dx\cdot dy\cdot dz=dr\cdot rd\theta
+\cdot dz=rsin\varphi d\theta \cdot rd\varphi\cdot dr\)</span></li>
+</ul></li>
 <li>技巧：和二重积分同理</li>
 </ul>
-<h3 id="交换累次积分"><a href="#交换累次积分" class="headerlink" title="交换累次积分"></a>交换累次积分</h3><ul>
+<h3 id="交换累次积分">交换累次积分</h3>
+<ul>
 <li>二重积分：根据积分上下限确定积分域、绘制草图、按另一种次序确定积分上下限</li>
 <li>三重积分：相邻的俩个变量调换积分次序，转化为多遍二重积分的次序调换</li>
 </ul>
-<h2 id="曲线积分"><a href="#曲线积分" class="headerlink" title="曲线积分"></a>曲线积分</h2><h3 id="第一类曲线积分"><a href="#第一类曲线积分" class="headerlink" title="第一类曲线积分"></a>第一类曲线积分</h3><ul>
-<li>先考虑几种情况的奇偶性和对称性，简化计算<ul>
-<li>情况一：积分曲线关于坐标轴对称，被积函数有奇偶性</li>
-<li>情况二：积分曲线关于$y=x$或$x=z$或$y=z$对称</li>
-</ul>
-</li>
-<li>直接计算步骤（核心思路是$dl=\sqrt{d^2x+d^2y+d^2z}$）<ul>
-<li>设曲线的方程$y=y(x),z=z(x)$<ul>
-<li>说明每个$x$唯一对应着$y$和$z$，如果是参数式也要注意该点</li>
-<li>不唯一对应时，需要拆分曲线为多个段</li>
-</ul>
-</li>
-<li>$\int\limits_{L}f(x,y,z)dl=\int\limits_{L}f(x,y,z)\sqrt{d^2x+d^2y+d^2z}$</li>
-<li>最后结果为$\int_{a}^bf(x,y,z)\sqrt{1+(y’(x))^2+(z’(x))^2}dx,a\leq x\leq b$</li>
-</ul>
-</li>
-</ul>
-<h3 id="第二类曲线积分"><a href="#第二类曲线积分" class="headerlink" title="第二类曲线积分"></a>第二类曲线积分</h3><ul>
-<li>直接计算步骤（核心思路是计算$(P,Q,R)$到方向向量的投影）<ul>
-<li>根据积分路径的方向，确定曲线的方向向量为$(i,j,k)$<ul>
-<li>方向向量也可以用其方向余弦表示为$(cos\alpha,cos\beta,cos\gamma)$</li>
-</ul>
-</li>
-<li>$\int\limits_LPdx+Qdy+Rdz=\int\limits_L(\frac{(P,Q,R)\cdot(i,j,k)}{|(i,j,k)|})dl$<ul>
-<li>投影即数量积除以模</li>
-<li>转化为第一类曲线积分</li>
-</ul>
-</li>
-<li>教材的形式是$\int\limits_L(Pcos\alpha+Qcos\beta+Rcos\gamma)dl$<ul>
-<li>本质一样的，但是不引入余弦，防止思路紊乱</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>斯托克斯公式<ul>
-<li>$L$是空间光滑有向曲线，$\Sigma$是有向曲面，两者方向满足右手法则，且$P,Q,R$在$\Sigma$上有一阶连续偏导数</li>
-<li>$\oint\limits_LPdx+Qdy+Rdz=\iint\limits_\Sigma(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz+(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx+(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy$<ul>
-<li>转化为第二类曲面积分</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>格林公式<ul>
-<li>斯托克斯公式的特殊情况，记忆即可，推导的思路顺序如下</li>
-<li>第二类曲线积分$\rightarrow$第二类曲面积分$\rightarrow$第一类曲面积分$\rightarrow$二重积分</li>
-</ul>
-</li>
-<li>$P,Q$在单连通域的上一阶连续可偏导，则下面是等价条件<ul>
-<li>$\int Pdx+Qdy$和路径无关</li>
-<li>沿着封闭光滑曲线的第二类积分为$0$</li>
-<li>$\frac{\partial Q}{\partial y}-\frac{\partial P}{\partial x}=0$</li>
-<li>存在可微函数$F(x,y)$使得$dF(x,y)=Pdx+Qdy$</li>
-</ul>
-</li>
-<li>补形法结合格林公式（斯托克斯公式）<ul>
-<li>当不是封闭曲线时，可以补成封闭曲线<ul>
-<li>补后的整体用格林公式计算，补的形状用直接法计算</li>
-</ul>
-</li>
-<li>当封闭曲线内有点不存在一阶连续偏导数，则可以补一个小的封闭曲线，把该点挖去<ul>
-<li>补后的整体用格林公式计算，补的形状用直接法计算</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="曲面积分"><a href="#曲面积分" class="headerlink" title="曲面积分"></a>曲面积分</h2><h3 id="第一类曲面积分"><a href="#第一类曲面积分" class="headerlink" title="第一类曲面积分"></a>第一类曲面积分</h3><ul>
-<li>先考虑几种情况的奇偶性和对称性，简化计算<ul>
-<li>情况一：积分曲面关于坐标轴对称，被积函数有奇偶性</li>
-<li>情况二：积分曲面关于$y=x$或$x=z$或$y=z$对称</li>
-</ul>
-</li>
-<li>直接计算步骤（核心思路是$dS=\frac{dxdy}{|cos\gamma|}$或$dS=\sqrt{(dxdy)^2+(dydz)^2+(dzdx)^2}$）<ul>
-<li>设曲面的方程$z=z(x,y)$，法向量为$(cos\alpha,cos\beta,cos\gamma)=\pm\frac{(-z’_x,-z’_y,1)}{\sqrt{(z’_x)^2+(z’_y)^2+1}}$<ul>
-<li>说明每个$(x,y)$唯一对应着$z$，如果是参数式也要注意该点</li>
-<li>不唯一对应时，需要拆分曲面为多个部分</li>
-</ul>
-</li>
-<li>利用$\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\frac{dxdy}{|cos\gamma|}$</li>
-<li>或$\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\sqrt{1+(\frac{dzdy}{dxdy})^2+(\frac{dzdx}{dydx})^2}dxdy$<ul>
-<li>注意这里$\frac{dzdy}{dxdy}=\frac{\partial z}{\partial x}$与$\frac{dzdx}{dydx}=\frac{\partial z}{\partial y}$，不难记忆</li>
-</ul>
-</li>
-<li>最后结果为$\iint\limits_{\Sigma_{xy}}f(x,y,z)\sqrt{1+(z’_x)^2+(z’_y)^2}dxdy$</li>
-</ul>
-</li>
-</ul>
-<h3 id="第二类曲面积分"><a href="#第二类曲面积分" class="headerlink" title="第二类曲面积分"></a>第二类曲面积分</h3><ul>
-<li>直接计算步骤（核心思路是计算$(P,Q,R)$到法向量的投影）<ul>
-<li>根据有向曲面的内外侧，确定曲面的法向量为$(i,j,k)$<ul>
-<li>法向量也可以用其方向余弦表示为$(cos\alpha,cos\beta,cos\gamma)$</li>
-</ul>
-</li>
-<li>$\iint\limits_\Sigma Pdydz+Qdxdz+Rdxdy=\iint\limits_\Sigma (\frac{(P,Q,R)\cdot(i,j,k)}{|(i,j,k)|})dS$<ul>
-<li>投影即数量积除以模</li>
-<li>转化为第一类曲线积分</li>
-</ul>
-</li>
-<li>教材的形式是$\iint\limits_\Sigma(Pcos\alpha+Qcos\beta+Rcos\gamma)dS$<ul>
-<li>本质一样的，但是不引入余弦，防止思路紊乱</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>高斯公式<ul>
-<li>$\Sigma$是空间光滑有向曲面，$\Omega$是空间闭区域，有向曲面取外侧，且$P,Q,R$在$\Omega$上有一阶连续偏导数</li>
-<li>$\iint\limits_\Sigma Pdydz+Qdxdz+Rdxdy=\iiint\limits_{\Omega}(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dV$<ul>
-<li>转化为三重积分</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>补形法结合高斯公式<ul>
-<li>当不是封闭曲面时，可以补成封闭曲线<ul>
-<li>补后的整体用高斯公式计算，补的形状用直接法计算</li>
-</ul>
-</li>
-<li>当封闭曲面内有点不存在一阶连续偏导数，则可以补一个小的封闭曲面，把该点挖去<ul>
-<li>补后的整体用高斯公式计算，补的形状用直接法计算</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="场论初步"><a href="#场论初步" class="headerlink" title="场论初步"></a>场论初步</h2><p>设向量场是$\pmb{A}=(P,Q,R)$,有向曲面为$\Sigma$</p>
+<h2 id="曲线积分">曲线积分</h2>
+<h3 id="第一类曲线积分">第一类曲线积分</h3>
 <ul>
-<li>通量<ul>
+<li>先考虑几种情况的奇偶性和对称性，简化计算
+<ul>
+<li>情况一：积分曲线关于坐标轴对称，被积函数有奇偶性</li>
+<li>情况二：积分曲线关于<span class="math inline">\(y=x\)</span>或<span class="math inline">\(x=z\)</span>或<span class="math inline">\(y=z\)</span>对称</li>
+</ul></li>
+<li>直接计算步骤（核心思路是<span class="math inline">\(dl=\sqrt{d^2x+d^2y+d^2z}\)</span>）
+<ul>
+<li>设曲线的方程<span class="math inline">\(y=y(x),z=z(x)\)</span>
+<ul>
+<li>说明每个<span class="math inline">\(x\)</span>唯一对应着<span class="math inline">\(y\)</span>和<span class="math inline">\(z\)</span>，如果是参数式也要注意该点</li>
+<li>不唯一对应时，需要拆分曲线为多个段</li>
+</ul></li>
+<li><span class="math inline">\(\int\limits_{L}f(x,y,z)dl=\int\limits_{L}f(x,y,z)\sqrt{d^2x+d^2y+d^2z}\)</span></li>
+<li>最后结果为<span class="math inline">\(\int_{a}^bf(x,y,z)\sqrt{1+(y&#39;(x))^2+(z&#39;(x))^2}dx,a\leq
+x\leq b\)</span></li>
+</ul></li>
+</ul>
+<h3 id="第二类曲线积分">第二类曲线积分</h3>
+<ul>
+<li>直接计算步骤（核心思路是计算<span class="math inline">\((P,Q,R)\)</span>到方向向量的投影）
+<ul>
+<li>根据积分路径的方向，确定曲线的方向向量为<span class="math inline">\((i,j,k)\)</span>
+<ul>
+<li>方向向量也可以用其方向余弦表示为<span class="math inline">\((cos\alpha,cos\beta,cos\gamma)\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\int\limits_LPdx+Qdy+Rdz=\int\limits_L(\frac{(P,Q,R)\cdot(i,j,k)}{|(i,j,k)|})dl\)</span>
+<ul>
+<li>投影即数量积除以模</li>
+<li>转化为第一类曲线积分</li>
+</ul></li>
+<li>教材的形式是<span class="math inline">\(\int\limits_L(Pcos\alpha+Qcos\beta+Rcos\gamma)dl\)</span>
+<ul>
+<li>本质一样的，但是不引入余弦，防止思路紊乱</li>
+</ul></li>
+</ul></li>
+<li>斯托克斯公式
+<ul>
+<li><span class="math inline">\(L\)</span>是空间光滑有向曲线，<span class="math inline">\(\Sigma\)</span>是有向曲面，两者方向满足右手法则，且<span class="math inline">\(P,Q,R\)</span>在<span class="math inline">\(\Sigma\)</span>上有一阶连续偏导数</li>
+<li><span class="math inline">\(\oint\limits_LPdx+Qdy+Rdz=\iint\limits_\Sigma(\frac{\partial
+R}{\partial y}-\frac{\partial Q}{\partial z})dydz+(\frac{\partial
+P}{\partial z}-\frac{\partial R}{\partial x})dzdx+(\frac{\partial
+Q}{\partial x}-\frac{\partial P}{\partial y})dxdy\)</span>
+<ul>
+<li>转化为第二类曲面积分</li>
+</ul></li>
+</ul></li>
+<li>格林公式
+<ul>
+<li>斯托克斯公式的特殊情况，记忆即可，推导的思路顺序如下</li>
+<li>第二类曲线积分<span class="math inline">\(\rightarrow\)</span>第二类曲面积分<span class="math inline">\(\rightarrow\)</span>第一类曲面积分<span class="math inline">\(\rightarrow\)</span>二重积分</li>
+</ul></li>
+<li><span class="math inline">\(P,Q\)</span>在单连通域的上一阶连续可偏导，则下面是等价条件
+<ul>
+<li><span class="math inline">\(\int Pdx+Qdy\)</span>和路径无关</li>
+<li>沿着封闭光滑曲线的第二类积分为<span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(\frac{\partial Q}{\partial
+y}-\frac{\partial P}{\partial x}=0\)</span></li>
+<li>存在可微函数<span class="math inline">\(F(x,y)\)</span>使得<span class="math inline">\(dF(x,y)=Pdx+Qdy\)</span></li>
+</ul></li>
+<li>补形法结合格林公式（斯托克斯公式）
+<ul>
+<li>当不是封闭曲线时，可以补成封闭曲线
+<ul>
+<li>补后的整体用格林公式计算，补的形状用直接法计算</li>
+</ul></li>
+<li>当封闭曲线内有点不存在一阶连续偏导数，则可以补一个小的封闭曲线，把该点挖去
+<ul>
+<li>补后的整体用格林公式计算，补的形状用直接法计算</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="曲面积分">曲面积分</h2>
+<h3 id="第一类曲面积分">第一类曲面积分</h3>
+<ul>
+<li>先考虑几种情况的奇偶性和对称性，简化计算
+<ul>
+<li>情况一：积分曲面关于坐标轴对称，被积函数有奇偶性</li>
+<li>情况二：积分曲面关于<span class="math inline">\(y=x\)</span>或<span class="math inline">\(x=z\)</span>或<span class="math inline">\(y=z\)</span>对称</li>
+</ul></li>
+<li>直接计算步骤（核心思路是<span class="math inline">\(dS=\frac{dxdy}{|cos\gamma|}\)</span>或<span class="math inline">\(dS=\sqrt{(dxdy)^2+(dydz)^2+(dzdx)^2}\)</span>）
+<ul>
+<li>设曲面的方程<span class="math inline">\(z=z(x,y)\)</span>，法向量为<span class="math inline">\((cos\alpha,cos\beta,cos\gamma)=\pm\frac{(-z&#39;_x,-z&#39;_y,1)}{\sqrt{(z&#39;_x)^2+(z&#39;_y)^2+1}}\)</span>
+<ul>
+<li>说明每个<span class="math inline">\((x,y)\)</span>唯一对应着<span class="math inline">\(z\)</span>，如果是参数式也要注意该点</li>
+<li>不唯一对应时，需要拆分曲面为多个部分</li>
+</ul></li>
+<li>利用<span class="math inline">\(\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\frac{dxdy}{|cos\gamma|}\)</span></li>
+<li>或<span class="math inline">\(\iint\limits_{\Sigma}f(x,y,z)dS=\iint\limits_{\Sigma}f(x,y,z)\sqrt{1+(\frac{dzdy}{dxdy})^2+(\frac{dzdx}{dydx})^2}dxdy\)</span>
+<ul>
+<li>注意这里<span class="math inline">\(\frac{dzdy}{dxdy}=\frac{\partial
+z}{\partial x}\)</span>与<span class="math inline">\(\frac{dzdx}{dydx}=\frac{\partial z}{\partial
+y}\)</span>，不难记忆</li>
+</ul></li>
+<li>最后结果为<span class="math inline">\(\iint\limits_{\Sigma_{xy}}f(x,y,z)\sqrt{1+(z&#39;_x)^2+(z&#39;_y)^2}dxdy\)</span></li>
+</ul></li>
+</ul>
+<h3 id="第二类曲面积分">第二类曲面积分</h3>
+<ul>
+<li>直接计算步骤（核心思路是计算<span class="math inline">\((P,Q,R)\)</span>到法向量的投影）
+<ul>
+<li>根据有向曲面的内外侧，确定曲面的法向量为<span class="math inline">\((i,j,k)\)</span>
+<ul>
+<li>法向量也可以用其方向余弦表示为<span class="math inline">\((cos\alpha,cos\beta,cos\gamma)\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\iint\limits_\Sigma
+Pdydz+Qdxdz+Rdxdy=\iint\limits_\Sigma
+(\frac{(P,Q,R)\cdot(i,j,k)}{|(i,j,k)|})dS\)</span>
+<ul>
+<li>投影即数量积除以模</li>
+<li>转化为第一类曲线积分</li>
+</ul></li>
+<li>教材的形式是<span class="math inline">\(\iint\limits_\Sigma(Pcos\alpha+Qcos\beta+Rcos\gamma)dS\)</span>
+<ul>
+<li>本质一样的，但是不引入余弦，防止思路紊乱</li>
+</ul></li>
+</ul></li>
+<li>高斯公式
+<ul>
+<li><span class="math inline">\(\Sigma\)</span>是空间光滑有向曲面，<span class="math inline">\(\Omega\)</span>是空间闭区域，有向曲面取外侧，且<span class="math inline">\(P,Q,R\)</span>在<span class="math inline">\(\Omega\)</span>上有一阶连续偏导数</li>
+<li><span class="math inline">\(\iint\limits_\Sigma
+Pdydz+Qdxdz+Rdxdy=\iiint\limits_{\Omega}(\frac{\partial P}{\partial
+x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial
+z})dV\)</span>
+<ul>
+<li>转化为三重积分</li>
+</ul></li>
+</ul></li>
+<li>补形法结合高斯公式
+<ul>
+<li>当不是封闭曲面时，可以补成封闭曲线
+<ul>
+<li>补后的整体用高斯公式计算，补的形状用直接法计算</li>
+</ul></li>
+<li>当封闭曲面内有点不存在一阶连续偏导数，则可以补一个小的封闭曲面，把该点挖去
+<ul>
+<li>补后的整体用高斯公式计算，补的形状用直接法计算</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="场论初步">场论初步</h2>
+<p>设向量场是<span class="math inline">\(\pmb{A}=(P,Q,R)\)</span>,有向曲面为<span class="math inline">\(\Sigma\)</span></p>
+<ul>
+<li>通量
+<ul>
 <li>即第二类曲面积分求解</li>
-<li>$\Phi=\iint\limits_{\Sigma}Pdydz+Qdzdx+Rdxdy$</li>
-</ul>
-</li>
-<li>散度<ul>
+<li><span class="math inline">\(\Phi=\iint\limits_{\Sigma}Pdydz+Qdzdx+Rdxdy\)</span></li>
+</ul></li>
+<li>散度
+<ul>
 <li>即高斯公式右侧的数值</li>
-<li>$div\pmb{A}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$</li>
-</ul>
-</li>
-<li>旋度<ul>
+<li><span class="math inline">\(div\pmb{A}=\frac{\partial P}{\partial
+x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial
+z}\)</span></li>
+</ul></li>
+<li>旋度
+<ul>
 <li>即斯托克斯公式右侧的向量</li>
-<li>$\pmb{rotA}=(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z},\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x},\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})$</li>
+<li><span class="math inline">\(\pmb{rotA}=(\frac{\partial R}{\partial
+y}-\frac{\partial Q}{\partial z},\frac{\partial P}{\partial
+z}-\frac{\partial R}{\partial x},\frac{\partial Q}{\partial
+x}-\frac{\partial P}{\partial y})\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="多元积分的应用"><a href="#多元积分的应用" class="headerlink" title="多元积分的应用"></a>多元积分的应用</h2><ul>
-<li>质心<ul>
-<li>$\overline{x}=\frac{\sum xdm}{\sum dm}$</li>
-</ul>
-</li>
-<li>转动惯量<ul>
-<li>$I=\sum r^2dm$</li>
-</ul>
-</li>
-<li>做功<ul>
-<li>设力场是$\pmb{F}=(P,Q,R)$,有向曲线为$L$</li>
-<li>做功为$W=\int\limits_LPdx+Qdy+Rdz$</li>
-</ul>
-</li>
+<h2 id="多元积分的应用">多元积分的应用</h2>
+<ul>
+<li>质心
+<ul>
+<li><span class="math inline">\(\overline{x}=\frac{\sum xdm}{\sum
+dm}\)</span></li>
+</ul></li>
+<li>转动惯量
+<ul>
+<li><span class="math inline">\(I=\sum r^2dm\)</span></li>
+</ul></li>
+<li>做功
+<ul>
+<li>设力场是<span class="math inline">\(\pmb{F}=(P,Q,R)\)</span>,有向曲线为<span class="math inline">\(L\)</span></li>
+<li>做功为<span class="math inline">\(W=\int\limits_LPdx+Qdy+Rdz\)</span></li>
+</ul></li>
 </ul>
 
     </div>
@@ -589,7 +625,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

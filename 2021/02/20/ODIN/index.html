@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于b">
+  <meta name="description" content="Abstract 本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks">
 <meta property="og:url" content="https://wooziehang.github.io/2021/02/20/ODIN/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="Abstract本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于b">
+<meta property="og:description" content="Abstract 本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————temperature scaling和input perturbation。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Table1.jpg">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Table2.jpg">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Figure4.jpg">
 <meta property="og:image" content="https://wooziehang.github.io/2021/02/20/ODIN/Figure6.jpg">
 <meta property="article:published_time" content="2021-02-20T13:19:08.000Z">
-<meta property="article:modified_time" content="2021-04-05T05:45:47.987Z">
+<meta property="article:modified_time" content="2022-05-19T13:57:57.093Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Reading Notes">
 <meta name="twitter:card" content="summary">
@@ -87,7 +87,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -242,7 +246,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:45:47" itemprop="dateModified" datetime="2021-04-05T13:45:47+08:00">2021-04-05</time>
+                <time title="修改时间：2022-05-19 21:57:57" itemprop="dateModified" datetime="2022-05-19T21:57:57+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,82 +290,235 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature scaling</strong>和<strong>input perturbation</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR at 95% TPR</strong>从34.7%降低到4.3%。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>现代神经网络在训练集和测试集样本来自同一个分布的时候效果很好。但现实世界部署的时候，往往测试集的分布是不受控制的。最近的工作表明，即使是输入不相关的数据，神经网络的预测结果也会偏高。对于分类器来说，遇到没见过的输入时给出一个不确定的反馈非常重要。因此，精确的检测OoD样本在视觉识别任务的实践中非常重要。</p>
+        <h2 id="abstract">Abstract</h2>
+<p>本文考虑神经网络中图像的OoD的检测问题。作者提出了ODIN方法，这个方法的好处是不用对训练好的网络进行任何的更改。本文的理论基于两个手段————<strong>temperature
+scaling</strong>和<strong>input
+perturbation</strong>。这两个手段可以加大ID和OoD的softmax分布的差异，有助于检测。作者通过一系列的实验证明ODIN的方法对于各种网络结构和数据集都是兼容的，并且性能远好于baseline，可以称得上是一个state-of-the-art的方法。例如，设置网络架构为DenseNet，数据集为CIFAR-10和Tiny-ImageNet，ODIN相比于baseline把<strong>FPR
+at 95% TPR</strong>从34.7%降低到4.3%。</p>
+<h2 id="introduction">Introduction</h2>
+<p>现代神经网络在训练集和测试集样本来自同一个分布的时候效果很好。但现实世界部署的时候，往往测试集的分布是不受控制的。最近的工作表明，即使是输入不相关的数据，神经网络的预测结果也会偏高。对于分类器来说，遇到没见过的输入时给出一个不确定的反馈非常重要。因此，精确的检测OoD样本在视觉识别任务的实践中非常重要。</p>
 <p>一个看上去比较直接的OoD检测方式就是扩大In-Distribution集合和Out-of-Distribution集合的规模。而OoD的数据往往是很有限的，这让再训练变得昂贵且难以处理。此外，为了确保神经网络在准确的给ID进行分类的同时，也能正确的检测出OoD,可能需要很大的神经网络架构，这使得训练过程更加复杂。</p>
-<p>Hendrycks &amp; Gimpel提出一个baseline方法检测OoD,且不需要重训练网络。这个方法的提出基于一个观察，那就是训练好的网络倾向于给ID样本一个相对更高的softmax scores。在本文，工作进一步被开展。作者发现，使用temperature scaling在softmax函数中，并且给输入进行小的扰动，即input perturbation，那么ID和OoD的softmax分布就会增大差异。本文展示了，这两个方法可以提高检测性能。比如，对于训练好的DenseNet网络，用CIFAR-10作为ID,TinyImageNet作为OoD，本文的方法把<strong>FPR at 95% TPR</strong>这个指标从34.7%下降到4.3%。本文的主要贡献总结如下：</p>
+<p>Hendrycks &amp;
+Gimpel提出一个baseline方法检测OoD,且不需要重训练网络。这个方法的提出基于一个观察，那就是训练好的网络倾向于给ID样本一个相对更高的softmax
+scores。在本文，工作进一步被开展。作者发现，使用temperature
+scaling在softmax函数中，并且给输入进行小的扰动，即input
+perturbation，那么ID和OoD的softmax分布就会增大差异。本文展示了，这两个方法可以提高检测性能。比如，对于训练好的DenseNet网络，用CIFAR-10作为ID,TinyImageNet作为OoD，本文的方法把<strong>FPR
+at 95%
+TPR</strong>这个指标从34.7%下降到4.3%。本文的主要贡献总结如下：</p>
 <ul>
-<li>提出一个简单而有效的方法，ODIN(<strong>O</strong>ut-of-<strong>Di</strong>stribution detector for <strong>N</strong>erual networks)，不需要重训练神经网络，且容易在任意现代网络结构中执行。</li>
-<li>在先进的网络结构(如DenseNet和Wide ResNet)中，用不同的数据集对作为ID和OoD。实验表明ODIN的方法可以显著的提高检测性能，并且始终比baseline的表现好得多。</li>
+<li>提出一个简单而有效的方法，ODIN(<strong>O</strong>ut-of-<strong>Di</strong>stribution
+detector for <strong>N</strong>erual
+networks)，不需要重训练神经网络，且容易在任意现代网络结构中执行。</li>
+<li>在先进的网络结构(如DenseNet和Wide
+ResNet)中，用不同的数据集对作为ID和OoD。实验表明ODIN的方法可以显著的提高检测性能，并且始终比baseline的表现好得多。</li>
 <li>结合实证分析了参数的设置如何影响性能，并提供了简单的分析以帮助直观了解本文方法。</li>
 </ul>
 <p>本文的脉络大概是：第一部分为介绍；第二部分提供必要的定义和问题陈述；第三部分介绍ODIN方法；第四部分展示性能结果；第五部分实验性的分析ODIN方法并进行评估；第六部分总结相关工作和未来的方向；第七部分总结全文。</p>
-<h2 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h2><p>本文中，作者考虑了在训练好的神经网络中区分ID和OoD图片输入的问题。令$P_{\pmb{X}}$和$Q_{\pmb{X}}$表示定义在空间$\chi$上的两个不同的数据分布。假定神经网络$\pmb{f}$的训练数据是抽样于$P_{\pmb{X}}$的，那么$P_{\pmb{X}}$就成为In-Distribution，而与之不同的$Q_{\pmb{X}}$就是Out-of-Distribution。在测试中，我们从一个混合分布$P_{\pmb{X}\times Z}$抽取新的图像，其中条件概率分布$P_{\pmb{X}|Z=0}=P_{\pmb{X}}$表示In-Distribution, 而$P_{\pmb{X}|Z=1}=Q_{\pmb{X}}$表示Out-of-Distribution。我们考虑下面的问题：给定一个从混合分布$P_{\pmb{X}\times Z}$中抽取的图像$\pmb{X}$，如何分辨这个图像是否来自于$P_{\pmb{X}}$？</p>
+<h2 id="problem-statement">Problem Statement</h2>
+<p>本文中，作者考虑了在训练好的神经网络中区分ID和OoD图片输入的问题。令<span class="math inline">\(P_{\pmb{X}}\)</span>和<span class="math inline">\(Q_{\pmb{X}}\)</span>表示定义在空间<span class="math inline">\(\chi\)</span>上的两个不同的数据分布。假定神经网络<span class="math inline">\(\pmb{f}\)</span>的训练数据是抽样于<span class="math inline">\(P_{\pmb{X}}\)</span>的，那么<span class="math inline">\(P_{\pmb{X}}\)</span>就成为In-Distribution，而与之不同的<span class="math inline">\(Q_{\pmb{X}}\)</span>就是Out-of-Distribution。在测试中，我们从一个混合分布<span class="math inline">\(P_{\pmb{X}\times
+Z}\)</span>抽取新的图像，其中条件概率分布<span class="math inline">\(P_{\pmb{X}|Z=0}=P_{\pmb{X}}\)</span>表示In-Distribution,
+而<span class="math inline">\(P_{\pmb{X}|Z=1}=Q_{\pmb{X}}\)</span>表示Out-of-Distribution。我们考虑下面的问题：给定一个从混合分布<span class="math inline">\(P_{\pmb{X}\times Z}\)</span>中抽取的图像<span class="math inline">\(\pmb{X}\)</span>，如何分辨这个图像是否来自于<span class="math inline">\(P_{\pmb{X}}\)</span>？</p>
 <p>在本文中，作者关注OoD图像的检测。然而，把一个ID图像正确分类也同样重要。但这个比较容易，因为一旦检测出图像不是OoD,就可以直接把原始图像丢进网络中就可以分类。因为，作者不改变神经网络对于ID图像的预测结果，仅仅聚焦于提高OoD图像的检测性能。</p>
-<h2 id="ODIN-Out-of-Distribution-detector"><a href="#ODIN-Out-of-Distribution-detector" class="headerlink" title="ODIN: Out-of-Distribution detector"></a>ODIN: Out-of-Distribution detector</h2><p>在本节，作者提出了ODIN方法，来检测OoD样本。检测器由两个组件构成：temperature scaling 和input preprocessing。接下来是两个组件的细节。</p>
-<h3 id="Temperature-Scaling"><a href="#Temperature-Scaling" class="headerlink" title="Temperature Scaling"></a>Temperature Scaling</h3><p>假定神经网络$\pmb{f}=(f_1,…,f_N)$是N类分类器。对于每个输入$\pmb{x}$，神经网络的输出标签$\hat{y}(\pmb{x})=arg\ max_i\ S_i(\pmb{x};T)$,其中<br>\begin{equation}<br>S_i(\pmb{x};T)=\frac{exp(f_i(\pmb{x})/T)}{\sum_{j=1}^{N}exp(f_j(\pmb{x})/T)}<br>\end{equation}<br>$T\in R^{+}$是temperature scaling的参数，训练时设置为1。对于给定的输入$\pmb{x}$,我们称softmax向量中最大的概率值，即$S_{\hat{y}}(\pmb{x};T)=max_i\ S_i(\pmb{x};T)$,为<strong>softmax score</strong>。本文把$S_{\hat{y}}(\pmb{x};T)$简写为$S(\pmb{x};T)$。之前已经有工作使用了temperature scaling来提取神经网络的知识，并校准分类任务的预测置信度。我们将看到，使用temperature scaling 可以分离ID和OoD的softmax scores，让检测更有效。</p>
-<h3 id="Input-Preprocessing"><a href="#Input-Preprocessing" class="headerlink" title="Input Preprocessing"></a>Input Preprocessing</h3><p>除了temperature scaling，本文通过添加微扰对输入进行预处理：<br>\begin{equation}<br>\tilde{\pmb{x}}=\pmb{x}-\epsilon sign(-\nabla_{\pmb{x}}log\ S_{\hat{y}}(\pmb{x};T))<br>\end{equation}<br>其中$\epsilon$是控制扰动大小的参数。这个方法是受对抗样本的启发(即在对抗样本工作中，添加小的扰动，降低正样本的softmax score从而迫使网络做出错误预测)。而本文目标和设置刚好相反。本文旨在对任意输入(不需要类标签)都增加softmax score。之后将看到，微扰对ID的影响大于OoD的影响，使得它们更加分离。注意到，对交叉熵损失梯度(相对于输入)进行反向传播，很容易计算微扰。</p>
-<h3 id="Out-of-Distribution-detector"><a href="#Out-of-Distribution-detector" class="headerlink" title="Out-of-Distribution detector"></a>Out-of-Distribution detector</h3><p>检测器结合了上述两个组件。对于每个图像$\pmb{x}$, 首先用公式2计算预处理后的$\tilde{\pmb{x}}$。然后把预处理后的$\tilde{\pmb{x}}$丢入网络，计算修正后的softmax score$S(\pmb{x};T)$。然后把score和阈值$\delta$比较。如果大于阈值则判定为ID，否则判定为OoD。OoD检测器的数学描述如下：<br>\begin{equation}<br>g(\pmb{x};\delta,T,\epsilon)=<br>\begin{cases}<br>1&amp; max_i\ p(\tilde{\pmb{x}};T) \leq \delta \\<br>0&amp; \text{otherwise}<br>\end{cases}<br>\end{equation}<br>设置参数$T$、$\epsilon$和$\delta$为合适的值，使得TPR为95%。</p>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>本节，作者在几个CV的benchmark数据集上展示了ODIN方法的性能。实验完全用PyTorch框架编写，代码是开源的以方便复现。</p>
-<h3 id="Training-setup"><a href="#Training-setup" class="headerlink" title="Training setup"></a>Training setup</h3><h4 id="Architectures-and-training-configuration"><a href="#Architectures-and-training-configuration" class="headerlink" title="Architectures and training configuration"></a>Architectures and training configuration</h4><p>本文采用两个state-of-the-art的神经网络架构，分别为DenseNet和Wide ResNet。对于DenseNet，我们的模型设置为：层数$L=100$,growth rate $k=12$(Dense-BC),dropout rate=0。对于Wide ResNet，层数为28，宽度10，dropout rate为0。神经网络的超参数设置和原始的Wide ResNet (Zagoruyko &amp; Komodakis, 2016) and<br>DenseNet (Huang et al., 2016)实现完全相同。所有的网络都用带牛顿动量的SGD法(Duchi et al., 2011; Kingma &amp; Ba, 2014)优化。具体来说，作者训练Dense-BC轮次为300，batch size为64，momentum为0.9；训练Wide ResNet轮次为200，batch size为128，momentum为0.9。学习率起始为0.1，当训练进行到50%和75%时，再相对降低10倍。</p>
-<h4 id="Accuracy-of-pre-trained-networks"><a href="#Accuracy-of-pre-trained-networks" class="headerlink" title="Accuracy of pre-trained networks"></a>Accuracy of pre-trained networks</h4><p>两个网络结构的训练集都是CIFAR-10和CIFAR-100。CIFAR-10和CIFAR-100分别有10个类和100个类，都包括50000个训练集和10000个测试集。在CIFAR数据集上的测试错误率如下表(Table 1)：</p>
+<h2 id="odin-out-of-distribution-detector">ODIN: Out-of-Distribution
+detector</h2>
+<p>在本节，作者提出了ODIN方法，来检测OoD样本。检测器由两个组件构成：temperature
+scaling 和input preprocessing。接下来是两个组件的细节。</p>
+<h3 id="temperature-scaling">Temperature Scaling</h3>
+<p>假定神经网络<span class="math inline">\(\pmb{f}=(f_1,...,f_N)\)</span>是N类分类器。对于每个输入<span class="math inline">\(\pmb{x}\)</span>，神经网络的输出标签<span class="math inline">\(\hat{y}(\pmb{x})=arg\ max_i\
+S_i(\pmb{x};T)\)</span>,其中 <span class="math display">\[\begin{equation}
+S_i(\pmb{x};T)=\frac{exp(f_i(\pmb{x})/T)}{\sum_{j=1}^{N}exp(f_j(\pmb{x})/T)}
+\end{equation}\]</span> <span class="math inline">\(T\in
+R^{+}\)</span>是temperature
+scaling的参数，训练时设置为1。对于给定的输入<span class="math inline">\(\pmb{x}\)</span>,我们称softmax向量中最大的概率值，即<span class="math inline">\(S_{\hat{y}}(\pmb{x};T)=max_i\
+S_i(\pmb{x};T)\)</span>,为<strong>softmax score</strong>。本文把<span class="math inline">\(S_{\hat{y}}(\pmb{x};T)\)</span>简写为<span class="math inline">\(S(\pmb{x};T)\)</span>。之前已经有工作使用了temperature
+scaling来提取神经网络的知识，并校准分类任务的预测置信度。我们将看到，使用temperature
+scaling 可以分离ID和OoD的softmax scores，让检测更有效。</p>
+<h3 id="input-preprocessing">Input Preprocessing</h3>
+<p>除了temperature scaling，本文通过添加微扰对输入进行预处理： <span class="math display">\[\begin{equation}
+\tilde{\pmb{x}}=\pmb{x}-\epsilon sign(-\nabla_{\pmb{x}}log\
+S_{\hat{y}}(\pmb{x};T))
+\end{equation}\]</span> 其中<span class="math inline">\(\epsilon\)</span>是控制扰动大小的参数。这个方法是受对抗样本的启发(即在对抗样本工作中，添加小的扰动，降低正样本的softmax
+score从而迫使网络做出错误预测)。而本文目标和设置刚好相反。本文旨在对任意输入(不需要类标签)都增加softmax
+score。之后将看到，微扰对ID的影响大于OoD的影响，使得它们更加分离。注意到，对交叉熵损失梯度(相对于输入)进行反向传播，很容易计算微扰。</p>
+<h3 id="out-of-distribution-detector">Out-of-Distribution detector</h3>
+<p>检测器结合了上述两个组件。对于每个图像<span class="math inline">\(\pmb{x}\)</span>, 首先用公式2计算预处理后的<span class="math inline">\(\tilde{\pmb{x}}\)</span>。然后把预处理后的<span class="math inline">\(\tilde{\pmb{x}}\)</span>丢入网络，计算修正后的softmax
+score<span class="math inline">\(S(\pmb{x};T)\)</span>。然后把score和阈值<span class="math inline">\(\delta\)</span>比较。如果大于阈值则判定为ID，否则判定为OoD。OoD检测器的数学描述如下：
+<span class="math display">\[\begin{equation}
+g(\pmb{x};\delta,T,\epsilon)=
+\begin{cases}
+1&amp; max_i\ p(\tilde{\pmb{x}};T) \leq \delta \\
+0&amp; \text{otherwise}
+\end{cases}
+\end{equation}\]</span> 设置参数<span class="math inline">\(T\)</span>、<span class="math inline">\(\epsilon\)</span>和<span class="math inline">\(\delta\)</span>为合适的值，使得TPR为95%。</p>
+<h2 id="experiments">Experiments</h2>
+<p>本节，作者在几个CV的benchmark数据集上展示了ODIN方法的性能。实验完全用PyTorch框架编写，代码是开源的以方便复现。</p>
+<h3 id="training-setup">Training setup</h3>
+<h4 id="architectures-and-training-configuration">Architectures and
+training configuration</h4>
+<p>本文采用两个state-of-the-art的神经网络架构，分别为DenseNet和Wide
+ResNet。对于DenseNet，我们的模型设置为：层数<span class="math inline">\(L=100\)</span>,growth rate <span class="math inline">\(k=12\)</span>(Dense-BC),dropout rate=0。对于Wide
+ResNet，层数为28，宽度10，dropout
+rate为0。神经网络的超参数设置和原始的Wide ResNet (Zagoruyko &amp;
+Komodakis, 2016) and DenseNet (Huang et al.,
+2016)实现完全相同。所有的网络都用带牛顿动量的SGD法(Duchi et al., 2011;
+Kingma &amp; Ba, 2014)优化。具体来说，作者训练Dense-BC轮次为300，batch
+size为64，momentum为0.9；训练Wide ResNet轮次为200，batch
+size为128，momentum为0.9。学习率起始为0.1，当训练进行到50%和75%时，再相对降低10倍。</p>
+<h4 id="accuracy-of-pre-trained-networks">Accuracy of pre-trained
+networks</h4>
+<p>两个网络结构的训练集都是CIFAR-10和CIFAR-100。CIFAR-10和CIFAR-100分别有10个类和100个类，都包括50000个训练集和10000个测试集。在CIFAR数据集上的测试错误率如下表(Table
+1)：</p>
 <img src="/2021/02/20/ODIN/Table1.jpg" class title="this is table">
-<h3 id="Out-of-Distribution-Datasets"><a href="#Out-of-Distribution-Datasets" class="headerlink" title="Out-of-Distribution Datasets"></a>Out-of-Distribution Datasets</h3><p>在测试阶段，来自CIFAR-10(以及CIFAR-100)的图像数据集被看作是In-Distribution样本，对于OoD样本，按照(Hendrycks<br>&amp; Gimpel, 2017)的设置，测试了几个不同的自然图像数据集和合成噪声数据集。本文考虑了如下OoD测试数据集。</p>
+<h3 id="out-of-distribution-datasets">Out-of-Distribution Datasets</h3>
+<p>在测试阶段，来自CIFAR-10(以及CIFAR-100)的图像数据集被看作是In-Distribution样本，对于OoD样本，按照(Hendrycks
+&amp; Gimpel,
+2017)的设置，测试了几个不同的自然图像数据集和合成噪声数据集。本文考虑了如下OoD测试数据集。</p>
 <ul>
-<li><p><strong>TinyImageNet</strong>  本数据集是 ImageNet images (Deng et al., 2009)的子集，包含10000个测试图像，200个类型。实验中构造两个数据集，crop版本和resize版本，方法分别为随机裁剪$32\times32$大小的子图、降像素采样至$32\times32$大小的子图。</p>
-</li>
-<li><p><strong>LSUN</strong>  本数据集为Large-scale Scene UNderstanding数据集，有10000个测试集图像，10个类，比如卧室、厨房、客厅。和TinyImageNet一样，构造两个数据集，分别为crop版本和resize版本。</p>
-</li>
-<li><p><strong>Gaussian Noise</strong>  本数据集为合成高斯噪声，包含10000个随机的二维高斯噪声图像，且RGB三个信道的值都从各自的独立同分布的高斯分布中采样，均值为0.5，方差为单位大小。本实验把像素映射到[0,1]区间。</p>
-</li>
-<li><p><strong>Uniform Noise</strong>  本数据集为合成均匀分布噪声，包含10000个图像，每个像素点的RGB都独立的、同等的从一个[0,1]均匀分布中采样。</p>
-</li>
+<li><p><strong>TinyImageNet</strong> 本数据集是 ImageNet images (Deng et
+al.,
+2009)的子集，包含10000个测试图像，200个类型。实验中构造两个数据集，crop版本和resize版本，方法分别为随机裁剪<span class="math inline">\(32\times32\)</span>大小的子图、降像素采样至<span class="math inline">\(32\times32\)</span>大小的子图。</p></li>
+<li><p><strong>LSUN</strong> 本数据集为Large-scale Scene
+UNderstanding数据集，有10000个测试集图像，10个类，比如卧室、厨房、客厅。和TinyImageNet一样，构造两个数据集，分别为crop版本和resize版本。</p></li>
+<li><p><strong>Gaussian Noise</strong>
+本数据集为合成高斯噪声，包含10000个随机的二维高斯噪声图像，且RGB三个信道的值都从各自的独立同分布的高斯分布中采样，均值为0.5，方差为单位大小。本实验把像素映射到[0,1]区间。</p></li>
+<li><p><strong>Uniform Noise</strong>
+本数据集为合成均匀分布噪声，包含10000个图像，每个像素点的RGB都独立的、同等的从一个[0,1]均匀分布中采样。</p></li>
 </ul>
-<p>对于超参数调优，使用iSUN(Xu et al., 2015)作为<strong>验证集</strong>。此数据集和前面四个测试集是独立的，由自然场景图像组成，包含8925个图像，每个图像也被降像素采样到$32\times 32$的大小。</p>
-<h3 id="Evaluation-metrics"><a href="#Evaluation-metrics" class="headerlink" title="Evaluation metrics"></a>Evaluation metrics</h3><p>本文采用下面的四个指标来度量一个神经网络区分ID和OoD的性能。</p>
-<ul>
-<li><strong>FPR at 95% TPR</strong>  即TPR为95%时，负样本(OoD样本)识别为正样本(ID样本)的概率</li>
-<li><strong>Detection Error</strong>  $P_e$为TPR为95%时的错误分类概率。具体可以定义为$P_e=0.5(1-TPR)+0.5FPR$，假定正例和反例在测试集中出现概率一样大。</li>
-<li><strong>AUROC</strong>  即ROC曲线的面积，是一个依赖于阈值的指标。本指标刻画了TPR和FPR的关系。可以看作是正例比反例能获得更高的detection score的概率。一个完美的检测器有着100%的AUROC。</li>
-<li><strong>AUPR</strong> 即PR曲线的面积，也是一个依赖于阈值的指标。具体来说，P就是$TP/(TP+FP)$,R就是$TP/(TP+FN)$，PR曲线就是P和R的关系图。而下表（Table 2）中，AUPR-In和AUPR-Out是当ID和OoD分别指定为正例时，PR曲线的面积。</li>
-</ul>
+<p>对于超参数调优，使用iSUN(Xu et al.,
+2015)作为<strong>验证集</strong>。此数据集和前面四个测试集是独立的，由自然场景图像组成，包含8925个图像，每个图像也被降像素采样到<span class="math inline">\(32\times 32\)</span>的大小。</p>
+<h3 id="evaluation-metrics">Evaluation metrics</h3>
+<p>本文采用下面的四个指标来度量一个神经网络区分ID和OoD的性能。 +
+<strong>FPR at 95% TPR</strong>
+即TPR为95%时，负样本(OoD样本)识别为正样本(ID样本)的概率 +
+<strong>Detection Error</strong> <span class="math inline">\(P_e\)</span>为TPR为95%时的错误分类概率。具体可以定义为<span class="math inline">\(P_e=0.5(1-TPR)+0.5FPR\)</span>，假定正例和反例在测试集中出现概率一样大。
++ <strong>AUROC</strong>
+即ROC曲线的面积，是一个依赖于阈值的指标。本指标刻画了TPR和FPR的关系。可以看作是正例比反例能获得更高的detection
+score的概率。一个完美的检测器有着100%的AUROC。 + <strong>AUPR</strong>
+即PR曲线的面积，也是一个依赖于阈值的指标。具体来说，P就是<span class="math inline">\(TP/(TP+FP)\)</span>,R就是<span class="math inline">\(TP/(TP+FN)\)</span>，PR曲线就是P和R的关系图。而下表（Table
+2）中，AUPR-In和AUPR-Out是当ID和OoD分别指定为正例时，PR曲线的面积。</p>
 <img src="/2021/02/20/ODIN/Table2.jpg" class title="this is table">
-<h3 id="Experimental-results"><a href="#Experimental-results" class="headerlink" title="Experimental results"></a>Experimental results</h3><h4 id="Comparison-with-baseline"><a href="#Comparison-with-baseline" class="headerlink" title="Comparison with baseline"></a>Comparison with baseline</h4><p>下图(Figure 1)展示了DenseNet-BC-100的ROC曲线，测试集中正例为CIFAR-10,负例为TinyImageNet。红色的曲线对应于baseline方法，蓝色的曲线对应于ODIN的方法。可以观察到两个曲线有一个比较大的gap。比如，当TPR=95%时，FPR从34%(baseline)降低到4.2%(ODIN)。</p>
+<h3 id="experimental-results">Experimental results</h3>
+<h4 id="comparison-with-baseline">Comparison with baseline</h4>
+<p>下图(Figure
+1)展示了DenseNet-BC-100的ROC曲线，测试集中正例为CIFAR-10,负例为TinyImageNet。红色的曲线对应于baseline方法，蓝色的曲线对应于ODIN的方法。可以观察到两个曲线有一个比较大的gap。比如，当TPR=95%时，FPR从34%(baseline)降低到4.2%(ODIN)。</p>
 <img src="/2021/02/20/ODIN/Figure1.jpg" class title="this is figure">
-<h4 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h4><p>本文使用单独的OoD验证集用于调参。对于T参数，在1、2、5、10、20、50、100、200、500、1000中选择。对于微扰程度$\epsilon$，从0到0.004中等距选取。调节参数到合适的值，使得验证集的FPR at 95% TPR指标最小。</p>
-<h4 id="Main-result"><a href="#Main-result" class="headerlink" title="Main result"></a>Main result</h4><p>主要的结果总结在之前的Table 2中。验证集是iSUN(Xu et al., 2015)。T都设置为1000。对于DenseNet，对CIFAR-10使用$\epsilon=0.0014$，对CIFAR-100使用$\epsilon=0.002$。在下一节Discussions中提供参数影响的细节。对于每一对ID和OoD数据集，实验都记录了baseline和ODIN的性能，从Table 2中可以看到在所有的数据对中，ODIN的性能相比baseline都有显著提升。</p>
-<h4 id="Parameter-transferability"><a href="#Parameter-transferability" class="headerlink" title="Parameter transferability"></a>Parameter transferability</h4><p>下表(Table 3)展示了，在单个验证集上进行参数调节是具有泛化性的。具体来说，使用单个OoD数据集作为验证集来调参，然后用剩余的OoD测试集进行评估。每次(不同的OoD验证集)的结果都是相似，这说明了本文的方法对于验证集的选取不太敏感。</p>
+<h4 id="hyperparameters">Hyperparameters</h4>
+<p>本文使用单独的OoD验证集用于调参。对于T参数，在1、2、5、10、20、50、100、200、500、1000中选择。对于微扰程度<span class="math inline">\(\epsilon\)</span>，从0到0.004中等距选取。调节参数到合适的值，使得验证集的FPR
+at 95% TPR指标最小。</p>
+<h4 id="main-result">Main result</h4>
+<p>主要的结果总结在之前的Table 2中。验证集是iSUN(Xu et al.,
+2015)。T都设置为1000。对于DenseNet，对CIFAR-10使用<span class="math inline">\(\epsilon=0.0014\)</span>，对CIFAR-100使用<span class="math inline">\(\epsilon=0.002\)</span>。在下一节Discussions中提供参数影响的细节。对于每一对ID和OoD数据集，实验都记录了baseline和ODIN的性能，从Table
+2中可以看到在所有的数据对中，ODIN的性能相比baseline都有显著提升。</p>
+<h4 id="parameter-transferability">Parameter transferability</h4>
+<p>下表(Table
+3)展示了，在单个验证集上进行参数调节是具有泛化性的。具体来说，使用单个OoD数据集作为验证集来调参，然后用剩余的OoD测试集进行评估。每次(不同的OoD验证集)的结果都是相似，这说明了本文的方法对于验证集的选取不太敏感。</p>
 <img src="/2021/02/20/ODIN/Table3.jpg" class title="this is table">
 <p>注：神经网络是在CIFAR-10上预训练的。</p>
-<h4 id="Data-distributional-distance-vs-detection-performance"><a href="#Data-distributional-distance-vs-detection-performance" class="headerlink" title="Data distributional distance vs. detection performance"></a>Data distributional distance vs. detection performance</h4><p>为了度量ID和OoD数据集的统计距离，本文采用了一个广泛使用的指标，即<strong>Maximum Mean Discrepancy</strong>(MMD)。使用高斯RBF核。具体来说，给定两个图像集合，$V={v_1,…,v_m}$、$W={w_1,…,w_m}$。V和Q最大平均误差MMD定义如下：<br>\begin{equation}<br>\widehat{MMD}^2(V,W)=\frac{1}{\tbinom{m}{2}}\sum\limits_{i\neq j}k(v_i,v_j)+\frac{1}{\tbinom{m}{2}}\sum\limits_{i\neq j}k(w_i,w_j)-\frac{2}{\tbinom{m}{2}}\sum\limits_{i\neq j}k(v_i,v_j)<br>\end{equation}</p>
-<p>其中$k(.,.)$为Gaussian RBF kernel。比如$k(x,x’)=exp(-\frac{||x-x’||_2^2}{2\sigma^2})$。本文使用和Sutherland et al.(2016)相同的方法去选择$\sigma$。此时$2\sigma^2$设置为集合$V\cup W$中所有图像间欧氏距离的均值。</p>
-<p>下图(Figure 2)展示了ODIN的性能如何随着ID和OoD之间的MMD距离变化而变化。数据集(x轴)是按MMD距离降序排序的。网络在CIFAR-100上训练，OoD数据集从1到5分别为：LSUN(cop)、TinyImageNet(crop)、LSUN(resize)、iSUN(resize)、TinyImageNet(resize)。</p>
+<h4 id="data-distributional-distance-vs.-detection-performance">Data
+distributional distance vs. detection performance</h4>
+<p>为了度量ID和OoD数据集的统计距离，本文采用了一个广泛使用的指标，即<strong>Maximum
+Mean
+Discrepancy</strong>(MMD)。使用高斯RBF核。具体来说，给定两个图像集合，<span class="math inline">\(V={v_1,...,v_m}\)</span>、<span class="math inline">\(W={w_1,...,w_m}\)</span>。V和Q最大平均误差MMD定义如下：
+<span class="math display">\[\begin{equation}
+\widehat{MMD}^2(V,W)=\frac{1}{\tbinom{m}{2}}\sum\limits_{i\neq
+j}k(v_i,v_j)+\frac{1}{\tbinom{m}{2}}\sum\limits_{i\neq
+j}k(w_i,w_j)-\frac{2}{\tbinom{m}{2}}\sum\limits_{i\neq j}k(v_i,v_j)
+\end{equation}\]</span></p>
+<p>其中<span class="math inline">\(k(.,.)\)</span>为Gaussian RBF
+kernel。比如<span class="math inline">\(k(x,x&#39;)=exp(-\frac{\|\|x-x&#39;\|\|_2^2}{2\sigma^2})\)</span>。本文使用和Sutherland
+et al.(2016)相同的方法去选择<span class="math inline">\(\sigma\)</span>。此时<span class="math inline">\(2\sigma^2\)</span>设置为集合<span class="math inline">\(V\cup W\)</span>中所有图像间欧氏距离的均值。</p>
+<p>下图(Figure
+2)展示了ODIN的性能如何随着ID和OoD之间的MMD距离变化而变化。数据集(x轴)是按MMD距离降序排序的。网络在CIFAR-100上训练，OoD数据集从1到5分别为：LSUN(cop)、TinyImageNet(crop)、LSUN(resize)、iSUN(resize)、TinyImageNet(resize)。</p>
 <img src="/2021/02/20/ODIN/Figure2.jpg" class title="this is figure">
-<p>可以发现两个有趣的结论：</p>
-<ul>
-<li>裁剪会使得数据集和CIFAR-100的MMD距离变得更大，可能是因为裁剪后图像只包含局部信息，因此与CIFAR-100的区别加大，而resized后的图像还包含全局的信息，因此和CIFAR-100中图像相对相似。</li>
-<li>MMD距离和检测性能是负相关的。这表明当ID和OoD图像相似度时候，检测任务会变得困难。</li>
-</ul>
-<h2 id="Discussions"><a href="#Discussions" class="headerlink" title="Discussions"></a>Discussions</h2><h3 id="Analysis-on-temperature-scaling"><a href="#Analysis-on-temperature-scaling" class="headerlink" title="Analysis on temperature scaling"></a>Analysis on temperature scaling</h3><p>在本小节，作者分析了temperature scaling方法的有效性。如下图(Figure 3)的(a)(b)，可以观察到足够大的T可以获得更好的检测性能，当T过大的时候，这种正面影响变弱。</p>
+<p>可以发现两个有趣的结论： +
+裁剪会使得数据集和CIFAR-100的MMD距离变得更大，可能是因为裁剪后图像只包含局部信息，因此与CIFAR-100的区别加大，而resized后的图像还包含全局的信息，因此和CIFAR-100中图像相对相似。
++
+MMD距离和检测性能是负相关的。这表明当ID和OoD图像相似度时候，检测任务会变得困难。</p>
+<h2 id="discussions">Discussions</h2>
+<h3 id="analysis-on-temperature-scaling">Analysis on temperature
+scaling</h3>
+<p>在本小节，作者分析了temperature scaling方法的有效性。如下图(Figure
+3)的(a)(b)，可以观察到足够大的T可以获得更好的检测性能，当T过大的时候，这种正面影响变弱。</p>
 <img src="/2021/02/20/ODIN/Figure3.jpg" class title="this is figure">
-<p>为了深入原理，作者对softmax score进行泰勒展开，假设T可以充分大，详细推导如下：<br>\begin{equation}<br>\begin{aligned}<br>S_{\hat{y}}(\pmb{x};T)&amp;=\frac{exp(f_{\hat{y}}(\pmb{x})/T)}{\sum_{i=1}^{N}exp(f_i(\pmb{x})/T)}\\<br>&amp;=\frac{1}{\sum_{i=1}^{N}exp(\frac{f_i(\pmb{x})-f_{\hat{y}}(\pmb{x})}{T})}\\<br>&amp;=\frac{1}{\sum_{i=1}^{N}[1+\frac{f_i(\pmb{x})-f_{\hat{y}}(\pmb{x})}{T}+\frac{1}{2!}\frac{(f_i(\pmb{x})-f_{\hat{y}}(\pmb{x}))^2}{T^2}+o(\frac{1}{T^2})]}\\<br>&amp;\approx\frac{1}{N-\frac{1}{T}\sum_{i=1}^{N}[f_{\hat{y}}(\pmb{x})-f_i(\pmb{x})]+\frac{1}{2T^2}\sum_{i=1}^N[f_i(\pmb{x})-f_{\hat{y}}(\pmb{x})]^2}\\<br>&amp;<br>\end{aligned}<br>\end{equation}</p>
-<p>最后结果忽略了第三阶以及更高的项。为了简化表示，假定：<br>\begin{equation}<br>\begin{aligned}<br>&amp;U_1(\pmb{x})=\frac{1}{N-1}\sum\limits_{i\neq\hat{y}}[f_{\hat{y}}(\pmb{x})-f_i(\pmb{x})] \\<br>and\ \ \ \ \ &amp;U_2(\pmb{x})=\frac{1}{N-1} \sum\limits_{i\neq\hat{y}}[f_{\hat{y}}(\pmb{x})-f_i(\pmb{x})]^2<br>\end{aligned}<br>\end{equation}</p>
-<p>接着，作者对<strong>$U_1$和$U_2$进行了解释</strong>。根据定义，$U_1$度量了最大的logits和其余logits之间的偏差。而$U_2$还度量了其余小logits之间的偏差。个人的理解是因为$U_2$的形式类似于方差，因为可以在括号内加上一个logits平均值再减去一个logits平均值，然后用完全平方公式展开，可得到条件正相关于方差的形式(即$U_1$固定，$U_2$正相关于其他小logits间的方差)。在本文的附录D中有详细推导，此处从略。下图(Figure 5)的(a)展示了每个OoD和ID的$U1$的分布概率密度，ID是红色的。</p>
+<p>为了深入原理，作者对softmax
+score进行泰勒展开，假设T可以充分大，详细推导如下： <span class="math display">\[\begin{equation}
+\begin{aligned}
+S_{\hat{y}}(\pmb{x};T)&amp;=\frac{exp(f_{\hat{y}}(\pmb{x})/T)}{\sum_{i=1}^{N}exp(f_i(\pmb{x})/T)}\\
+&amp;=\frac{1}{\sum_{i=1}^{N}exp(\frac{f_i(\pmb{x})-f_{\hat{y}}(\pmb{x})}{T})}\\
+&amp;=\frac{1}{\sum_{i=1}^{N}[1+\frac{f_i(\pmb{x})-f_{\hat{y}}(\pmb{x})}{T}+\frac{1}{2!}\frac{(f_i(\pmb{x})-f_{\hat{y}}(\pmb{x}))^2}{T^2}+o(\frac{1}{T^2})]}\\
+&amp;\approx\frac{1}{N-\frac{1}{T}\sum_{i=1}^{N}[f_{\hat{y}}(\pmb{x})-f_i(\pmb{x})]+\frac{1}{2T^2}\sum_{i=1}^N[f_i(\pmb{x})-f_{\hat{y}}(\pmb{x})]^2}\\
+&amp;
+\end{aligned}
+\end{equation}\]</span></p>
+<p>最后结果忽略了第三阶以及更高的项。为了简化表示，假定： <span class="math display">\[\begin{equation}
+\begin{aligned}
+&amp;U_1(\pmb{x})=\frac{1}{N-1}\sum\limits_{i\neq\hat{y}}[f_{\hat{y}}(\pmb{x})-f_i(\pmb{x})]
+\\
+and\ \ \ \ \ &amp;U_2(\pmb{x})=\frac{1}{N-1}
+\sum\limits_{i\neq\hat{y}}[f_{\hat{y}}(\pmb{x})-f_i(\pmb{x})]^2
+\end{aligned}
+\end{equation}\]</span></p>
+<p>接着，作者对<strong><span class="math inline">\(U_1\)</span>和<span class="math inline">\(U_2\)</span>进行了解释</strong>。根据定义，<span class="math inline">\(U_1\)</span>度量了最大的logits和其余logits之间的偏差。而<span class="math inline">\(U_2\)</span>还度量了其余小logits之间的偏差。个人的理解是因为<span class="math inline">\(U_2\)</span>的形式类似于方差，因为可以在括号内加上一个logits平均值再减去一个logits平均值，然后用完全平方公式展开，可得到条件正相关于方差的形式(即<span class="math inline">\(U_1\)</span>固定，<span class="math inline">\(U_2\)</span>正相关于其他小logits间的方差)。在本文的附录D中有详细推导，此处从略。下图(Figure
+5)的(a)展示了每个OoD和ID的<span class="math inline">\(U1\)</span>的分布概率密度，ID是红色的。</p>
 <img src="/2021/02/20/ODIN/Figure5.jpg" class title="this is figure">
-<p>我们观察到神经网络使用ID输入时，最大的logits输入和其余logits的偏差更大，即$U_1$更大。这可能是因为神经网络倾向于对ID给出更高的置信度。</p>
-<p>此外，Figure 5的(b)展示了$U_2$关于$U_1$的条件期望$E[U_2|U_1]$。每个曲线对应一个数据集，红色的是ID数据集CIFAR-10。可以观察到红色的曲线始终在其他曲线之上，这表明当两个图像的$U_1$接近时，ID图像倾向于有一个更大$U_2$。换句话说，对于ID图像，去掉最大的logits，剩余的小logits倾向于更加分散。当ID中某些类特征相似而其他类间显著不同时可能会发生上述情况。为了解释这一点，可以看Figure 5 的(f)(g)。(f)图展示了在DenseNet网络下，用CIFAR-10训练，然后输入一个来自CIFAR-10的狗的图像，得到每个类的输出logits。(g)图则是用TinyImageNet(crop)作为ID，输入一个青蛙。对于狗的图像，可以观察到标签狗和猫的预测logits非常接近但猫和卡车的输出差异就很大。这可能是因为狗和猫很相似但它们和卡车有很大差异。对于TinyImageNet(crop)数据集，除了最大的logits，其他的几个logits输出都比较接近，因此始终有一个较小$U_2$。</p>
-<p>下面，作者探讨了<strong>T的影响</strong>。为了确定选取一个较大的T是有用的，作者首先重写公式3的softmax score函数为$S\propto (U_1-U_2/2T)/T$。因此softmax score很大程度上由$U_1和U_2/2T$来决定。如之前所推论的，$S \propto U_1$且ID的$U_1$较大,因此$U_1$正面促进了ID的$S$较大这个结果；而$S \propto -U_2$,而ID的$U_2$相对于OoD也更大，故$U_2$负面削弱了ID的$S$较大这个结果。因此可以选取一个较大的temperature来弥补$U_2/T$对检测性能的负面影响。这样，In-Distribution和Out-of-Distribution的softmax score就更加分离。最后，如果$T$充分的大，softmax score几乎只被$U_1$所影响————这解释了Figure 3(a)(b)的现象，也就是为什么$T$太大了后(eg.,T&gt;100)性能不再提升。在附录C中作者提供了规范的证明，来展示当T无穷大的时候检测误差将收敛为常数。可以详见作者原文，本笔记从略。</p>
-<h3 id="Analysis-on-Input-Preprocessing"><a href="#Analysis-on-Input-Preprocessing" class="headerlink" title="Analysis on Input Preprocessing"></a>Analysis on Input Preprocessing</h3><p>正如前文所说，使用temperture scaling方法对于检测性能提高是很有效的。然而当T很大的时候，性能就不再继续提升了。为了进一步提高性能，作者补充了一个input preprocessing的方法。正如下图(Figure 4)所展示的，使用合适的微扰程度$\epsilon$后，检测性能得到了极大的提高(T=1000)。</p>
+<p>我们观察到神经网络使用ID输入时，最大的logits输入和其余logits的偏差更大，即<span class="math inline">\(U_1\)</span>更大。这可能是因为神经网络倾向于对ID给出更高的置信度。</p>
+<p>此外，Figure 5的(b)展示了<span class="math inline">\(U_2\)</span>关于<span class="math inline">\(U_1\)</span>的条件期望<span class="math inline">\(E[U_2|U_1]\)</span>。每个曲线对应一个数据集，红色的是ID数据集CIFAR-10。可以观察到红色的曲线始终在其他曲线之上，这表明当两个图像的<span class="math inline">\(U_1\)</span>接近时，ID图像倾向于有一个更大<span class="math inline">\(U_2\)</span>。换句话说，对于ID图像，去掉最大的logits，剩余的小logits倾向于更加分散。当ID中某些类特征相似而其他类间显著不同时可能会发生上述情况。为了解释这一点，可以看Figure
+5
+的(f)(g)。(f)图展示了在DenseNet网络下，用CIFAR-10训练，然后输入一个来自CIFAR-10的狗的图像，得到每个类的输出logits。(g)图则是用TinyImageNet(crop)作为ID，输入一个青蛙。对于狗的图像，可以观察到标签狗和猫的预测logits非常接近但猫和卡车的输出差异就很大。这可能是因为狗和猫很相似但它们和卡车有很大差异。对于TinyImageNet(crop)数据集，除了最大的logits，其他的几个logits输出都比较接近，因此始终有一个较小<span class="math inline">\(U_2\)</span>。</p>
+<p>下面，作者探讨了<strong>T的影响</strong>。为了确定选取一个较大的T是有用的，作者首先重写公式3的softmax
+score函数为<span class="math inline">\(S\propto
+(U_1-U_2/2T)/T\)</span>。因此softmax score很大程度上由<span class="math inline">\(U_1和U_2/2T\)</span>来决定。如之前所推论的，<span class="math inline">\(S \propto U_1\)</span>且ID的<span class="math inline">\(U_1\)</span>较大,因此<span class="math inline">\(U_1\)</span>正面促进了ID的<span class="math inline">\(S\)</span>较大这个结果；而<span class="math inline">\(S \propto -U_2\)</span>,而ID的<span class="math inline">\(U_2\)</span>相对于OoD也更大，故<span class="math inline">\(U_2\)</span>负面削弱了ID的<span class="math inline">\(S\)</span>较大这个结果。因此可以选取一个较大的temperature来弥补<span class="math inline">\(U_2/T\)</span>对检测性能的负面影响。这样，In-Distribution和Out-of-Distribution的softmax
+score就更加分离。最后，如果<span class="math inline">\(T\)</span>充分的大，softmax score几乎只被<span class="math inline">\(U_1\)</span>所影响————这解释了Figure
+3(a)(b)的现象，也就是为什么<span class="math inline">\(T\)</span>太大了后(eg.,T&gt;100)性能不再提升。在附录C中作者提供了规范的证明，来展示当T无穷大的时候检测误差将收敛为常数。可以详见作者原文，本笔记从略。</p>
+<h3 id="analysis-on-input-preprocessing">Analysis on Input
+Preprocessing</h3>
+<p>正如前文所说，使用temperture
+scaling方法对于检测性能提高是很有效的。然而当T很大的时候，性能就不再继续提升了。为了进一步提高性能，作者补充了一个input
+preprocessing的方法。正如下图(Figure 4)所展示的，使用合适的微扰程度<span class="math inline">\(\epsilon\)</span>后，检测性能得到了极大的提高(T=1000)。</p>
 <img src="/2021/02/20/ODIN/Figure4.jpg" class title="this is figure">
-<p>本小节提供了一些直观的理解。首先看到log-softmax函数对于微扰图像$\hat{x}$的一阶泰勒展开：<br>\begin{equation}<br>log\ S_{\hat{y}}(\tilde{\pmb{x}};T)=log\ S_{\hat{y}}(\pmb{x};T)+\epsilon ||\nabla_{\pmb{x}}log\ S_{\hat{y}}(\pmb{x};T)||_1+o(\epsilon)<br>\end{equation}<br>其中 $x$为原始输入。</p>
-<p>首先看<strong>梯度的影响</strong>。Figure 5的(c)展示了$||\nabla_{\pmb{x}}log\ S_{\hat{y}}(\pmb{x};T)||_1$的分布，这是log-softmax关于$x$梯度的一范式。一个突出的现象就是，相比大多数OoD的图像，CIFAR-10的图像倾向于有一个更大的梯度范式的值。为了进一步弄清梯度范式对softmax score的影响，可以看到Figure 5的(d)是梯度范式关于S的条件数学期望$E[||\nabla_{\pmb{x}}log\ S(\pmb{x};T)||_1|S]$。可以发现当softmax score相同的时候，ID相比OoD的$||\nabla_{\pmb{x}}log\ S(\pmb{x};T)||$更大。</p>
+<p>本小节提供了一些直观的理解。首先看到log-softmax函数对于微扰图像<span class="math inline">\(\hat{x}\)</span>的一阶泰勒展开： <span class="math display">\[\begin{equation}
+log\ S_{\hat{y}}(\tilde{\pmb{x}};T)=log\ S_{\hat{y}}(\pmb{x};T)+\epsilon
+\|\|\nabla_{\pmb{x}}log\ S_{\hat{y}}(\pmb{x};T)\|\|_1+o(\epsilon)
+\end{equation}\]</span> 其中 <span class="math inline">\(x\)</span>为原始输入。</p>
+<p>首先看<strong>梯度的影响</strong>。Figure 5的(c)展示了<span class="math inline">\(\|\|\nabla_{\pmb{x}}log\
+S_{\hat{y}}(\pmb{x};T)\|\|_1\)</span>的分布，这是log-softmax关于<span class="math inline">\(x\)</span>梯度的一范式。一个突出的现象就是，相比大多数OoD的图像，CIFAR-10的图像倾向于有一个更大的梯度范式的值。为了进一步弄清梯度范式对softmax
+score的影响，可以看到Figure 5的(d)是梯度范式关于S的条件数学期望<span class="math inline">\(E[\|\|\nabla_{\pmb{x}}log\
+S(\pmb{x};T)\|\|_1|S]\)</span>。可以发现当softmax
+score相同的时候，ID相比OoD的<span class="math inline">\(\|\|\nabla_{\pmb{x}}log\
+S(\pmb{x};T)\|\|\)</span>更大。</p>
 <p>下图(Figure 6)解释了梯度范式的影响。</p>
 <img src="/2021/02/20/ODIN/Figure6.jpg" class title="this is figure">
-<p>假定图像$\pmb{x}_1$(蓝色)是ID，图像$\pmb{x}_2$(红色)是OoD，这两者有接近的softmax score。但经过input processing，因为ID的梯度的一范式较大，故微扰后ID有更大的softmax score了。这样，ID和OoD的图像就进一步的分离开(Figure 5的(e)也能看到类似的现象)。</p>
-<p>然后看<strong>$\epsilon$的影响</strong>。当$\epsilon$充分小的时候，添加微扰不会有什么影响。然而当$\epsilon$不可忽略时，ID和OoD的gap就会受到$||\nabla_{\pmb{x}}log\ S(\pmb{x};T)||$的影响。本文的观察和(Szegedy et al., 2014; Goodfellow et al., 2015; Moosavi-<br>Dezfooli et al., 2017)的现象一致，都表明：<strong>给定ID图像小的微扰，softmax scores倾向于显著改变</strong>。值得注意的是，使用一个非常大的$\epsilon$会导致性能下降，如Figure 4。这可能是因为，当$\epsilon$比较大的时候，泰勒展开的第二阶和更高阶项不再可以忽略。</p>
-<h2 id="Related-works-and-future-directions"><a href="#Related-works-and-future-directions" class="headerlink" title="Related works and future directions"></a>Related works and future directions</h2><p>OoD样本的检测问题在低维空间上已经在各种背景下被深入研究(可以参考Pimentel et al. (2014)的调查)。传统的方法，例如<strong>密度估计、最邻近、聚类分析</strong>都被广泛的使用(Chow, 1970; Vincent &amp; Bengio, 2003; Ghoting et al., 2008; Devroye et al.,2013)。密度估计方法使用概率模型来估计ID,如果一个测试样本在低密度区域，那么就被识别为一个OoD;聚类方法基于统计距离，如果一个测试样本距离它的邻居很远，那么就被识别为OoD。尽管低维空间中方法很多，但不幸的是在高维空间(例如图像空间)中这些方法都不太可靠(Wasserman, 2006; Theis et al., 2015)。近些年，基于深度模型的OoD检测器被提出了。Schlegl et al. (2017)训练了一个生成式的对抗网络来检测临床场景中的OoD。Sabokrou et al. (2016)训练了一个卷积网络来检测异常的场景。Andrews et al. (2016)采用了迁移表征学习来进行异常检测。这些工作都需要扩充或修改神经网络架构。在最近的一个工作中(也就是baseline那篇文章)，Hendrycks &amp; Gimpel (2017)发现了预训练好的神经网络对于OoD样本的分类是过度自信的，这限制了检测的性能。<strong>本文旨在提高OoD样本的检测性能，而不需要修改已有的训练好的网络模型</strong>。</p>
-<p>我们的方法利用了下面两个有趣的现象来提高ID和OoD的区分：(1)对于ID图像，现代神经网络倾向于产生类间方差较大的输出；(2)对于ID图像，神经网络往往会有一个较大的log-softmax score的梯度范式。作者相信，更好地理解这些现象就可以更加理解这个问题。</p>
-<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>在本文中，作者提出了一个简单而有效的方法去检测神经网络中OoD的样本。这个方法不需要重训练神经网络，并且相比于Hendrycks &amp; Gimpel (2017)的baseline方法，性能在各个网络架构、各个数据集上都有很大改进。本文实证的分析了不同参数设置下的方法，并且提供了一些见解。未来的工作可以是探索本文的方法在其他领域的应用，如语音识别和自然语言处理等等。</p>
+<p>假定图像<span class="math inline">\(\pmb{x}_1\)</span>(蓝色)是ID，图像<span class="math inline">\(\pmb{x}_2\)</span>(红色)是OoD，这两者有接近的softmax
+score。但经过input
+processing，因为ID的梯度的一范式较大，故微扰后ID有更大的softmax
+score了。这样，ID和OoD的图像就进一步的分离开(Figure
+5的(e)也能看到类似的现象)。</p>
+<p>然后看<strong><span class="math inline">\(\epsilon\)</span>的影响</strong>。当<span class="math inline">\(\epsilon\)</span>充分小的时候，添加微扰不会有什么影响。然而当<span class="math inline">\(\epsilon\)</span>不可忽略时，ID和OoD的gap就会受到<span class="math inline">\(\|\|\nabla_{\pmb{x}}log\
+S(\pmb{x};T)\|\|\)</span>的影响。本文的观察和(Szegedy et al., 2014;
+Goodfellow et al., 2015; Moosavi- Dezfooli et al.,
+2017)的现象一致，都表明：<strong>给定ID图像小的微扰，softmax
+scores倾向于显著改变</strong>。值得注意的是，使用一个非常大的<span class="math inline">\(\epsilon\)</span>会导致性能下降，如Figure
+4。这可能是因为，当<span class="math inline">\(\epsilon\)</span>比较大的时候，泰勒展开的第二阶和更高阶项不再可以忽略。</p>
+<h2 id="related-works-and-future-directions">Related works and future
+directions</h2>
+<p>OoD样本的检测问题在低维空间上已经在各种背景下被深入研究(可以参考Pimentel
+et al.
+(2014)的调查)。传统的方法，例如<strong>密度估计、最邻近、聚类分析</strong>都被广泛的使用(Chow,
+1970; Vincent &amp; Bengio, 2003; Ghoting et al., 2008; Devroye et
+al.,2013)。密度估计方法使用概率模型来估计ID,如果一个测试样本在低密度区域，那么就被识别为一个OoD;聚类方法基于统计距离，如果一个测试样本距离它的邻居很远，那么就被识别为OoD。尽管低维空间中方法很多，但不幸的是在高维空间(例如图像空间)中这些方法都不太可靠(Wasserman,
+2006; Theis et al.,
+2015)。近些年，基于深度模型的OoD检测器被提出了。Schlegl et al.
+(2017)训练了一个生成式的对抗网络来检测临床场景中的OoD。Sabokrou et al.
+(2016)训练了一个卷积网络来检测异常的场景。Andrews et al.
+(2016)采用了迁移表征学习来进行异常检测。这些工作都需要扩充或修改神经网络架构。在最近的一个工作中(也就是baseline那篇文章)，Hendrycks
+&amp; Gimpel
+(2017)发现了预训练好的神经网络对于OoD样本的分类是过度自信的，这限制了检测的性能。<strong>本文旨在提高OoD样本的检测性能，而不需要修改已有的训练好的网络模型</strong>。</p>
+<p>我们的方法利用了下面两个有趣的现象来提高ID和OoD的区分：(1)对于ID图像，现代神经网络倾向于产生类间方差较大的输出；(2)对于ID图像，神经网络往往会有一个较大的log-softmax
+score的梯度范式。作者相信，更好地理解这些现象就可以更加理解这个问题。</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>在本文中，作者提出了一个简单而有效的方法去检测神经网络中OoD的样本。这个方法不需要重训练神经网络，并且相比于Hendrycks
+&amp; Gimpel
+(2017)的baseline方法，性能在各个网络架构、各个数据集上都有很大改进。本文实证的分析了不同参数设置下的方法，并且提供了一些见解。未来的工作可以是探索本文的方法在其他领域的应用，如语音识别和自然语言处理等等。</p>
 
     </div>
 
@@ -461,7 +618,14 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Statement"><span class="nav-number">3.</span> <span class="nav-text">Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ODIN-Out-of-Distribution-detector"><span class="nav-number">4.</span> <span class="nav-text">ODIN: Out-of-Distribution detector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Temperature-Scaling"><span class="nav-number">4.1.</span> <span class="nav-text">Temperature Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Preprocessing"><span class="nav-number">4.2.</span> <span class="nav-text">Input Preprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Distribution-detector"><span class="nav-number">4.3.</span> <span class="nav-text">Out-of-Distribution detector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-setup"><span class="nav-number">5.1.</span> <span class="nav-text">Training setup</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Architectures-and-training-configuration"><span class="nav-number">5.1.1.</span> <span class="nav-text">Architectures and training configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accuracy-of-pre-trained-networks"><span class="nav-number">5.1.2.</span> <span class="nav-text">Accuracy of pre-trained networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Distribution-Datasets"><span class="nav-number">5.2.</span> <span class="nav-text">Out-of-Distribution Datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-metrics"><span class="nav-number">5.3.</span> <span class="nav-text">Evaluation metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimental-results"><span class="nav-number">5.4.</span> <span class="nav-text">Experimental results</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Comparison-with-baseline"><span class="nav-number">5.4.1.</span> <span class="nav-text">Comparison with baseline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyperparameters"><span class="nav-number">5.4.2.</span> <span class="nav-text">Hyperparameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Main-result"><span class="nav-number">5.4.3.</span> <span class="nav-text">Main result</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parameter-transferability"><span class="nav-number">5.4.4.</span> <span class="nav-text">Parameter transferability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-distributional-distance-vs-detection-performance"><span class="nav-number">5.4.5.</span> <span class="nav-text">Data distributional distance vs. detection performance</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Discussions"><span class="nav-number">6.</span> <span class="nav-text">Discussions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-on-temperature-scaling"><span class="nav-number">6.1.</span> <span class="nav-text">Analysis on temperature scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-on-Input-Preprocessing"><span class="nav-number">6.2.</span> <span class="nav-text">Analysis on Input Preprocessing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-works-and-future-directions"><span class="nav-number">7.</span> <span class="nav-text">Related works and future directions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusions"><span class="nav-number">8.</span> <span class="nav-text">Conclusions</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-statement"><span class="nav-number">3.</span> <span class="nav-text">Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#odin-out-of-distribution-detector"><span class="nav-number">4.</span> <span class="nav-text">ODIN: Out-of-Distribution
+detector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#temperature-scaling"><span class="nav-number">4.1.</span> <span class="nav-text">Temperature Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#input-preprocessing"><span class="nav-number">4.2.</span> <span class="nav-text">Input Preprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#out-of-distribution-detector"><span class="nav-number">4.3.</span> <span class="nav-text">Out-of-Distribution detector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#training-setup"><span class="nav-number">5.1.</span> <span class="nav-text">Training setup</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#architectures-and-training-configuration"><span class="nav-number">5.1.1.</span> <span class="nav-text">Architectures and
+training configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accuracy-of-pre-trained-networks"><span class="nav-number">5.1.2.</span> <span class="nav-text">Accuracy of pre-trained
+networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#out-of-distribution-datasets"><span class="nav-number">5.2.</span> <span class="nav-text">Out-of-Distribution Datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#evaluation-metrics"><span class="nav-number">5.3.</span> <span class="nav-text">Evaluation metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#experimental-results"><span class="nav-number">5.4.</span> <span class="nav-text">Experimental results</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#comparison-with-baseline"><span class="nav-number">5.4.1.</span> <span class="nav-text">Comparison with baseline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hyperparameters"><span class="nav-number">5.4.2.</span> <span class="nav-text">Hyperparameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-result"><span class="nav-number">5.4.3.</span> <span class="nav-text">Main result</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parameter-transferability"><span class="nav-number">5.4.4.</span> <span class="nav-text">Parameter transferability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-distributional-distance-vs.-detection-performance"><span class="nav-number">5.4.5.</span> <span class="nav-text">Data
+distributional distance vs. detection performance</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#discussions"><span class="nav-number">6.</span> <span class="nav-text">Discussions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#analysis-on-temperature-scaling"><span class="nav-number">6.1.</span> <span class="nav-text">Analysis on temperature
+scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#analysis-on-input-preprocessing"><span class="nav-number">6.2.</span> <span class="nav-text">Analysis on Input
+Preprocessing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-works-and-future-directions"><span class="nav-number">7.</span> <span class="nav-text">Related works and future
+directions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusions"><span class="nav-number">8.</span> <span class="nav-text">Conclusions</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -477,7 +641,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="可平面图的判断剖分 剖分：在一条边上加入一个新的顶点，将其分为两条边 Kuratowski子图：图中的，是$K_5$或$K_{3,3}$剖分的子图 Kuratowski定理：可平面图的充要条件是没有kuratowski子图 Wagner定理：可平面图的充要条件是没有可以收缩到$K_5$或$K_{3,3}$的子图  DMP算法H-fragment">
+  <meta name="description" content="可平面图的判断 剖分  剖分：在一条边上加入一个新的顶点，将其分为两条边 Kuratowski子图：图中的，是\(K_5\)或\(K_{3,3}\)剖分的子图 Kuratowski定理：可平面图的充要条件是没有kuratowski子图 Wagner定理：可平面图的充要条件是没有可以收缩到\(K_5\)或\(K_{3,3}\)的子图  DMP算法 H-fragment">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 可平面图的判断">
 <meta property="og:url" content="https://wooziehang.github.io/2021/05/06/graphIntroduction-10/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="可平面图的判断剖分 剖分：在一条边上加入一个新的顶点，将其分为两条边 Kuratowski子图：图中的，是$K_5$或$K_{3,3}$剖分的子图 Kuratowski定理：可平面图的充要条件是没有kuratowski子图 Wagner定理：可平面图的充要条件是没有可以收缩到$K_5$或$K_{3,3}$的子图  DMP算法H-fragment">
+<meta property="og:description" content="可平面图的判断 剖分  剖分：在一条边上加入一个新的顶点，将其分为两条边 Kuratowski子图：图中的，是\(K_5\)或\(K_{3,3}\)剖分的子图 Kuratowski定理：可平面图的充要条件是没有kuratowski子图 Wagner定理：可平面图的充要条件是没有可以收缩到\(K_5\)或\(K_{3,3}\)的子图  DMP算法 H-fragment">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-06T08:05:22.000Z">
-<meta property="article:modified_time" content="2021-05-13T04:47:15.194Z">
+<meta property="article:modified_time" content="2022-05-19T14:13:56.638Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 12:47:15" itemprop="dateModified" datetime="2021-05-13T12:47:15+08:00">2021-05-13</time>
+                <time title="修改时间：2022-05-19 22:13:56" itemprop="dateModified" datetime="2022-05-19T22:13:56+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,43 +280,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="可平面图的判断"><a href="#可平面图的判断" class="headerlink" title="可平面图的判断"></a>可平面图的判断</h2><h3 id="剖分"><a href="#剖分" class="headerlink" title="剖分"></a>剖分</h3><ul>
-<li>剖分：在一条边上加入一个新的顶点，将其分为两条边</li>
-<li>Kuratowski子图：图中的，是$K_5$或$K_{3,3}$剖分的子图</li>
-<li>Kuratowski定理：可平面图的充要条件是没有kuratowski子图</li>
-<li>Wagner定理：可平面图的充要条件是没有可以收缩到$K_5$或$K_{3,3}$的子图</li>
-</ul>
-<h2 id="DMP算法"><a href="#DMP算法" class="headerlink" title="DMP算法"></a>DMP算法</h2><h3 id="H-fragment"><a href="#H-fragment" class="headerlink" title="H-fragment"></a>H-fragment</h3><p>图$G$的$H-fragment$：给定$G$的子图$H$，$G$的$H-fragment$是$G$中去掉$H$后剩余的“连通分支”，包括：</p>
+        <h2 id="可平面图的判断">可平面图的判断</h2>
+<h3 id="剖分">剖分</h3>
 <ul>
-<li>一条不在$H$中但两个端点都在$H$中的边及其两端</li>
-<li>$G-V[H]$的一个连通分支加上它连到H的边及其端点</li>
+<li>剖分：在一条边上加入一个新的顶点，将其分为两条边</li>
+<li>Kuratowski子图：图中的，是<span class="math inline">\(K_5\)</span>或<span class="math inline">\(K_{3,3}\)</span>剖分的子图</li>
+<li>Kuratowski定理：可平面图的充要条件是没有kuratowski子图</li>
+<li>Wagner定理：可平面图的充要条件是没有可以收缩到<span class="math inline">\(K_5\)</span>或<span class="math inline">\(K_{3,3}\)</span>的子图</li>
 </ul>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<h2 id="dmp算法">DMP算法</h2>
+<h3 id="h-fragment">H-fragment</h3>
+<p>图<span class="math inline">\(G\)</span>的<span class="math inline">\(H-fragment\)</span>：给定<span class="math inline">\(G\)</span>的子图<span class="math inline">\(H\)</span>，<span class="math inline">\(G\)</span>的<span class="math inline">\(H-fragment\)</span>是<span class="math inline">\(G\)</span>中去掉<span class="math inline">\(H\)</span>后剩余的“连通分支”，包括：</p>
+<ul>
+<li>一条不在<span class="math inline">\(H\)</span>中但两个端点都在<span class="math inline">\(H\)</span>中的边及其两端</li>
+<li><span class="math inline">\(G-V[H]\)</span>的一个连通分支加上它连到H的边及其端点</li>
+</ul>
+<h3 id="基本思路">基本思路</h3>
+<ul>
 <li>迭代地嵌入当前子图的fragment，直到G全部被嵌入（可平面）或者某个fragment无法嵌入（不可平面）</li>
 <li>嵌入一个fragment可能难以操作，但总能嵌入其中的一条路</li>
-<li>图$G$是可平面的当且仅当$G$的每个块都是可平面的</li>
+<li>图<span class="math inline">\(G\)</span>是可平面的当且仅当<span class="math inline">\(G\)</span>的每个块都是可平面的</li>
 </ul>
-<h3 id="DMP算法流程"><a href="#DMP算法流程" class="headerlink" title="DMP算法流程"></a>DMP算法流程</h3><ul>
+<h3 id="dmp算法流程">DMP算法流程</h3>
+<ul>
 <li>如果有多个块，只需要检测每个块（2-连通图）是否可平面即可</li>
-<li>对于每个2-连通图$G$，从中任取一个圈$G_0$，平面嵌入</li>
-<li>迭代如下<ul>
-<li>找到所有$G_i-fragment$</li>
-<li>对于每个$G_i-fragment$（称作$B$），在$G_i$中找到所有包含所有$B$的附着点的面（称为$F(B)$）。如果某个$F(B)$为空，则$G$不可平面；如果某个$|F(B)|=1$<br>则选中这个$B$；如果每个$|F(B)&gt;1|$，则任选一个$B$</li>
-<li>从选中的$B$中任选一条连接两个附着点的路$P$，将$P$嵌入到$F(B)$的一个面中。</li>
-<li>将结果记作$G_{i+1}$</li>
-<li>如果$G_{i+1}=G$则$G$可平面，否则继续迭代。</li>
+<li>对于每个2-连通图<span class="math inline">\(G\)</span>，从中任取一个圈<span class="math inline">\(G_0\)</span>，平面嵌入</li>
+<li>迭代如下
+<ul>
+<li>找到所有<span class="math inline">\(G_i-fragment\)</span></li>
+<li>对于每个<span class="math inline">\(G_i-fragment\)</span>（称作<span class="math inline">\(B\)</span>），在<span class="math inline">\(G_i\)</span>中找到所有包含所有<span class="math inline">\(B\)</span>的附着点的面（称为<span class="math inline">\(F(B)\)</span>）。如果某个<span class="math inline">\(F(B)\)</span>为空，则<span class="math inline">\(G\)</span>不可平面；如果某个<span class="math inline">\(|F(B)|=1\)</span> 则选中这个<span class="math inline">\(B\)</span>；如果每个<span class="math inline">\(|F(B)&gt;1|\)</span>，则任选一个<span class="math inline">\(B\)</span></li>
+<li>从选中的<span class="math inline">\(B\)</span>中任选一条连接两个附着点的路<span class="math inline">\(P\)</span>，将<span class="math inline">\(P\)</span>嵌入到<span class="math inline">\(F(B)\)</span>的一个面中。</li>
+<li>将结果记作<span class="math inline">\(G_{i+1}\)</span></li>
+<li>如果<span class="math inline">\(G_{i+1}=G\)</span>则<span class="math inline">\(G\)</span>可平面，否则继续迭代。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><ul>
-<li>块分解：$O(v)$，基于DFS</li>
-<li>找初始的圈：$O(v)$</li>
-<li>迭代轮数:<ul>
-<li>简单平面图满足$\epsilon\leq 3v-6$</li>
-<li>$\varphi=\epsilon-v+1\leq 2v-5\in O(v)$，因此每轮迭代新增一个面</li>
-</ul>
-</li>
-<li>每轮的迭代时间：$O(v)$</li>
+<h3 id="复杂度">复杂度</h3>
+<ul>
+<li>块分解：<span class="math inline">\(O(v)\)</span>，基于DFS</li>
+<li>找初始的圈：<span class="math inline">\(O(v)\)</span></li>
+<li>迭代轮数:
+<ul>
+<li>简单平面图满足<span class="math inline">\(\epsilon\leq
+3v-6\)</span></li>
+<li><span class="math inline">\(\varphi=\epsilon-v+1\leq 2v-5\in
+O(v)\)</span>，因此每轮迭代新增一个面</li>
+</ul></li>
+<li>每轮的迭代时间：<span class="math inline">\(O(v)\)</span></li>
 </ul>
 
     </div>
@@ -413,7 +426,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE%E7%9A%84%E5%88%A4%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">可平面图的判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%96%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">剖分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DMP%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">DMP算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#H-fragment"><span class="nav-number">2.1.</span> <span class="nav-text">H-fragment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMP%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">DMP算法流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">2.4.</span> <span class="nav-text">复杂度</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE%E7%9A%84%E5%88%A4%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">可平面图的判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%96%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">剖分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dmp%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">DMP算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#h-fragment"><span class="nav-number">2.1.</span> <span class="nav-text">H-fragment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dmp%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">DMP算法流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">2.4.</span> <span class="nav-text">复杂度</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -429,7 +442,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

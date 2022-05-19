@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="基本概念图定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为顶点集，集合E是V中元素组成的某些无序对的集合，称为边集，顶点的数目$|V|$称为图的阶，边的数目$|E|$称为图的边数。 图示定义：点表示顶点，线段表示边，绘制出平面表示图。">
+  <meta name="description" content="基本概念 图 定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为顶点集，集合E是V中元素组成的某些无序对的集合，称为边集，顶点的数目\(|V|\)称为图的阶，边的数目\(|E|\)称为图的边数。 图示 定义：点表示顶点，线段表示边，绘制出平面表示图。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 图的基本概念">
 <meta property="og:url" content="https://wooziehang.github.io/2021/03/08/graphIntroduction-1/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="基本概念图定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为顶点集，集合E是V中元素组成的某些无序对的集合，称为边集，顶点的数目$|V|$称为图的阶，边的数目$|E|$称为图的边数。 图示定义：点表示顶点，线段表示边，绘制出平面表示图。">
+<meta property="og:description" content="基本概念 图 定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为顶点集，集合E是V中元素组成的某些无序对的集合，称为边集，顶点的数目\(|V|\)称为图的阶，边的数目\(|E|\)称为图的边数。 图示 定义：点表示顶点，线段表示边，绘制出平面表示图。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-08T11:52:02.000Z">
 <meta property="article:modified_time" content="2021-04-05T05:46:04.641Z">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -276,40 +280,64 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为<strong>顶点集</strong>，集合E是V中元素组成的某些无序对的集合，称为<strong>边集</strong>，顶点的数目$|V|$称为图的<strong>阶</strong>，边的数目$|E|$称为图的边数。</p>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p>定义：点表示顶点，线段表示边，绘制出平面表示图。</p>
-<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
-<li><strong>关联</strong>：   点是边的端点，则点和边在图中相关联。</li>
-<li><strong>相邻</strong>：   两个点有边相连，则点相邻；两个边至少有一个公共端点，则边相邻。</li>
-<li><strong>环边</strong>：   两个端点都重合的两个边。</li>
-<li><strong>重边</strong>：   给定顶点u、v。则图中连接u、v的两条或以上的边称为图中u、v的重边。</li>
-<li><strong>简单图</strong>：  无环边也无重边的图为简单图。</li>
-<li><strong>完全图</strong>：  所有点对之间都有边的图。</li>
-<li><strong>空图</strong>：   边集为空的图。</li>
-<li><strong>平凡图</strong>：  只有一个顶点的空图。</li>
-<li><strong>零图</strong>：   边集和点集都为空的图。（顶点集为空则边集肯定为空）。</li>
-<li><strong>顶点的度</strong>： 图中顶点关联的边数，记为$d_G(v)$或$d(v)$。</li>
-<li><strong>最大度</strong>：  $\Delta(G)=max\{d(v)|v \in V(G)\}$。</li>
-<li><strong>最小度</strong>：  $\delta(G)=min\{d(v)|v \in V(G)\}$。</li>
-<li><strong>正则图</strong>：  各个顶点度都一样（设度为k）的图，称为k-正则图。</li>
-<li><strong>图的补图</strong>： 补图和原图的点集相同；补图和原图的边集互为补集(设完全图的边集为全集)。</li>
+        <h2 id="基本概念">基本概念</h2>
+<h3 id="图">图</h3>
+<p>定义：一集元素和它们之间关系的二元组(V,E)，其中集合V称为<strong>顶点集</strong>，集合E是V中元素组成的某些无序对的集合，称为<strong>边集</strong>，顶点的数目<span class="math inline">\(|V|\)</span>称为图的<strong>阶</strong>，边的数目<span class="math inline">\(|E|\)</span>称为图的边数。</p>
+<h3 id="图示">图示</h3>
+<p>定义：点表示顶点，线段表示边，绘制出平面表示图。</p>
+<h3 id="术语">术语</h3>
+<ul>
+<li><strong>关联</strong>： 点是边的端点，则点和边在图中相关联。</li>
+<li><strong>相邻</strong>：
+两个点有边相连，则点相邻；两个边至少有一个公共端点，则边相邻。</li>
+<li><strong>环边</strong>： 两个端点都重合的两个边。</li>
+<li><strong>重边</strong>：
+给定顶点u、v。则图中连接u、v的两条或以上的边称为图中u、v的重边。</li>
+<li><strong>简单图</strong>： 无环边也无重边的图为简单图。</li>
+<li><strong>完全图</strong>： 所有点对之间都有边的图。</li>
+<li><strong>空图</strong>： 边集为空的图。</li>
+<li><strong>平凡图</strong>： 只有一个顶点的空图。</li>
+<li><strong>零图</strong>：
+边集和点集都为空的图。（顶点集为空则边集肯定为空）。</li>
+<li><strong>顶点的度</strong>： 图中顶点关联的边数，记为<span class="math inline">\(d_G(v)\)</span>或<span class="math inline">\(d(v)\)</span>。</li>
+<li><strong>最大度</strong>： <span class="math inline">\(\Delta(G)=max\{d(v)|v \in V(G)\}\)</span>。</li>
+<li><strong>最小度</strong>： <span class="math inline">\(\delta(G)=min\{d(v)|v \in V(G)\}\)</span>。</li>
+<li><strong>正则图</strong>：
+各个顶点度都一样（设度为k）的图，称为k-正则图。</li>
+<li><strong>图的补图</strong>：
+补图和原图的点集相同；补图和原图的边集互为补集(设完全图的边集为全集)。</li>
 </ul>
-<h3 id="lemma定理"><a href="#lemma定理" class="headerlink" title="lemma定理"></a>lemma定理</h3><p>图中各顶点度数之和是边数的两倍，即$\sum\limits_{v \in V(G)}d(v)=2|E|$  </p>
-<p><strong>推论：图中奇度顶点的数目一定是偶数。</strong> </p>
-<h3 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h3><ul>
-<li>子图：对于图G和H，若$V(H)\subset V(G)$且$E(H)\subset E(G)$，则H是G的子图，记为$H\subset G$。</li>
-<li>生成子图：H是G的子图且$V(H)=V(G)$，则H是G的生成子图。 </li>
-<li>点导出子图：$\forall v_i,v_j \in V’=V(H),((v_i,v_j)\in E(G)\rightarrow(v_i,v_j)\in E(H))$，记为$H=G[V’]$。</li>
-<li>边导出子图： $V(H)=\bigcup\limits_{e\in E(H)}e$，记为$H=G[E’]$。</li>
-<li>$G-V’$：从$G$中删除顶点$V’$，包括删除顶点的边，从而获得子图。</li>
-<li>$G-E’$：从$G$中删除边$E’$，不删除顶点，从而获得子图。</li>
+<h3 id="lemma定理">lemma定理</h3>
+<p>图中各顶点度数之和是边数的两倍，即<span class="math inline">\(\sum\limits_{v \in V(G)}d(v)=2|E|\)</span></p>
+<p><strong>推论：图中奇度顶点的数目一定是偶数。</strong></p>
+<h3 id="子图">子图</h3>
+<ul>
+<li>子图：对于图G和H，若<span class="math inline">\(V(H)\subset
+V(G)\)</span>且<span class="math inline">\(E(H)\subset
+E(G)\)</span>，则H是G的子图，记为<span class="math inline">\(H\subset
+G\)</span>。</li>
+<li>生成子图：H是G的子图且<span class="math inline">\(V(H)=V(G)\)</span>，则H是G的生成子图。</li>
+<li>点导出子图：<span class="math inline">\(\forall v_i,v_j \in
+V&#39;=V(H),((v_i,v_j)\in E(G)\rightarrow(v_i,v_j)\in
+E(H))\)</span>，记为<span class="math inline">\(H=G[V&#39;]\)</span>。</li>
+<li>边导出子图： <span class="math inline">\(V(H)=\bigcup\limits_{e\in
+E(H)}e\)</span>，记为<span class="math inline">\(H=G[E&#39;]\)</span>。</li>
+<li><span class="math inline">\(G-V&#39;\)</span>：从<span class="math inline">\(G\)</span>中删除顶点<span class="math inline">\(V&#39;\)</span>，包括删除顶点的边，从而获得子图。</li>
+<li><span class="math inline">\(G-E&#39;\)</span>：从<span class="math inline">\(G\)</span>中删除边<span class="math inline">\(E&#39;\)</span>，不删除顶点，从而获得子图。</li>
 </ul>
-<h3 id="路和圈"><a href="#路和圈" class="headerlink" title="路和圈"></a>路和圈</h3><p>途径：图G中一个点边交替出现的序列<br>迹：边不重复的途径<br>路：顶点不重复的迹<br>闭途径：起点终点相同的途径<br>闭迹：边不重复的闭途径。<br>圈：中途点不重复的闭迹。</p>
-<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><p>途径的长度：边的数量<br>最短路的长度：即距离，两个点之间长度最小的路<br>奇圈：长度为奇数的圈<br>偶圈：长度为偶数的圈</p>
-<h3 id="二部图"><a href="#二部图" class="headerlink" title="二部图"></a>二部图</h3><p>定义：若G的顶点可以划分为两个非空子集X和Y，且单个子集内部没有边，则G为二部图。记为$G=(X\cup Y,E)$。</p>
+<h3 id="路和圈">路和圈</h3>
+<p>途径：图G中一个点边交替出现的序列 迹：边不重复的途径
+路：顶点不重复的迹 闭途径：起点终点相同的途径 闭迹：边不重复的闭途径。
+圈：中途点不重复的闭迹。</p>
+<h3 id="长度">长度</h3>
+<p>途径的长度：边的数量 最短路的长度：即距离，两个点之间长度最小的路
+奇圈：长度为奇数的圈 偶圈：长度为偶数的圈</p>
+<h3 id="二部图">二部图</h3>
+<p>定义：若G的顶点可以划分为两个非空子集X和Y，且单个子集内部没有边，则G为二部图。记为<span class="math inline">\(G=(X\cup Y,E)\)</span>。</p>
 <p><strong>完全二部图</strong>：若二部图G的两个子集为X和Y，且X的每个顶点和Y的每个顶点之间都有边，则G为完全二部图。</p>
 <p>定理:一个图是二部图当且仅当它不含奇圈。</p>
-<h3 id="连通性"><a href="#连通性" class="headerlink" title="连通性"></a>连通性</h3><ul>
+<h3 id="连通性">连通性</h3>
+<ul>
 <li>点连通：两个点间有路相同。</li>
 <li>连通图：任意两顶点连通。</li>
 <li>图的连通分支：把图的顶点划分为一系列非空子集，使得两顶点在同一个子集中当且仅当它们连通。通过这些子集得到的一系列点导出子图就是原图的一个个连通分支。连通分支的个数为连通分支数。</li>
@@ -318,14 +346,26 @@
 <li>半径rad(G)：离心率的最小值</li>
 <li>直径diam(G)：离心率的最大值</li>
 </ul>
-<p>定理：若图G(V,E)连通，则$|E|\geq |V|-1$</p>
-<h3 id="图的同构"><a href="#图的同构" class="headerlink" title="图的同构"></a>图的同构</h3><p>定义：在图$G=(V(G),E(G))$和图$H=(V(H),E(H))$中，存在一一映射：$\alpha:V(G)\rightarrow V(H)$和$\beta: E(G)\rightarrow E(H)$,使得对任意$e=(u,v)\in E(G)$，都有$(\alpha(u),\alpha(v))\in E(H)$，且$\beta(e)=(\alpha(u),\alpha(v))$，则G和H同构，记为$G\cong H$</p>
+<p>定理：若图G(V,E)连通，则<span class="math inline">\(|E|\geq
+|V|-1\)</span></p>
+<h3 id="图的同构">图的同构</h3>
+<p>定义：在图<span class="math inline">\(G=(V(G),E(G))\)</span>和图<span class="math inline">\(H=(V(H),E(H))\)</span>中，存在一一映射：<span class="math inline">\(\alpha:V(G)\rightarrow V(H)\)</span>和<span class="math inline">\(\beta: E(G)\rightarrow
+E(H)\)</span>,使得对任意<span class="math inline">\(e=(u,v)\in
+E(G)\)</span>，都有<span class="math inline">\((\alpha(u),\alpha(v))\in
+E(H)\)</span>，且<span class="math inline">\(\beta(e)=(\alpha(u),\alpha(v))\)</span>，则G和H同构，记为<span class="math inline">\(G\cong H\)</span></p>
 <p>注：同构关系是一个等价关系（自反、对称、传递）。同构的判断属于NP问题。</p>
-<h3 id="图的运算"><a href="#图的运算" class="headerlink" title="图的运算"></a>图的运算</h3><p>G的补图：$\overline{G}=\langle V(G),\{(x,y)\notin E(G)\}\rangle$</p>
-<p>G和H的并：$G \cup H=\langle V(G)\cup V(H),E(G)\cup E(H)\rangle$</p>
-<p>G和H的和：仅当$V(G) \cap V(H)$交集为空时，$G+H=\langle V(G)\cup V(H),E(G)\cup E(H)\rangle$</p>
-<p>G和H的联：$V(G)\vee V(H)$是在和的基础上连接$V(G)$和$V(H)$中的一些点对，即添加一些边</p>
-<p>G和H的对称差：当$V(G)=V(H)=V$，$G\oplus H=\langle V,(E(G)\cup E(H))\setminus(E(G)\cap E(H))\rangle$</p>
+<h3 id="图的运算">图的运算</h3>
+<p>G的补图：<span class="math inline">\(\overline{G}=\langle
+V(G),\{(x,y)\notin E(G)\}\rangle\)</span></p>
+<p>G和H的并：<span class="math inline">\(G \cup H=\langle V(G)\cup
+V(H),E(G)\cup E(H)\rangle\)</span></p>
+<p>G和H的和：仅当<span class="math inline">\(V(G) \cap
+V(H)\)</span>交集为空时，<span class="math inline">\(G+H=\langle
+V(G)\cup V(H),E(G)\cup E(H)\rangle\)</span></p>
+<p>G和H的联：<span class="math inline">\(V(G)\vee
+V(H)\)</span>是在和的基础上连接<span class="math inline">\(V(G)\)</span>和<span class="math inline">\(V(H)\)</span>中的一些点对，即添加一些边</p>
+<p>G和H的对称差：当<span class="math inline">\(V(G)=V(H)=V\)</span>，<span class="math inline">\(G\oplus H=\langle V,(E(G)\cup
+E(H))\setminus(E(G)\cap E(H))\rangle\)</span></p>
 
     </div>
 
@@ -441,7 +481,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -74,7 +74,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -198,6 +202,151 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/28/ProbabilityAndStatistics4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/28/ProbabilityAndStatistics4/" class="post-title-link" itemprop="url">【知识总结】 第四章-随机变量的数字特征</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-28 22:00:50" itemprop="dateCreated datePublished" datetime="2021-11-28T22:00:50+08:00">2021-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-29 18:43:42" itemprop="dateModified" datetime="2021-11-29T18:43:42+08:00">2021-11-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率论与数理统计</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/28/ProbabilityAndStatistics4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-随机变量的数字特征" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/28/ProbabilityAndStatistics4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/28/ProbabilityAndStatistics4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
+<li>笔记为个人整理，禁止商业用途</li>
+<li>如有疏漏，欢迎留言</li>
+</ul>
+<h2 id="数学期望">数学期望</h2>
+<ul>
+<li>离散型
+<ul>
+<li><span class="math inline">\(E(X)=\sum\limits_k
+x_kP\{X=x_k\}\)</span></li>
+</ul></li>
+<li>连续型
+<ul>
+<li><span class="math inline">\(E(x)=\int_{-\infty}^{+\infty}xf(x)dx\)</span></li>
+</ul></li>
+<li>性质
+<ul>
+<li><span class="math inline">\(E(X\pm Y)=E(X)\pm E(Y)\)</span></li>
+<li><span class="math inline">\(X\)</span>和<span class="math inline">\(Y\)</span>不相关，当且仅当<span class="math inline">\(E(XY)=E(X)E(Y)\)</span></li>
+</ul></li>
+<li>随机变量函数的数学期望
+<ul>
+<li>法一：求出随机变量函数的分布，再用定义求数学期望，比较麻烦</li>
+<li>法二：直接用数学期望的定义求解，不需要算随机变量函数的分布，方便</li>
+</ul></li>
+</ul>
+<h2 id="方差">方差</h2>
+<ul>
+<li>方差
+<ul>
+<li><span class="math inline">\(D(X)=E\{\[X-E(X)\]^2\}\)</span></li>
+</ul></li>
+<li>标准差
+<ul>
+<li><span class="math inline">\(\sigma(X)=\sqrt{D(X)}\)</span></li>
+</ul></li>
+<li>性质
+<ul>
+<li><span class="math inline">\(D(X)=E(X^2)-E^2(X)\)</span></li>
+<li><span class="math inline">\(D(aX+b)=a^2D(X)\)</span></li>
+<li><span class="math inline">\(X\)</span>和<span class="math inline">\(Y\)</span>不相关，当且仅当<span class="math inline">\(D(X\pm Y)=D(X)+ D(Y)\)</span></li>
+</ul></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/28/ProbabilityAndStatistics4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/28/ProbabilityAndStatistics3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -272,60 +421,64 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="二维离散型随机向量"><a href="#二维离散型随机向量" class="headerlink" title="二维离散型随机向量"></a>二维离散型随机向量</h2><ul>
-<li>联合概率分布<ul>
+<h2 id="二维离散型随机向量">二维离散型随机向量</h2>
+<ul>
+<li>联合概率分布
+<ul>
 <li>用二维的<strong>列联表</strong>表示</li>
-</ul>
-</li>
-<li>联合分布函数<ul>
-<li>$F(x,y)=P\{X\leq x,Y\leq y\}$</li>
-</ul>
-</li>
-<li>边缘分布<ul>
-<li>关于$X$和$Y$的边缘分布为$F_X(x)=P\{X\leq x\}$和$F_Y(y)=P\{Y\leq y\}$</li>
+</ul></li>
+<li>联合分布函数
+<ul>
+<li><span class="math inline">\(F(x,y)=P\{X\leq x,Y\leq
+y\}\)</span></li>
+</ul></li>
+<li>边缘分布
+<ul>
+<li>关于<span class="math inline">\(X\)</span>和<span class="math inline">\(Y\)</span>的边缘分布为<span class="math inline">\(F_X(x)=P\{X\leq x\}\)</span>和<span class="math inline">\(F_Y(y)=P\{Y\leq y\}\)</span></li>
 <li>把列联表按行或按列累加</li>
-</ul>
-</li>
-<li>条件分布<ul>
+</ul></li>
+<li>条件分布
+<ul>
 <li>一个条件对应列联表的某行或某列</li>
 <li>把该行或列标准化，写成一维表，表示条件分布律</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="二维随机变量及其分布"><a href="#二维随机变量及其分布" class="headerlink" title="二维随机变量及其分布"></a>二维随机变量及其分布</h2><ul>
-<li>联合分布函数<ul>
-<li>$F(x,y)=P\{X\leq x,Y\leq y\}$</li>
-</ul>
-</li>
-<li>联合密度函数<ul>
-<li>存在非负可积二元函数$p(x,y)$使得$F(x,y)=\int_{-\infty}^x\int_{-\infty}^yp(u,v)dudv$</li>
-<li>$p(x,y)$即密度函数<ul>
+<h2 id="二维随机变量及其分布">二维随机变量及其分布</h2>
+<ul>
+<li>联合分布函数
+<ul>
+<li><span class="math inline">\(F(x,y)=P\{X\leq x,Y\leq
+y\}\)</span></li>
+</ul></li>
+<li>联合密度函数
+<ul>
+<li>存在非负可积二元函数<span class="math inline">\(p(x,y)\)</span>使得<span class="math inline">\(F(x,y)=\int_{-\infty}^x\int_{-\infty}^yp(u,v)dudv\)</span></li>
+<li><span class="math inline">\(p(x,y)\)</span>即密度函数
+<ul>
 <li>非负</li>
 <li>平面上积分为1</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>边缘分布<ul>
-<li>$F_X(x)=F(x,+\infty)$</li>
-<li>$F_Y(y)=F(+\infty,y)$</li>
-</ul>
-</li>
-<li>边缘密度<ul>
-<li>$p_X(x)=\int_{-\infty}^{+\infty}p(x,v)dv$</li>
-<li>$p_Y(y)=\int_{-\infty}^{+\infty}p(u,y)du$</li>
-</ul>
-</li>
-<li>条件分布<ul>
-<li>$F_{Y|X=x}(y|x)=\int_{-\infty}^y\frac{p(x,v)}{P_X(x)}dv$</li>
-<li>$F_{X|Y=y}(x|y)=\int_{-\infty}^x\frac{p(u,y)}{P_Y(y)}du$</li>
-</ul>
-</li>
-<li>条件密度<ul>
-<li>$p_{Y|X=x}(y|x)=\frac{p(x,y)}{P_X(x)}$</li>
-<li>$p_{X|Y=y}(x|y)=\frac{p(x,y)}{P_Y(y)}$</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
+<li>边缘分布
+<ul>
+<li><span class="math inline">\(F_X(x)=F(x,+\infty)\)</span></li>
+<li><span class="math inline">\(F_Y(y)=F(+\infty,y)\)</span></li>
+</ul></li>
+<li>边缘密度
+<ul>
+<li><span class="math inline">\(p_X(x)=\int_{-\infty}^{+\infty}p(x,v)dv\)</span></li>
+<li><span class="math inline">\(p_Y(y)=\int_{-\infty}^{+\infty}p(u,y)du\)</span></li>
+</ul></li>
+<li>条件分布
+<ul>
+<li><span class="math inline">\(F_{Y|X=x}(y|x)=\int_{-\infty}^y\frac{p(x,v)}{P_X(x)}dv\)</span></li>
+<li><span class="math inline">\(F_{X|Y=y}(x|y)=\int_{-\infty}^x\frac{p(u,y)}{P_Y(y)}du\)</span></li>
+</ul></li>
+<li>条件密度
+<ul>
+<li><span class="math inline">\(p_{Y|X=x}(y|x)=\frac{p(x,y)}{P_X(x)}\)</span></li>
+<li><span class="math inline">\(p_{X|Y=y}(x|y)=\frac{p(x,y)}{P_Y(y)}\)</span></li>
+</ul></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -384,7 +537,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 15:17:31" itemprop="dateModified" datetime="2021-12-02T15:17:31+08:00">2021-12-02</time>
+                <time title="修改时间：2022-05-19 22:38:45" itemprop="dateModified" datetime="2022-05-19T22:38:45+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -428,24 +581,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="网络层的功能"><a href="#网络层的功能" class="headerlink" title="网络层的功能"></a>网络层的功能</h2><h3 id="异构网络互联"><a href="#异构网络互联" class="headerlink" title="异构网络互联"></a>异构网络互联</h3><ul>
-<li>中间设备：又叫中间系统、中继系统<ul>
+          <h2 id="网络层的功能">网络层的功能</h2>
+<h3 id="异构网络互联">异构网络互联</h3>
+<ul>
+<li>中间设备：又叫中间系统、中继系统
+<ul>
 <li>物理层中间设备：中继器、集线器</li>
 <li>数据链路层中间设备：网桥、交换机</li>
 <li>网络层中间设备：路由器</li>
-<li>网络层以上中间设备：网关<ul>
+<li>网络层以上中间设备：网关
+<ul>
 <li>路由器的一种，详见NAT</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>异构网络：物理结构不同的网络</li>
-<li>异构网络互联：把多个<strong>异构网络</strong>用网络层的<strong>中间设备</strong>连接，构成<strong>更大的网络系统</strong><ul>
+<li>异构网络互联：把多个<strong>异构网络</strong>用网络层的<strong>中间设备</strong>连接，构成<strong>更大的网络系统</strong>
+<ul>
 <li>该更大的网络叫虚拟互联网络（或逻辑互联网络、IP网络）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="路由和转发"><a href="#路由和转发" class="headerlink" title="路由和转发"></a>路由和转发</h3><p>网络层从上到下分为控制层、数据层，对应路由器的两个功能（当然主机也有这个功能）</p>
+<h3 id="路由和转发">路由和转发</h3>
+<p>网络层从上到下分为控制层、数据层，对应路由器的两个功能（当然主机也有这个功能）</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/28/network4/#more" rel="contents">
@@ -552,22 +708,24 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="随机变量及其分布函数"><a href="#随机变量及其分布函数" class="headerlink" title="随机变量及其分布函数"></a>随机变量及其分布函数</h2><ul>
+<h2 id="随机变量及其分布函数">随机变量及其分布函数</h2>
+<ul>
 <li>随机变量：从样本点到某个实数的函数</li>
-<li>分布函数：$F(x)=P(X\leq x)$<ul>
+<li>分布函数：<span class="math inline">\(F(x)=P(X\leq x)\)</span>
+<ul>
 <li>单调非减</li>
 <li>右连续</li>
-<li>$P\{X=x\}=F(x)-F(x-0)$</li>
+<li><span class="math inline">\(P\{X=x\}=F(x)-F(x-0)\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><ul>
+<h2 id="离散型随机变量">离散型随机变量</h2>
+<ul>
 <li>定义：随机变量的取值为有限个或可数无穷个</li>
-<li>分布律：算出每个取值的概率<ul>
+<li>分布律：算出每个取值的概率
+<ul>
 <li>表示：一般用表格列出每个取值的概率</li>
 <li>性质：每项非负，总和为1</li>
-</ul>
-</li>
+</ul></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -669,88 +827,94 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
+<h2 id="事件">事件</h2>
+<ul>
 <li>随机试验：可重复、已知所有可能的结果、结果无法预知的实验</li>
 <li>样本点：随机试验可能的结果</li>
 <li>样本空间：所有样本点的集合</li>
-<li>随机事件：样本空间的子集（是一个集合）<ul>
-<li>关系<ul>
+<li>随机事件：样本空间的子集（是一个集合）
+<ul>
+<li>关系
+<ul>
 <li>包含</li>
 <li>相等</li>
 <li>互斥</li>
 <li>对立（补运算）</li>
-</ul>
-</li>
-<li>运算<ul>
+</ul></li>
+<li>运算
+<ul>
 <li>交</li>
 <li>并</li>
-<li>差（$A-B=A\overline{B}$）</li>
+<li>差（<span class="math inline">\(A-B=A\overline{B}\)</span>）</li>
 <li>补（对立关系）</li>
-</ul>
-</li>
-<li>运算规律<ul>
+</ul></li>
+<li>运算规律
+<ul>
 <li>交换律</li>
 <li>结合律</li>
 <li>分配律（两个）</li>
 <li>对偶律（德摩根律）</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>推导时用韦恩图辅助</li>
 </ul>
-<h2 id="概率"><a href="#概率" class="headerlink" title="概率"></a>概率</h2><ul>
-<li>定义<ul>
+<h2 id="概率">概率</h2>
+<ul>
+<li>定义
+<ul>
 <li>概率非负</li>
 <li>必然事件概率为1</li>
 <li>互斥事件的并的概率 = 互斥事件概率的和</li>
-</ul>
-</li>
-<li>条件概率<ul>
-<li>$P(A|B)=\frac{P(AB)}{P(B)}$</li>
-</ul>
-</li>
-<li>独立<ul>
-<li>两个事件独立<ul>
-<li>$P(A|B)=P(A)\Leftrightarrow P(AB)=P(A)P(B)$</li>
-</ul>
-</li>
-<li>多个事件独立<ul>
-<li>任取$k$个事件，$P(A_{i_1}A_{i_2}\cdots A_{i_k})=P(A_{i_1})P(A_{i_2})\cdots P(A_{i_k})$</li>
-</ul>
-</li>
-<li>充要条件<ul>
+</ul></li>
+<li>条件概率
+<ul>
+<li><span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span></li>
+</ul></li>
+<li>独立
+<ul>
+<li>两个事件独立
+<ul>
+<li><span class="math inline">\(P(A|B)=P(A)\Leftrightarrow
+P(AB)=P(A)P(B)\)</span></li>
+</ul></li>
+<li>多个事件独立
+<ul>
+<li>任取<span class="math inline">\(k\)</span>个事件，<span class="math inline">\(P(A_{i_1}A_{i_2}\cdots
+A_{i_k})=P(A_{i_1})P(A_{i_2})\cdots P(A_{i_k})\)</span></li>
+</ul></li>
+<li>充要条件
+<ul>
 <li>互相独立的n个事件中的任何几个换成相应对立事件，新的n个事件依然相互独立</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>五大公式（用韦恩图记忆）<ul>
-<li>加法<ul>
-<li>$P(A\cup B)=P(A)+P(B)-P(AB)$</li>
-</ul>
-</li>
-<li>减法<ul>
-<li>$P(A-B)=P(A)-P(AB)$</li>
-</ul>
-</li>
-<li>乘法（本质是条件概率）<ul>
-<li>$P(A_1A_2\cdots A_n)=P(A_1)P(A_2|A_1)\cdots P(A_n|A_1A_2\cdots A_{n-1})$</li>
-</ul>
-</li>
-<li>全概率<ul>
-<li>全集划分为$B_i$</li>
-<li>$P(A)=\sum P(B_i)P(A|B_i)$</li>
-</ul>
-</li>
-<li>贝叶斯（全概率+条件概率）<ul>
-<li>全集划分为$B_i$</li>
-<li>$P(B_j|A)=\frac{P(B_jA)}{P(A)}=\frac{P(B_j)P(A|B_j)}{\sum P(B_i)P(A|B_i)}$</li>
+</ul></li>
+</ul></li>
+<li>五大公式（用韦恩图记忆）
+<ul>
+<li>加法
+<ul>
+<li><span class="math inline">\(P(A\cup B)=P(A)+P(B)-P(AB)\)</span></li>
+</ul></li>
+<li>减法
+<ul>
+<li><span class="math inline">\(P(A-B)=P(A)-P(AB)\)</span></li>
+</ul></li>
+<li>乘法（本质是条件概率）
+<ul>
+<li><span class="math inline">\(P(A_1A_2\cdots
+A_n)=P(A_1)P(A_2|A_1)\cdots P(A_n|A_1A_2\cdots A_{n-1})\)</span></li>
+</ul></li>
+<li>全概率
+<ul>
+<li>全集划分为<span class="math inline">\(B_i\)</span></li>
+<li><span class="math inline">\(P(A)=\sum P(B_i)P(A|B_i)\)</span></li>
+</ul></li>
+<li>贝叶斯（全概率+条件概率）
+<ul>
+<li>全集划分为<span class="math inline">\(B_i\)</span></li>
+<li><span class="math inline">\(P(B_j|A)=\frac{P(B_jA)}{P(A)}=\frac{P(B_j)P(A|B_j)}{\sum
+P(B_i)P(A|B_i)}\)</span></li>
 <li>第一个等号用条件概率；第二个等号的分子用条件概率；第二个等号的分母用全概率</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -809,7 +973,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 15:24:19" itemprop="dateModified" datetime="2021-12-19T15:24:19+08:00">2021-12-19</time>
+                <time title="修改时间：2022-05-19 22:38:04" itemprop="dateModified" datetime="2022-05-19T22:38:04+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -853,74 +1017,76 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数据链路层的功能"><a href="#数据链路层的功能" class="headerlink" title="数据链路层的功能"></a>数据链路层的功能</h2><ul>
-<li>为网络层提供服务<ul>
-<li>无确认无连接服务<ul>
+          <h2 id="数据链路层的功能">数据链路层的功能</h2>
+<ul>
+<li>为网络层提供服务
+<ul>
+<li>无确认无连接服务
+<ul>
 <li>适合误码率低的以太网</li>
-</ul>
-</li>
-<li>有确认无连接服务<ul>
+</ul></li>
+<li>有确认无连接服务
+<ul>
 <li>适合误码率高的无线通信</li>
-</ul>
-</li>
-<li>有确认有连接服务<ul>
+</ul></li>
+<li>有确认有连接服务
+<ul>
 <li>适合可靠性要求高的通信</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>链路管理<ul>
+</ul></li>
+</ul></li>
+<li>链路管理
+<ul>
 <li>连接的建立、维持、释放的管理</li>
-</ul>
-</li>
-<li>帧的定界、同步、透明传输<ul>
+</ul></li>
+<li>帧的定界、同步、透明传输
+<ul>
 <li>帧定界：确定帧的界限，即起始和终止，一般需要定界符</li>
 <li>帧同步：确定帧的起始和终止，帧定界的另一种说法</li>
 <li>透明传输：帧可以传输任意数据，比如定界符本身</li>
-</ul>
-</li>
-<li>流量控制<ul>
+</ul></li>
+<li>流量控制
+<ul>
 <li>限制发送方数据流量，使得发送速率不超过接收速率</li>
-</ul>
-</li>
-<li>差错控制<ul>
+</ul></li>
+<li>差错控制
+<ul>
 <li>发送方确定接收方是否正确收到数据的方法</li>
-<li>错误包括位错和帧错<ul>
+<li>错误包括位错和帧错
+<ul>
 <li>位错：CRC检错，ARQ重传；FEC纠错</li>
 <li>帧错：引入定时器和编号机制，防止帧的重复、失序、丢失</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="组帧"><a href="#组帧" class="headerlink" title="组帧"></a>组帧</h2><ul>
-<li>字符计数法<ul>
+<h2 id="组帧">组帧</h2>
+<ul>
+<li>字符计数法
+<ul>
 <li>方法：帧的第一个字节指出整个帧的字符数</li>
 <li>缺点：计数字段出错，后果严重</li>
-</ul>
-</li>
-<li>字符填充的首尾定界符法<ul>
+</ul></li>
+<li>字符填充的首尾定界符法
+<ul>
 <li>方法：通过首尾定界符SOH和EOT来定界</li>
 <li>透明传输实现：如果信息码出现定界符或转义符，则在其前面插入一个转义符ESC</li>
 <li>缺点：复杂、难兼容</li>
-</ul>
-</li>
-<li>零比特填充的首尾标志法（常用）<ul>
+</ul></li>
+<li>零比特填充的首尾标志法（常用）
+<ul>
 <li>方法：使用0111 1110作为首尾的标志字符</li>
 <li>透明传输实现：如果信息码出现连续5个1，则在后面插入1个0</li>
 <li>优点：容易由硬件实现，比字符填充法的性能好</li>
-</ul>
-</li>
-<li>违规编码法（常用）<ul>
-<li>方法：采用冗余的编码方式，未被使用的编码作为定界符<ul>
+</ul></li>
+<li>违规编码法（常用）
+<ul>
+<li>方法：采用冗余的编码方式，未被使用的编码作为定界符
+<ul>
 <li>比如2个比特位编码0和1，00表示0，11表示1，冗余的01或10作为定界符</li>
-</ul>
-</li>
+</ul></li>
 <li>透明传输：不需要填充技术</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2>
+<h2 id="差错控制">差错控制</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/25/network3/#more" rel="contents">
@@ -978,7 +1144,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 14:50:44" itemprop="dateModified" datetime="2021-12-19T14:50:44+08:00">2021-12-19</time>
+                <time title="修改时间：2022-05-19 22:36:38" itemprop="dateModified" datetime="2022-05-19T22:36:38+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1022,62 +1188,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="通信基础"><a href="#通信基础" class="headerlink" title="通信基础"></a>通信基础</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+          <h2 id="通信基础">通信基础</h2>
+<h3 id="基本概念">基本概念</h3>
+<ul>
 <li>数据：信息的实体</li>
-<li>信号：数据的电气表现、存在形式<ul>
+<li>信号：数据的电气表现、存在形式
+<ul>
 <li>模拟信号：连续的信号</li>
 <li>数字信号：离散的信号</li>
-</ul>
-</li>
-<li>码元：用固定时长（即码元宽度）的信号波形表示一个k进制数<ul>
+</ul></li>
+<li>码元：用固定时长（即码元宽度）的信号波形表示一个k进制数
+<ul>
 <li>码元宽度：固定时长</li>
 <li>数字脉冲：信号波形</li>
-</ul>
-</li>
-<li>信源：产生和发送数据的源头<ul>
+</ul></li>
+<li>信源：产生和发送数据的源头
+<ul>
 <li>数据经过变换器变成信号，传给信道（详见编码和调制小节）</li>
-</ul>
-</li>
-<li>信道：信号的传输媒介<ul>
+</ul></li>
+<li>信道：信号的传输媒介
+<ul>
 <li>噪声源会对信号产生干扰</li>
 <li>按信号类型分类：模拟信道、数字信道</li>
 <li>按传输介质分类：无线信道和有线信道</li>
-</ul>
-</li>
-<li>信宿：接收数据的终点<ul>
+</ul></li>
+<li>信宿：接收数据的终点
+<ul>
 <li>信号经过反变换器变为数据，传给信宿</li>
-</ul>
-</li>
+</ul></li>
 <li>基带传输：把数据以原始频带（基本频带）编码为基带信号，在数字信道上传输</li>
 <li>频带传输：把基带信号调制为模拟信号，在模拟信道上传输</li>
 <li>宽带传输：在频带传输基础上使用多个信道，每个信道同时频带传输，链路容量大，</li>
-<li>通信方式<ul>
+<li>通信方式
+<ul>
 <li>单向通信：只有一个方向的通信</li>
 <li>半双工通信：同一时间只有一个方向的通信，需要两个信道</li>
 <li>全双工通信：同一时间可以有两个方向的通信，需要两个信道</li>
-</ul>
-</li>
-<li>速率：单位时间内传输的数据量<ul>
-<li>码元传输速率（波特率、调制速率）：单位时间传输码元的个数（脉冲数）<ul>
+</ul></li>
+<li>速率：单位时间内传输的数据量
+<ul>
+<li>码元传输速率（波特率、调制速率）：单位时间传输码元的个数（脉冲数）
+<ul>
 <li>单位是波特（Baud）</li>
 <li>与进制有关</li>
-</ul>
-</li>
-<li>信息传输速率（比特率）：单位时间传输比特的个数<ul>
+</ul></li>
+<li>信息传输速率（比特率）：单位时间传输比特的个数
+<ul>
 <li>单位是b/s</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>带宽 <ul>
+</ul></li>
+</ul></li>
+<li>带宽
+<ul>
 <li>在通信领域指频带范围，单位Hz</li>
 <li>在网络领域指最高数据传输速率，单位b/s</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="奈奎斯特定理"><a href="#奈奎斯特定理" class="headerlink" title="奈奎斯特定理"></a>奈奎斯特定理</h3><ul>
-<li>条件：理想低通信道，即无噪声且带宽有限，带宽设为$W$</li>
-<li>结论：极限波特率为$2W$，单位Baud</li>
+<h3 id="奈奎斯特定理">奈奎斯特定理</h3>
+<ul>
+<li>条件：理想低通信道，即无噪声且带宽有限，带宽设为<span class="math inline">\(W\)</span></li>
+<li>结论：极限波特率为<span class="math inline">\(2W\)</span>，单位Baud</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -1136,7 +1305,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-22 22:23:25" itemprop="dateModified" datetime="2021-11-22T22:23:25+08:00">2021-11-22</time>
+                <time title="修改时间：2022-05-19 17:58:04" itemprop="dateModified" datetime="2022-05-19T17:58:04+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1185,36 +1354,44 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="二次型的矩阵表示"><a href="#二次型的矩阵表示" class="headerlink" title="二次型的矩阵表示"></a>二次型的矩阵表示</h2><ul>
-<li>二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j$</li>
-<li>$\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=\left [ \begin{matrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{matrix} \right ]\left [ \begin{matrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp; a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\ a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{matrix} \right ]\left [ \begin{matrix} x_1\\x_2\\\cdots\\x_n \end{matrix} \right ]=\pmb{x}^T\pmb{A}\pmb{x}$</li>
-<li>要求$\pmb{A}$是对称矩阵，此时二次型和矩阵一一对应</li>
+<h2 id="二次型的矩阵表示">二次型的矩阵表示</h2>
+<ul>
+<li>二次型指的是变量的二次齐次多项式<span class="math inline">\(f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j\)</span></li>
+<li><span class="math inline">\(\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=
+\begin{bmatrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{bmatrix}
+\begin{bmatrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp;
+a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\
+a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{bmatrix} \begin{bmatrix}
+x_1\\x_2\\\cdots\\x_n \end{bmatrix}
+=\pmb{x}^T\pmb{A}\pmb{x}\)</span></li>
+<li>要求<span class="math inline">\(\pmb{A}\)</span>是对称矩阵，此时二次型和矩阵一一对应</li>
 </ul>
-<h2 id="二次型化为标准形"><a href="#二次型化为标准形" class="headerlink" title="二次型化为标准形"></a>二次型化为标准形</h2><ul>
+<h2 id="二次型化为标准形">二次型化为标准形</h2>
+<ul>
 <li>标准形：只有平方项的二次型</li>
 <li>规范性：在标准形基础上，平方项的系数只能是-1、0、1</li>
-<li>线性变换：即第三章的坐标变换，$\pmb{x}=\pmb{P}\pmb{y}$<ul>
-<li>当$\pmb{P}$是正交矩阵$\pmb{Q}$，则对应正交变换</li>
-</ul>
-</li>
-<li>法一：通过正交变换$\pmb{x}=\pmb{Q}\pmb{y}$化为标准形<ul>
-<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}$</li>
+<li>线性变换：即第三章的坐标变换，<span class="math inline">\(\pmb{x}=\pmb{P}\pmb{y}\)</span>
+<ul>
+<li>当<span class="math inline">\(\pmb{P}\)</span>是正交矩阵<span class="math inline">\(\pmb{Q}\)</span>，则对应正交变换</li>
+</ul></li>
+<li>法一：通过正交变换<span class="math inline">\(\pmb{x}=\pmb{Q}\pmb{y}\)</span>化为标准形
+<ul>
+<li><span class="math inline">\(\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}\)</span></li>
 <li>用到了第五章正交相似对角化的内容</li>
-<li>求解要点<ul>
-<li>求特征值，算出$\pmb{\Lambda}$，从而得到标准形</li>
-<li>求特征向量并正交单位化，给出线性变换$\pmb{y}=\pmb{Q}^{-1}\pmb{x}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>法二：通过配方法化为标准形<ul>
-<li>有平方项则配方；无平方项则利用$x_i=y_i+y_j,x_j=y_i-y_j$得到平方项，即$a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)$</li>
-<li>要给出可逆线性变换和标准形的表示<ul>
+<li>求解要点
+<ul>
+<li>求特征值，算出<span class="math inline">\(\pmb{\Lambda}\)</span>，从而得到标准形</li>
+<li>求特征向量并正交单位化，给出线性变换<span class="math inline">\(\pmb{y}=\pmb{Q}^{-1}\pmb{x}\)</span></li>
+</ul></li>
+</ul></li>
+<li>法二：通过配方法化为标准形
+<ul>
+<li>有平方项则配方；无平方项则利用<span class="math inline">\(x_i=y_i+y_j,x_j=y_i-y_j\)</span>得到平方项，即<span class="math inline">\(a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)\)</span></li>
+<li>要给出可逆线性变换和标准形的表示
+<ul>
 <li>若配方后平方项个数不足原二次型的变量数，则需要补充平方项以保证线性变换可逆（补充方法不唯一，因为标准形也不唯一）</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -1273,7 +1450,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-01 11:38:16" itemprop="dateModified" datetime="2021-12-01T11:38:16+08:00">2021-12-01</time>
+                <time title="修改时间：2022-05-19 22:36:16" itemprop="dateModified" datetime="2022-05-19T22:36:16+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1317,25 +1494,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="计算机网络基本概念"><a href="#计算机网络基本概念" class="headerlink" title="计算机网络基本概念"></a>计算机网络基本概念</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>三种观点定义网络</p>
+          <h2 id="计算机网络基本概念">计算机网络基本概念</h2>
+<h3 id="定义">定义</h3>
+<p>三种观点定义网络</p>
 <ul>
-<li>广义观点<ul>
+<li>广义观点
+<ul>
 <li>定义：能实现远程信息处理甚至资源共享的系统</li>
 <li>评价：资源共享能力弱，处于计算机网络发展低级阶段</li>
-</ul>
-</li>
-<li>资源共享观点<ul>
+</ul></li>
+<li>资源共享观点
+<ul>
 <li>定义：以资源共享方式互联的自治计算机系统集合</li>
 <li>评价：资源共享、由独立自治计算机组成、遵循网络协议，符合目前计算机的基本特征</li>
-</ul>
-</li>
-<li>用户透明观点<ul>
+</ul></li>
+<li>用户透明观点
+<ul>
 <li>定义：存在一个网络操作系统管理资源，用户无需关心网络的存在、资源位置</li>
 <li>评价：未来的网络发展目标</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3>
+<h3 id="组成">组成</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/21/network1/#more" rel="contents">
@@ -1442,192 +1621,27 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h2><h3 id="定义和理解"><a href="#定义和理解" class="headerlink" title="定义和理解"></a>定义和理解</h3><ul>
-<li>定义：$\pmb{A}\pmb{\alpha}=\lambda\pmb{\alpha}$且$\pmb{\alpha}\neq 0$<ul>
-<li>$\lambda$为$\pmb{A}$的特征值</li>
-<li>$\pmb{\alpha}$为$\pmb{A}$的特征向量</li>
-</ul>
-</li>
-<li>向量空间角度理解<ul>
+<h2 id="特征值和特征向量">特征值和特征向量</h2>
+<h3 id="定义和理解">定义和理解</h3>
+<ul>
+<li>定义：<span class="math inline">\(\pmb{A}\pmb{\alpha}=\lambda\pmb{\alpha}\)</span>且<span class="math inline">\(\pmb{\alpha}\neq 0\)</span>
+<ul>
+<li><span class="math inline">\(\lambda\)</span>为<span class="math inline">\(\pmb{A}\)</span>的特征值</li>
+<li><span class="math inline">\(\pmb{\alpha}\)</span>为<span class="math inline">\(\pmb{A}\)</span>的特征向量</li>
+</ul></li>
+<li>向量空间角度理解
+<ul>
 <li>把矩阵看作线性变换，特征向量经过该变换后发生了伸缩</li>
+</ul></li>
+<li>线性方程组角度
+<ul>
+<li>相等于<span class="math inline">\((\lambda\pmb{E}-\pmb{A})\pmb{\alpha}=\pmb{0}\)</span>且<span class="math inline">\(\pmb{\alpha}\neq 0\)</span></li>
+</ul></li>
 </ul>
-</li>
-<li>线性方程组角度<ul>
-<li>相等于$(\lambda\pmb{E}-\pmb{A})\pmb{\alpha}=\pmb{0}$且$\pmb{\alpha}\neq 0$</li>
-</ul>
-</li>
-</ul>
-<h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3>
+<h3 id="相关概念">相关概念</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/11/20/linearAlgebra5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/20/linearAlgebra4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/20/linearAlgebra4/" class="post-title-link" itemprop="url">【知识总结】 第四章-线性方程组</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-20 16:45:35" itemprop="dateCreated datePublished" datetime="2021-11-20T16:45:35+08:00">2021-11-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 23:54:06" itemprop="dateModified" datetime="2021-12-02T23:54:06+08:00">2021-12-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/20/linearAlgebra4/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第四章-线性方程组" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/20/linearAlgebra4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/20/linearAlgebra4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>本知识总结不提供完整的理论体系汇总，旨在给出<em>概念的理解</em>以及<em>各类问题的思考框架</em>。</li>
-<li>笔记为个人整理，禁止商业用途</li>
-<li>如有疏漏，欢迎留言</li>
-</ul>
-<h2 id="克拉姆法则"><a href="#克拉姆法则" class="headerlink" title="克拉姆法则"></a>克拉姆法则</h2><ul>
-<li>克拉姆法则<ul>
-<li>当且仅当$\vert\pmb{A}\vert\neq 0$，方程$\pmb{A}\pmb{x}=\pmb{b}$的唯一解是$x_i=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i=1,2,\cdots,n$</li>
-<li>其中$\vert\pmb{A}_i\vert$的第$i$列是右端向量$\pmb{b}$，其他列同$\pmb{A}$</li>
-</ul>
-</li>
-<li>$\vert\pmb{A}\vert\neq 0$则方程有唯一解的原理<ul>
-<li>$\pmb{x}=\pmb{A}^{-1}\pmb{b}=\frac{\pmb{A}^{\star}\pmb{b}}{|\pmb{A}|}$</li>
-<li>$x_i=\frac{\left [ \begin{matrix}A_{1i}&amp; A_{2i}&amp; \cdots&amp; A_{ni} \end{matrix} \right ]\pmb{b}}{|\pmb{A}|}=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert}$</li>
-<li>由此直接把唯一解算出来了</li>
-</ul>
-</li>
-<li>$\vert\pmb{A}\vert= 0$则方程无解或无穷解的原理<ul>
-<li>把不可逆矩阵$\pmb{A}$可看作不可逆线性变换，理解成单射（没有逆映射）</li>
-<li>没有逆映射有两种原因<ul>
-<li>新坐标系中的向量$\pmb{b}$无法映射到原坐标系的向量（对应方程组无解情况）</li>
-<li>新坐标系中的向量$\pmb{b}$映射到原坐标系的多个向量（对应方程组无穷解情况）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>线性方程组的主要运算在于求逆矩阵<ul>
-<li>因为求逆矩阵时，伴随矩阵法比初等变换法复杂得多，很少使用</li>
-<li>所以解线性方程组时，克拉姆法则比高斯消元法复杂得多，很少使用</li>
-</ul>
-</li>
-</ul>
-<h2 id="齐次线性方程组"><a href="#齐次线性方程组" class="headerlink" title="齐次线性方程组"></a>齐次线性方程组</h2><ul>
-<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{0}$</li>
-<li>有解条件：一定有零解</li>
-<li>基础解系<ul>
-<li>所有解向量的极大线性无关组</li>
-<li>课本的表述为线性无关，且可以线性表出所有解向量的向量组</li>
-<li>一定是$n$维非零向量</li>
-</ul>
-</li>
-<li>基础解系向量个数<ul>
-<li>$n-r(\pmb{A})$</li>
-<li>从向量空间角度理解<ul>
-<li>基础解系，就是找到所有的线性无关的非零列向量，和$\pmb{A}$的行向量正交</li>
-<li>本质是，在$n$维度向量空间中，正交于$r(\pmb{A})$维子空间（由$\pmb{A}$行向量张成）的非零且线性无关的向量有$n-r(\pmb{A})$个</li>
-<li>例如三维空间中，和某个二维平面垂直的线性无关非零向量，最多找到一个</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>通解：由基础解系线性表出即可</li>
-<li>通解求法<ul>
-<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
-<li>接下来只需要解同解方程组</li>
-<li>本质就是高斯消元法</li>
-</ul>
-</li>
-<li>$r$个独立变量和$n-r$个自由变量<ul>
-<li>每次只选一个自由变量取$1$，其他取$0$，算出独立变量，得到一个解向量</li>
-<li>选$n-r$次自由变量，得到基础解系</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/20/linearAlgebra4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1718,7 +1732,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

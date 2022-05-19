@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  克拉姆法则 克拉姆法则 当且仅当$\vert\pmb{A}\vert\neq 0$，方程$\pmb{A}\pmb{x}&#x3D;\pmb{b}$的唯一解是$x_i&#x3D;\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i&#x3D;1,2,\cd">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  克拉姆法则  克拉姆法则  当且仅当\(\vert\pmb{A}\vert\neq 0\)，方程\(\pmb{A}\pmb{x}&#x3D;\pmb{b}\)的唯一解是\(x_i&#x3D;\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第四章-线性方程组">
 <meta property="og:url" content="https://wooziehang.github.io/2021/11/20/linearAlgebra4/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  克拉姆法则 克拉姆法则 当且仅当$\vert\pmb{A}\vert\neq 0$，方程$\pmb{A}\pmb{x}&#x3D;\pmb{b}$的唯一解是$x_i&#x3D;\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i&#x3D;1,2,\cd">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  克拉姆法则  克拉姆法则  当且仅当\(\vert\pmb{A}\vert\neq 0\)，方程\(\pmb{A}\pmb{x}&#x3D;\pmb{b}\)的唯一解是\(x_i&#x3D;\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-20T08:45:35.000Z">
-<meta property="article:modified_time" content="2021-12-02T15:54:06.264Z">
+<meta property="article:modified_time" content="2022-05-19T09:55:46.236Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 23:54:06" itemprop="dateModified" datetime="2021-12-02T23:54:06+08:00">2021-12-02</time>
+                <time title="修改时间：2022-05-19 17:55:46" itemprop="dateModified" datetime="2022-05-19T17:55:46+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,106 +285,124 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="克拉姆法则"><a href="#克拉姆法则" class="headerlink" title="克拉姆法则"></a>克拉姆法则</h2><ul>
-<li>克拉姆法则<ul>
-<li>当且仅当$\vert\pmb{A}\vert\neq 0$，方程$\pmb{A}\pmb{x}=\pmb{b}$的唯一解是$x_i=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i=1,2,\cdots,n$</li>
-<li>其中$\vert\pmb{A}_i\vert$的第$i$列是右端向量$\pmb{b}$，其他列同$\pmb{A}$</li>
-</ul>
-</li>
-<li>$\vert\pmb{A}\vert\neq 0$则方程有唯一解的原理<ul>
-<li>$\pmb{x}=\pmb{A}^{-1}\pmb{b}=\frac{\pmb{A}^{\star}\pmb{b}}{|\pmb{A}|}$</li>
-<li>$x_i=\frac{\left [ \begin{matrix}A_{1i}&amp; A_{2i}&amp; \cdots&amp; A_{ni} \end{matrix} \right ]\pmb{b}}{|\pmb{A}|}=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert}$</li>
+<h2 id="克拉姆法则">克拉姆法则</h2>
+<ul>
+<li>克拉姆法则
+<ul>
+<li>当且仅当<span class="math inline">\(\vert\pmb{A}\vert\neq
+0\)</span>，方程<span class="math inline">\(\pmb{A}\pmb{x}=\pmb{b}\)</span>的唯一解是<span class="math inline">\(x_i=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert},i=1,2,\cdots,n\)</span></li>
+<li>其中<span class="math inline">\(\vert\pmb{A}_i\vert\)</span>的第<span class="math inline">\(i\)</span>列是右端向量<span class="math inline">\(\pmb{b}\)</span>，其他列同<span class="math inline">\(\pmb{A}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\vert\pmb{A}\vert\neq
+0\)</span>则方程有唯一解的原理
+<ul>
+<li><span class="math inline">\(\pmb{x}=\pmb{A}^{-1}\pmb{b}=\frac{\pmb{A}^{\star}\pmb{b}}{|\pmb{A}|}\)</span></li>
+<li><span class="math inline">\(x_i=\frac{\begin{bmatrix}A_{1i}&amp;
+A_{2i}&amp; \cdots&amp; A_{ni} \end{bmatrix}
+\pmb{b}}{|\pmb{A}|}=\frac{\vert\pmb{A}_i\vert}{\vert\pmb{A}\vert}\)</span></li>
 <li>由此直接把唯一解算出来了</li>
-</ul>
-</li>
-<li>$\vert\pmb{A}\vert= 0$则方程无解或无穷解的原理<ul>
-<li>把不可逆矩阵$\pmb{A}$可看作不可逆线性变换，理解成单射（没有逆映射）</li>
-<li>没有逆映射有两种原因<ul>
-<li>新坐标系中的向量$\pmb{b}$无法映射到原坐标系的向量（对应方程组无解情况）</li>
-<li>新坐标系中的向量$\pmb{b}$映射到原坐标系的多个向量（对应方程组无穷解情况）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>线性方程组的主要运算在于求逆矩阵<ul>
+</ul></li>
+<li><span class="math inline">\(\vert\pmb{A}\vert=
+0\)</span>则方程无解或无穷解的原理
+<ul>
+<li>把不可逆矩阵<span class="math inline">\(\pmb{A}\)</span>可看作不可逆线性变换，理解成单射（没有逆映射）</li>
+<li>没有逆映射有两种原因
+<ul>
+<li>新坐标系中的向量<span class="math inline">\(\pmb{b}\)</span>无法映射到原坐标系的向量（对应方程组无解情况）</li>
+<li>新坐标系中的向量<span class="math inline">\(\pmb{b}\)</span>映射到原坐标系的多个向量（对应方程组无穷解情况）</li>
+</ul></li>
+</ul></li>
+<li>线性方程组的主要运算在于求逆矩阵
+<ul>
 <li>因为求逆矩阵时，伴随矩阵法比初等变换法复杂得多，很少使用</li>
 <li>所以解线性方程组时，克拉姆法则比高斯消元法复杂得多，很少使用</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="齐次线性方程组"><a href="#齐次线性方程组" class="headerlink" title="齐次线性方程组"></a>齐次线性方程组</h2><ul>
-<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{0}$</li>
+<h2 id="齐次线性方程组">齐次线性方程组</h2>
+<ul>
+<li>形式:<span class="math inline">\(\pmb{A}_{m\times
+n}\pmb{x}=\pmb{0}\)</span></li>
 <li>有解条件：一定有零解</li>
-<li>基础解系<ul>
+<li>基础解系
+<ul>
 <li>所有解向量的极大线性无关组</li>
 <li>课本的表述为线性无关，且可以线性表出所有解向量的向量组</li>
-<li>一定是$n$维非零向量</li>
-</ul>
-</li>
-<li>基础解系向量个数<ul>
-<li>$n-r(\pmb{A})$</li>
-<li>从向量空间角度理解<ul>
-<li>基础解系，就是找到所有的线性无关的非零列向量，和$\pmb{A}$的行向量正交</li>
-<li>本质是，在$n$维度向量空间中，正交于$r(\pmb{A})$维子空间（由$\pmb{A}$行向量张成）的非零且线性无关的向量有$n-r(\pmb{A})$个</li>
+<li>一定是<span class="math inline">\(n\)</span>维非零向量</li>
+</ul></li>
+<li>基础解系向量个数
+<ul>
+<li><span class="math inline">\(n-r(\pmb{A})\)</span></li>
+<li>从向量空间角度理解
+<ul>
+<li>基础解系，就是找到所有的线性无关的非零列向量，和<span class="math inline">\(\pmb{A}\)</span>的行向量正交</li>
+<li>本质是，在<span class="math inline">\(n\)</span>维度向量空间中，正交于<span class="math inline">\(r(\pmb{A})\)</span>维子空间（由<span class="math inline">\(\pmb{A}\)</span>行向量张成）的非零且线性无关的向量有<span class="math inline">\(n-r(\pmb{A})\)</span>个</li>
 <li>例如三维空间中，和某个二维平面垂直的线性无关非零向量，最多找到一个</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>通解：由基础解系线性表出即可</li>
-<li>通解求法<ul>
-<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
+<li>通解求法
+<ul>
+<li>初等行变换把<span class="math inline">\(\pmb{A}\)</span>变成行阶梯型矩阵
+<ul>
 <li>接下来只需要解同解方程组</li>
 <li>本质就是高斯消元法</li>
+</ul></li>
+<li><span class="math inline">\(r\)</span>个独立变量和<span class="math inline">\(n-r\)</span>个自由变量
+<ul>
+<li>每次只选一个自由变量取<span class="math inline">\(1\)</span>，其他取<span class="math inline">\(0\)</span>，算出独立变量，得到一个解向量</li>
+<li>选<span class="math inline">\(n-r\)</span>次自由变量，得到基础解系</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>$r$个独立变量和$n-r$个自由变量<ul>
-<li>每次只选一个自由变量取$1$，其他取$0$，算出独立变量，得到一个解向量</li>
-<li>选$n-r$次自由变量，得到基础解系</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="非齐次线性方程组"><a href="#非齐次线性方程组" class="headerlink" title="非齐次线性方程组"></a>非齐次线性方程组</h2><ul>
-<li>形式:$\pmb{A}_{m\times n}\pmb{x}=\pmb{b}$</li>
-<li>有解等价条件：$r(\pmb{A})=r(\pmb{A},b)$</li>
+<h2 id="非齐次线性方程组">非齐次线性方程组</h2>
+<ul>
+<li>形式:<span class="math inline">\(\pmb{A}_{m\times
+n}\pmb{x}=\pmb{b}\)</span></li>
+<li>有解等价条件：<span class="math inline">\(r(\pmb{A})=r(\pmb{A},b)\)</span></li>
 <li>解的性质：两个解的差值是对应齐次线性方程组的解</li>
 <li>通解结构：找到一个特解，再加上对应齐次线性方程组的通解</li>
-<li>通解求法<ul>
-<li>初等行变换把$\pmb{A}$变成行阶梯型矩阵<ul>
+<li>通解求法
+<ul>
+<li>初等行变换把<span class="math inline">\(\pmb{A}\)</span>变成行阶梯型矩阵
+<ul>
 <li>接下来只需要解同解方程组</li>
-</ul>
-</li>
-<li>$r$个独立变量和$n-r$个自由变量<ul>
-<li>自由变量取$0$，算出一个特解</li>
-<li>每个自由变量分别取$1$，算出对应齐次线性方程组基础解系</li>
-</ul>
-</li>
+</ul></li>
+<li><span class="math inline">\(r\)</span>个独立变量和<span class="math inline">\(n-r\)</span>个自由变量
+<ul>
+<li>自由变量取<span class="math inline">\(0\)</span>，算出一个特解</li>
+<li>每个自由变量分别取<span class="math inline">\(1\)</span>，算出对应齐次线性方程组基础解系</li>
+</ul></li>
 <li>利用非齐次线性方程组的通解结构即可</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="由基础解系求方程组"><a href="#由基础解系求方程组" class="headerlink" title="由基础解系求方程组"></a>由基础解系求方程组</h2><ul>
-<li>已知$m$个方程$n$个未知量的齐次线性方程组的基础解系为$\pmb{\xi}_1,\pmb{\xi}_2,\cdots,\pmb{\xi}_k$</li>
-<li>即$\pmb{A}_{m\times n}\left [ \begin{matrix}\pmb{\xi}_1&amp;\pmb{\xi}_2&amp;\cdots&amp;\pmb{\xi}_k \end{matrix} \right ]=\pmb{O}_{m\times k}$</li>
-<li>即$\left [ \begin{matrix}\pmb{\xi}_1^T\\ \pmb{\xi}_2^T\\ \vdots \pmb{\xi}_k^T \end{matrix} \right ]\pmb{A}^T_{n\times m}=\pmb{O}_{k\times m}$</li>
-<li>新方程解出来的基础解系的向量个数为$n-k=n-(n-r(\pmb{A}))=r(\pmb{A})$<ul>
+<h2 id="由基础解系求方程组">由基础解系求方程组</h2>
+<ul>
+<li>已知<span class="math inline">\(m\)</span>个方程<span class="math inline">\(n\)</span>个未知量的齐次线性方程组的基础解系为<span class="math inline">\(\pmb{\xi}_1,\pmb{\xi}_2,\cdots,\pmb{\xi}_k\)</span></li>
+<li>即<span class="math inline">\(\pmb{A}_{m\times
+n}\begin{bmatrix}\pmb{\xi}_1&amp;\pmb{\xi}_2&amp;\cdots&amp;\pmb{\xi}_k
+\end{bmatrix} =\pmb{O}_{m\times k}\)</span></li>
+<li>即<span class="math inline">\(\begin{bmatrix}\pmb{\xi}_1^T\\
+\pmb{\xi}_2^T\\ \vdots \\ \pmb{\xi}_k^T \end{bmatrix} \pmb{A}^T_{n\times
+m}=\pmb{O}_{k\times m}\)</span></li>
+<li>新方程解出来的基础解系的向量个数为<span class="math inline">\(n-k=n-(n-r(\pmb{A}))=r(\pmb{A})\)</span>
+<ul>
 <li>可以根据该基础解系确定原方程的系数矩阵行向量</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="两个方程组的公共解"><a href="#两个方程组的公共解" class="headerlink" title="两个方程组的公共解"></a>两个方程组的公共解</h2><ul>
+<h2 id="两个方程组的公共解">两个方程组的公共解</h2>
+<ul>
 <li>法一：直接解联立方程组</li>
 <li>法二：先解一个方程组，再代入另一个方程组</li>
 <li>法三：分别解两个方程组得到各自的通解，令两个通解相等，解关于通解的参数的方程组</li>
 </ul>
-<h2 id="同解方程组"><a href="#同解方程组" class="headerlink" title="同解方程组"></a>同解方程组</h2><ul>
+<h2 id="同解方程组">同解方程组</h2>
+<ul>
 <li>定义法（推荐使用）：证明一个方程组的解也是另一个方程组的解（两个方向都要证明）</li>
 <li>初等行变换：只经过初等行变换（不改变方程的解），可以将两个方程组的（系数矩阵和右端向量的）增广矩阵相互转换，则说明是同解方程组</li>
 <li>线性表示法：两个方程组的增广矩阵的行向量相互可以线性表出</li>
 </ul>
-<h2 id="解线性方程组应用于可逆矩阵"><a href="#解线性方程组应用于可逆矩阵" class="headerlink" title="解线性方程组应用于可逆矩阵"></a>解线性方程组应用于可逆矩阵</h2><p>补充一个技巧：计算$\pmb{A}^{-1}\pmb{B}$可以规约为解方程$\pmb{A}\pmb{X}=\pmb{B}$</p>
+<h2 id="解线性方程组应用于可逆矩阵">解线性方程组应用于可逆矩阵</h2>
+<p>补充一个技巧：计算<span class="math inline">\(\pmb{A}^{-1}\pmb{B}\)</span>可以规约为解方程<span class="math inline">\(\pmb{A}\pmb{X}=\pmb{B}\)</span></p>
 
     </div>
 
@@ -496,7 +518,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

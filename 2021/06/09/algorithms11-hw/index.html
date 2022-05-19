@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+  <meta name="description" content="11.1 算法思想如下： + 把S表示为c进制形式\(s_{n-1}\cdots s_0\) + 拿\(s_i\)枚面值为\(c^i\)的硬币,\(i&#x3D;0,\cdots,n-1\) 正确性如下： + 首先该算法输出的硬币，确实刚好能换S金额的钱，这个根据c进制运算即可。 + 假设存在更优的换法，该更优的换法同样可以用c进制串（要求每一位的值都小于c）表示出来。 * 更优的换法之所以可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【习题解答】 贪心算法设计要素">
 <meta property="og:url" content="https://wooziehang.github.io/2021/06/09/algorithms11-hw/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+<meta property="og:description" content="11.1 算法思想如下： + 把S表示为c进制形式\(s_{n-1}\cdots s_0\) + 拿\(s_i\)枚面值为\(c^i\)的硬币,\(i&#x3D;0,\cdots,n-1\) 正确性如下： + 首先该算法输出的硬币，确实刚好能换S金额的钱，这个根据c进制运算即可。 + 假设存在更优的换法，该更优的换法同样可以用c进制串（要求每一位的值都小于c）表示出来。 * 更优的换法之所以可以">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-09T14:11:35.000Z">
-<meta property="article:modified_time" content="2021-06-13T10:32:49.635Z">
+<meta property="article:modified_time" content="2022-05-19T14:03:04.559Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Problem Set Solutions">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-13 18:32:49" itemprop="dateModified" datetime="2021-06-13T18:32:49+08:00">2021-06-13</time>
+                <time title="修改时间：2022-05-19 22:03:04" itemprop="dateModified" datetime="2022-05-19T22:03:04+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,22 +280,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
-  <script id="hbeData" type="hbeData" data-hmacdigest="ee12fde1eefafad3a09b1cb69f5afb0a8374669d095084d5e6e7eeb25058909c">757ff964fcfd9532ba69fc6fadfc1252eb09ce1986feccadb66dcf2cef6bec7f4717c52f2b8ca58302f862e521bc6718f24d177b94049ed2b8c17683330d7c81ed2e454c00cded0731550256f16cce4e4569851d3e57728c20e7aa9f126dbdd9fb588956aa0c13c9e735774aafe19aa0c077bde3d7576153519e43e078c8ae645337c7e8eb3864fa681df7c216aa0d94b394da1c0b2b27719b7761d7c09405605c8fa70c573aaa07eee4d7fc8f9bc961f20fe2faeef253bff3dc74f8f49c2b3fa64b27608898f0d7c6c9dc66a34b72c25924cb80677c5c9bf9ee708c39a4465f5dd7b6730edaa8b5333a754d69f2ea566f10860ec478b850a2d8e2938bb68a45d6f84d0402847e4c9bb2e375b2200ef1ca15e00d372955ccb9998cd0f357dd1f2bb30c6abb9efe02300486d186c62718dae03b3dfc13a222f40c33c1e087f0c168b362922fc92700a898d7f58504860a41e45c34e8ea983c330f5ae7c9a87c016b1452c0a46eaecb09f1e153d1d2cea6dadb427b7acb548f59fa32c3072fac1d5fe1d0ec84a616f41c092455e40286c2e77ed679f4e99e96adf844a11c7b8a9125b1f96157d3188f31746dfdaf9e1ef9d477c38a1f6b8c1bf67796d82066e600c66a7193efc7cd1cb5a9a28483765a3f8a3f251a1317ce02e7467f7919074d7309329eecea2c9a1b27b20c6c4e1fc4350a621a65e71fffde889f80dfd1f7f938145c0829dc6281f8562a723f2aefe4a3ec1cb7cd3698525daaa5f0c4bac9d567b68241cae2784186c89f4ac25f378d3a6ea105321ce8b6392169896947a4f7205d646ef809437a88ec3abbadc471008733cc13c8bfe0d7402e1bbeca088e19be668d50c2b6e531976f52eaf088df63cce073a66ff855a242d75c6ec2a34665ec10f642bc6829ee4841399735fe2f7cf877ca89955bdcf693c7f9831778e77cd0189fc84f4cbad64f0d5f9845059ddd0b37115c6a8d06bb8e141adec59bcee5e69bf83b1b2a3d79484785ffb9b668afa9fb4a86812d66530e5e439bd89edc31f5b751fc14434a62f251a6d5ab6c32ea2e20ca3acdcfc59a188fb74f79c4f0ec900366b4f3e2d4229860c20fd815a9619f6400e63db78200cd15fc15c101e25a3e8f4d89751e93c4cedd0241ad3eb864c6fba3151763e9e68a9d997baaa70e303feb0760bcb3a0c06bb6587e4b306cb06eb331e62cae8a12dcf47280eeaf515b97b93610496fc657361988b119a1d380291239cb28a8cf612d686c09f9255690713d000ba878b167a7139905426cbc3d0831a7c1902f6a1e1c487ea348b9b652391a96c2a57c7cfd1610b9f6f55f88bd36b49bb93f9575b5a453c74c61e0fb866e37b3f48087dc57f5f8a31bcbb100bd8d6eb6ac2f792b71c3874f21bef599e4149743e3ad3c72fcb8ca556faa43b100b2a8c87905fdc6c37f08eb93ad3b0d2a521deb7c427bb0a3d2cc1d465df2cffb4493bd362932ef0658bb9659b6c1635aa82ae8bd07a7c5b13c77a3275424be603124e1c8ca85f3efeb86d89833ec8d689fa383657837169c1cba315fd3278d690e0b178ed44e2f287d610e220f01062129ec7038062c735ff940f53594ae01490cb698d97574c18f049cf719c6d4cbf8cef7a50204765bb3c9704d5a5af9273a083abf6a6e607e9b475345f40dfd75b29edb8a578c1fe70ae2eb016c0bbb07ee577728e994caa664f1671df1b6adc8649c7a3ec9eedb9a63475cd4b589aacaa75fcb7ca47518374db58eb32554bf28836a0890275f7d10bbc95d824c6eb9f89450c7e54296e9e627056ae62e2e5d53c620d1a951d4f3f02f624eb78f95c6641fd2133fc0950470f491aa7ba897703bc35fab3a07c4ab49e463033272f2505ff180069fc84e20122db48a847dfdd7f32a3865302af9bb1e27ad11f55799fa6955f40ce61ba53d251366a58cd1d13d60410e9fb61855b56787917febb65c069042208a35dd466860da3a92b33407af535fdd40697aaee5d2a3a251d70847c219c14d2abdea5aacf054f9a3e6a020fe796c4e48dca9667b3d71f6a9e5184bda3ba4da77057cfb49073ccafeb2408bda667816b2ed09f6d21c0815a88f7d0bc9b8c8b4051d29725dcf9db4b23139bd683ae11648686b9e59738540433c9b5f03417ab4e536ddb2cc74392416cd9f39c0680f8f549f656f015da28e9ddbcb41549e0a2556af2d7383d8af0e7e550672cd451cb824fb3d9fcbf5df4443483a166560f227a87372f2e1c0671b62694173a56bfa40ab8f35bd0f6e2c1a73d197c7ce23f601b858f2d4a8b1e57bc73bd23a76bfc68af1ed11d8483f60cadd914f0f11d988b69286b17e5bf19db11889db125d415ec1311b35f4c276a013abe40ebc041c17eb9211219dee4f47b67b097c10b6ccc1fd1142dab446ee593857094e283255bc8b0147c7dd8759c263aefca18d27936521f492e3a949769269db63be1530bdfe9dd2c6dd5e1b606822ee89abb400bf0bbd4469633b73e04500ed0bdb424c6afc6ce1c5a6f5caef6f242e88f09fdf4c4690a2949f6126951ad2fdca1a83b6f4bc4ca25f0efd0515f87e6c59a57f6c12c11d0e4099a4e0e1b4abd8ce490d2dd00d51f8ca5700d1276f223afc6522d78c404cecb38829793a2c9e817ee6c127fbfa5f32c4bdd201d96b8e725201a94377e2acf18bc61868613c7a72de5a86e1215ddc868cbcbaa2e9090cb7eb7d82b4533531013148ca98a7591580fee6a165dfc6630837360f936d681f23e6418e773936d6d5bf2a405472e353a3db6b506c83d2731614e435e2102a14e1c8a744cfa60463388b4ed2443d7c116820058c89d0e27f29f406394206ff3ee0fb53ea7a9a44add1c579472ccb1e0a1665fa3722ab5db25706b04ad5ec5149ac58093676912c98b6ebcef604d1a756c9a6d5429d4a1fcf0163c026d8e40bbfcb766d1817af327375e7fc6c81d2cee94c8d45ec567d5d3a207f6c89b39ec1f6801c4898d0b6c9db4037c74e07cdadea9e32f1aa457e0b6de6e73b52c36b86da3bd663d7a311d7932094cccfc12401e419d4c0509d766b43ce25473e75fae74da52240c9b63cf076b8954f2b3bee734ab2d9503bcc8ffc40bbf3343aafd1dfd89e6a9ad3e6c1ec45194305509674b92ea11139dc05ca32decbafb5a0933a24f811a0e5e848efe70e570b2d84e014792f3d1c22f175233d76a68301d787513ad40bf1f208c7a74ac31e49e6839d130d625ae9303d3b39d3bfac2d2c91b7a926fce2c860e4a1790e4168ec861a2f7818cfb61748f23c30c16c4a10599265056c0b3d5d669271e67e0386d97be04b8ed8edfc6a541e8e6d089f0d83fb8041ffa7fa28715d4164c70836dfc73414779e1d8a4c0acaf4444f2ae762fc5e0fd144b9a676ba81c783eafc624d389afeb83505570e02a46a0d11ebd2c28fb87e1d457c072bf4c1a58e8befdd6729830e292059e027710961ab337d4073409830911a2ebdba2a8ccdae4bdc080a13245ff5de29b216335be68e413f95ae923d0edb2e4b4cd20509d2a28348096a0c7a65bb82ec203d5d91ad35fd1f7e57a89d9be466837171c0385f3d7235e5193d694c9cd043bc76b86e3e9704c112b00d544e00a6b80df990d0a8697ba9985e9df8695de7d0ae353cf24cf0c9baec6ca2092e9a2f98705b9a17da56a69f17b942d5dfb11af78a5d0440a4d1c13facb45a06f2815ae0241f36bbd7fe7097321e121e8d24b73adb48d87747b6fd18b8abb86fd0e9ffe8ec85b08d255e92c4be1bc7f1ee877e459d7a85e28dbbebb0b07c9e349063dfd6fe2cefe154fe503bd82112deb662b46def1ce6b9529127df609196e4abb5caf3bca236bab32c30a3c09cc2d0ef1d611ab12dc35d5961ae2ab3</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <h2 id="section">11.1</h2>
+<p>算法思想如下： + 把S表示为c进制形式<span class="math inline">\(s_{n-1}\cdots s_0\)</span> + 拿<span class="math inline">\(s_i\)</span>枚面值为<span class="math inline">\(c^i\)</span>的硬币,<span class="math inline">\(i=0,\cdots,n-1\)</span></p>
+<p>正确性如下： +
+首先该算法输出的硬币，确实刚好能换S金额的钱，这个根据c进制运算即可。 +
+假设存在更优的换法，该更优的换法同样可以用c进制串（要求每一位的值都小于c）表示出来。
+*
+更优的换法之所以可以表示为c进制串（每一位的值都小于c）是因为如果某一位大于等于c，则可以用更高一位的硬币代替（也就是进位操作），这样能得到一个更优的串，直至得到c进制串
+* <strong>c进制串对同一个大小的数表示是唯一的</strong>，这个结论很重要。
+*
+更优的换法经过若干次优化后变成了我们的换法，矛盾。说明我们的换法就是最优的。</p>
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
     </div>
 
     
@@ -390,6 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">1.</span> <span class="nav-text">11.1</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,7 +456,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

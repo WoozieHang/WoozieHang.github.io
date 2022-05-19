@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="网络应用模型客户&#x2F;服务器模型 即Cient&#x2F;Server模型、C&#x2F;S模型 服务器是服务提供方，要一直保持运行状态 客户是服务请求方，要实现知道服务器的地址    工作流程 服务器处于接收请求状态 客户机发出服务请求，等待结果 服务器收到后，分析请求、处理、把结果发给客户机   特征 非对称 占少数的服务器集中管理整个网络 占多数的客户机的权限由服务器管理限制   客户机之间不能通信 服务器支持的客">
+  <meta name="description" content="网络应用模型 客户&#x2F;服务器模型  即Cient&#x2F;Server模型、C&#x2F;S模型  服务器是服务提供方，要一直保持运行状态 客户是服务请求方，要实现知道服务器的地址  工作流程  服务器处于接收请求状态 客户机发出服务请求，等待结果 服务器收到后，分析请求、处理、把结果发给客户机  特征  非对称  占少数的服务器集中管理整个网络 占多数的客户机的权限由服务器管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第六章-应用层">
 <meta property="og:url" content="https://wooziehang.github.io/2021/12/03/network6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="网络应用模型客户&#x2F;服务器模型 即Cient&#x2F;Server模型、C&#x2F;S模型 服务器是服务提供方，要一直保持运行状态 客户是服务请求方，要实现知道服务器的地址    工作流程 服务器处于接收请求状态 客户机发出服务请求，等待结果 服务器收到后，分析请求、处理、把结果发给客户机   特征 非对称 占少数的服务器集中管理整个网络 占多数的客户机的权限由服务器管理限制   客户机之间不能通信 服务器支持的客">
+<meta property="og:description" content="网络应用模型 客户&#x2F;服务器模型  即Cient&#x2F;Server模型、C&#x2F;S模型  服务器是服务提供方，要一直保持运行状态 客户是服务请求方，要实现知道服务器的地址  工作流程  服务器处于接收请求状态 客户机发出服务请求，等待结果 服务器收到后，分析请求、处理、把结果发给客户机  特征  非对称  占少数的服务器集中管理整个网络 占多数的客户机的权限由服务器管理">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-03T01:40:54.000Z">
-<meta property="article:modified_time" content="2021-12-19T10:04:11.970Z">
+<meta property="article:modified_time" content="2022-05-19T14:39:37.427Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 18:04:11" itemprop="dateModified" datetime="2021-12-19T18:04:11+08:00">2021-12-19</time>
+                <time title="修改时间：2022-05-19 22:39:37" itemprop="dateModified" datetime="2022-05-19T22:39:37+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,295 +280,313 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="网络应用模型"><a href="#网络应用模型" class="headerlink" title="网络应用模型"></a>网络应用模型</h2><h3 id="客户-服务器模型"><a href="#客户-服务器模型" class="headerlink" title="客户/服务器模型"></a>客户/服务器模型</h3><ul>
-<li>即Cient/Server模型、C/S模型<ul>
+        <h2 id="网络应用模型">网络应用模型</h2>
+<h3 id="客户服务器模型">客户/服务器模型</h3>
+<ul>
+<li>即Cient/Server模型、C/S模型
+<ul>
 <li>服务器是服务提供方，要一直保持运行状态</li>
-<li>客户是服务请求方，要实现知道服务器的地址 </li>
-</ul>
-</li>
-<li>工作流程<ul>
+<li>客户是服务请求方，要实现知道服务器的地址</li>
+</ul></li>
+<li>工作流程
+<ul>
 <li>服务器处于接收请求状态</li>
 <li>客户机发出服务请求，等待结果</li>
 <li>服务器收到后，分析请求、处理、把结果发给客户机</li>
-</ul>
-</li>
-<li>特征<ul>
-<li>非对称<ul>
+</ul></li>
+<li>特征
+<ul>
+<li>非对称
+<ul>
 <li>占少数的服务器集中管理整个网络</li>
 <li>占多数的客户机的权限由服务器管理限制</li>
-</ul>
-</li>
+</ul></li>
 <li>客户机之间不能通信</li>
 <li>服务器支持的客户机数有限</li>
-</ul>
-</li>
-<li>应用举例<ul>
+</ul></li>
+<li>应用举例
+<ul>
 <li>FTP</li>
 <li>TELNET</li>
 <li>SMTP</li>
 <li>DNS</li>
 <li>WWW（Web）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="对等模型"><a href="#对等模型" class="headerlink" title="对等模型"></a>对等模型</h3><ul>
-<li>即P2P模型<ul>
+<h3 id="对等模型">对等模型</h3>
+<ul>
+<li>即P2P模型
+<ul>
 <li>P2P网络是由对等结点组成的逻辑网络</li>
-</ul>
-</li>
-<li>特征<ul>
-<li>各计算机地位对称，既是客户，又是服务器<ul>
+</ul></li>
+<li>特征
+<ul>
+<li>各计算机地位对称，既是客户，又是服务器
+<ul>
 <li>获取服务的同时需要提供服务，也算缺点</li>
-</ul>
-</li>
+</ul></li>
 <li>任意一对计算机（对等方）直接相互通信</li>
 <li>网络单结点失效不影响其他结点</li>
-</ul>
-</li>
-<li>应用举例<ul>
+</ul></li>
+<li>应用举例
+<ul>
 <li>PPlive</li>
 <li>Bittorrent</li>
 <li>电驴</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="域名系统DNS"><a href="#域名系统DNS" class="headerlink" title="域名系统DNS"></a>域名系统DNS</h2><h3 id="层次域名空间"><a href="#层次域名空间" class="headerlink" title="层次域名空间"></a>层次域名空间</h3><ul>
-<li>域名：网络设备的一种具有层次结构的命名<ul>
+<h2 id="域名系统dns">域名系统DNS</h2>
+<h3 id="层次域名空间">层次域名空间</h3>
+<ul>
+<li>域名：网络设备的一种具有层次结构的命名
+<ul>
 <li>比如www.google.com是谷歌搜索服务器的域名</li>
-<li>“.com”顶级域名、”.google”二级域名、”www”三级域名</li>
-</ul>
-</li>
-<li>概念介绍<ul>
-<li>域名<ul>
-<li>多个标号的序列，标号间”.”隔开</li>
+<li>".com"顶级域名、".google"二级域名、"www"三级域名</li>
+</ul></li>
+<li>概念介绍
+<ul>
+<li>域名
+<ul>
+<li>多个标号的序列，标号间"."隔开</li>
 <li>每个标号对应一个子域名，且从左到右域名级别递增，最右边是顶级域名</li>
 <li>不超过255各字符</li>
-</ul>
-</li>
-<li>标号<ul>
-<li>由字母、数字、”-“组成</li>
+</ul></li>
+<li>标号
+<ul>
+<li>由字母、数字、"-"组成</li>
 <li>不区分大小写</li>
 <li>不超过63个字符</li>
-</ul>
-</li>
-<li>顶级域名<ul>
-<li>国家顶级域名：”.cn”是中国、”.us”是美国</li>
-<li>通用顶级域名：”.com”是公司、”.org”是非营利组织</li>
-<li>基础结构域名：”.arpa”反向域名解析（唯一的基础结构域名）</li>
-</ul>
-</li>
-<li>层次域名空间<ul>
+</ul></li>
+<li>顶级域名
+<ul>
+<li>国家顶级域名：".cn"是中国、".us"是美国</li>
+<li>通用顶级域名：".com"是公司、".org"是非营利组织</li>
+<li>基础结构域名：".arpa"反向域名解析（唯一的基础结构域名）</li>
+</ul></li>
+<li>层次域名空间
+<ul>
 <li>各个域的关系可以用树状层次结构表示</li>
 <li>各个域的管理组织不同，子域由子组织管理</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="域名服务器"><a href="#域名服务器" class="headerlink" title="域名服务器"></a>域名服务器</h3><ul>
-<li>域名服务器：采用<strong>C/S模型</strong>的分布式数据库系统，<strong>提供从域名到IP地址的解析</strong><ul>
+<h3 id="域名服务器">域名服务器</h3>
+<ul>
+<li>域名服务器：采用<strong>C/S模型</strong>的分布式数据库系统，<strong>提供从域名到IP地址的解析</strong>
+<ul>
 <li>若不能进行解析，则给用户提供寻找其他域名服务器的信息</li>
-</ul>
-</li>
+</ul></li>
 <li>区：一个域名服务器的管辖范围</li>
 <li>域名系统（DNS）：以层次方式组织大量域名服务器，提供域名解析服务</li>
-<li>域名服务器按层次的分类<ul>
-<li>根域名服务器<ul>
+<li>域名服务器按层次的分类
+<ul>
+<li>根域名服务器
+<ul>
 <li>13个相互冗余的根域名服务器组成服务器集群，管理所有顶级域名服务器的IP地址</li>
 <li>提供下一步要查询的顶级域名服务器的IP地址</li>
-</ul>
-</li>
-<li>顶级域名服务器<ul>
+</ul></li>
+<li>顶级域名服务器
+<ul>
 <li>管理该域名服务器所注册的所有二级域名</li>
 <li>提供最终结果的IP地址或下一步要查询的域名服务器的IP地址</li>
-</ul>
-</li>
-<li>授权域名服务器（又叫权限域名服务器，<strong>可以涉及多个层次</strong>）<ul>
+</ul></li>
+<li>授权域名服务器（又叫权限域名服务器，<strong>可以涉及多个层次</strong>）
+<ul>
 <li>管理在服务器注册的所有主机（一台主机一般在多个服务器注册）</li>
 <li>提供从主机名到主机IP地址的转换</li>
-</ul>
-</li>
-<li>本地域名服务器<ul>
+</ul></li>
+<li>本地域名服务器
+<ul>
 <li>每个因特网服务提供者（ISP）可以拥有一个本地域名服务器</li>
 <li>处理本地主机的DNS查询请求</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="域名解析过程"><a href="#域名解析过程" class="headerlink" title="域名解析过程"></a>域名解析过程</h3><ul>
+<h3 id="域名解析过程">域名解析过程</h3>
+<ul>
 <li>正向解析：域名映射到IP地址</li>
 <li>反向解析：IP地址映射到域名</li>
 <li>DNS请求报文：由用户机的DNS客户端构造，装入UDP，发往服务器，请求域名解析服务</li>
-<li>域名解析方式<ul>
-<li>注：<ul>
+<li>域名解析方式
+<ul>
+<li>注：
+<ul>
 <li>为描述简洁，域名服务器简写，比如“根域名服务器”简写为“根”</li>
 <li>低层服务器看作是高层服务器的用户机</li>
-</ul>
-</li>
-<li>递归查询（负载较大，很少使用）<ul>
+</ul></li>
+<li>递归查询（负载较大，很少使用）
+<ul>
 <li>主机、本地、根、顶级、权限、顶级、根、本地、主机</li>
-</ul>
-</li>
-<li>递归与迭代相结合的查询（常用）<ul>
+</ul></li>
+<li>递归与迭代相结合的查询（常用）
+<ul>
 <li>完整的递归迭代查询：主机、<strong>本地</strong>、根、<strong>本地</strong>、顶级、<strong>本地</strong>、权限、<strong>本地</strong>、主机</li>
 <li>不完整的递归迭代查询：前三个<strong>本地</strong>的任意一个，若已经查到了域名的IP地址，可以提前结束迭代，返回主机</li>
 <li>退化为递归查询：主机、本地、主机</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>高速缓存<ul>
-<li>DNS服务器获得DNS查询结果后，除了将其发送给用户机，还要将其保存到高速缓存<ul>
+</ul></li>
+</ul></li>
+<li>高速缓存
+<ul>
+<li>DNS服务器获得DNS查询结果后，除了将其发送给用户机，还要将其保存到高速缓存
+<ul>
 <li>方便之后相同的域名查询</li>
 <li>高速缓存内容不永久保存，定期丢弃</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="文本传输协议FTP"><a href="#文本传输协议FTP" class="headerlink" title="文本传输协议FTP"></a>文本传输协议FTP</h2><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ul>
-<li>功能<ul>
-<li>以用户登陆方式，获得远程FTP服务器的文件的管理权限<ul>
+<h2 id="文本传输协议ftp">文本传输协议FTP</h2>
+<h3 id="工作原理">工作原理</h3>
+<ul>
+<li>功能
+<ul>
+<li>以用户登陆方式，获得远程FTP服务器的文件的管理权限
+<ul>
 <li>上传和下载</li>
-</ul>
-</li>
+</ul></li>
 <li>以匿名方式（非用户登陆方式）提供公用文件的共享</li>
 <li>提供不同种主机间的文件传输</li>
-</ul>
-</li>
-<li>服务器的进程组成<ul>
-<li>一个主进程（端口号21）<ul>
+</ul></li>
+<li>服务器的进程组成
+<ul>
+<li>一个主进程（端口号21）
+<ul>
 <li>接收新请求</li>
-</ul>
-</li>
-<li>若干从属进程<ul>
+</ul></li>
+<li>若干从属进程
+<ul>
 <li>处理单个请求</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>从属进程类型<ul>
+</ul></li>
+</ul></li>
+<li>从属进程类型
+<ul>
 <li>控制进程（端口号21）</li>
 <li>数据传送进程（默认情况端口号20）</li>
-</ul>
-</li>
-<li>工作步骤<ul>
+</ul></li>
+<li>工作步骤
+<ul>
 <li>主进程等待客户连接请求</li>
-<li>主进程收到客户连接请求，启动控制进程，建立<strong>控制连接</strong><ul>
+<li>主进程收到客户连接请求，启动控制进程，建立<strong>控制连接</strong>
+<ul>
 <li>会话结束后终止控制进程</li>
-</ul>
-</li>
-<li>控制进程收到客户数据传输请求，启动数据传送进程，建立<strong>数据连接</strong><ul>
-<li>传送完后终止数据传送进程 </li>
-</ul>
-</li>
+</ul></li>
+<li>控制进程收到客户数据传输请求，启动数据传送进程，建立<strong>数据连接</strong>
+<ul>
+<li>传送完后终止数据传送进程</li>
+</ul></li>
 <li>会话结束后，继续等待其他客户请求</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="控制连接和数据连接"><a href="#控制连接和数据连接" class="headerlink" title="控制连接和数据连接"></a>控制连接和数据连接</h3><ul>
-<li>控制连接<ul>
+<h3 id="控制连接和数据连接">控制连接和数据连接</h3>
+<ul>
+<li>控制连接
+<ul>
 <li>两端进程：控制进程</li>
 <li>服务器端口号：21</li>
 <li>用户端口号：用户随机分配</li>
 <li>功能：以ASCII格式传送控制信息，如数据连接请求、数据传送请求、中止传输命令等</li>
 <li>带外传送：指控制连接和数据连接分离的传送方式</li>
-</ul>
-</li>
-<li>数据连接<ul>
+</ul></li>
+<li>数据连接
+<ul>
 <li>两端进程：数据传送进程</li>
-<li>服务器端口号<ul>
+<li>服务器端口号
+<ul>
 <li>主动模式：20</li>
-<li>被动模式：服务器随机分配 </li>
-</ul>
-</li>
+<li>被动模式：服务器随机分配</li>
+</ul></li>
 <li>用户端口号：用户随机分配</li>
 <li>功能：完成客户端和服务器端的文件数据传送</li>
-<li>传送模式：默认为主动模式<ul>
+<li>传送模式：默认为主动模式
+<ul>
 <li>主动模式PORT：客户发送PORT命令和客户端口号，再由服务器发起连接</li>
 <li>被动模式PASV：客户发送PASV命令获取服务器端口号，再由客户机发起连接</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="文件修改方式"><a href="#文件修改方式" class="headerlink" title="文件修改方式"></a>文件修改方式</h3><ul>
-<li>传统的FTP<ul>
+<h3 id="文件修改方式">文件修改方式</h3>
+<ul>
+<li>传统的FTP
+<ul>
 <li>在本地复制远程文件的整个副本，修改后传回服务器，很耗时</li>
-</ul>
-</li>
-<li>网络文件系统NFS<ul>
+</ul></li>
+<li>网络文件系统NFS
+<ul>
 <li>在本地复制远程文件的特定片段，修改后传回服务器，速度快</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h2><h3 id="电子邮件系统的组成结构"><a href="#电子邮件系统的组成结构" class="headerlink" title="电子邮件系统的组成结构"></a>电子邮件系统的组成结构</h3><ul>
-<li>用户代理<ul>
+<h2 id="电子邮件">电子邮件</h2>
+<h3 id="电子邮件系统的组成结构">电子邮件系统的组成结构</h3>
+<ul>
+<li>用户代理
+<ul>
 <li>用户和电子邮件系统的接口（即邮件客户端软件）</li>
 <li>提供邮件撰写、显示、处理、通信的功能</li>
-</ul>
-</li>
-<li>邮件服务器<ul>
+</ul></li>
+<li>邮件服务器
+<ul>
 <li>功能是发送和接收邮件</li>
 <li>结构包括邮件缓存和用户邮箱</li>
 <li>举例：qq邮件服务器、189邮件服务器等</li>
-</ul>
-</li>
-<li>电子邮件的协议<ul>
-<li>发送协议（SMTP协议）<ul>
+</ul></li>
+<li>电子邮件的协议
+<ul>
+<li>发送协议（SMTP协议）
+<ul>
 <li>发送方用户代理（客户）数据<strong>推</strong>到发送方邮件服务器（服务器）的<strong>邮件缓存</strong></li>
 <li>发送方邮件服务器（客户）发送数据到接收方邮件服务器（服务器）的<strong>用户邮箱</strong></li>
-</ul>
-</li>
-<li>接收协议（POP3协议或IMAP协议）<ul>
+</ul></li>
+<li>接收协议（POP3协议或IMAP协议）
+<ul>
 <li>接收方邮件服务器（服务器）数据<strong>拉</strong>到接收方用户代理（客户）</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="电子邮件格式"><a href="#电子邮件格式" class="headerlink" title="电子邮件格式"></a>电子邮件格式</h3><ul>
-<li>信封<ul>
+<h3 id="电子邮件格式">电子邮件格式</h3>
+<ul>
+<li>信封
+<ul>
 <li>自动填写</li>
-</ul>
-</li>
-<li>内容<ul>
-<li>首部<ul>
+</ul></li>
+<li>内容
+<ul>
+<li>首部
+<ul>
 <li>From（自动填写）：[发送方用户邮箱名]@[发送方邮件服务器的域名]</li>
 <li>To（用户必填）：[接收方用户邮箱名]@[接收方邮件服务器的域名]</li>
 <li>Subject（用户选填）：[邮件的主题]</li>
-</ul>
-</li>
-<li>主体<ul>
-<li>用户撰写的邮件内容（ASCII码）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="MIME"><a href="#MIME" class="headerlink" title="MIME"></a>MIME</h3><p>即多用途网际邮件扩充</p>
+</ul></li>
+<li>主体
 <ul>
-<li>功能<ul>
-<li>使得SMTP除了支持ASCII码，还支持其他编码以及二进制文件的发送</li>
+<li>用户撰写的邮件内容（ASCII码）</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>实现<ul>
+<h3 id="mime">MIME</h3>
+<p>即多用途网际邮件扩充</p>
+<ul>
+<li>功能
+<ul>
+<li>使得SMTP除了支持ASCII码，还支持其他编码以及二进制文件的发送</li>
+</ul></li>
+<li>实现
+<ul>
 <li>不改变SMTP</li>
 <li>新定义了首部字段、主体结构、传送非ASCII码的规则</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="SMTP与POP3"><a href="#SMTP与POP3" class="headerlink" title="SMTP与POP3"></a>SMTP与POP3</h3><ul>
-<li>SMTP<ul>
-<li>连接建立<ul>
+<h3 id="smtp与pop3">SMTP与POP3</h3>
+<ul>
+<li>SMTP
+<ul>
+<li>连接建立
+<ul>
 <li>发送方邮件服务器定期扫描缓存</li>
 <li>缓存发现邮件，则在端口25和接收方服务器建立TCP连接</li>
 <li>接收方回复220 Service ready</li>
 <li>发送方发出HELO，带有发送方主机名</li>
-</ul>
-</li>
-<li>邮件传送<ul>
+</ul></li>
+<li>邮件传送
+<ul>
 <li>发送方发出的MAIL，带有发件人地址</li>
 <li>接收方回复250 OK</li>
 <li>发送方发出若干RCPT，确认接收方是否做好准备</li>
@@ -572,65 +594,68 @@
 <li>发送方发出DATA，传输邮件内容</li>
 <li>接收方回复354 Start mail input；end with <CRLF>.<CRLF></CRLF></CRLF></li>
 <li>发送方发出<CRLF>.<CRLF>，表示邮件内容结束</CRLF></CRLF></li>
-</ul>
-</li>
-<li>连接释放<ul>
+</ul></li>
+<li>连接释放
+<ul>
 <li>发送方发出QUIT</li>
 <li>接收方回复221</li>
 <li>进行TCP的连接释放</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>POP3<ul>
+</ul></li>
+</ul></li>
+<li>POP3
+<ul>
 <li>端口号110，基于TCP</li>
-<li>工作方式（由POP3客户决定）<ul>
+<li>工作方式（由POP3客户决定）
+<ul>
 <li>下载并保留：下载后邮件保留在邮箱</li>
 <li>下载并删除：下载后邮件删除</li>
-</ul>
-</li>
-<li>传输方式<ul>
-<li>明文传输</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>IMAP<ul>
-<li>比POP3复杂，但都是用于邮件接收</li>
-</ul>
-</li>
-</ul>
-<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>在万维网的邮件系统中使用HTTP协议</p>
+</ul></li>
+<li>传输方式
 <ul>
-<li>用户代理（浏览器）和邮件服务器以HTTP发送和接收邮件</li>
+<li>明文传输</li>
+</ul></li>
+</ul></li>
+<li>IMAP
+<ul>
+<li>比POP3复杂，但都是用于邮件接收</li>
+</ul></li>
 </ul>
-<h2 id="WWW"><a href="#WWW" class="headerlink" title="WWW"></a>WWW</h2><h3 id="WWW的概念和组成结构"><a href="#WWW的概念和组成结构" class="headerlink" title="WWW的概念和组成结构"></a>WWW的概念和组成结构</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
-<li>万维网（WWW）：联机分布式的信息储藏所<ul>
+<h3 id="http">HTTP</h3>
+<p>在万维网的邮件系统中使用HTTP协议 +
+用户代理（浏览器）和邮件服务器以HTTP发送和接收邮件</p>
+<h2 id="www">WWW</h2>
+<h3 id="www的概念和组成结构">WWW的概念和组成结构</h3>
+<h4 id="基本概念">基本概念</h4>
+<ul>
+<li>万维网（WWW）：联机分布式的信息储藏所
+<ul>
 <li>万维网由大量网络站点互联</li>
 <li>每个站点包含若干文档（页面、资源）</li>
-</ul>
-</li>
+</ul></li>
 <li>超链接（链接）：从一个文档访问另一个文档的方法</li>
 <li>超文本：包含链接的文档（纯文本）</li>
 <li>超媒体：包含链接的文档（除了文本，还包含图像、声音、视频等媒体）</li>
-<li>互联网、因特网、万维网的关系<ul>
+<li>互联网、因特网、万维网的关系
+<ul>
 <li>互联网：多个计算机网络按协议连接的大型网络</li>
 <li>因特网：实际已有的最大的互联网，包括网络站点、电子邮件、新闻组等</li>
 <li>万维网：因特网的主要部分</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h4><ul>
-<li>统一资源定位符（URL）：唯一的标识万维网的文档<ul>
-<li>例如：”<a target="_blank" rel="noopener" href="http://www.tsinghua.edu.cn:80/zjqh/xxgk1.htm">http://www.tsinghua.edu.cn:80/zjqh/xxgk1.htm</a>“</li>
+<h4 id="组成结构">组成结构</h4>
+<ul>
+<li>统一资源定位符（URL）：唯一的标识万维网的文档
+<ul>
+<li>例如："http://www.tsinghua.edu.cn:80/zjqh/xxgk1.htm"</li>
 <li>结构：[传送协议]://[服务器主机域名]：[端口]/[路径]</li>
 <li>注：传送协议一般是http或fps，端口一般省略</li>
-</ul>
-</li>
+</ul></li>
 <li>超文本传输协议（HTTP）：基于TCP的应用层协议，在浏览器客户端和Web服务器之间传送超文本</li>
 <li>超文本标记语言（HTML）：对页面进行描述的语言</li>
 </ul>
-<h3 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP"></a>HTTP</h3><h4 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h4><ul>
+<h3 id="http-1">HTTP</h3>
+<h4 id="操作过程">操作过程</h4>
+<ul>
 <li>浏览器分析URL，得到URL的四个成分，传送协议是http</li>
 <li>浏览器请求DNS解析URL中的服务器主机域名，得到服务器IP地址</li>
 <li>浏览器与服务器的端口80建立TCP连接</li>
@@ -639,36 +664,40 @@
 <li>释放TCP</li>
 <li>浏览器解释文档，并显示给用户</li>
 </ul>
-<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
-<li>HTTP是无连接的<ul>
+<h4 id="特点">特点</h4>
+<ul>
+<li>HTTP是无连接的
+<ul>
 <li>传送数据前不需要建立HTTP连接</li>
-</ul>
-</li>
-<li>HTTP是无状态的<ul>
+</ul></li>
+<li>HTTP是无状态的
+<ul>
 <li>服务器不跟踪用户活动</li>
-<li>可以用Cookie加数据库跟踪用户活动<ul>
+<li>可以用Cookie加数据库跟踪用户活动
+<ul>
 <li>Cookie在服务器生成，在浏览器储存</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>可以非持久连接和持久连接<ul>
-<li>非持久连接：服务器发送响应后释放TCP<ul>
+</ul></li>
+</ul></li>
+<li>可以非持久连接和持久连接
+<ul>
+<li>非持久连接：服务器发送响应后释放TCP
+<ul>
 <li>比如前面的操作过程</li>
-</ul>
-</li>
-<li>持久连接：服务器发送响应后保持TCP<ul>
+</ul></li>
+<li>持久连接：服务器发送响应后保持TCP
+<ul>
 <li>非流水线方式（HTTP/1.0）：浏览器收到响应才能发出下一个请求</li>
 <li>流水线方式（HTTP/1.1）：可以连续发送请求给浏览器</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="报文结构"><a href="#报文结构" class="headerlink" title="报文结构"></a>报文结构</h4><p><em>注：每个字段都是ASCII码</em></p>
+<h4 id="报文结构">报文结构</h4>
+<p><em>注：每个字段都是ASCII码</em></p>
 <ul>
-<li>请求报文<ul>
-<li>请求行：[方法][空格][URL][空格][HTTP版本][CRLF]<ul>
+<li>请求报文
+<ul>
+<li>请求行：[方法][空格][URL][空格][HTTP版本][CRLF]
+<ul>
 <li>GET方法：请求服务器响应并返回实体</li>
 <li>HEAD方法：请求服务器响应，不返回实体</li>
 <li>POST方法：给服务器发送注释</li>
@@ -676,33 +705,31 @@
 <li>PUT方法：在URL处存储一个文档</li>
 <li>DELETE方法：删除URL对应文档</li>
 <li>CRLF：回车换行</li>
-</ul>
-</li>
-<li>首部：包含若干首部行，每个首部行结构为[字段名][:][空格][值][CRLF]<ul>
+</ul></li>
+<li>首部：包含若干首部行，每个首部行结构为[字段名][:][空格][值][CRLF]
+<ul>
 <li>Host字段：服务器主机域名</li>
 <li>Connection字段：close或open，表示是否持久连接</li>
 <li>User-Agent：浏览器名称和版本</li>
 <li>Accept-Language：比如cn表示请求服务器优先响应中文文档</li>
-</ul>
-</li>
+</ul></li>
 <li>[CRLF]</li>
 <li>实体主体：通常不用</li>
-</ul>
-</li>
-<li>响应报文<ul>
-<li>状态行：[版本][空格][状态码][空格][短语][CRLF]<ul>
+</ul></li>
+<li>响应报文
+<ul>
+<li>状态行：[版本][空格][状态码][空格][短语][CRLF]
+<ul>
 <li>状态码（3位5类）：通知收到（1xx）、接受请求（2xx）、资源位置已转移（3xx）、客户差错（4xx）、服务器差错（5xx）</li>
 <li>短语：对状态码简单解释</li>
-</ul>
-</li>
-<li>首部：包含若干首部行<ul>
+</ul></li>
+<li>首部：包含若干首部行
+<ul>
 <li>首部行：[字段名][:][空格][值][CRLF]</li>
-</ul>
-</li>
+</ul></li>
 <li>[CRLF]</li>
 <li>实体主体：包含一个请求对象（如文本、一张图片），有时不用</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
     </div>
@@ -803,7 +830,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">网络应用模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">客户&#x2F;服务器模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%AD%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">对等模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9FDNS"><span class="nav-number">2.</span> <span class="nav-text">域名系统DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%9F%9F%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">2.1.</span> <span class="nav-text">层次域名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">域名服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">域名解析过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEFTP"><span class="nav-number">3.</span> <span class="nav-text">文本传输协议FTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.2.</span> <span class="nav-text">控制连接和数据连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">文件修改方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">电子邮件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">电子邮件系统的组成结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">电子邮件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIME"><span class="nav-number">4.3.</span> <span class="nav-text">MIME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMTP%E4%B8%8EPOP3"><span class="nav-number">4.4.</span> <span class="nav-text">SMTP与POP3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">4.5.</span> <span class="nav-text">HTTP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WWW"><span class="nav-number">5.</span> <span class="nav-text">WWW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WWW%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">WWW的概念和组成结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">5.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.2.</span> <span class="nav-text">组成结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1"><span class="nav-number">5.2.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">5.2.1.</span> <span class="nav-text">操作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">5.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.3.</span> <span class="nav-text">报文结构</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">网络应用模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">客户&#x2F;服务器模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%AD%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">对等模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9Fdns"><span class="nav-number">2.</span> <span class="nav-text">域名系统DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%9F%9F%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">2.1.</span> <span class="nav-text">层次域名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">域名服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">域名解析过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEftp"><span class="nav-number">3.</span> <span class="nav-text">文本传输协议FTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BF%9E%E6%8E%A5%E5%92%8C%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.2.</span> <span class="nav-text">控制连接和数据连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">文件修改方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">电子邮件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">电子邮件系统的组成结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">电子邮件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mime"><span class="nav-number">4.3.</span> <span class="nav-text">MIME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#smtp%E4%B8%8Epop3"><span class="nav-number">4.4.</span> <span class="nav-text">SMTP与POP3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">4.5.</span> <span class="nav-text">HTTP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#www"><span class="nav-number">5.</span> <span class="nav-text">WWW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#www%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">WWW的概念和组成结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">5.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.2.</span> <span class="nav-text">组成结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-1"><span class="nav-number">5.2.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">5.2.1.</span> <span class="nav-text">操作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">5.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.3.</span> <span class="nav-text">报文结构</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -819,7 +846,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

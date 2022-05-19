@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  原函数和不定积分 原函数 若存在$F(x)$，使得$F’(x)&#x3D;f(x)$，则$F(x)$是$f(x)$的原函数 $F(x)+C$是$f(x)$的原函数一般形式   不定积分 原函数的一般形式即不定积分 记为$\int f(x)dx&#x3D;F(x)+C$   原函数存在性">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  原函数和不定积分  原函数  若存在\(F(x)\)，使得\(F&#39;(x)&#x3D;f(x)\)，则\(F(x)\)是\(f(x)\)的原函数 \(F(x)+C\)是\(f(x)\)的原函数一般形式  不定积分  原函数的一般形式即不定积分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第三章-一元函数积分学">
 <meta property="og:url" content="https://wooziehang.github.io/2021/12/07/calculus3/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  原函数和不定积分 原函数 若存在$F(x)$，使得$F’(x)&#x3D;f(x)$，则$F(x)$是$f(x)$的原函数 $F(x)+C$是$f(x)$的原函数一般形式   不定积分 原函数的一般形式即不定积分 记为$\int f(x)dx&#x3D;F(x)+C$   原函数存在性">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  原函数和不定积分  原函数  若存在\(F(x)\)，使得\(F&#39;(x)&#x3D;f(x)\)，则\(F(x)\)是\(f(x)\)的原函数 \(F(x)+C\)是\(f(x)\)的原函数一般形式  不定积分  原函数的一般形式即不定积分">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-06T23:51:41.000Z">
 <meta property="article:modified_time" content="2021-12-25T13:14:32.308Z">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -281,206 +285,233 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="原函数和不定积分"><a href="#原函数和不定积分" class="headerlink" title="原函数和不定积分"></a>原函数和不定积分</h2><ul>
-<li>原函数<ul>
-<li>若存在$F(x)$，使得$F’(x)=f(x)$，则$F(x)$是$f(x)$的原函数</li>
-<li>$F(x)+C$是$f(x)$的原函数一般形式</li>
-</ul>
-</li>
-<li>不定积分<ul>
+<h2 id="原函数和不定积分">原函数和不定积分</h2>
+<ul>
+<li>原函数
+<ul>
+<li>若存在<span class="math inline">\(F(x)\)</span>，使得<span class="math inline">\(F&#39;(x)=f(x)\)</span>，则<span class="math inline">\(F(x)\)</span>是<span class="math inline">\(f(x)\)</span>的原函数</li>
+<li><span class="math inline">\(F(x)+C\)</span>是<span class="math inline">\(f(x)\)</span>的原函数一般形式</li>
+</ul></li>
+<li>不定积分
+<ul>
 <li>原函数的一般形式即不定积分</li>
-<li>记为$\int f(x)dx=F(x)+C$</li>
-</ul>
-</li>
-<li>原函数存在性（不定积分存在性）<ul>
+<li>记为<span class="math inline">\(\int f(x)dx=F(x)+C\)</span></li>
+</ul></li>
+<li>原函数存在性（不定积分存在性）
+<ul>
 <li>函数闭区间连续，则存在闭区间的原函数</li>
 <li>函数闭区间，若间断点只有振荡间断点，则存在闭区间的原函数</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="定积分"><a href="#定积分" class="headerlink" title="定积分"></a>定积分</h2><ul>
-<li>定积分<ul>
+<h2 id="定积分">定积分</h2>
+<ul>
+<li>定积分
+<ul>
 <li>分割、乘积、求和、取极限，若极限存在，则该极限为定积分</li>
-</ul>
-</li>
-<li>定积分存在性<ul>
+</ul></li>
+<li>定积分存在性
+<ul>
 <li>函数闭区间连续，则存在该区间上的定积分</li>
 <li>函数闭区间有界，间断点有限，则存在该区间上的定积分</li>
-</ul>
-</li>
-<li>不定积分和定积分的关系<ul>
+</ul></li>
+<li>不定积分和定积分的关系
+<ul>
 <li>存在性互不相关</li>
-<li>若函数闭区间连续，则不定积分和定积分都存在<ul>
-<li>定积分表示原函数（变上限积分）：$F(x)=\int f(x)dx=\int_{a}^xf(t)dt+C$</li>
-<li>原函数表示定积分（牛顿-莱布尼兹定理）：$\int_a^{b}f(x)dx=F(b)-F(a)$</li>
-</ul>
-</li>
-<li>若函数闭区间有一个跳跃间断点，其余位置连续，设$F(x)=\int_{a}^xf(t)dt+C$<ul>
-<li>分析1：根据存在性判定，闭区间不存在原函数，但存在定积分，说明存在某些位置$F(x)$不可导，或$F’(x)\neq f(x)$</li>
-<li>结论1：$F(x)$闭区间连续</li>
-<li>结论2：非间断位置，$F’(x)=f(x)$</li>
-<li>结论3：间断位置，$F’_-(x)=f(x^-),F’_+(x)=f(x^+)$</li>
-<li>分析2：间断点$x_0$是跳跃间断点，则$F’_-(x_0)\neq F’_+(x_0)\Rightarrow F(x_0)$不可导</li>
-<li>分析3：间断点$x_0$如果改成可去间断点，则$F’(x_0)=\lim\limits_{x\rightarrow x_0} f(x)\neq f(x_0)$（不一定严谨，因为不清楚前面结论是否还成立）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>定积分的性质<ul>
-<li>$\forall x\in [a,b],f(x)\leq g(x)\Rightarrow \int_a^bf(x)dx\leq \int_a^b g(x)dx$</li>
-<li>在上面性质基础上，若闭区间连续且$\exists x_0,f(x_0)&lt;g(x_0)\Rightarrow \int_a^bf(x)dx&lt; \int_a^b g(x)dx$</li>
-<li>积分中值定理<ul>
+<li>若函数闭区间连续，则不定积分和定积分都存在
+<ul>
+<li>定积分表示原函数（变上限积分）：<span class="math inline">\(F(x)=\int f(x)dx=\int_{a}^xf(t)dt+C\)</span></li>
+<li>原函数表示定积分（牛顿-莱布尼兹定理）：<span class="math inline">\(\int_a^{b}f(x)dx=F(b)-F(a)\)</span></li>
+</ul></li>
+<li>若函数闭区间有一个跳跃间断点，其余位置连续，设<span class="math inline">\(F(x)=\int_{a}^xf(t)dt+C\)</span>
+<ul>
+<li>分析1：根据存在性判定，闭区间不存在原函数，但存在定积分，说明存在某些位置<span class="math inline">\(F(x)\)</span>不可导，或<span class="math inline">\(F&#39;(x)\neq f(x)\)</span></li>
+<li>结论1：<span class="math inline">\(F(x)\)</span>闭区间连续</li>
+<li>结论2：非间断位置，<span class="math inline">\(F&#39;(x)=f(x)\)</span></li>
+<li>结论3：间断位置，<span class="math inline">\(F&#39;_-(x)=f(x^-),F&#39;_+(x)=f(x^+)\)</span></li>
+<li>分析2：间断点<span class="math inline">\(x_0\)</span>是跳跃间断点，则<span class="math inline">\(F&#39;_-(x_0)\neq F&#39;_+(x_0)\Rightarrow
+F(x_0)\)</span>不可导</li>
+<li>分析3：间断点<span class="math inline">\(x_0\)</span>如果改成可去间断点，则<span class="math inline">\(F&#39;(x_0)=\lim\limits_{x\rightarrow x_0}
+f(x)\neq
+f(x_0)\)</span>（不一定严谨，因为不清楚前面结论是否还成立）</li>
+</ul></li>
+</ul></li>
+<li>定积分的性质
+<ul>
+<li><span class="math inline">\(\forall x\in [a,b],f(x)\leq
+g(x)\Rightarrow \int_a^bf(x)dx\leq \int_a^b g(x)dx\)</span></li>
+<li>在上面性质基础上，若闭区间连续且<span class="math inline">\(\exists
+x_0,f(x_0)&lt;g(x_0)\Rightarrow \int_a^bf(x)dx&lt; \int_a^b
+g(x)dx\)</span></li>
+<li>积分中值定理
+<ul>
 <li>见第二章的中值定理体系</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="积分方法"><a href="#积分方法" class="headerlink" title="积分方法"></a>积分方法</h2><ul>
-<li>建议记忆的积分公式<ul>
-<li>$\int secxdx=ln|secx+tanx|+C$</li>
-<li>$\int cscdx=ln|cscx-cotx|+C$</li>
-<li>$\int\frac{1}{a^2-x^2}dx=\frac{1}{2a}ln|\frac{a+x}{a-x}|+C$<ul>
-<li>对比记忆法：$arctan’x=\frac{1}{1+x^2}$</li>
-</ul>
-</li>
-<li>$\int\frac{dx}{\sqrt{x^2\pm a^2}}=ln|x+\sqrt{x^2\pm a^2}|+C$<ul>
-<li>对比记忆法：$arcsin’x=\frac{1}{\sqrt{1-x^2}}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>第一类换元积分法<ul>
-<li>$u=\phi(x)$</li>
-</ul>
-</li>
-<li>第二类换元积分法<ul>
-<li>$x=\phi(t)$</li>
-<li>比如带根式的积分，可以换元为三角函数积分，或直接换元为$t$形成有理函数积分</li>
-</ul>
-</li>
-<li>定积分与不定积分的换元积分的注意事项<ul>
+<h2 id="积分方法">积分方法</h2>
+<ul>
+<li>建议记忆的积分公式
+<ul>
+<li><span class="math inline">\(\int
+secxdx=ln|secx+tanx|+C\)</span></li>
+<li><span class="math inline">\(\int cscdx=ln|cscx-cotx|+C\)</span></li>
+<li><span class="math inline">\(\int\frac{1}{a^2-x^2}dx=\frac{1}{2a}ln|\frac{a+x}{a-x}|+C\)</span>
+<ul>
+<li>对比记忆法：<span class="math inline">\(arctan&#39;x=\frac{1}{1+x^2}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\int\frac{dx}{\sqrt{x^2\pm
+a^2}}=ln|x+\sqrt{x^2\pm a^2}|+C\)</span>
+<ul>
+<li>对比记忆法：<span class="math inline">\(arcsin&#39;x=\frac{1}{\sqrt{1-x^2}}\)</span></li>
+</ul></li>
+</ul></li>
+<li>第一类换元积分法
+<ul>
+<li><span class="math inline">\(u=\phi(x)\)</span></li>
+</ul></li>
+<li>第二类换元积分法
+<ul>
+<li><span class="math inline">\(x=\phi(t)\)</span></li>
+<li>比如带根式的积分，可以换元为三角函数积分，或直接换元为<span class="math inline">\(t\)</span>形成有理函数积分</li>
+</ul></li>
+<li>定积分与不定积分的换元积分的注意事项
+<ul>
 <li>定积分的换元法的上下限要调整对应的值</li>
 <li>不定积分的换元法的结果表示要换元回原字母</li>
-</ul>
-</li>
-<li>分部积分法<ul>
-<li>$\int f(x)d(g(x))=f(x)g(x)-\int g(x)d(f(x))$</li>
-</ul>
-</li>
-<li>有理函数积分（分子和分母都是多项式形式）<ul>
+</ul></li>
+<li>分部积分法
+<ul>
+<li><span class="math inline">\(\int f(x)d(g(x))=f(x)g(x)-\int
+g(x)d(f(x))\)</span></li>
+</ul></li>
+<li>有理函数积分（分子和分母都是多项式形式）
+<ul>
 <li>思想：把分母因式分解，然后拆项</li>
-<li>步骤<ul>
-<li>解分母等于$0$的方程，从而把分母因式分解为若干项，但只有两种形式，一种实根对应项$(ax+b)^i$，另一种是复根对应项$(ax^2+bx+c)^i$</li>
-<li>$(ax+b)^i$拆项后待定系数为$\sum\limits_{k=1}^{i}\frac{C_k}{(ax+b)^k}$</li>
-<li>$(ax^2+bx+c)^i$拆项后待定系数为$\sum\limits_{k=1}^{i}\frac{A_kx+B_k}{(ax^2+bx+c)^k}$</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>$\frac{2x^2-3}{x^2(x+2)^2(x^2+x+1)(x^2-2x+2)^2}$</li>
-<li>$=\frac{A_1}{x}+\frac{A_2}{x^2}+\frac{B_1}{x+2}+\frac{B_2}{(x+2)^2}$</li>
-<li>$+\frac{Cx+D}{x^2+x+1}+\frac{E_1x+F_1}{x^2-2x+2}+\frac{E_2x+F_2}{(x^2-2x+2)^2}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>用于定积分计算的结论<ul>
+<li>步骤
+<ul>
+<li>解分母等于<span class="math inline">\(0\)</span>的方程，从而把分母因式分解为若干项，但只有两种形式，一种实根对应项<span class="math inline">\((ax+b)^i\)</span>，另一种是复根对应项<span class="math inline">\((ax^2+bx+c)^i\)</span></li>
+<li><span class="math inline">\((ax+b)^i\)</span>拆项后待定系数为<span class="math inline">\(\sum\limits_{k=1}^{i}\frac{C_k}{(ax+b)^k}\)</span></li>
+<li><span class="math inline">\((ax^2+bx+c)^i\)</span>拆项后待定系数为<span class="math inline">\(\sum\limits_{k=1}^{i}\frac{A_kx+B_k}{(ax^2+bx+c)^k}\)</span></li>
+</ul></li>
+<li>举例
+<ul>
+<li><span class="math inline">\(\frac{2x^2-3}{x^2(x+2)^2(x^2+x+1)(x^2-2x+2)^2}\)</span></li>
+<li><span class="math inline">\(=\frac{A_1}{x}+\frac{A_2}{x^2}+\frac{B_1}{x+2}+\frac{B_2}{(x+2)^2}\)</span></li>
+<li><span class="math inline">\(+\frac{Cx+D}{x^2+x+1}+\frac{E_1x+F_1}{x^2-2x+2}+\frac{E_2x+F_2}{(x^2-2x+2)^2}\)</span></li>
+</ul></li>
+</ul></li>
+<li>用于定积分计算的结论
+<ul>
 <li>偶函数对称区间的定积分为2倍单侧区间的定积分</li>
 <li>奇函数对称区间的定积分为0</li>
 <li>周期函数每个周期的定积分相等</li>
-<li>华里士公式$\int_0^\frac{\pi}{2}sin^nxdx=\int_0^\frac{\pi}{2}cos^nxdx$<ul>
-<li>$=\frac{n-1}{n}\times\frac{n-3}{n-2}\times\cdots\times \frac{1}{2}\times\frac{\pi}{2},n=2,4,6,\cdots$</li>
-<li>$=\frac{n-1}{n}\times\frac{n-3}{n-2}\times\cdots\times \frac{2}{3}\times 1,n=3,5,7,\cdots$</li>
-</ul>
-</li>
-<li>万能代换<ul>
-<li>令$tan\frac{x}{2}=t$</li>
+<li>华里士公式<span class="math inline">\(\int_0^\frac{\pi}{2}sin^nxdx=\int_0^\frac{\pi}{2}cos^nxdx\)</span>
+<ul>
+<li><span class="math inline">\(=\frac{n-1}{n}\times\frac{n-3}{n-2}\times\cdots\times
+\frac{1}{2}\times\frac{\pi}{2},n=2,4,6,\cdots\)</span></li>
+<li><span class="math inline">\(=\frac{n-1}{n}\times\frac{n-3}{n-2}\times\cdots\times
+\frac{2}{3}\times 1,n=3,5,7,\cdots\)</span></li>
+</ul></li>
+<li>万能代换
+<ul>
+<li>令<span class="math inline">\(tan\frac{x}{2}=t\)</span></li>
 <li>一般不建议使用</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>带绝对值的积分<ul>
+</ul></li>
+</ul></li>
+<li>带绝对值的积分
+<ul>
 <li>建议分段去掉绝对值符号，哪怕要分无穷段（比如三角函数带绝对值）</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="反常积分的计算和判敛"><a href="#反常积分的计算和判敛" class="headerlink" title="反常积分的计算和判敛"></a>反常积分的计算和判敛</h2><ul>
-<li>无穷区间的反常积分<ul>
+<h2 id="反常积分的计算和判敛">反常积分的计算和判敛</h2>
+<ul>
+<li>无穷区间的反常积分
+<ul>
 <li>上限和下限都为无穷时，需要拆成两项</li>
 <li>根据极限定义判定各项是否收敛（无穷处的极限）</li>
 <li>只有各项全部收敛，原极限收敛</li>
-</ul>
-</li>
-<li>无界函数的反常积分（瑕积分）<ul>
+</ul></li>
+<li>无界函数的反常积分（瑕积分）
+<ul>
 <li>有多个瑕点（即无界的间断点，例如无穷间断点），需要拆成多项，使得每个积分项的上下限中只有一个瑕点</li>
 <li>根据极限定义判定各项是否收敛（瑕点某单侧的极限）</li>
 <li>只有各项全部收敛，原极限收敛</li>
-</ul>
-</li>
-<li>建议记忆的反常积分<ul>
-<li>$\int_0^{+\infty}e^{-x^2}dx=\frac{\sqrt{\pi}}{2}$<ul>
+</ul></li>
+<li>建议记忆的反常积分
+<ul>
+<li><span class="math inline">\(\int_0^{+\infty}e^{-x^2}dx=\frac{\sqrt{\pi}}{2}\)</span>
+<ul>
 <li>用二重积分开根号计算出</li>
-</ul>
-</li>
-<li>$a&gt;1,\int_{a}^\infty \frac{dx}{xln^p x}$，则$p&gt;1$，收敛<ul>
+</ul></li>
+<li><span class="math inline">\(a&gt;1,\int_{a}^\infty \frac{dx}{xln^p
+x}\)</span>，则<span class="math inline">\(p&gt;1\)</span>，收敛
+<ul>
 <li>分类讨论再用第一类换元积分法即可</li>
-</ul>
-</li>
-<li>$\Gamma(n+1)=\int_0^{+\infty}x^ne^{-x}dx=n!$<ul>
-<li>$\Gamma(x)$本质上是阶乘的插值函数，这里只用到其自然数定义域的部分</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>收敛判定方法<ul>
+</ul></li>
+<li><span class="math inline">\(\Gamma(n+1)=\int_0^{+\infty}x^ne^{-x}dx=n!\)</span>
+<ul>
+<li><span class="math inline">\(\Gamma(x)\)</span>本质上是阶乘的插值函数，这里只用到其自然数定义域的部分</li>
+</ul></li>
+</ul></li>
+<li>收敛判定方法
+<ul>
 <li>通过计算出结果判敛</li>
 <li>通过单调有界收敛定理</li>
-<li>通过判敛定理（都是收敛或发散的充分条件，建议记忆）<ul>
-<li>要求：定义区间内连续，$f(x)\geq 0$</li>
-<li>区间右端点为瑕点：$\lim\limits_{x\rightarrow b-}(b-x)^pf(x)=A$</li>
-<li>区间左端点为瑕点：$\lim\limits_{x\rightarrow a+}(x-a)^pf(x)=A$</li>
-<li>右侧为无穷区间：$\lim\limits_{x\rightarrow +\infty}(x)^pf(x)=A$</li>
-<li>左侧为无穷区间：$\lim\limits_{x\rightarrow -\infty}(x)^pf(x)=A$</li>
-<li>收敛情况记忆：$0\leq A&lt;+\infty$，瑕积分对应$p<1$，无穷区间积分对应$p>1$</1$，无穷区间积分对应$p></li>
-<li>发散情况记忆：$0&lt; A\leq +\infty$，瑕积分对应$p\geq 1$，无穷区间积分对应$p\leq 1$</li>
+<li>通过判敛定理（都是收敛或发散的充分条件，建议记忆）
+<ul>
+<li>要求：定义区间内连续，<span class="math inline">\(f(x)\geq
+0\)</span></li>
+<li>区间右端点为瑕点：<span class="math inline">\(\lim\limits_{x\rightarrow
+b-}(b-x)^pf(x)=A\)</span></li>
+<li>区间左端点为瑕点：<span class="math inline">\(\lim\limits_{x\rightarrow
+a+}(x-a)^pf(x)=A\)</span></li>
+<li>右侧为无穷区间：<span class="math inline">\(\lim\limits_{x\rightarrow
++\infty}(x)^pf(x)=A\)</span></li>
+<li>左侧为无穷区间：<span class="math inline">\(\lim\limits_{x\rightarrow
+-\infty}(x)^pf(x)=A\)</span></li>
+<li>收敛情况记忆：<span class="math inline">\(0\leq
+A&lt;+\infty\)</span>，瑕积分对应<span class="math inline">\(p&lt;1\)</span>，无穷区间积分对应<span class="math inline">\(p&gt;1\)</span></li>
+<li>发散情况记忆：<span class="math inline">\(0&lt; A\leq
++\infty\)</span>，瑕积分对应<span class="math inline">\(p\geq
+1\)</span>，无穷区间积分对应<span class="math inline">\(p\leq
+1\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="定积分的应用"><a href="#定积分的应用" class="headerlink" title="定积分的应用"></a>定积分的应用</h2><ul>
+<h2 id="定积分的应用">定积分的应用</h2>
+<ul>
 <li>平面图面积、平面曲线弧长、旋转体体积、旋转面面积，一律按微元法列方程，然后积分即可</li>
 </ul>
-<h2 id="定积分的有关证明"><a href="#定积分的有关证明" class="headerlink" title="定积分的有关证明"></a>定积分的有关证明</h2><ul>
-<li>有绝对值时，一般要划分区间，去掉绝对值<ul>
+<h2 id="定积分的有关证明">定积分的有关证明</h2>
+<ul>
+<li>有绝对值时，一般要划分区间，去掉绝对值
+<ul>
 <li>各种证明适用</li>
-</ul>
-</li>
-<li>积分中值定理（包括广义积分中值定理）<ul>
-<li>各种证明都适用，但求极限时注意$\xi$是否是固定的数</li>
-</ul>
-</li>
-<li>积分的不等式相关问题<ul>
+</ul></li>
+<li>积分中值定理（包括广义积分中值定理）
+<ul>
+<li>各种证明都适用，但求极限时注意<span class="math inline">\(\xi\)</span>是否是固定的数</li>
+</ul></li>
+<li>积分的不等式相关问题
+<ul>
 <li>积分保号性</li>
 <li>放缩和夹逼准则</li>
 <li>引入变量转化为变限积分</li>
-<li>利用柯西不等式积分形式的证明原理<ul>
-<li>形式：方和积$\geq$积和方</li>
+<li>利用柯西不等式积分形式的证明原理
+<ul>
+<li>形式：方和积<span class="math inline">\(\geq\)</span>积和方</li>
 <li>证明：引入变量转化为变限函数，再利用完全平方公式和保号性</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>变限积分函数有关问题<ul>
+</ul></li>
+</ul></li>
+<li>变限积分函数有关问题
+<ul>
 <li>换元、求导，从而转化为普通函数</li>
-</ul>
-</li>
-<li>零点问题<ul>
+</ul></li>
+<li>零点问题
+<ul>
 <li>结合第二章的中值体系求解</li>
 <li>零点存在性定理</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
     </div>
@@ -597,7 +628,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

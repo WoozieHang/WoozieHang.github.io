@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  二次型的矩阵表示 二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^na_{ij}x_ix_j$ $\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1">
+  <meta name="description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  二次型的矩阵表示  二次型指的是变量的二次齐次多项式\(f(x_1,\cdots_,x_n)&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^na_{ij}x_ix_j\) \(\sum\limits_{i&#x3D;1}^n\sum">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第六章-二次型">
 <meta property="og:url" content="https://wooziehang.github.io/2021/11/21/linearAlgebra6/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  二次型的矩阵表示 二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^na_{ij}x_ix_j$ $\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1">
+<meta property="og:description" content="本知识总结不提供完整的理论体系汇总，旨在给出概念的理解以及各类问题的思考框架。 笔记为个人整理，禁止商业用途 如有疏漏，欢迎留言  二次型的矩阵表示  二次型指的是变量的二次齐次多项式\(f(x_1,\cdots_,x_n)&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^na_{ij}x_ix_j\) \(\sum\limits_{i&#x3D;1}^n\sum">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-21T09:46:36.000Z">
-<meta property="article:modified_time" content="2021-11-22T14:23:25.442Z">
+<meta property="article:modified_time" content="2022-05-19T09:58:04.294Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -232,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-22 22:23:25" itemprop="dateModified" datetime="2021-11-22T22:23:25+08:00">2021-11-22</time>
+                <time title="修改时间：2022-05-19 17:58:04" itemprop="dateModified" datetime="2022-05-19T17:58:04+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,80 +285,90 @@
 <li>笔记为个人整理，禁止商业用途</li>
 <li>如有疏漏，欢迎留言</li>
 </ul>
-<h2 id="二次型的矩阵表示"><a href="#二次型的矩阵表示" class="headerlink" title="二次型的矩阵表示"></a>二次型的矩阵表示</h2><ul>
-<li>二次型指的是变量的二次齐次多项式$f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j$</li>
-<li>$\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=\left [ \begin{matrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{matrix} \right ]\left [ \begin{matrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp; a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\ a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{matrix} \right ]\left [ \begin{matrix} x_1\\x_2\\\cdots\\x_n \end{matrix} \right ]=\pmb{x}^T\pmb{A}\pmb{x}$</li>
-<li>要求$\pmb{A}$是对称矩阵，此时二次型和矩阵一一对应</li>
+<h2 id="二次型的矩阵表示">二次型的矩阵表示</h2>
+<ul>
+<li>二次型指的是变量的二次齐次多项式<span class="math inline">\(f(x_1,\cdots_,x_n)=\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j\)</span></li>
+<li><span class="math inline">\(\sum\limits_{i=1}^n\sum\limits_{j=1}^na_{ij}x_ix_j=
+\begin{bmatrix} x_1&amp;x_2&amp;\cdots&amp;x_n \end{bmatrix}
+\begin{bmatrix} a_{11} &amp;a_{12}&amp; \cdots &amp; a_{1n}\\a_{21}&amp;
+a_{22}&amp; \cdots &amp; a_{2n}\\\vdots&amp;\vdots&amp;\ &amp; \vdots\\
+a_{n1}&amp;a_{n2}&amp; \cdots&amp; a_{nn} \end{bmatrix} \begin{bmatrix}
+x_1\\x_2\\\cdots\\x_n \end{bmatrix}
+=\pmb{x}^T\pmb{A}\pmb{x}\)</span></li>
+<li>要求<span class="math inline">\(\pmb{A}\)</span>是对称矩阵，此时二次型和矩阵一一对应</li>
 </ul>
-<h2 id="二次型化为标准形"><a href="#二次型化为标准形" class="headerlink" title="二次型化为标准形"></a>二次型化为标准形</h2><ul>
+<h2 id="二次型化为标准形">二次型化为标准形</h2>
+<ul>
 <li>标准形：只有平方项的二次型</li>
 <li>规范性：在标准形基础上，平方项的系数只能是-1、0、1</li>
-<li>线性变换：即第三章的坐标变换，$\pmb{x}=\pmb{P}\pmb{y}$<ul>
-<li>当$\pmb{P}$是正交矩阵$\pmb{Q}$，则对应正交变换</li>
-</ul>
-</li>
-<li>法一：通过正交变换$\pmb{x}=\pmb{Q}\pmb{y}$化为标准形<ul>
-<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}$</li>
+<li>线性变换：即第三章的坐标变换，<span class="math inline">\(\pmb{x}=\pmb{P}\pmb{y}\)</span>
+<ul>
+<li>当<span class="math inline">\(\pmb{P}\)</span>是正交矩阵<span class="math inline">\(\pmb{Q}\)</span>，则对应正交变换</li>
+</ul></li>
+<li>法一：通过正交变换<span class="math inline">\(\pmb{x}=\pmb{Q}\pmb{y}\)</span>化为标准形
+<ul>
+<li><span class="math inline">\(\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{Q}^T)\pmb{A}(\pmb{Q}\pmb{y})=\pmb{y}^T(\pmb{Q}^T\pmb{A}\pmb{Q})\pmb{y}=\pmb{y}^T\pmb{\Lambda}\pmb{y}\)</span></li>
 <li>用到了第五章正交相似对角化的内容</li>
-<li>求解要点<ul>
-<li>求特征值，算出$\pmb{\Lambda}$，从而得到标准形</li>
-<li>求特征向量并正交单位化，给出线性变换$\pmb{y}=\pmb{Q}^{-1}\pmb{x}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>法二：通过配方法化为标准形<ul>
-<li>有平方项则配方；无平方项则利用$x_i=y_i+y_j,x_j=y_i-y_j$得到平方项，即$a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)$</li>
-<li>要给出可逆线性变换和标准形的表示<ul>
+<li>求解要点
+<ul>
+<li>求特征值，算出<span class="math inline">\(\pmb{\Lambda}\)</span>，从而得到标准形</li>
+<li>求特征向量并正交单位化，给出线性变换<span class="math inline">\(\pmb{y}=\pmb{Q}^{-1}\pmb{x}\)</span></li>
+</ul></li>
+</ul></li>
+<li>法二：通过配方法化为标准形
+<ul>
+<li>有平方项则配方；无平方项则利用<span class="math inline">\(x_i=y_i+y_j,x_j=y_i-y_j\)</span>得到平方项，即<span class="math inline">\(a_{ij}x_ix_j=a_{ij}(y_i^2-y_j^2)\)</span></li>
+<li>要给出可逆线性变换和标准形的表示
+<ul>
 <li>若配方后平方项个数不足原二次型的变量数，则需要补充平方项以保证线性变换可逆（补充方法不唯一，因为标准形也不唯一）</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="合同矩阵与合同二次型"><a href="#合同矩阵与合同二次型" class="headerlink" title="合同矩阵与合同二次型"></a>合同矩阵与合同二次型</h2><ul>
-<li>合同矩阵：$\pmb{A}\simeq\pmb{B}\Leftrightarrow$ 即存在可逆矩阵$\pmb{C}$，使得$\pmb{B}=\pmb{C}^T\pmb{A}\pmb{C}$<ul>
+<h2 id="合同矩阵与合同二次型">合同矩阵与合同二次型</h2>
+<ul>
+<li>合同矩阵：<span class="math inline">\(\pmb{A}\simeq\pmb{B}\Leftrightarrow\)</span>
+即存在可逆矩阵<span class="math inline">\(\pmb{C}\)</span>，使得<span class="math inline">\(\pmb{B}=\pmb{C}^T\pmb{A}\pmb{C}\)</span>
+<ul>
 <li>合同关系是等价关系，自反性、对称性、传递性</li>
 <li>合同变换：双向箭头的右侧部分</li>
-</ul>
-</li>
-<li>合同二次型：对原二次型进行<strong>可逆线性变换</strong>$\pmb{x}=\pmb{C}\pmb{y}$，得到合同二次型<ul>
-<li>$\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{C}^T)\pmb{A}(\pmb{C}\pmb{y})=\pmb{y}^T(\pmb{C}^T\pmb{A}\pmb{C})\pmb{y}=\pmb{y}^T\pmb{B}\pmb{y}$</li>
+</ul></li>
+<li>合同二次型：对原二次型进行<strong>可逆线性变换</strong><span class="math inline">\(\pmb{x}=\pmb{C}\pmb{y}\)</span>，得到合同二次型
+<ul>
+<li><span class="math inline">\(\pmb{x}^T\pmb{A}\pmb{x}=(\pmb{y}^T\pmb{C}^T)\pmb{A}(\pmb{C}\pmb{y})=\pmb{y}^T(\pmb{C}^T\pmb{A}\pmb{C})\pmb{y}=\pmb{y}^T\pmb{B}\pmb{y}\)</span></li>
 <li>相当于对二次型的矩阵表示进行合同变换</li>
-</ul>
-</li>
-<li>惯性定理：二次型的标准形不唯一，但是其正惯性指数、负惯性指数是确定的<ul>
+</ul></li>
+<li>惯性定理：二次型的标准形不唯一，但是其正惯性指数、负惯性指数是确定的
+<ul>
 <li>正惯性指数：标准形正平方项个数</li>
 <li>负惯性指数：标准形负平方项个数</li>
-<li>二次型的秩：正负惯性指数的和<ul>
-<li>重要定理：二次型的矩阵的合同变换不改变其正负惯性指数</li>
-</ul>
-</li>
-</ul>
+<li>二次型的秩：正负惯性指数的和</li>
+</ul></li>
+<li>重要定理：二次型的矩阵的合同变换不改变其正负惯性指数
 <ul>
-<li>因为二次型可逆线性变换不改变其规范形   </li>
+<li>因为二次型可逆线性变换不改变其规范形</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="正定性的证明"><a href="#正定性的证明" class="headerlink" title="正定性的证明"></a>正定性的证明</h2><ul>
-<li>正定二次型的证明：等价条件如下<ul>
-<li>对任意$\pmb{x}\neq \pmb{0}$，有$\pmb{x}^T\pmb{A}\pmb{x}&gt;0$恒成立<ul>
+<h2 id="正定性的证明">正定性的证明</h2>
+<ul>
+<li>正定二次型的证明：等价条件如下
+<ul>
+<li>对任意<span class="math inline">\(\pmb{x}\neq
+\pmb{0}\)</span>，有<span class="math inline">\(\pmb{x}^T\pmb{A}\pmb{x}&gt;0\)</span>恒成立
+<ul>
 <li>正定二次型的定义</li>
-</ul>
-</li>
-<li>$\pmb{A}$顺序主子式大于0</li>
-<li>$\pmb{A}$特征值都大于0</li>
+</ul></li>
+<li><span class="math inline">\(\pmb{A}\)</span>顺序主子式大于0</li>
+<li><span class="math inline">\(\pmb{A}\)</span>特征值都大于0</li>
 <li>二次型正惯性指数等于变量个数</li>
-<li>存在可逆矩阵$D$，使得$\pmb{A}=\pmb{D}^T\pmb{E}\pmb{D}=\pmb{D}^T\pmb{D}$<ul>
-<li>因为规范形的平方项系数全为1，对应二次型的矩阵表示为$\pmb{E}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>正定矩阵：正定二次型的矩阵表示<ul>
+<li>存在可逆矩阵<span class="math inline">\(D\)</span>，使得<span class="math inline">\(\pmb{A}=\pmb{D}^T\pmb{E}\pmb{D}=\pmb{D}^T\pmb{D}\)</span>
+<ul>
+<li>因为规范形的平方项系数全为1，对应二次型的矩阵表示为<span class="math inline">\(\pmb{E}\)</span></li>
+</ul></li>
+</ul></li>
+<li>正定矩阵：正定二次型的矩阵表示
+<ul>
 <li>先证明是对称矩阵，再证明对应的二次型正定</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 
     </div>
@@ -471,7 +485,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="CPU的功能和基本结构功能 指令控制：即程序顺序控制。完成取指令、分析指令、执行指令的操作 操作控制：管理由内存取出的指令，并产生操作信号送往相应部件，控制这些部件动作 时间控制：对操作的时间进行限制，为每条指令按时间顺序提供应有的控制信号 数据加工：对数据进行算术和逻辑运算 中断处理：对计算机运行的异常和特殊请求进行处理  基本结构 运算器：接受从控制器传来的命令并执行相应的动作，对数据进行加工">
+  <meta name="description" content="CPU的功能和基本结构 功能  指令控制：即程序顺序控制。完成取指令、分析指令、执行指令的操作 操作控制：管理由内存取出的指令，并产生操作信号送往相应部件，控制这些部件动作 时间控制：对操作的时间进行限制，为每条指令按时间顺序提供应有的控制信号 数据加工：对数据进行算术和逻辑运算 中断处理：对计算机运行的异常和特殊请求进行处理  基本结构  运算器：接受从控制器传来的命令并执">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【知识总结】 第五章-中央处理器">
 <meta property="og:url" content="https://wooziehang.github.io/2021/10/31/ComputerOrganization-5/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="CPU的功能和基本结构功能 指令控制：即程序顺序控制。完成取指令、分析指令、执行指令的操作 操作控制：管理由内存取出的指令，并产生操作信号送往相应部件，控制这些部件动作 时间控制：对操作的时间进行限制，为每条指令按时间顺序提供应有的控制信号 数据加工：对数据进行算术和逻辑运算 中断处理：对计算机运行的异常和特殊请求进行处理  基本结构 运算器：接受从控制器传来的命令并执行相应的动作，对数据进行加工">
+<meta property="og:description" content="CPU的功能和基本结构 功能  指令控制：即程序顺序控制。完成取指令、分析指令、执行指令的操作 操作控制：管理由内存取出的指令，并产生操作信号送往相应部件，控制这些部件动作 时间控制：对操作的时间进行限制，为每条指令按时间顺序提供应有的控制信号 数据加工：对数据进行算术和逻辑运算 中断处理：对计算机运行的异常和特殊请求进行处理  基本结构  运算器：接受从控制器传来的命令并执">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/31/ComputerOrganization-5/CU.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/31/ComputerOrganization-5/CLK.jpg">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/31/ComputerOrganization-5/SS3.png">
 <meta property="og:image" content="https://wooziehang.github.io/2021/10/31/ComputerOrganization-5/MuL.jpg">
 <meta property="article:published_time" content="2021-10-31T09:49:53.000Z">
-<meta property="article:modified_time" content="2021-12-13T16:38:23.253Z">
+<meta property="article:modified_time" content="2022-05-19T14:27:18.697Z">
 <meta property="article:author" content="Woozie Hang">
 <meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
@@ -89,7 +89,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -244,7 +248,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 00:38:23" itemprop="dateModified" datetime="2021-12-14T00:38:23+08:00">2021-12-14</time>
+                <time title="修改时间：2022-05-19 22:27:18" itemprop="dateModified" datetime="2022-05-19T22:27:18+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,15 +292,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="CPU的功能和基本结构"><a href="#CPU的功能和基本结构" class="headerlink" title="CPU的功能和基本结构"></a>CPU的功能和基本结构</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+        <h2 id="cpu的功能和基本结构">CPU的功能和基本结构</h2>
+<h3 id="功能">功能</h3>
+<ul>
 <li>指令控制：即程序顺序控制。完成取指令、分析指令、执行指令的操作</li>
 <li>操作控制：管理由内存取出的指令，并产生操作信号送往相应部件，控制这些部件动作</li>
 <li>时间控制：对操作的时间进行限制，为每条指令按时间顺序提供应有的控制信号</li>
 <li>数据加工：对数据进行算术和逻辑运算</li>
 <li>中断处理：对计算机运行的异常和特殊请求进行处理</li>
 </ul>
-<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><ul>
-<li>运算器：接受从控制器传来的命令并执行相应的动作，对数据进行加工、处理。组成为<ul>
+<h3 id="基本结构">基本结构</h3>
+<ul>
+<li>运算器：接受从控制器传来的命令并执行相应的动作，对数据进行加工、处理。组成为
+<ul>
 <li>算术逻辑单元（ALU）：进行算术逻辑运算</li>
 <li>暂存寄存器：暂存主存的数据，对应用程序员透明</li>
 <li>累加寄存器（ACC）：暂存ALU结果，也可以作为加法的一个输入</li>
@@ -304,594 +312,633 @@
 <li>程序状态字寄存器（PSW）：即条件码，如OF、SF、ZF、CF</li>
 <li>移位器：对操作数或计算结果进行移位运算</li>
 <li>计数器：控制乘除操作的步数</li>
-</ul>
-</li>
-<li>控制器：类型有硬布线控制和微程序控制器。作用是协调和控制计算机各部件执行程序指令序列，包括取指令、分析指令、执行指令，组成为<ul>
+</ul></li>
+<li>控制器：类型有硬布线控制和微程序控制器。作用是协调和控制计算机各部件执行程序指令序列，包括取指令、分析指令、执行指令，组成为
+<ul>
 <li>程序计数器（PC）：存放下一条执行指令的地址，取指令时使用，有自增功能</li>
 <li>指令寄存器（IR）：保存正在执行的指令</li>
 <li>指令译码器：对操作码译码， 给控制器提供特定操作信号</li>
 <li>存储地址寄存器（MAR）：存放要访问数据的内存地址</li>
 <li>存储数据寄存器（MDR）：存放要访问的数据</li>
 <li>时序系统：产生时序信号，由时钟CLOCK分频得到</li>
-<li>微操作信号发生器：根据IR、PSW和时序信号，产生控制整个计算机的控制信号，结构有<ul>
+<li>微操作信号发生器：根据IR、PSW和时序信号，产生控制整个计算机的控制信号，结构有
+<ul>
 <li>组合逻辑型：对应硬布线控制器</li>
 <li>存储逻辑型：对应微程序控制器</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>寄存器<ul>
+</ul></li>
+</ul></li>
+<li>寄存器
+<ul>
 <li>可以说CPU由运算器和控制器组成，事实上也可以说由运算器、控制器、寄存器组成</li>
-<li>寄存器按用途分类<ul>
+<li>寄存器按用途分类
+<ul>
 <li>通用寄存器：比如EAX、EBX、ECX、EDX、ESI、EDI、EBP</li>
 <li>专用寄存器：比如段寄存器（CS、DS、SS、ES、FS、GS）、EIP、PSW、IR、MAR、MDR</li>
 <li>控制寄存器：CR0-CR3</li>
 <li>栈顶寄存器ESP可以认为是通用寄存器或专用寄存器</li>
-</ul>
-</li>
-<li>寄存器按权限分类<ul>
+</ul></li>
+<li>寄存器按权限分类
+<ul>
 <li>用户可见寄存器：通用寄存器、PSW、EIP、段寄存器</li>
 <li>用户不可见寄存器：MAR、MDR、IR、控制寄存器</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="指令执行过程"><a href="#指令执行过程" class="headerlink" title="指令执行过程"></a>指令执行过程</h2><h3 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h3><ul>
+<h2 id="指令执行过程">指令执行过程</h2>
+<h3 id="指令周期">指令周期</h3>
+<ul>
 <li>从主存取出并执行一条指令的时间为指令周期</li>
-<li>指令周期分为若干机器周期（CPU周期），不同指令不一定。<ul>
+<li>指令周期分为若干机器周期（CPU周期），不同指令不一定。
+<ul>
 <li>机器周期可以看作指令执行过程的基准时间</li>
 <li>通常以最复杂指令功能的时间，即内存读一个指令字的最短时间作为机器周期（存取周期）</li>
 <li>如果指令字长等于存储字长，则取指周期可以看作机器周期</li>
-</ul>
-</li>
+</ul></li>
 <li>机器周期分为若干时钟周期（节拍、振荡周期）</li>
 <li>每条微操作至少需要一个时钟周期</li>
 <li>如果总线不冲突，多个微操作可以在一个周期内并行（后面详见数据通路小节）。</li>
 <li>机器速度除了和主频有关，也和机器周期的时钟数、指令周期的机器周期数、是否采用流水线方式等有关</li>
-<li>最完整的指令周期包括四个机器周期<ul>
+<li>最完整的指令周期包括四个机器周期
+<ul>
 <li>取指周期：访存取指令、译码、更新PC</li>
 <li>间指周期：访存取有效地址</li>
 <li>执行周期：访存取操作数、执行操作</li>
 <li>中断周期：访存保存程序断点、形成中断服务程序的入口地址、关中断</li>
-</ul>
-</li>
-<li>各种指令的指令周期<ul>
-<li>非访存指令<ul>
+</ul></li>
+<li>各种指令的指令周期
+<ul>
+<li>非访存指令
+<ul>
 <li>取指周期</li>
 <li>执行周期</li>
-</ul>
-</li>
-<li>直接访存指令<ul>
+</ul></li>
+<li>直接访存指令
+<ul>
 <li>取指周期</li>
 <li>执行周期</li>
-</ul>
-</li>
-<li>间接访存指令<ul>
+</ul></li>
+<li>间接访存指令
+<ul>
 <li>取指周期</li>
 <li>间指周期</li>
 <li>执行周期</li>
-</ul>
-</li>
-<li>转移指令<ul>
+</ul></li>
+<li>转移指令
+<ul>
 <li>取指周期</li>
 <li>执行周期</li>
-</ul>
-</li>
-<li>间接转移指令<ul>
+</ul></li>
+<li>间接转移指令
+<ul>
 <li>取指周期</li>
 <li>间址周期</li>
 <li>执行周期</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>4个标志触发器用来区分四个机器周期，为1表示状态有效<ul>
+</ul></li>
+</ul></li>
+<li>4个标志触发器用来区分四个机器周期，为1表示状态有效
+<ul>
 <li>FE：fetch</li>
 <li>IND：indirect</li>
 <li>EX：execute</li>
 <li>INT：interupt</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="指令周期的数据流"><a href="#指令周期的数据流" class="headerlink" title="指令周期的数据流"></a>指令周期的数据流</h3><h4 id="取指周期"><a href="#取指周期" class="headerlink" title="取指周期"></a>取指周期</h4><ul>
+<h3 id="指令周期的数据流">指令周期的数据流</h3>
+<h4 id="取指周期">取指周期</h4>
+<ul>
 <li>任务是根据PC取指令放到IR中</li>
-<li>数据流如下：<ul>
+<li>数据流如下：
+<ul>
 <li>发送指令地址给主存：PC-&gt;MAR-&gt;地址总线-&gt;主存</li>
 <li>发送读信号给主存：CPU控制器-&gt;控制总线-&gt;主存</li>
 <li>接收主存的指令数据：主存-&gt;数据总线-&gt;MDR-&gt;IR</li>
 <li>更新程序计数器：默认是PC+1</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="间指周期"><a href="#间指周期" class="headerlink" title="间指周期"></a>间指周期</h4><ul>
+<h4 id="间指周期">间指周期</h4>
+<ul>
 <li>任务是取操作数的有效地址</li>
-<li>数据流如下（以一次间址为例）<ul>
+<li>数据流如下（以一次间址为例）
+<ul>
 <li>发送间接地址给主存：IR（地址字段）-&gt;MAR-&gt;地址总线-&gt;主存（若是多次间址，也可以是MDR-&gt;MAR-&gt;地址总线-&gt;主存）</li>
 <li>发送读信号给主存：CPU控制器-&gt;控制总线-&gt;主存</li>
 <li>接收主存的有效地址：主存-&gt;数据总线-&gt;MDR-&gt;IR</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="执行周期"><a href="#执行周期" class="headerlink" title="执行周期"></a>执行周期</h4><ul>
+<h4 id="执行周期">执行周期</h4>
+<ul>
 <li>任务是根据操作码和操作数通过ALU产生执行结果</li>
 <li>不同指令执行周期的数据流不一定</li>
 </ul>
-<h4 id="中断周期"><a href="#中断周期" class="headerlink" title="中断周期"></a>中断周期</h4><ul>
+<h4 id="中断周期">中断周期</h4>
+<ul>
 <li>任务是处理中断请求，需要保存程序断点</li>
-<li>数据流如下<ul>
+<li>数据流如下
+<ul>
 <li>控制器发送减1后的ESP给主存：ESP-&gt;MAR-&gt;地址总线-&gt;主存</li>
 <li>发送写信号给主存：CPU控制器-&gt;控制总线-&gt;主存</li>
 <li>程序断点存入主存：PC-&gt;MDR-&gt;数据总线-&gt;主存</li>
 <li>更新PC：CPU控制器（中断程序入口）-&gt;PC</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="指令执行方案"><a href="#指令执行方案" class="headerlink" title="指令执行方案"></a>指令执行方案</h3><ul>
-<li>单指令周期<ul>
+<h3 id="指令执行方案">指令执行方案</h3>
+<ul>
+<li>单指令周期
+<ul>
 <li>对所有指令选用相同的执行时间完成，指令周期取决于耗时最长的指令</li>
 <li>每个指令需要的时钟周期数固定</li>
 <li>前一条指令完成后，下一条指令才能开始，即串行执行</li>
-</ul>
-</li>
-<li>多指令周期<ul>
+</ul></li>
+<li>多指令周期
+<ul>
 <li>对不同指令用不同执行步骤完成，不要求执行时间相同</li>
 <li>不同指令的时钟周期数可不同</li>
 <li>前一条指令完成后，下一条指令才能开始，即串行执行</li>
-</ul>
-</li>
-<li>流水线方案<ul>
+</ul></li>
+<li>流水线方案
+<ul>
 <li>指令之间并行执行，理想情况是每个时钟周期都能有一条指令完成</li>
 <li>在每个时钟周期启动一条指令，多个指令同时运行，各自处于不同执行的步骤</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<h2 id="数据通路">数据通路</h2>
+<h3 id="基本概念">基本概念</h3>
+<ul>
 <li>数据通路指的是功能部件之间传送数据的路径</li>
 <li>功能部件有例如：ALU、通用寄存器、状态寄存器、异常中断处理逻辑等</li>
-<li>通路的建立由控制信号控制，控制信号来自控制单元CU的输出端<ul>
+<li>通路的建立由控制信号控制，控制信号来自控制单元CU的输出端
+<ul>
 <li>每个时钟周期内控制信号认为是不变的</li>
 <li>部件名称加上op后缀，表示<strong>操作选择</strong>控制信号</li>
 <li>部件名称加上in或out后缀，表示<strong>允许输入</strong>或<strong>允许输出</strong>控制信号</li>
-<li>寄存器的允许输入信号in具体的可以叫写使能信号，<strong>受时钟驱动</strong>，因为寄存器是由触发器组成<ul>
+<li>寄存器的允许输入信号in具体的可以叫写使能信号，<strong>受时钟驱动</strong>，因为寄存器是由触发器组成
+<ul>
 <li>对应器件有时钟端口</li>
 <li>每个时钟周期到来的时候，寄存器的值更新</li>
-</ul>
-</li>
-<li>允许输出控制信号out所控制的部件称为三态门，不受时钟驱动<ul>
+</ul></li>
+<li>允许输出控制信号out所控制的部件称为三态门，不受时钟驱动
+<ul>
 <li>信号高天平表示单向输出</li>
 <li>信号低电平表示阻断</li>
-</ul>
-</li>
+</ul></li>
 <li>内存读写的控制信号也受到时钟控制</li>
 <li>PC自动更新受到控制信号PC+1的控制</li>
-</ul>
-</li>
+</ul></li>
 <li>CPU中有一个多路选择器的一端输入是常数，大小是PC自动更新的字节数</li>
 <li>一般用BUS表示数据总线</li>
 </ul>
-<h3 id="基本结构-1"><a href="#基本结构-1" class="headerlink" title="基本结构"></a>基本结构</h3><ul>
+<h3 id="基本结构-1">基本结构</h3>
+<ul>
 <li>CPU内部单总线方式：CPU中连接各部件的总线只有一条，结构简单但传输容易冲突，需要用到锁存器，是早期的选择</li>
 <li>CPU内部多总线方式：CPU中有多条总线，也可以是具体指出二总线、三总线。总线数越多，需要的锁存器（暂存器）越少，需要的周期数越少，成本越高。</li>
 <li>专用数据通路方式：不共享总线，根据数据通路情况设置专用的线路，现代计算机主要选择</li>
 </ul>
-<h3 id="微操作序列"><a href="#微操作序列" class="headerlink" title="微操作序列"></a>微操作序列</h3><ul>
+<h3 id="微操作序列">微操作序列</h3>
+<ul>
 <li>使用微操作序列可以描述具体的取指令、译码、执行指令过程中的数据流向</li>
-<li>一般分两列写<ul>
+<li>一般分两列写
+<ul>
 <li>第一列的每行是每个周期（节拍）进行的微操作（用箭头指出数据流向，详见控制器功能的微操作命令分析）</li>
 <li>若没有总线冲突，每行可以有多个微操作。</li>
 <li>第二列的每行是微操作对应的控制信号情况</li>
 <li>控制信号需要考虑的有in信号、out信号、op信号、PC+1信号、内存读信号R、内存写信号W</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="控制器的功能和基本原理"><a href="#控制器的功能和基本原理" class="headerlink" title="控制器的功能和基本原理"></a>控制器的功能和基本原理</h2><h3 id="微操作命令分析"><a href="#微操作命令分析" class="headerlink" title="微操作命令分析"></a>微操作命令分析</h3><h4 id="取指周期-1"><a href="#取指周期-1" class="headerlink" title="取指周期"></a>取指周期</h4><ul>
+<h2 id="控制器的功能和基本原理">控制器的功能和基本原理</h2>
+<h3 id="微操作命令分析">微操作命令分析</h3>
+<h4 id="取指周期-1">取指周期</h4>
+<ul>
 <li>PC-&gt;MAR-&gt;DB（PC传给地址寄存器，传给数据总线）</li>
 <li>1-&gt;R（读信号传给内存储器）</li>
 <li>M(MAR)-&gt;MDR（内存中读指令到数据寄存器）</li>
 <li>MDR-&gt;IR（指令放到IR中）</li>
 <li>OP(IR)-&gt;CU（指令操作码给CU进行译码）</li>
-<li>(PC)+1-&gt;PC（更新PC）    </li>
+<li>(PC)+1-&gt;PC（更新PC）</li>
 </ul>
-<h4 id="间址周期"><a href="#间址周期" class="headerlink" title="间址周期"></a>间址周期</h4><ul>
+<h4 id="间址周期">间址周期</h4>
+<ul>
 <li>Ad(IR)-&gt;MAR（指令地址码给数据寄存器）</li>
 <li>1-&gt;R（读信号传给内存储器）</li>
 <li>M(MAR)-&gt;MDR（内存中读有效地址到数据寄存器）</li>
 <li>MDR-&gt; Ad(IR)（有效地址传给IR）</li>
 </ul>
-<h4 id="执行周期-1"><a href="#执行周期-1" class="headerlink" title="执行周期"></a>执行周期</h4><ul>
-<li>非访存指令<ul>
-<li>CLA（清空ACC）：$0\rightarrow ACC$</li>
-<li>COM（取反ACC）：$\overline{ACC}\rightarrow ACC$</li>
-<li>SHR（算术右移）：<ul>
-<li>$L(ACC)\rightarrow R(ACC)$</li>
-<li>$ACC_0\rightarrow ACC_0$</li>
+<h4 id="执行周期-1">执行周期</h4>
+<ul>
+<li>非访存指令
+<ul>
+<li>CLA（清空ACC）：<span class="math inline">\(0\rightarrow
+ACC\)</span></li>
+<li>COM（取反ACC）：<span class="math inline">\(\overline{ACC}\rightarrow ACC\)</span></li>
+<li>SHR（算术右移）：
+<ul>
+<li><span class="math inline">\(L(ACC)\rightarrow R(ACC)\)</span></li>
+<li><span class="math inline">\(ACC_0\rightarrow ACC_0\)</span></li>
+</ul></li>
+<li>CSL（循环左移）：
+<ul>
+<li><span class="math inline">\(R(ACC)\rightarrow L(ACC)\)</span></li>
+<li><span class="math inline">\(ACC_0\rightarrow ACC_n\)</span></li>
+</ul></li>
+<li>STP（停机指令）：<span class="math inline">\(0\rightarrow
+G\)</span></li>
+</ul></li>
+<li>访存指令
+<ul>
+<li>ADD X（加法指令）：
+<ul>
+<li><span class="math inline">\(Ad(IR)\rightarrow MAR\)</span></li>
+<li><span class="math inline">\(1\rightarrow R\)</span></li>
+<li><span class="math inline">\(M(MAR)\rightarrow MDR\)</span></li>
+<li><span class="math inline">\((ACC)+(MDR)\rightarrow ACC\)</span></li>
+</ul></li>
+<li>STA X（存数指令）：
+<ul>
+<li><span class="math inline">\(Ad(IR)\rightarrow MAR\)</span></li>
+<li><span class="math inline">\(1\rightarrow W\)</span></li>
+<li><span class="math inline">\(ACC\rightarrow MDR\)</span></li>
+<li><span class="math inline">\(MDR\rightarrow M(MAR)\)</span></li>
+</ul></li>
+<li>LDA X（取数指令）：
+<ul>
+<li><span class="math inline">\(Ad(IR)\rightarrow MAR\)</span></li>
+<li><span class="math inline">\(1\rightarrow R\)</span></li>
+<li><span class="math inline">\(M(MAR)\rightarrow MDR\)</span></li>
+<li><span class="math inline">\(MDR\rightarrow ACC\)</span></li>
+</ul></li>
+</ul></li>
+<li>转移指令
+<ul>
+<li>JMP X（无条件转移）：<span class="math inline">\(Ad(IR)\rightarrow
+PC\)</span></li>
+<li>BAN X（条件转移之最近的计算结果是负则转）：<span class="math inline">\(A_0\cdot Ad(IR)+\overline{A_0}\cdot(PC)\rightarrow
+PC\)</span></li>
+</ul></li>
 </ul>
-</li>
-<li>CSL（循环左移）：<ul>
-<li>$R(ACC)\rightarrow L(ACC)$</li>
-<li>$ACC_0\rightarrow ACC_n$</li>
-</ul>
-</li>
-<li>STP（停机指令）：$0\rightarrow G$</li>
-</ul>
-</li>
-<li>访存指令<ul>
-<li>ADD X（加法指令）：<ul>
-<li>$Ad(IR)\rightarrow MAR$</li>
-<li>$1\rightarrow R$</li>
-<li>$M(MAR)\rightarrow MDR$</li>
-<li>$(ACC)+(MDR)\rightarrow ACC$</li>
-</ul>
-</li>
-<li>STA X（存数指令）：<ul>
-<li>$Ad(IR)\rightarrow MAR$</li>
-<li>$1\rightarrow W$</li>
-<li>$ACC\rightarrow MDR$</li>
-<li>$MDR\rightarrow M(MAR)$</li>
-</ul>
-</li>
-<li>LDA X（取数指令）：<ul>
-<li>$Ad(IR)\rightarrow MAR$</li>
-<li>$1\rightarrow R$</li>
-<li>$M(MAR)\rightarrow MDR$</li>
-<li>$MDR\rightarrow ACC$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>转移指令<ul>
-<li>JMP X（无条件转移）：$Ad(IR)\rightarrow PC$</li>
-<li>BAN X（条件转移之最近的计算结果是负则转）：$A_0\cdot Ad(IR)+\overline{A_0}\cdot(PC)\rightarrow PC$</li>
-</ul>
-</li>
-</ul>
-<h4 id="中断周期-1"><a href="#中断周期-1" class="headerlink" title="中断周期"></a>中断周期</h4><ul>
-<li>保存程序断点<ul>
-<li>程序断点存入<strong>“0”地址</strong><ul>
+<h4 id="中断周期-1">中断周期</h4>
+<ul>
+<li>保存程序断点
+<ul>
+<li>程序断点存入<strong>"0"地址</strong>
+<ul>
 <li>0-&gt;MAR</li>
 <li>1-&gt;W</li>
 <li>PC-&gt;MDR</li>
 <li>MDR-&gt;M(MAR)</li>
-</ul>
-</li>
-<li>程序断点<strong>进栈</strong><ul>
+</ul></li>
+<li>程序断点<strong>进栈</strong>
+<ul>
 <li>(SP)-1-&gt;MAR</li>
 <li>1-&gt;W</li>
 <li>PC-&gt;MDR</li>
 <li>MDR-&gt;M(MAR)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>形成中断服务程序的入口地址<ul>
+</ul></li>
+</ul></li>
+<li>形成中断服务程序的入口地址
+<ul>
 <li>硬件向量法：向量地址-&gt;PC</li>
 <li>软件查询法：中断识别程序入口地址M-&gt;PC</li>
-</ul>
-</li>
-<li>关中断<ul>
+</ul></li>
+<li>关中断
+<ul>
 <li>0-&gt;EINT</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="控制器结构和功能"><a href="#控制器结构和功能" class="headerlink" title="控制器结构和功能"></a>控制器结构和功能</h3><ul>
+<h3 id="控制器结构和功能">控制器结构和功能</h3>
+<ul>
 <li>不同于CPU内总线，系统总线用于连接计算机硬件系统五大部件，包括控制器、运算器、存储器、输入输出</li>
-<li>系统总线分为<ul>
+<li>系统总线分为
+<ul>
 <li>Data Bus 数据总线</li>
 <li>Address Bus 地址总线</li>
 <li>Control Bus 控制总线</li>
-</ul>
-</li>
-<li>五大部件和系统总线的连接结构<ul>
-<li>控制器<ul>
+</ul></li>
+<li>五大部件和系统总线的连接结构
+<ul>
+<li>控制器
+<ul>
 <li>DB到MDR到IR：从DB接收指令信息</li>
 <li>PC到MAR到AB：把指令地址送到AB</li>
 <li>CU到CB：控制单元CU通过CB提供控制信号给其他部件</li>
 <li>运算器到PC：从运算器接收指令转移地址</li>
-</ul>
-</li>
+</ul></li>
 <li>运算器：连向数据总线，以和内存、输入、输出设备传送数据</li>
-<li>存储器（指内存）、输入设备、输出设备<ul>
+<li>存储器（指内存）、输入设备、输出设备
+<ul>
 <li>用DB传送数据</li>
 <li>从AB接收地址</li>
 <li>从CB接收控制信号</li>
-</ul>
-</li>
+</ul></li>
 <li>输入输出设备需要通过接口和总线相连</li>
-</ul>
-</li>
-<li>控制器的功能<ul>
+</ul></li>
+<li>控制器的功能
+<ul>
 <li>取指令（从主存），并指出下一条指令地址</li>
 <li>译码，产生相应操作控制信号</li>
 <li>执行指令，指挥并控制CPU、主存、IO的数据流向</li>
-</ul>
-</li>
-<li>控制器的两种分类（PC和IR相同；指令执行步骤的确定方法和控制信号的给出方案不同）<ul>
+</ul></li>
+<li>控制器的两种分类（PC和IR相同；指令执行步骤的确定方法和控制信号的给出方案不同）
+<ul>
 <li>硬布线控制器</li>
 <li>微程序控制器</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="控制单元的功能"><a href="#控制单元的功能" class="headerlink" title="控制单元的功能"></a>控制单元的功能</h3><ul>
-<li>输入<ul>
+<h3 id="控制单元的功能">控制单元的功能</h3>
+<ul>
+<li>输入
+<ul>
 <li>IR的操作码在经过译码产生的指令信息</li>
 <li>时钟信号。每个时钟脉冲CU发出一个（或一组同时执行的）操作命令</li>
 <li>标志，即执行单元的反馈信息。比如条件转移指令的控制。</li>
 <li>来自系统总线的控制信号，如中断请求，DMA请求，HRQ总线请求</li>
+</ul></li>
+<li>输出
+<ul>
+<li>CPU内部控制信号，如
+<ul>
+<li><span class="math inline">\(R_i\rightarrow R_j\)</span></li>
+<li><span class="math inline">\((PC)+1\rightarrow PC\)</span></li>
+<li><span class="math inline">\(ALU\)</span>操作选择信号op，如<span class="math inline">\(+,-,and,or\)</span></li>
+</ul></li>
+<li>到系统控制总线的控制信号
+<ul>
+<li>访存控制信号<span class="math inline">\(\overline{MREQ}\)</span></li>
+<li>访IO/存储器控制信号<span class="math inline">\(\overline{IO}/M\)</span></li>
+<li>读内存命令<span class="math inline">\(\overline{RD}\)</span></li>
+<li>写内存命令<span class="math inline">\(\overline{WR}\)</span></li>
+<li>中断响应信号<span class="math inline">\(INTA\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>输出<ul>
-<li>CPU内部控制信号，如<ul>
-<li>$R_i\rightarrow R_j$</li>
-<li>$(PC)+1\rightarrow PC$</li>
-<li>$ALU$操作选择信号op，如$+,-,and,or$</li>
-</ul>
-</li>
-<li>到系统控制总线的控制信号<ul>
-<li>访存控制信号$\overline{MREQ}$</li>
-<li>访IO/存储器控制信号$\overline{IO}/M$</li>
-<li>读内存命令$\overline{RD}$</li>
-<li>写内存命令$\overline{WR}$</li>
-<li>中断响应信号$INTA$</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="控制方式"><a href="#控制方式" class="headerlink" title="控制方式"></a>控制方式</h3><ul>
-<li>同步控制方式<ul>
+<h3 id="控制方式">控制方式</h3>
+<ul>
+<li>同步控制方式
+<ul>
 <li>任一微操作由统一基准时标的时序信号控制</li>
 <li>以最长的微操作序列、最复杂的微操作作为标准</li>
 <li>采取完全统一的、相同时钟周期数、相同时间间隔的机器周期运行不同指令</li>
-</ul>
-</li>
-<li>异步控制方式<ul>
+</ul></li>
+<li>异步控制方式
+<ul>
 <li>无基准时标信号</li>
 <li>无固定的周期节拍，无严格的时钟同步</li>
 <li>采用应答方式联络</li>
-</ul>
-</li>
-<li>联合控制方式<ul>
+</ul></li>
+<li>联合控制方式
+<ul>
 <li>同步和异步结合</li>
 <li>大部分指令的微操作同步控制，少部分指令的微操作异步控制</li>
-</ul>
-</li>
-<li>人工控制方式<ul>
+</ul></li>
+<li>人工控制方式
+<ul>
 <li>Reset</li>
 <li>连续或单条指令的执行转换开关</li>
 <li>符合条件即停机开关</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="硬布线控制器"><a href="#硬布线控制器" class="headerlink" title="硬布线控制器"></a>硬布线控制器</h3><p><em>又叫组合逻辑控制器</em></p>
-<h4 id="单元框图"><a href="#单元框图" class="headerlink" title="单元框图"></a>单元框图</h4><img src="/2021/10/31/ComputerOrganization-5/CU.png" class title="this is CU">
+<h3 id="硬布线控制器">硬布线控制器</h3>
+<p><em>又叫组合逻辑控制器</em> #### 单元框图 <img src="/2021/10/31/ComputerOrganization-5/CU.png" class title="this is CU"></p>
 <ul>
-<li>输出$C_i$表示控制信号</li>
+<li>输出<span class="math inline">\(C_i\)</span>表示控制信号</li>
 <li>同时为1的输出信号表示对应操作可以在一个周期内完成</li>
 <li>时钟信号控制节拍发生器产生节拍</li>
 <li>节拍宽度等于时钟周期，每个节拍内机器完成一个或几个同时执行的操作</li>
-<li>如下图的例子，一个机器周期，包括了四个节拍<img src="/2021/10/31/ComputerOrganization-5/CLK.jpg" class title="this is clk">
-</li>
+<li>如下图的例子，一个机器周期，包括了四个节拍 <img src="/2021/10/31/ComputerOrganization-5/CLK.jpg" class title="this is clk"></li>
 </ul>
-<h4 id="单元设计步骤"><a href="#单元设计步骤" class="headerlink" title="单元设计步骤"></a>单元设计步骤</h4><ul>
+<h4 id="单元设计步骤">单元设计步骤</h4>
+<ul>
 <li>列出微操作的操作时间表。表中每一行说明了在各个机器工作周期、节拍下，包含该行微操作命令信号的指令（硬件实现上操作码表示指令）的情况</li>
-<li>微操作信号综合。微操作控制信号=该微操作对应的所有行的逻辑表达式的或，每行逻辑表达式=机器周期 and 节拍 and 脉冲 and 操作码 and 机器状态条件</li>
+<li>微操作信号综合。微操作控制信号=该微操作对应的所有行的逻辑表达式的或，每行逻辑表达式=机器周期
+and 节拍 and 脉冲 and 操作码 and 机器状态条件</li>
 <li>绘制微操作命令逻辑图。即根据上一步的逻辑表达式绘制出每个微信号的逻辑电路图，使用逻辑门电路实现。</li>
 </ul>
-<h3 id="微程序控制器"><a href="#微程序控制器" class="headerlink" title="微程序控制器"></a>微程序控制器</h3><p><em>又叫存储逻辑控制器</em></p>
-<h4 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
-<li>微程序<ul>
-<li>把机器指令编写成微程序<ul>
+<h3 id="微程序控制器">微程序控制器</h3>
+<p><em>又叫存储逻辑控制器</em></p>
+<h4 id="基本概念-1">基本概念</h4>
+<ul>
+<li>微程序
+<ul>
+<li>把机器指令编写成微程序
+<ul>
 <li>每条机器指令对应一个微程序</li>
 <li>所有微程序存放在<strong>控制存储器</strong>中，寻址方法同用户程序寻址</li>
 <li>各个机器指令的执行周期编写为各自的微程序</li>
 <li>取值周期、间址周期和中断周期单独编写为微程序（都是不同机器指令的公共微程序）</li>
 <li>公共微程序中的取值微程序是必须的，即n条机器指令至少需要在控制寄存器中存入n+1个微程序</li>
-</ul>
-</li>
+</ul></li>
 <li>微程序有若干<strong>微指令</strong></li>
 <li>每个微指令有若干<strong>微命令</strong></li>
 <li>微程序是计算机设计者事先编址并放在控制存储器中的，对程序员透明</li>
-</ul>
-</li>
-<li>微命令<ul>
+</ul></li>
+<li>微命令
+<ul>
 <li>前面提到过微操作是计算机中最基本的不可分解的操作</li>
 <li>微命令和微操作一一对应，指的是微操作的控制信号</li>
 <li>微操作是微命令的执行过程</li>
 <li>硬布线控制器中也有微命令的概念，不是微程序控制器中独有的概念</li>
-</ul>
-</li>
-<li>微指令<ul>
+</ul></li>
+<li>微指令
+<ul>
 <li>前面提到过，如果每个节拍内的微命令线路不冲突，则可以并行执行（相容微命令）</li>
 <li>不可同时产生和完成的微命令是互斥微命令</li>
 <li>这些并行的微命令可以合并成一条微指令，一个节拍对应一条微指令</li>
-<li>微指令基本格式<ul>
+<li>微指令基本格式
+<ul>
 <li>操作控制字段（微操作码字段）：产生各自微操作控制信号</li>
 <li>顺序控制字段（微地址码字段、下地址字段）：产生下一条待执行的微指令的地址</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>控制存储器：相比于CPU外部的，用RAM实现的主存储器，控制存储器CM在CPU内部（控制器的CU里），用ROM实现</li>
 </ul>
-<h4 id="单元框图-1"><a href="#单元框图-1" class="headerlink" title="单元框图"></a>单元框图</h4><ul>
+<h4 id="单元框图">单元框图</h4>
+<ul>
 <li>下图是微程序控制器的CU框图</li>
-<li>包括<ul>
+<li>包括
+<ul>
 <li>控制存储器CM：存放微程序，由ROM构成</li>
 <li>控制存储器地址寄存器CMAR（也叫微地址寄存器）：存放微指令的地址</li>
 <li>控制存储器数据寄存器CMDR（也叫微指令寄存器μIR）：存放控制寄存器中取出的微指令</li>
 <li>微地址形成部件：产生初始微地址和后继微地址</li>
 <li>顺序逻辑：根据时钟、标志、CMDR，从微地址形成部件中选出正确的地址，传给CMAR</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <img src="/2021/10/31/ComputerOrganization-5/CU2.png" class title="this is CU2">
-<h4 id="工作过程"><a href="#工作过程" class="headerlink" title="工作过程"></a>工作过程</h4><ul>
-<li>运行公共微程序，比如取指微程序<ul>
+<h4 id="工作过程">工作过程</h4>
+<ul>
+<li>运行公共微程序，比如取指微程序
+<ul>
 <li>将取指微程序的入口（一般是CM的0号单元）送到CMAR</li>
 <li>从CM中读出微指令送入CMDR</li>
 <li>微程序完成后，主存中的机器指令存入了IR中</li>
-</ul>
-</li>
+</ul></li>
 <li>微地址形成部件根据机器指令操作码字段产生对应微程序入口地址，送入CMAR</li>
 <li>从CM中读出微指令送入CMDR，并执行</li>
 <li>执行完一个机器指令对应的微程序，回到第一步，继续进行公共微程序，取指微操作。</li>
 </ul>
-<h4 id="微指令编码方式"><a href="#微指令编码方式" class="headerlink" title="微指令编码方式"></a>微指令编码方式</h4><ul>
+<h4 id="微指令编码方式">微指令编码方式</h4>
+<ul>
 <li>又叫微指令控制方式，对应微指令<strong>操作控制字段</strong>的编码方式，以形成控制信号</li>
-<li>分类为<ul>
-<li>直接编码方式（直接控制方式）<ul>
+<li>分类为
+<ul>
+<li>直接编码方式（直接控制方式）
+<ul>
 <li>每一位表示一个微命令是否有效，可以直接发出控制信号</li>
 <li>简单直观并行性好，但微指令字长过长</li>
-</ul>
-</li>
-<li>字段直接编码方式<ul>
+</ul></li>
+<li>字段直接编码方式
+<ul>
 <li>把微指令分成各个小字段，每小字段经过译码后才能发出（一个）控制信号</li>
 <li>互斥微命令（在一个互斥类中）放到一个小字段中，显式编码（每小字段位数不能太多，否则译码太慢）</li>
 <li>相容微命令放到不同的小字段中，各小字段编码单独定义</li>
 <li>可以缩减微指令字长，但需要译码才能发出微命令，速度慢</li>
 <li>注意，比如某小字段有3位，只能表示8-1=7个互斥的微命令，因为需要留一个状态表示不进行微操作。</li>
-</ul>
-</li>
-<li>字段间接编码方式（隐式编码方式）<ul>
+</ul></li>
+<li>字段间接编码方式（隐式编码方式）
+<ul>
 <li>一个字段的某些微命令需要由另一个字段某些微命令解释</li>
 <li>进一步缩短微指令字长，但是削弱了并行控制能力</li>
-</ul>
-</li>
-<li>混合编码<ul>
+</ul></li>
+<li>混合编码
+<ul>
 <li>直接编码间接编码混合使用</li>
 <li>字段间接编码一般是字段直接编码的辅助手段</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="微指令地址形成方式"><a href="#微指令地址形成方式" class="headerlink" title="微指令地址形成方式"></a>微指令地址形成方式</h4><ul>
-<li>基本方式<ul>
+<h4 id="微指令地址形成方式">微指令地址形成方式</h4>
+<ul>
+<li>基本方式
+<ul>
 <li>由微指令的下地址字段指出，称为断定方式</li>
 <li>有时下地址字段没有指出，可以根据机器指令的操作码，经过微地址形成部件形成（该机器指令操作微程序的首地址）</li>
-</ul>
-</li>
-<li>补充方式<ul>
+</ul></li>
+<li>补充方式
+<ul>
 <li>增量计数器法，即(CMAR)+1-&gt;CMAR，适合后继指令地址连续的情况</li>
-<li>分支转移法<ul>
+<li>分支转移法
+<ul>
 <li>把顺序控制字段进一步划分为转移方式的标志和转移地址（下地址）</li>
 <li>标志为0表示不跳转，执行(CMAR)+1-&gt;CMAR</li>
 <li>标志为1表示跳转，根据转移地址确定下一条微指令地址</li>
-</ul>
-</li>
-<li>测试网络法<ul>
+</ul></li>
+<li>测试网络法
+<ul>
 <li>把下地址字段进一步划分为高位字段和低位字段</li>
 <li>低位字段由测试源（状态、条件）经过测试网络进行变换，得到测试地址；高位字段不变，作为非测试地址</li>
 <li>非测试地址和测试地址拼接，形成下一条微指令地址</li>
 <li>适合微程序小范围的微指令跳转</li>
-</ul>
-</li>
-<li>由硬件直接产生微程序入口地址<ul>
+</ul></li>
+<li>由硬件直接产生微程序入口地址
+<ul>
 <li>电源通电后，第一条微指令地址（取指微程序入口地址）可以由专门硬件电路产生</li>
 <li>如果有中断或间址周期，其微程序首地址可以由硬件产生</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>根据微指令地址形成方式，把CU框图的<strong>顺序逻辑</strong>展开，如下图</li>
 </ul>
 <img src="/2021/10/31/ComputerOrganization-5/CU3.png" class title="this is CU3">
-<h4 id="微指令格式"><a href="#微指令格式" class="headerlink" title="微指令格式"></a>微指令格式</h4><ul>
-<li>水平型微指令<ul>
+<h4 id="微指令格式">微指令格式</h4>
+<ul>
+<li>水平型微指令
+<ul>
 <li>格式为操作控制、顺序控制（包括判断字段、后地址字段）</li>
 <li>一次能定义并执行多个并行操作</li>
 <li>比如直接编码、字段直接编码、字段间接编码、混合编码</li>
 <li>优点是灵活性强、可并行、微程序短、每条微指令执行时间短、不需要译码或需要简单译码</li>
 <li>和机器指令差别大</li>
-</ul>
-</li>
-<li>垂直型微指令<ul>
+</ul></li>
+<li>垂直型微指令
+<ul>
 <li>类似于机器指令操作码的方式：微操作码、 目的地址、源地址</li>
 <li>一次只能定义和执行一个基本操作</li>
 <li>优点是格式简单规整、编写微程序方便、微指令短</li>
 <li>接近机器指令</li>
-</ul>
-</li>
-<li>混合微指令<ul>
+</ul></li>
+<li>混合微指令
+<ul>
 <li>以垂直型为基础，增加不复杂的并行操作</li>
 <li>便于编程、微程序不长、执行速度有所提高</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="静态微程序设计和动态微程序设计"><a href="#静态微程序设计和动态微程序设计" class="headerlink" title="静态微程序设计和动态微程序设计"></a>静态微程序设计和动态微程序设计</h4><ul>
+<h4 id="静态微程序设计和动态微程序设计">静态微程序设计和动态微程序设计</h4>
+<ul>
 <li>静态：微程序无需改变，采用ROM</li>
 <li>动态：通过改变微指令和微程序改变机器指令，利于仿真、采用EPROM</li>
 </ul>
-<h4 id="毫微程序设计"><a href="#毫微程序设计" class="headerlink" title="毫微程序设计"></a>毫微程序设计</h4><ul>
+<h4 id="毫微程序设计">毫微程序设计</h4>
+<ul>
 <li>微程序设计：用微程序解释机器指令</li>
 <li>毫微程序设计：用毫微程序解释微指令</li>
-<li>毫微程序设计本质上是一种二级结构<ul>
+<li>毫微程序设计本质上是一种二级结构
+<ul>
 <li>毫微程序放在毫微控制器中</li>
 <li>毫微程序由毫微指令组成，由毫微指令来控制硬件</li>
 <li>二级结构中毫微指令一般是水平型，微指令一般是垂直型</li>
+</ul></li>
+<li>毫微程序控控制器的基本组成如下图 <img src="/2021/10/31/ComputerOrganization-5/UCU.png" class title="this is UCU"></li>
 </ul>
-</li>
-<li>毫微程序控控制器的基本组成如下图<img src="/2021/10/31/ComputerOrganization-5/UCU.png" class title="this is UCU">
-</li>
-</ul>
-<h4 id="微程序控制方式"><a href="#微程序控制方式" class="headerlink" title="微程序控制方式"></a>微程序控制方式</h4><ul>
+<h4 id="微程序控制方式">微程序控制方式</h4>
+<ul>
 <li>串行微程序控制：串行方式</li>
 <li>并行微程序控制：流水方式</li>
 </ul>
-<h4 id="单元设计步骤-1"><a href="#单元设计步骤-1" class="headerlink" title="单元设计步骤"></a>单元设计步骤</h4><ul>
-<li>写出对应机器指令的微操作和节拍安排<ul>
+<h4 id="单元设计步骤-1">单元设计步骤</h4>
+<ul>
+<li>写出对应机器指令的微操作和节拍安排
+<ul>
 <li>微操作命令需要由CMDR的操作字段分析后发出控制信号</li>
 <li>在之前微操作分析的基础上，在每条微操作前增加<strong>把下一条微指令地址送到CMAR</strong>的微操作</li>
-<li>比如取指阶段的微操作序列为<ul>
+<li>比如取指阶段的微操作序列为
+<ul>
 <li>节拍0：PC-&gt;MAR，1-&gt;R（本节拍微操作的微指令地址可以由硬件生成）</li>
 <li>节拍1：Ad(CMDR)-&gt;CMAR（把下一节拍的微指令的地址送到CMAR）</li>
 <li>节拍2：M(MAR)-&gt;MDR，(PC)+1-&gt;PC</li>
 <li>节拍3：Ad(CMDR)-&gt;CMAR（把下一节拍的微指令的地址送到CMAR）</li>
 <li>节拍4：MDR-&gt;IR</li>
 <li>节拍5：OP(IR)-&gt;微地址形成部件-&gt;CMAR（把下一机器周期第一个节拍的微指令地址送到CMAR）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>确定微指令的格式，包括<ul>
+</ul></li>
+</ul></li>
+<li>确定微指令的格式，包括
+<ul>
 <li>微指令编码方式：根据微操作个数确定编码方式和操作控制字段位数</li>
 <li>后继微指令地址形成方式：根据控制存储器的微指令个数确定顺序控制字段位数</li>
 <li>微指令字长：操作控制字段和顺序控制字段位数确定微指令字长</li>
-</ul>
-</li>
+</ul></li>
 <li>编写每条微指令的码点（每条微指令的具体编码和在控制存储器中的位置）</li>
 </ul>
-<h3 id="硬布线和微程序控制器对比"><a href="#硬布线和微程序控制器对比" class="headerlink" title="硬布线和微程序控制器对比"></a>硬布线和微程序控制器对比</h3><ul>
-<li>工作原理<ul>
+<h3 id="硬布线和微程序控制器对比">硬布线和微程序控制器对比</h3>
+<ul>
+<li>工作原理
+<ul>
 <li>硬布线控制器由组合逻辑电路根据当前的指令码、状态、时序，即时产生微操作控制信号</li>
 <li>微程序控制器以微程序的方式，通过存储在控制存储器的微指令产生微操作控制信号</li>
-</ul>
-</li>
-<li>执行速度<ul>
+</ul></li>
+<li>执行速度
+<ul>
 <li>硬布线控制器快</li>
 <li>微程序控制器慢</li>
-</ul>
-</li>
-<li>规整性<ul>
+</ul></li>
+<li>规整性
+<ul>
 <li>硬布线控制器繁琐</li>
 <li>微程序控制器规整</li>
-</ul>
-</li>
-<li>应用场合<ul>
+</ul></li>
+<li>应用场合
+<ul>
 <li>硬布线控制器应用于RISC CPU</li>
 <li>微程序控制器应用于CISC CPU</li>
-</ul>
-</li>
-<li>易拓展性<ul>
+</ul></li>
+<li>易拓展性
+<ul>
 <li>硬布线控制器难修改</li>
 <li>微程序控制器容易扩充、修改</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="异常和中断机制"><a href="#异常和中断机制" class="headerlink" title="异常和中断机制"></a>异常和中断机制</h2><h3 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<h2 id="异常和中断机制">异常和中断机制</h2>
+<h3 id="基本概念-2">基本概念</h3>
+<ul>
 <li>程序中断指的是计算机执行程序时，出现某些急需处理的异常或特殊请求，CPU暂时中断现行的程序，对异常情况或特殊请求进行处理，处理完后再返回原程序断点处继续执行。</li>
-<li>程序中断的作用有<ul>
+<li>程序中断的作用有
+<ul>
 <li>实现CPU和IO的并行</li>
 <li>处理硬件故障、软件错误</li>
 <li>实现人机交互</li>
@@ -899,382 +946,398 @@
 <li>实现实时处理</li>
 <li>实现用户态到内核态的切换，即<strong>（广义的）软中断</strong></li>
 <li>多处理器系统的处理器信息交流和任务切换</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<h3 id="分类">分类</h3>
+<ul>
 <li>广义上的中断包含<strong>内部中断</strong>和<strong>外部中断</strong></li>
 <li>内部中断包括软件中断（狭义的软中断）和异常（内中断一定是不可屏蔽中断），外部中断包括可屏蔽中断和不可屏蔽中断</li>
-<li>软件中断指的是CPU内部的指令请求<ul>
+<li>软件中断指的是CPU内部的指令请求
+<ul>
 <li>又叫可编程中断，是软件主动发起的中断</li>
 <li>软件中断实现从用户态到内核态的系统调用，完成后回到中断指令的下一条继续运行</li>
 <li>比如linux的int 0x80系统调用</li>
-</ul>
-</li>
-<li><p>异常指的是CPU内部异常产生的意外事件，包括</p>
+</ul></li>
+<li>异常指的是CPU内部异常产生的意外事件，包括
 <ul>
-<li>故障Fault<ul>
+<li>故障Fault
+<ul>
 <li>程序性事故</li>
 <li>比如溢出、非法操作码、除数为0、缺页</li>
 <li>故障被动性的导致用户态切换到内核态，故障是有可能修复处理的，比如缺页处理后可以继续执行</li>
 <li>修复完成后从出故障的指令处重新运行（而不是运行下一条指令）</li>
-</ul>
-</li>
-<li>陷阱Trap<ul>
+</ul></li>
+<li>陷阱Trap
+<ul>
 <li>人为设置的中断，又叫自陷</li>
 <li>主要用于断点调试</li>
 <li>执行Trap指令主动导致用户态切换到内核态，处理完陷阱后会返回用户态继续执行下一条指令</li>
-</ul>
-</li>
-<li>终止Abort<ul>
+</ul></li>
+<li>终止Abort
+<ul>
 <li>当指令发送不可修复的故障，程序只能终止</li>
 <li>操作系统把程序的进程从进程表去除</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>外部中断简称外中断，是狭义上的中断，指的是CPU外部和指令执行无关的事件引起的中断，包括</p>
+</ul></li>
+</ul></li>
+<li>外部中断简称外中断，是狭义上的中断，指的是CPU外部和指令执行无关的事件引起的中断，包括
 <ul>
-<li>可屏蔽中断：通过INTR(Interrupt Require)信号线发出的中断请求，受到中断允许寄存器和中断屏蔽位的控制（后面会介绍两者的功能和区别），比如IO设备中断（键盘输入、打印机缺纸）</li>
-<li>不可屏蔽中断：通过NMI（Nonmaskable Interrupt）信号线发出的中断请求，比如电源掉电、内存读写错误、总线奇偶校验错误、时钟中断</li>
+<li>可屏蔽中断：通过INTR(Interrupt
+Require)信号线发出的中断请求，受到中断允许寄存器和中断屏蔽位的控制（后面会介绍两者的功能和区别），比如IO设备中断（键盘输入、打印机缺纸）</li>
+<li>不可屏蔽中断：通过NMI（Nonmaskable
+Interrupt）信号线发出的中断请求，比如电源掉电、内存读写错误、总线奇偶校验错误、时钟中断</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="检测和响应"><a href="#检测和响应" class="headerlink" title="检测和响应"></a>检测和响应</h3><h4 id="中断请求"><a href="#中断请求" class="headerlink" title="中断请求"></a>中断请求</h4><p><em>中断源如何提出中断请求</em></p>
+<h3 id="检测和响应">检测和响应</h3>
+<h4 id="中断请求">中断请求</h4>
+<p><em>中断源如何提出中断请求</em></p>
 <ul>
-<li>外中断请求的识别一般由<strong>硬件完成</strong><ul>
+<li>外中断请求的识别一般由<strong>硬件完成</strong>
+<ul>
 <li>每个中断源设置一个INTR中断请求触发器，1位，表示是否请求中断</li>
 <li>INTR可以分散在各个中断源接口电路</li>
 <li>INTR也可以集中在CPU内部中断系统中，由多个INTR触发器组成中断请求寄存器</li>
-</ul>
-</li>
-<li>内中断请求的识别一般由<strong>软件完成</strong><ul>
+</ul></li>
+<li>内中断请求的识别一般由<strong>软件完成</strong>
+<ul>
 <li>CPU设置一个异常状态寄存器</li>
 <li>操作系统使用统一的异常查询程序，按一定优先级查询异常状态寄存器</li>
 <li>先查询到的先被处理</li>
-</ul>
-</li>
+</ul></li>
 <li>软中断、故障、陷阱等内中断请求也可以不通过专门的查询程序识别，而是在某指令执行时识别，转到内核态进行异常处理</li>
 </ul>
-<h4 id="中断判优"><a href="#中断判优" class="headerlink" title="中断判优"></a>中断判优</h4><p><em>多个中断源同时提出中断请求时如何进行优先级排队</em></p>
+<h4 id="中断判优">中断判优</h4>
+<p><em>多个中断源同时提出中断请求时如何进行优先级排队</em></p>
 <ul>
-<li><strong>硬件实现</strong>的排队器，具体有两种做法<ul>
+<li><strong>硬件实现</strong>的排队器，具体有两种做法
+<ul>
 <li>链式排队器：分散在各个中断源的接口电路中</li>
 <li>集中在CPU内</li>
-</ul>
-</li>
-<li><strong>软件实现</strong>的排队器，用程序查询的方式<ul>
+</ul></li>
+<li><strong>软件实现</strong>的排队器，用程序查询的方式
+<ul>
 <li>先查询高优先级的中断源是否有中断请求</li>
 <li>是则跳转到对应中断服务程序入口地址，否则继续查询低优先级中断源是否有中断请求</li>
-</ul>
-</li>
-<li>通常的优先级安排如下：<ul>
+</ul></li>
+<li>通常的优先级安排如下：
+<ul>
 <li>硬件故障优先级最高，其次是软件中断，这些都是不可屏蔽中断</li>
 <li>不可屏蔽中断优先级高于可屏蔽中断（可屏蔽中断一定是外中断，但不是所有外中断都可屏蔽）</li>
 <li>DMA请求优先级高于IO设备的中断请求，高速设备优先于低速设备、输入设备优先于输出设备、实时设备优先于普通设备</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="响应条件"><a href="#响应条件" class="headerlink" title="响应条件"></a>响应条件</h4><p><em>CPU什么条件下响应（外）中断</em></p>
+<h4 id="响应条件">响应条件</h4>
+<p><em>CPU什么条件下响应（外）中断</em></p>
 <ul>
 <li>中断源发出中断请求，即存在中断请求触发器INTR为1的中断源（INTR的设置要求中断源的中断屏蔽触发器为0，详见后面多重中断部分）</li>
 <li>CPU允许中断（允许中断触发器EINT=1），即开中断（linux中是中断标志IF=1）</li>
 <li>一条指令执行完毕时，且没有更紧迫任务（比如内中断）</li>
 </ul>
-<h4 id="响应操作"><a href="#响应操作" class="headerlink" title="响应操作"></a>响应操作</h4><p><em>CPU响应（外）中断具体要进行的操作是什么</em></p>
+<h4 id="响应操作">响应操作</h4>
+<p><em>CPU响应（外）中断具体要进行的操作是什么</em></p>
 <ul>
 <li>CPU响应中断时完成的操作是<strong>中断隐指令</strong></li>
 <li>中断隐指令由硬件实现，并不是真的指令系统的指令</li>
-<li>中断隐指令包括的操作有<ul>
-<li>关中断<ul>
+<li>中断隐指令包括的操作有
+<ul>
+<li>关中断
+<ul>
 <li>如果有中断请求（INTR不全为0）且允许中断（EINT=1)，则中断标记触发器INT设置为1，表示进入中断周期（在前面指令周期的笔记中提到过INT），此后EINT设置为0</li>
 <li>关中断保证不响应更高级别的可屏蔽中断，但不可屏蔽中断依然需要响应</li>
-</ul>
-</li>
+</ul></li>
 <li>保存断点：包括PC和PSW的现场信息</li>
 <li>转向中断服务程序：取出中断服务程序的入口地址传给PC</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="中断入口"><a href="#中断入口" class="headerlink" title="中断入口"></a>中断入口</h4><p><em>如何确定中断服务程序的入口地址</em></p>
+<h4 id="中断入口">中断入口</h4>
+<p><em>如何确定中断服务程序的入口地址</em></p>
 <ul>
 <li>中断向量：中断服务程序的入口地址</li>
 <li>中断向量地址：中断服务程序入口地址所存放的地址</li>
 <li>中断向量表：存储器中集中存放中断向量的区域</li>
-<li>硬件向量法<ul>
+<li>硬件向量法
+<ul>
 <li>把中断优先级排队器输出，输入到向量地址形成部件，得到中断向量地址</li>
 <li>根据中断向量地址到中断向量表中确定中断向量，即入口地址</li>
-</ul>
-</li>
+</ul></li>
 <li>软件查询法：PC先转到中断识别程序入口地址，由中断识别程序给出中断入口地址，灵活，识别程序相比硬件实现更容易修改</li>
 </ul>
-<h4 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h4><p><em>进入中断周期后的处理过程</em></p>
+<h4 id="处理过程">处理过程</h4>
+<p><em>进入中断周期后的处理过程</em></p>
 <ul>
-<li>硬件（中断隐指令）完成的过程<ul>
+<li>硬件（中断隐指令）完成的过程
+<ul>
 <li>关中断</li>
 <li>保存断点</li>
 <li>转向中断服务程序</li>
-</ul>
-</li>
-<li>中断服务程序完成的过程<ul>
-<li>保存现场和屏蔽字<ul>
+</ul></li>
+<li>中断服务程序完成的过程
+<ul>
+<li>保存现场和屏蔽字
+<ul>
 <li>现场主要是一些工作寄存器，PUSH到堆栈中</li>
 <li>屏蔽字在后面的多重中断的笔记中会介绍</li>
-</ul>
-</li>
+</ul></li>
 <li>开中断：允许更高级别的中断响应，实现中断嵌套</li>
 <li>执行中断服务程序：中断请求的目的</li>
 <li>关中断：保证恢复现场和屏蔽字时不被打断</li>
 <li>恢复现场和屏蔽字：从堆栈中POP出</li>
 <li>开中断</li>
 <li>中断返回：一般是中断服务程序的最后一条指令IRET，用于返回原程序继续执行</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="多重中断"><a href="#多重中断" class="headerlink" title="多重中断"></a>多重中断</h4><p><em>在执行中断服务程序时又出现新的更高级别的中断请求怎么办</em></p>
+<h4 id="多重中断">多重中断</h4>
+<p><em>在执行中断服务程序时又出现新的更高级别的中断请求怎么办</em></p>
 <ul>
-<li>单重中断：不响应新的中断请求    </li>
+<li>单重中断：不响应新的中断请求<br>
+</li>
 <li>多重中断：响应新的中断请求，又叫中断嵌套</li>
-<li>多重中断使用中断屏蔽技术<ul>
+<li>多重中断使用中断屏蔽技术
+<ul>
 <li>每个中断源有一个中断屏蔽触发器，表示是否屏蔽该中断源，屏蔽后INTR无法置1</li>
 <li>所有中断屏蔽触发器组合构成一个屏蔽字寄存器，不同的中断服务程序运行时，屏蔽字寄存器的内容不同（该内容是根据中断源优先级设置屏蔽字的）</li>
 <li>屏蔽字寄存器的内容叫做屏蔽字</li>
-</ul>
-</li>
-<li>中断允许寄存器和中断屏蔽字寄存器的功能区别<ul>
+</ul></li>
+<li>中断允许寄存器和中断屏蔽字寄存器的功能区别
+<ul>
 <li>前者是总的中断的允许开关，决定CPU在有中断请求时是否进入中断周期</li>
 <li>后者是对中断源之间的优先级关系的表示。高优先级中断源的中断服务程序运行时，低优先级的中断源在屏蔽字寄存器中所对应位（即低优先级中断源屏蔽触发器）为1，表示屏蔽掉对应优先级较低的中断请求</li>
-</ul>
-</li>
-<li>多重中断需要满足的条件<ul>
+</ul></li>
+<li>多重中断需要满足的条件
+<ul>
 <li>中断允许寄存器满足的条件：在中断服务程序中设置开中断</li>
 <li>中断屏蔽字寄存器满足的条件：仅较高优先级的中断源有权中断较低优先级的中断源</li>
-</ul>
-</li>
-<li>中断响应排队优先级和中断源处理优先级的区别<ul>
+</ul></li>
+<li>中断响应排队优先级和中断源处理优先级的区别
+<ul>
 <li>中断响应排队优先级不可改变</li>
 <li>中断源处理优先级可以通过重设屏蔽字来改变</li>
-<li>例如下面两个图，表示ABCD四个中断请求同时到来后的响应情况。排队优先级按ABCD降序，处理优先级第一个图为ABCD降序，第二个图改为ADCB降序<img src="/2021/10/31/ComputerOrganization-5/MW.png" class title="this is MW">
-</li>
+<li>例如下面两个图，表示ABCD四个中断请求同时到来后的响应情况。排队优先级按ABCD降序，处理优先级第一个图为ABCD降序，第二个图改为ADCB降序
+<img src="/2021/10/31/ComputerOrganization-5/MW.png" class title="this is MW"></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h2><h3 id="基本概念-3"><a href="#基本概念-3" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<h2 id="指令流水线">指令流水线</h2>
+<h3 id="基本概念-3">基本概念</h3>
+<ul>
 <li>一条指令的执行分为若干阶段，每个阶段用到的功能部件不同。将各个阶段看作流水段（对应一个部件），指令的执行过程构成了指令流水线</li>
 <li>指令流水线是一种硬件层面的并行处理技术（进程的并行属于软件层面的并行处理技术），能明显提高计算机运行速度</li>
 <li>指令流水线不包含生成控制信号的控制部件</li>
 </ul>
-<h3 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h3><ul>
+<h3 id="基本实现">基本实现</h3>
+<ul>
 <li>比如指令分为取指令、分析指令（译码和间址）、执行指令三个阶段，多条指令在执行时可以是顺序执行方式或流水线执行方式</li>
 <li>顺序执行方式指在完成一条指令后，才开启下一条指令。设每阶段时间为t，共n条指令，则总时间为3nt</li>
 <li>流水线执行方式指的是一条指令开启第i个阶段时（i=2,3），下一条指令开启第i-1个阶段。设每阶段时间为t，共n条指令，则总时间为2t+nt</li>
 <li>k级流水指的是，流水线有k个流水段。前面的例子，有三个执行阶段，即三级流水。</li>
 <li>设计时，流水段的个数以最复杂的指令需要的阶段数为准，流水段的长度以最复杂的操作需要时间为准</li>
 </ul>
-<h3 id="流水线表示方法"><a href="#流水线表示方法" class="headerlink" title="流水线表示方法"></a>流水线表示方法</h3><ul>
+<h3 id="流水线表示方法">流水线表示方法</h3>
+<ul>
 <li>采用时空图，横坐标为时间，各个流水段时间相等，纵坐标的每行对应一个流水段部件，每条指令形式上为斜线</li>
 <li>也可以是横坐标为时间，各个流水段时间相等，纵坐标的每行对应每条指令，每个流水段部件形式上为斜线</li>
 </ul>
-<h3 id="流水线方式特点"><a href="#流水线方式特点" class="headerlink" title="流水线方式特点"></a>流水线方式特点</h3><ul>
+<h3 id="流水线方式特点">流水线方式特点</h3>
+<ul>
 <li>把一个指令任务分解为多个子任务阶段，由不同功能部件并行完成</li>
 <li>流水线每个功能段部件后有一个缓冲寄存器或锁存器，用来保存本段的执行结果，供下一段使用</li>
 <li>流水线各功能段的时间尽量相等，防止堵塞和断流</li>
 <li>流水线处理的尽量是连续任务</li>
 <li>流水线需要装入和排空时间。前者是第一条任务进入流水线到完成的时间，后者是最后一条任务进入流水线到完成的时间。</li>
 </ul>
-<h3 id="基本分类"><a href="#基本分类" class="headerlink" title="基本分类"></a>基本分类</h3><ul>
-<li>按流水线使用级别分类<ul>
+<h3 id="基本分类">基本分类</h3>
+<ul>
+<li>按流水线使用级别分类
+<ul>
 <li>部件功能级：运算操作流水线</li>
 <li>处理机级别：指令流水线</li>
 <li>处理机间级别：宏流水线，涉及多个处理机</li>
-</ul>
-</li>
-<li>按功能分类<ul>
+</ul></li>
+<li>按功能分类
+<ul>
 <li>单功能：只能实现固定功能</li>
 <li>多功能：通过各个流水段的不同连接方式，可以同时或不同时的实现多个功能</li>
-</ul>
-</li>
-<li>按连接方式（多功能流水线的分类）<ul>
+</ul></li>
+<li>按连接方式（多功能流水线的分类）
+<ul>
 <li>静态流水线：各个段同时各自只能实现一个功能，多功能实现需要等任务排空后重连流水线，当连续输入不同运算时，静态流水线等同于顺序执行方式</li>
 <li>动态流水线：各个段同时各自实现多个功能，效率高，控制复杂</li>
-<li>下图是静态和动态流水时空图<img src="/2021/10/31/ComputerOrganization-5/D.png" class title="this is D"></li>
-</ul>
-</li>
-<li>按功能段是否有反馈信号<ul>
+<li>下图是静态和动态流水时空图 <img src="/2021/10/31/ComputerOrganization-5/D.png" class title="this is D"></li>
+</ul></li>
+<li>按功能段是否有反馈信号
+<ul>
 <li>线性流水线:每段只经过一次，没有反馈回路</li>
 <li>非线性流水线：有反馈回路，某些段多次经过，适合线性递归的运算</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="影响流水线的因素"><a href="#影响流水线的因素" class="headerlink" title="影响流水线的因素"></a>影响流水线的因素</h3><ul>
+<h3 id="影响流水线的因素">影响流水线的因素</h3>
+<ul>
 <li>流水线无法正确执行指令引起的阻塞、停顿，称为流水线冲突，或者冒险。</li>
 <li>流水线冲突有三种：资源冲突、数据冲突、控制冲突</li>
-<li>资源冲突（结构冒险）<ul>
+<li>资源冲突（结构冒险）
+<ul>
 <li>指的是，不同流水段对硬件资源的竞争冲突</li>
 <li>比如取指令和取数据都要访存</li>
-<li>解决方法有<ul>
+<li>解决方法有
+<ul>
 <li>指令停顿：让后续指令暂停一个时钟周期</li>
 <li>存储器分离：单独设置数据存储器和指令存储器</li>
 <li>指令预取技术：适合访存周期短的情况，提前把指令取到缓存区</li>
-</ul>
-</li>
+</ul></li>
 <li>现代操作系统通过采用数据Cache和指令Cache分离的方式，避免资源冲突</li>
-</ul>
-</li>
-<li>数据冲突（数据相关、数据冒险）<ul>
+</ul></li>
+<li>数据冲突（数据相关、数据冒险）
+<ul>
 <li>指的是下一条指令用到当前指令计算结果确定</li>
-<li>具体分为<ul>
+<li>具体分为
+<ul>
 <li>写后读RAW：可能读到错误的旧值</li>
 <li>读后写WAR：可能读到错误的新值</li>
 <li>写后写WAW：可能先写新值，再写入旧值</li>
-</ul>
-</li>
-<li>解决方法有<ul>
+</ul></li>
+<li>解决方法有
+<ul>
 <li>后推法：设置时钟周期的暂停，比如硬件阻塞stall和软件插入NOP指令</li>
 <li>数据旁路技术：对于RAW，设置专用通路，直接把ALU计算结果作为输入。</li>
 <li>编译器优化相关指令，调整指令顺序。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>控制冲突（控制相关、控制冒险）<ul>
+</ul></li>
+</ul></li>
+<li>控制冲突（控制相关、控制冒险）
+<ul>
 <li>指的是，下一条指令的地址由当前指令来确定，从而造成断流</li>
 <li>如果不处理，将会存在控制损失，即跳转条件成立后，流水线原先按顺序执行的一些指令都是无效的。</li>
-<li>解决方法有<ul>
+<li>解决方法有
+<ul>
 <li>对转移指令的分支进行预测，提前生成转移目标地址。静态（简单）预测总是预测条件不满足；动态预测根据历史执行情况，动态预测调整，预测准确率较高</li>
 <li>预取转移成功和不成功两个控制流方向的目标指令</li>
 <li>加快和提前形成条件码</li>
 <li>提高转移方向的猜准率</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><ul>
-<li>吞吐率TP<ul>
+<h3 id="性能指标">性能指标</h3>
+<ul>
+<li>吞吐率TP
+<ul>
 <li>吞吐率指的是单位时间流水线完成的指令数量/输出结果数量</li>
-<li>计算时考虑完成n条指令需要的时间，设$k$级流水，每段$t$时间，完成$n$条任务，需要时间$kt+(n-1)t=(k+n-1)t$</li>
-<li>实际吞吐量为$\frac{n}{(k+n-1)t}$，最大吞吐率（任务很多，n为极限情况）为$\frac{1}{t}$</li>
-</ul>
-</li>
-<li>加速比SP<ul>
+<li>计算时考虑完成n条指令需要的时间，设<span class="math inline">\(k\)</span>级流水，每段<span class="math inline">\(t\)</span>时间，完成<span class="math inline">\(n\)</span>条任务，需要时间<span class="math inline">\(kt+(n-1)t=(k+n-1)t\)</span></li>
+<li>实际吞吐量为<span class="math inline">\(\frac{n}{(k+n-1)t}\)</span>，最大吞吐率（任务很多，n为极限情况）为<span class="math inline">\(\frac{1}{t}\)</span></li>
+</ul></li>
+<li>加速比SP
+<ul>
 <li>加速比指的是，同一批任务，不使用流水线的时间比使用流水线的时间</li>
-<li>实际加速比是$\frac{kn}{k+n-1}$，最大加速比（任务很多，n为极限情况）是$k$</li>
-</ul>
-</li>
-<li>效率E<ul>
+<li>实际加速比是<span class="math inline">\(\frac{kn}{k+n-1}\)</span>，最大加速比（任务很多，n为极限情况）是<span class="math inline">\(k\)</span></li>
+</ul></li>
+<li>效率E
+<ul>
 <li>效率指的是流水线硬件设备的利用率</li>
 <li>就是时空图中，工作时空区比总的时空区</li>
-<li>实际效率为$\frac{knt}{k(k+n-1)t}=\frac{n}{k+n-1}$，最大效率（任务很多，n为极限情况）是$1$</li>
+<li>实际效率为<span class="math inline">\(\frac{knt}{k(k+n-1)t}=\frac{n}{k+n-1}\)</span>，最大效率（任务很多，n为极限情况）是<span class="math inline">\(1\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="超标量流水线"><a href="#超标量流水线" class="headerlink" title="超标量流水线"></a>超标量流水线</h3><ul>
-<li><p>超标量流水线技术</p>
+<h3 id="超标量流水线">超标量流水线</h3>
+<ul>
+<li>超标量流水线技术
 <ul>
 <li>每时钟周期并发多条独立的指令</li>
 <li>配置多个功能部件，需要多个流水线</li>
 <li>不能调整指令执行顺序，需要通过编译优化，把可并行的指令搭配起来</li>
-<li>如下图是3个流水线并行工作<img src="/2021/10/31/ComputerOrganization-5/SS.png" class title="this is SS">
-</li>
-</ul>
-</li>
-<li><p>超流水线技术</p>
+<li>如下图是3个流水线并行工作 <img src="/2021/10/31/ComputerOrganization-5/SS.png" class title="this is SS"></li>
+</ul></li>
+<li>超流水线技术
 <ul>
 <li>又叫超流水技术</li>
 <li>把一个时钟周期内继续分段；一个时钟周期内，一个部件使用多次</li>
 <li>不能调整指令执行顺序，需要通过编译优化</li>
-<li>如下图是一个时钟周期分为3段<img src="/2021/10/31/ComputerOrganization-5/SS2.png" class title="this is SS2">
-</li>
-</ul>
-</li>
-<li><p>超长指令字技术</p>
+<li>如下图是一个时钟周期分为3段 <img src="/2021/10/31/ComputerOrganization-5/SS2.png" class title="this is SS2"></li>
+</ul></li>
+<li>超长指令字技术
 <ul>
 <li>由编译程序挖掘指令间潜在并行性</li>
 <li>把多条可并行指令组合成一条具有多个操作码字段的超长指令字（可几百位）</li>
-<li>采用多个处理部件，比如下图是三个<img src="/2021/10/31/ComputerOrganization-5/SS3.png" class title="this is SS3">
-</li>
+<li>采用多个处理部件，比如下图是三个 <img src="/2021/10/31/ComputerOrganization-5/SS3.png" class title="this is SS3"></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="多处理器基本概念"><a href="#多处理器基本概念" class="headerlink" title="多处理器基本概念"></a>多处理器基本概念</h2><h3 id="SISD、SIMD、MIMD、向量处理器概念"><a href="#SISD、SIMD、MIMD、向量处理器概念" class="headerlink" title="SISD、SIMD、MIMD、向量处理器概念"></a>SISD、SIMD、MIMD、向量处理器概念</h3><p><em>本节介绍计算机体系结构的划分</em></p>
+<h2 id="多处理器基本概念">多处理器基本概念</h2>
+<h3 id="sisdsimdmimd向量处理器概念">SISD、SIMD、MIMD、向量处理器概念</h3>
+<p><em>本节介绍计算机体系结构的划分</em></p>
 <ul>
-<li>单指令单数据流SISD<ul>
+<li>单指令单数据流SISD
+<ul>
 <li>传统串行结构</li>
 <li>包含一个处理器、一个存储器</li>
 <li>使用指令流水方式，SISD处理器可采用多个功能部件，SISD存储器多采用多模块交叉存储器</li>
-</ul>
-</li>
-<li>单指令多数据流SIMD<ul>
+</ul></li>
+<li>单指令多数据流SIMD
+<ul>
 <li>一条指令，多个数据流，又叫数据级并行技术</li>
 <li>包含一个控制器、多个处理单元，每个处理单元处理的数据不同，但处理的指令都是同一个</li>
 <li>适合处理for循环处理数组或向量数据运算</li>
-</ul>
-</li>
+</ul></li>
 <li>多指令单数据流MISD：不存在</li>
-<li>多指令多数据流MIMD<ul>
+<li>多指令多数据流MIMD
+<ul>
 <li>多条指令，多个数据流，线程级（或线程级以上）并行技术</li>
-<li>分为<ul>
+<li>分为
+<ul>
 <li>多计算机系统（消息传递MIMD）：各系统有各自的存储器、独立的主存空间，通过消息传递进行数据传输</li>
 <li>多处理器系统（共享存储MIMD）：全称是共享存储多处理器SMP，共享地址空间，各处理器通过共享变量通信，通过存取指令访问存储器，</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>向量处理器<ul>
+</ul></li>
+</ul></li>
+<li>向量处理器
+<ul>
 <li>SIMD的变种</li>
 <li>实现了可直接操作向量指令集的CPU</li>
 <li>理念是把存储器收集的数据按顺序放到向量寄存器中，流水方式依次操作，结果写回寄存器</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="硬件多线程基本概念"><a href="#硬件多线程基本概念" class="headerlink" title="硬件多线程基本概念"></a>硬件多线程基本概念</h3><ul>
+<h3 id="硬件多线程基本概念">硬件多线程基本概念</h3>
+<ul>
 <li>传统CPU线程切换开销较大，需要和存储器交换数据</li>
 <li>支持硬件多线程的CPU，每个线程有独立的通用寄存器组、PC，线程切换只需要激活选中的寄存器</li>
-<li>硬件多线程有3种实现方式<ul>
-<li>细粒度多线程<ul>
+<li>硬件多线程有3种实现方式
+<ul>
+<li>细粒度多线程
+<ul>
 <li>各线程间指令无关</li>
 <li>每个时钟周期切换线程</li>
-</ul>
-</li>
-<li>粗粒度多线程<ul>
+</ul></li>
+<li>粗粒度多线程
+<ul>
 <li>只在遇到阻塞时才切换线程，如Cache缺失</li>
 <li>流水线需要清空和重装，切换线程开销高</li>
-</ul>
-</li>
-<li>同时多线程<ul>
+</ul></li>
+<li>同时多线程
+<ul>
 <li>又叫SMT，例如因特尔处理器的超线程</li>
 <li>同一时钟周期，不同线程多条指令同时执行</li>
 <li>同时实现指令级并行和线程级并行</li>
+</ul></li>
+</ul></li>
+<li>下图是硬件多线程3种实现的示例图 <img src="/2021/10/31/ComputerOrganization-5/MuL.jpg" class title="this is MuL"></li>
 </ul>
-</li>
-</ul>
-</li>
-<li>下图是硬件多线程3种实现的示例图<img src="/2021/10/31/ComputerOrganization-5/MuL.jpg" class title="this is MuL">
-</li>
-</ul>
-<h3 id="多核处理器基本概念"><a href="#多核处理器基本概念" class="headerlink" title="多核处理器基本概念"></a>多核处理器基本概念</h3><ul>
+<h3 id="多核处理器基本概念">多核处理器基本概念</h3>
+<ul>
 <li>多个处理单元（核）集中到一个CPU</li>
 <li>每个核可以有各自的Cache，也可以共享Cache</li>
 <li>各核是对称的，共享主存，可以认为多核处理器是SMP的简化版</li>
 <li>多核处理器的多线程是并行的（同一时刻多个线程运行），而单核的多线程是并发的（交错执行，但同一时刻只有一个线程执行）</li>
 </ul>
-<h3 id="共享内存多处理器SMP的基本概念"><a href="#共享内存多处理器SMP的基本概念" class="headerlink" title="共享内存多处理器SMP的基本概念"></a>共享内存多处理器SMP的基本概念</h3><ul>
+<h3 id="共享内存多处理器smp的基本概念">共享内存多处理器SMP的基本概念</h3>
+<ul>
 <li>多个处理器共享一个物理地址空间，通过存取指令访问存储器</li>
 <li>处理器间的通信通过存储器的共享变量</li>
-<li>分类有<ul>
-<li>统一存储访问（UMA）多处理器<ul>
+<li>分类有
+<ul>
+<li>统一存储访问（UMA）多处理器
+<ul>
 <li>每个处理器访存时间接近，所有CPU的地位是对称的</li>
 <li>根据处理器和共享存储的连接方式，分为基于总线、基于交叉开关网络、基于多级交换网络连接几种多处理器</li>
-</ul>
-</li>
-<li>非统一存储访问（NUMA）多处理器<ul>
+</ul></li>
+<li>非统一存储访问（NUMA）多处理器
+<ul>
 <li>某些处理器访存请求较快完成</li>
 <li>根据处理器是否带一致性高速缓存，分为NC-NUMA和CC-NUMA</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li>共享变量可以通过加锁的方式实现互斥访问</li>
 </ul>
 
@@ -1376,7 +1439,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">CPU的功能和基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">基本结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">指令执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="nav-number">2.1.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="nav-number">2.2.</span> <span class="nav-text">指令周期的数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%96%E6%8C%87%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%B4%E6%8C%87%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.2.</span> <span class="nav-text">间指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%96%B9%E6%A1%88"><span class="nav-number">2.3.</span> <span class="nav-text">指令执行方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">数据通路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84-1"><span class="nav-number">3.2.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E6%93%8D%E4%BD%9C%E5%BA%8F%E5%88%97"><span class="nav-number">3.3.</span> <span class="nav-text">微操作序列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">控制器的功能和基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%88%86%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">微操作命令分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%96%E6%8C%87%E5%91%A8%E6%9C%9F-1"><span class="nav-number">4.1.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%B4%E5%9D%80%E5%91%A8%E6%9C%9F"><span class="nav-number">4.1.2.</span> <span class="nav-text">间址周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F-1"><span class="nav-number">4.1.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%91%A8%E6%9C%9F-1"><span class="nav-number">4.1.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E7%BB%93%E6%9E%84%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">4.2.</span> <span class="nav-text">控制器结构和功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">4.3.</span> <span class="nav-text">控制单元的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">4.4.</span> <span class="nav-text">控制方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E5%B8%83%E7%BA%BF%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">4.5.</span> <span class="nav-text">硬布线控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%A1%86%E5%9B%BE"><span class="nav-number">4.5.1.</span> <span class="nav-text">单元框图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.5.2.</span> <span class="nav-text">单元设计步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">4.6.</span> <span class="nav-text">微程序控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1"><span class="nav-number">4.6.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%A1%86%E5%9B%BE-1"><span class="nav-number">4.6.2.</span> <span class="nav-text">单元框图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">4.6.3.</span> <span class="nav-text">工作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="nav-number">4.6.4.</span> <span class="nav-text">微指令编码方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E6%8C%87%E4%BB%A4%E5%9C%B0%E5%9D%80%E5%BD%A2%E6%88%90%E6%96%B9%E5%BC%8F"><span class="nav-number">4.6.5.</span> <span class="nav-text">微指令地址形成方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.6.6.</span> <span class="nav-text">微指令格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%8A%A8%E6%80%81%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.6.7.</span> <span class="nav-text">静态微程序设计和动态微程序设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%AB%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.6.8.</span> <span class="nav-text">毫微程序设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">4.6.9.</span> <span class="nav-text">微程序控制方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">4.6.10.</span> <span class="nav-text">单元设计步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E5%B8%83%E7%BA%BF%E5%92%8C%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E5%99%A8%E5%AF%B9%E6%AF%94"><span class="nav-number">4.7.</span> <span class="nav-text">硬布线和微程序控制器对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%92%8C%E4%B8%AD%E6%96%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">异常和中断机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2"><span class="nav-number">5.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%92%8C%E5%93%8D%E5%BA%94"><span class="nav-number">5.3.</span> <span class="nav-text">检测和响应</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82"><span class="nav-number">5.3.1.</span> <span class="nav-text">中断请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%88%A4%E4%BC%98"><span class="nav-number">5.3.2.</span> <span class="nav-text">中断判优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%9D%A1%E4%BB%B6"><span class="nav-number">5.3.3.</span> <span class="nav-text">响应条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%93%8D%E4%BD%9C"><span class="nav-number">5.3.4.</span> <span class="nav-text">响应操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%85%A5%E5%8F%A3"><span class="nav-number">5.3.5.</span> <span class="nav-text">中断入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="nav-number">5.3.6.</span> <span class="nav-text">处理过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E4%B8%AD%E6%96%AD"><span class="nav-number">5.3.7.</span> <span class="nav-text">多重中断</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">6.</span> <span class="nav-text">指令流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-3"><span class="nav-number">6.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0"><span class="nav-number">6.2.</span> <span class="nav-text">基本实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">6.3.</span> <span class="nav-text">流水线表示方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%96%B9%E5%BC%8F%E7%89%B9%E7%82%B9"><span class="nav-number">6.4.</span> <span class="nav-text">流水线方式特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="nav-number">6.5.</span> <span class="nav-text">基本分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">6.6.</span> <span class="nav-text">影响流水线的因素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">6.7.</span> <span class="nav-text">性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E6%A0%87%E9%87%8F%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">6.8.</span> <span class="nav-text">超标量流水线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.</span> <span class="nav-text">多处理器基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SISD%E3%80%81SIMD%E3%80%81MIMD%E3%80%81%E5%90%91%E9%87%8F%E5%A4%84%E7%90%86%E5%99%A8%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">SISD、SIMD、MIMD、向量处理器概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.2.</span> <span class="nav-text">硬件多线程基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%A0%B8%E5%A4%84%E7%90%86%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.3.</span> <span class="nav-text">多核处理器基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8SMP%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.4.</span> <span class="nav-text">共享内存多处理器SMP的基本概念</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">CPU的功能和基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">基本结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">指令执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="nav-number">2.1.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="nav-number">2.2.</span> <span class="nav-text">指令周期的数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%96%E6%8C%87%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%B4%E6%8C%87%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.2.</span> <span class="nav-text">间指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%91%A8%E6%9C%9F"><span class="nav-number">2.2.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%96%B9%E6%A1%88"><span class="nav-number">2.3.</span> <span class="nav-text">指令执行方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">数据通路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84-1"><span class="nav-number">3.2.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E6%93%8D%E4%BD%9C%E5%BA%8F%E5%88%97"><span class="nav-number">3.3.</span> <span class="nav-text">微操作序列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">控制器的功能和基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%88%86%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">微操作命令分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%96%E6%8C%87%E5%91%A8%E6%9C%9F-1"><span class="nav-number">4.1.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%B4%E5%9D%80%E5%91%A8%E6%9C%9F"><span class="nav-number">4.1.2.</span> <span class="nav-text">间址周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F-1"><span class="nav-number">4.1.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%91%A8%E6%9C%9F-1"><span class="nav-number">4.1.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E7%BB%93%E6%9E%84%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">4.2.</span> <span class="nav-text">控制器结构和功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">4.3.</span> <span class="nav-text">控制单元的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">4.4.</span> <span class="nav-text">控制方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E5%B8%83%E7%BA%BF%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">4.5.</span> <span class="nav-text">硬布线控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.5.1.</span> <span class="nav-text">单元设计步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">4.6.</span> <span class="nav-text">微程序控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1"><span class="nav-number">4.6.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%A1%86%E5%9B%BE"><span class="nav-number">4.6.2.</span> <span class="nav-text">单元框图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">4.6.3.</span> <span class="nav-text">工作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="nav-number">4.6.4.</span> <span class="nav-text">微指令编码方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E6%8C%87%E4%BB%A4%E5%9C%B0%E5%9D%80%E5%BD%A2%E6%88%90%E6%96%B9%E5%BC%8F"><span class="nav-number">4.6.5.</span> <span class="nav-text">微指令地址形成方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.6.6.</span> <span class="nav-text">微指令格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%8A%A8%E6%80%81%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.6.7.</span> <span class="nav-text">静态微程序设计和动态微程序设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%AB%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.6.8.</span> <span class="nav-text">毫微程序设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">4.6.9.</span> <span class="nav-text">微程序控制方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">4.6.10.</span> <span class="nav-text">单元设计步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E5%B8%83%E7%BA%BF%E5%92%8C%E5%BE%AE%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E5%99%A8%E5%AF%B9%E6%AF%94"><span class="nav-number">4.7.</span> <span class="nav-text">硬布线和微程序控制器对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%92%8C%E4%B8%AD%E6%96%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">异常和中断机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2"><span class="nav-number">5.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%92%8C%E5%93%8D%E5%BA%94"><span class="nav-number">5.3.</span> <span class="nav-text">检测和响应</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82"><span class="nav-number">5.3.1.</span> <span class="nav-text">中断请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%88%A4%E4%BC%98"><span class="nav-number">5.3.2.</span> <span class="nav-text">中断判优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%9D%A1%E4%BB%B6"><span class="nav-number">5.3.3.</span> <span class="nav-text">响应条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%93%8D%E4%BD%9C"><span class="nav-number">5.3.4.</span> <span class="nav-text">响应操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%85%A5%E5%8F%A3"><span class="nav-number">5.3.5.</span> <span class="nav-text">中断入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="nav-number">5.3.6.</span> <span class="nav-text">处理过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E4%B8%AD%E6%96%AD"><span class="nav-number">5.3.7.</span> <span class="nav-text">多重中断</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">6.</span> <span class="nav-text">指令流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-3"><span class="nav-number">6.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0"><span class="nav-number">6.2.</span> <span class="nav-text">基本实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">6.3.</span> <span class="nav-text">流水线表示方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%96%B9%E5%BC%8F%E7%89%B9%E7%82%B9"><span class="nav-number">6.4.</span> <span class="nav-text">流水线方式特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="nav-number">6.5.</span> <span class="nav-text">基本分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">6.6.</span> <span class="nav-text">影响流水线的因素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">6.7.</span> <span class="nav-text">性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E6%A0%87%E9%87%8F%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">6.8.</span> <span class="nav-text">超标量流水线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.</span> <span class="nav-text">多处理器基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sisdsimdmimd%E5%90%91%E9%87%8F%E5%A4%84%E7%90%86%E5%99%A8%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">SISD、SIMD、MIMD、向量处理器概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.2.</span> <span class="nav-text">硬件多线程基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%A0%B8%E5%A4%84%E7%90%86%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.3.</span> <span class="nav-text">多核处理器基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8smp%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.4.</span> <span class="nav-text">共享内存多处理器SMP的基本概念</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1392,7 +1455,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

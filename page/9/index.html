@@ -74,7 +74,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -198,6 +202,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/11/algorithms14-hw/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/11/algorithms14-hw/" class="post-title-link" itemprop="url">【习题解答】 堆与偏序关系</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-11 14:30:58" itemprop="dateCreated datePublished" datetime="2021-04-11T14:30:58+08:00">2021-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 22:03:54" itemprop="dateModified" datetime="2022-05-19T22:03:54+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/04/11/algorithms14-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 堆与偏序关系" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/04/11/algorithms14-hw/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/11/algorithms14-hw/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>注：</em></strong>
+<em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em>
+## 14.1 + <span class="math inline">\(\lfloor \frac{h}{2}
+\rfloor\)</span>是第h个节点的父节点 + <span class="math inline">\(\lceil
+log(h+1) \rceil\)</span>是第h个节点的层数 + <span class="math inline">\(\lceil log(\lfloor \frac{h}{2} \rfloor+1)
+\rceil\)</span>是第h个节点的父节点的层数 + <span class="math inline">\(\lceil log(\lfloor \frac{h}{2} \rfloor+1)
+\rceil+1=\lceil log(h+1) \rceil\)</span>，因为<span class="math inline">\(h\)</span>的层数比<span class="math inline">\(h\)</span>父节点的层数多一层</p>
+<h2 id="section">14.2</h2>
+<p>取堆的前<span class="math inline">\(k\)</span>层即可，找第<span class="math inline">\(k\)</span>大的数，复杂度<span class="math inline">\(O(k^2)\)</span>，和<span class="math inline">\(n\)</span>无关</p>
+<h2 id="section-1">14.3</h2>
+<h3 id="d-ary-parent">D-ARY-PARENT</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/11/algorithms14-hw/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/04/11/algorithms7-hw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,7 +345,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 17:16:23" itemprop="dateModified" datetime="2021-04-12T17:16:23+08:00">2021-04-12</time>
+                <time title="修改时间：2022-05-19 22:03:07" itemprop="dateModified" datetime="2022-05-19T22:03:07+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +389,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限
+          <p><strong><em>注：</em></strong>
+<em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em>
+## 7.1
+用朴素的两层遍历当然可以，也可以基于归并排序或堆排序进行改进。</p>
+<h2 id="section">7.4</h2>
+<h3 id="section-1">(1)</h3>
+<p>一般不作说明的要求分析复杂度，考虑最坏情况即可： <span class="math inline">\(2n+3n+\cdots+kn=O(nk^2)\)</span></p>
+<h3 id="section-2">(2)</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/11/algorithms7-hw/#more" rel="contents">
@@ -331,7 +454,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-17 19:25:03" itemprop="dateModified" datetime="2022-04-17T19:25:03+08:00">2022-04-17</time>
+                <time title="修改时间：2022-05-19 22:03:07" itemprop="dateModified" datetime="2022-05-19T22:03:07+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -375,7 +498,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限
+          <p><strong><em>注：</em></strong>
+<em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em>
+## 4.1
+<em>利用数学归纳法即可，本题的归纳推理除了个人推荐的自顶向下的方式，也可以自底向上。</em>
++ <span class="math inline">\(h=0\)</span>的情况，只有一个根节点，<span class="math inline">\(L=1\leq 2^0 =2^h\)</span> + 假设<span class="math inline">\(h=k\)</span>的情况，k是非负整数，有命题成立，则对于任意<span class="math inline">\(h=k+1\)</span>的情况，可以把这个树分解为根节点和左右子树，这里有左右子树的树高不超过k显然成立
+，则叶子总数量<span class="math inline">\(L=L_{left}+L_{right}\leq
+2^k+2^k=2^{k+1}\)</span>。 + 故命题成立</p>
+<h2 id="section">4.4</h2>
+<p><em>注意体会这两道题的区别，和解答思路的区别</em>
+1）只需要给出一个满足条件的算法，最坏情况用5次比较对4个元素排序，我们知道可以花3次比较来确定其中三个数的序关系，即<span class="math inline">\(\dbinom{3}{2}=3\)</span>。记排序后的三个数为<span class="math inline">\(a,b,c\)</span>，则对于最后一个数<span class="math inline">\(d\)</span>的序，我们第4次比较把它和中位数<span class="math inline">\(b\)</span>进行比较，无论比较结果如何，至少能确定<span class="math inline">\(d\)</span>和<span class="math inline">\(a,b,c\)</span>其中的2个的序关系，然后第5次比较留给最后一个不确定的序关系即可。</p>
+<p>具体算法的规范书写从略。</p>
+<ol start="2" type="1">
+<li>本题不光要找到一个算法，对5个元素进行排序，并且要证明在最坏情况下这个方法是最优的。那么理论上就需要穷尽所有的比较方法，然后找到其中最优的方法。个人尝试了一下决策树和穷举的思路，过于复杂，这里推荐另一种思路：<strong>先放缩得到算法比较次数的下界，再给出最坏情况下能取到下界比较次数的算法。</strong></li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/10/algorithms4-hw/#more" rel="contents">
@@ -477,8 +613,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="中国邮递员问题"><a href="#中国邮递员问题" class="headerlink" title="中国邮递员问题"></a>中国邮递员问题</h2><h3 id="最优邮路"><a href="#最优邮路" class="headerlink" title="最优邮路"></a>最优邮路</h3><p>求赋权连通图中含有所有边且权和最小的闭途径</p>
-<h3 id="Euler图"><a href="#Euler图" class="headerlink" title="Euler图"></a>Euler图</h3><ul>
+          <h2 id="中国邮递员问题">中国邮递员问题</h2>
+<h3 id="最优邮路">最优邮路</h3>
+<p>求赋权连通图中含有所有边且权和最小的闭途径</p>
+<h3 id="euler图">Euler图</h3>
+<ul>
 <li>Euler迹：经过每条边恰好一次的迹</li>
 <li>Euler闭迹：经过每条边恰好一次的闭迹</li>
 <li>Euler图：有Euler闭迹的图</li>
@@ -541,7 +680,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-11 12:32:12" itemprop="dateModified" datetime="2021-05-11T12:32:12+08:00">2021-05-11</time>
+                <time title="修改时间：2022-05-19 22:09:50" itemprop="dateModified" datetime="2022-05-19T22:09:50+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -585,9 +724,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。因此，检测一个样本是不是OoD对于能拒绝或警示这种样本的系统是重要的。包含 一些小数据集的OoD benchmarks下的工作在近期已经取得了巨大的进展。然而，这些方法很多都需要神经网络训练、调参的时候同时有in-distribution和out-of-distribution的数据。后者是难以先验定义的，不同的OoD数据会产生不同的学习效果。本文的工作基于一个流行的方法：ODIN。这个方法提出两个重要的策略，不需要OoD的数据，同时改进了OoD的检测性能。本文具体的提出了<strong>分解置信度</strong>的方法以及<strong>改进input preprocessing</strong>的方法。本文展示了这两者都得能显著提高检测OoD的性能。并且，作者在更大规模的图像数据集上进行了分析，表明数据的分布迁移有两种：语义迁移和非语义迁移。这两者会让问题的难度变得非常不同，这提供了一个关于ODIN-like的策略何时能有效的分析。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>先进的机器学习模型，具体来说是深度神经网络，通常在静态封闭世界假设下设计的。这些模型需要引入测试集和训练集独立同分布的假设。在真实世界，数据分布会以复杂和动态的方式进行迁移。更坏的是，新概念（如新的分类对象）可能在任何时刻输入到模型中。这样的类内的迁移或者是新概念的数据都会导致灾难性的失败，因为模型依然是基于封闭世界假设来预测的。这些失效经常是无声的，模型不会输出明显的错误。</p>
-<p>以上的问题已经被规范为一个检测问题，即判断一个输入数据是不是in-distribution的数据，或者是out-of-distribution。这个问题已经被研究了很多年，也以各种观点被讨论了，例如rejection, anomaly detection, open set recognition, uncertainty estimation。最近几年，一个流行的基于神经网络检测的baseline使用了类别的后验概率（即softmax）的最大值，这个方法可以在有些情况是一个良好的区分in-distribution和out-of-distribution的指示器。</p>
+          <h2 id="abstract">Abstract</h2>
+<p>对于和训练集同分布的数据，深度神经网络已经获得了惊人的性能，但对于其他数据集性能会明显变差。因此，检测一个样本是不是OoD对于能拒绝或警示这种样本的系统是重要的。包含
+一些小数据集的OoD
+benchmarks下的工作在近期已经取得了巨大的进展。然而，这些方法很多都需要神经网络训练、调参的时候同时有in-distribution和out-of-distribution的数据。后者是难以先验定义的，不同的OoD数据会产生不同的学习效果。本文的工作基于一个流行的方法：ODIN。这个方法提出两个重要的策略，不需要OoD的数据，同时改进了OoD的检测性能。本文具体的提出了<strong>分解置信度</strong>的方法以及<strong>改进input
+preprocessing</strong>的方法。本文展示了这两者都得能显著提高检测OoD的性能。并且，作者在更大规模的图像数据集上进行了分析，表明数据的分布迁移有两种：语义迁移和非语义迁移。这两者会让问题的难度变得非常不同，这提供了一个关于ODIN-like的策略何时能有效的分析。</p>
+<h2 id="introduction">Introduction</h2>
+<p>先进的机器学习模型，具体来说是深度神经网络，通常在静态封闭世界假设下设计的。这些模型需要引入测试集和训练集独立同分布的假设。在真实世界，数据分布会以复杂和动态的方式进行迁移。更坏的是，新概念（如新的分类对象）可能在任何时刻输入到模型中。这样的类内的迁移或者是新概念的数据都会导致灾难性的失败，因为模型依然是基于封闭世界假设来预测的。这些失效经常是无声的，模型不会输出明显的错误。</p>
+<p>以上的问题已经被规范为一个检测问题，即判断一个输入数据是不是in-distribution的数据，或者是out-of-distribution。这个问题已经被研究了很多年，也以各种观点被讨论了，例如rejection,
+anomaly detection, open set recognition, uncertainty
+estimation。最近几年，一个流行的基于神经网络检测的baseline使用了类别的后验概率（即softmax）的最大值，这个方法可以在有些情况是一个良好的区分in-distribution和out-of-distribution的指示器。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/04/Generalized-ODIN/#more" rel="contents">
@@ -689,16 +835,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="面向二部图的增广路算法"><a href="#面向二部图的增广路算法" class="headerlink" title="面向二部图的增广路算法"></a>面向二部图的增广路算法</h2><h3 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h3><ul>
+          <h2 id="面向二部图的增广路算法">面向二部图的增广路算法</h2>
+<h3 id="算法思路">算法思路</h3>
+<ul>
 <li>搜索一条增广路</li>
 <li>如果找到了：替换得到更大的匹配，返回1</li>
 <li>否则结束</li>
 </ul>
-<h3 id="算法细节"><a href="#算法细节" class="headerlink" title="算法细节"></a>算法细节</h3><ol>
+<h3 id="算法细节">算法细节</h3>
+<ol type="1">
 <li>每轮从二部图的任意一侧的不饱和顶点开始，搜索增广路，以左侧为例。</li>
 <li>左侧到右侧，找不在匹配中的边；右侧到左侧，找在匹配中的边。</li>
-<li>如果找到一个不是起点的未饱和顶点 $\Rightarrow$ 则找到增广路 $\Rightarrow$ 替换得到更大的匹配 $\Rightarrow$ 转到5。</li>
-<li>或深度优先搜索完所有的点和边，仍未找到增广路 $\Rightarrow$ 本轮没找到增广路 $\Rightarrow$ 转到5。</li>
+<li>如果找到一个不是起点的未饱和顶点 <span class="math inline">\(\Rightarrow\)</span> 则找到增广路 <span class="math inline">\(\Rightarrow\)</span> 替换得到更大的匹配 <span class="math inline">\(\Rightarrow\)</span> 转到5。</li>
+<li>或深度优先搜索完所有的点和边，仍未找到增广路 <span class="math inline">\(\Rightarrow\)</span> 本轮没找到增广路 <span class="math inline">\(\Rightarrow\)</span> 转到5。</li>
 <li>如果左侧还有不饱和的顶点没有搜索过，则转到1进入下一轮搜索。</li>
 </ol>
           <!--noindex-->
@@ -758,7 +907,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 13:47:49" itemprop="dateModified" datetime="2021-04-05T13:47:49+08:00">2021-04-05</time>
+                <time title="修改时间：2022-05-19 22:03:07" itemprop="dateModified" datetime="2022-05-19T22:03:07+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -802,7 +951,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限
+          <p><strong><em>注：</em></strong>
+<em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em>
+##3.2 ###(1)
+<strong>大概说一下证明思路，用类似于数学归纳法的写法(基本情况+归纳推理)来证明循环不变量即可。</strong></p>
+<ol type="i">
+<li>对于内循环，循环不变量是：</li>
+</ol>
+<p>在循环结束时，<span class="math inline">\(A[j]\)</span>始终比<span class="math inline">\(A[1\cdots j-1]\)</span>中的元素大；</p>
+<ol start="2" type="i">
+<li>对于外循环，循环不变量是：</li>
+</ol>
+<p>在循环结束时，<span class="math inline">\(A[i\cdots
+n]\)</span>部分按从小到大排好序了。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/29/algorithms3-hw/#more" rel="contents">
@@ -904,17 +1065,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><ul>
+          <h2 id="匹配">匹配</h2>
+<ul>
 <li>匹配：M是G的匹配：G中两两不相邻边构成的集合</li>
 <li>被饱和的顶点：M中边的端点被M饱和</li>
 </ul>
-<h2 id="完美匹配"><a href="#完美匹配" class="headerlink" title="完美匹配"></a>完美匹配</h2><ul>
+<h2 id="完美匹配">完美匹配</h2>
+<ul>
 <li>所有顶点都被饱和的匹配</li>
 <li>阶是偶数</li>
 <li>包含阶数的一半的边数</li>
-<li>$K_{2n}$ 包含 $2n-1$ 个不重的完美匹配</li>
+<li><span class="math inline">\(K_{2n}\)</span> 包含 <span class="math inline">\(2n-1\)</span> 个不重的完美匹配</li>
 </ul>
-<h2 id="最大匹配"><a href="#最大匹配" class="headerlink" title="最大匹配"></a>最大匹配</h2>
+<h2 id="最大匹配">最大匹配</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/25/graphIntroduction-4/#more" rel="contents">
@@ -972,7 +1135,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-17 19:03:03" itemprop="dateModified" datetime="2022-04-17T19:03:03+08:00">2022-04-17</time>
+                <time title="修改时间：2022-05-19 22:06:39" itemprop="dateModified" datetime="2022-05-19T22:06:39+08:00">2022-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1016,7 +1179,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限
+          <p><strong><em>注：</em></strong>
+<em>本题解为个人完成，难免有疏漏，请勿抄袭，仅供参考，同时欢迎留言指正。</em>
+##2.2 证明：对于任意整数<span class="math inline">\(n\geq1\)</span>,都存在非负整数<span class="math inline">\(k\)</span>，使得<span class="math inline">\(2^{k}\leq n\leq 2^{k+1}-1\)</span>。</p>
+<p>则<span class="math inline">\(2^k+1\leq n+1\leq 2^{k+1} \Rightarrow
+k&lt;log(n+1)\leq k+1 \Rightarrow \lceil log(n+1)\rceil=k+1\)</span></p>
+<p>又<span class="math inline">\(2^k\leq n\leq 2^{k+1}-1 \Rightarrow k
+\leq log\ n&lt; k+1 \Rightarrow \lfloor log\ n\rfloor+1=k+1\)</span></p>
+<p>故对于任意整数<span class="math inline">\(n\geq 1\)</span>都有<span class="math inline">\(\lceil log(n+1)\rceil=\lfloor log\
+n\rfloor+1\)</span></p>
+<p>##2.5 <em>本题直接证明第二问即可</em>
+证明:利用数学归纳法，很容易证明二叉树的边数比点数少一个。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/19/algorithms2-hw/#more" rel="contents">
@@ -1118,109 +1291,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数学运算背后的算法操作"><a href="#数学运算背后的算法操作" class="headerlink" title="数学运算背后的算法操作"></a>数学运算背后的算法操作</h2>
-      
-    </div>
+          <h2 id="数学运算背后的算法操作">数学运算背后的算法操作</h2>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/19/algorithms1-hw/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/19/algorithms1-hw/" class="post-title-link" itemprop="url">【习题解答】 抽象算法设计与分析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-19 20:10:49" itemprop="dateCreated datePublished" datetime="2021-03-19T20:10:49+08:00">2021-03-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-17 11:09:43" itemprop="dateModified" datetime="2021-10-17T11:09:43+08:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/03/19/algorithms1-hw/" class="post-meta-item leancloud_visitors" data-flag-title="【习题解答】 抽象算法设计与分析" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/03/19/algorithms1-hw/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/19/algorithms1-hw/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/19/algorithms1-hw/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1306,7 +1378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
