@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"wooziehang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+  <meta name="description" content="学习背景 最近由于公司项目的需要，要求把一个第三方c语言的so库封装成java接口，并打包成jar，最终运行在linux平台。 整个学习和封装实现大约花了半个月，中间遇到了各种问题，特此总结。 出于公司项目安全的要求，后续总结不给出实际的文件命名，而重新用一些简单的替换命名来表述。 实现流程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【工作日志】 2021年3月">
-<meta property="og:url" content="https://wooziehang.github.io/2021/03/01/worklog-2021-3/index.html">
+<meta property="og:title" content="【知识总结】 jni用法详解">
+<meta property="og:url" content="https://wooziehang.github.io/2022/07/11/jni/index.html">
 <meta property="og:site_name" content="吴紫航">
-<meta property="og:description" content="此处有非公开内容，如果你有兴趣，可以与博主联系获得访问权限">
+<meta property="og:description" content="学习背景 最近由于公司项目的需要，要求把一个第三方c语言的so库封装成java接口，并打包成jar，最终运行在linux平台。 整个学习和封装实现大约花了半个月，中间遇到了各种问题，特此总结。 出于公司项目安全的要求，后续总结不给出实际的文件命名，而重新用一些简单的替换命名来表述。 实现流程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-01T06:57:01.000Z">
-<meta property="article:modified_time" content="2021-04-13T12:59:43.571Z">
+<meta property="article:published_time" content="2022-07-11T08:19:31.000Z">
+<meta property="article:modified_time" content="2022-07-11T09:02:49.415Z">
 <meta property="article:author" content="Woozie Hang">
-<meta property="article:tag" content="Working Logs">
+<meta property="article:tag" content="Knowledge Summary">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wooziehang.github.io/2021/03/01/worklog-2021-3/">
+<link rel="canonical" href="https://wooziehang.github.io/2022/07/11/jni/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>【工作日志】 2021年3月 | 吴紫航</title>
+  <title>【知识总结】 jni用法详解 | 吴紫航</title>
   
 
 
@@ -77,7 +77,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -202,7 +314,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/03/01/worklog-2021-3/">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2022/07/11/jni/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
@@ -215,7 +327,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【工作日志】 2021年3月
+          【知识总结】 jni用法详解
         </h1>
 
         <div class="post-meta">
@@ -224,28 +336,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-03-01 14:57:01" itemprop="dateCreated datePublished" datetime="2021-03-01T14:57:01+08:00">2021-03-01</time>
+              <time title="创建时间：2022-07-11 16:19:31 / 修改时间：17:02:49" itemprop="dateCreated datePublished" datetime="2022-07-11T16:19:31+08:00">2022-07-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 20:59:43" itemprop="dateModified" datetime="2021-04-13T20:59:43+08:00">2021-04-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">工作日志</span></a>
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/03/01/worklog-2021-3/" class="post-meta-item leancloud_visitors" data-flag-title="【工作日志】 2021年3月" title="阅读次数">
+            <span id="/2022/07/11/jni/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 jni用法详解" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -260,8 +366,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2021/03/01/worklog-2021-3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/01/worklog-2021-3/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/07/11/jni/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/11/jni/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,22 +382,61 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="密码验证错误，请再试一试">
-  <script id="hbeData" type="hbeData" data-hmacdigest="342506be3a3964a20fcd3e000b7519adbac0d29bae9205ccd65806361a1058e1">ad43cd26d5b7026203cb76ab857976b3fae4deb41e0851382517be9714c0e852eee40e9d9dea7d566842c084141ddf2c753ab152704dfd05ba6a33024b991c386ead436920a8fd87978624ba3a33dd40cd4b07344fb6bccd103834826cf8c861a8941f4f7ae9022fcbb5920af76a1d2fed7b33d5f732f58d36f091715c4f1fd0096f0c313c099bc7ce4ebd707406afa79cfc3dcdb976e0359b2d008c0b5dd391809173e503da3447edc8e1f82dc91d4699b4087b52753e063770ecc1080e930b8b58ddc2a7f5bbbcc6ab1f2433894ee10c37010e91a88dc38c91d2aada1d792dcf25f4a4de0f6131125be2ffd80f6a9d0b034dab8f2f9a922745fd0a36c510394b0c3ce4b7784b8711eb63b811de286bef222c9b79aa8fcce6b1cc1fdd2026ec6ae37997fe3ca012f1cc5dd798146e98067a13ceba59a1e8f5e41f6dd1ae20dc4c4edd1d9f500cee5f6ef7fdefab4e414b36390a7c3521c74fb10674c1783ee8deed4a6b12e8b62fbec1af64fa9f0da01ac6e6558949455aa5be0a94b396aeaa6fc1c8ed26ea1703ee1660c9e4ac2ae15d1dceb592eb97681a0c9263424890eb0fc94e95dcf5c5daadcaa3c680851b8a7845bf584ec25340016143cd00a3d377373330f7d06df117816b68a981c343f45d193003bba93cb3baa2105ef84ef8343f191fdd27e4e5da2897bda94eb1bed5f1788a4eb305cb717a949c75e9e6bdb124ad81dd093d05d5733a5ce7f15d7f0085f9ea265f147027ac5214cf4c9f2ccff8d8885d6426c491e9417ddc446885950453a0a9ed172e9042ea24bc4aaba0bd04ed22a4d3e1940e898bda4d7e8561a2355d91e27a991611b8a784f9625030441cd2be9f01b21ce76dd1166631cdb5b086b672a56ad39b6a13af02c47af6242e2711b49b8ffd129d87f1bbcf03a231d2fa7bc2d4b290aafa64e198fe2c682be902f4b3aa6a191c8f5b7847e8d5cd4cfb3d1ec2e9fcecf25033db43fca392ab3bff47663bac463bccc4a4fa87ca525a3337516bc6842719e8bf5a5fe9e7d27a17ab23cf6a3b9c16ec506c125450c1298aeae5953fd970e6a879d3735fe0513e11e890883f1b09a77fc9626f92c8ad125eda7d3052a9be993632b64808a5b9e001ba0c7b7ea60f1bc44f035d2068d9f915881a0a7771399746443377093be07bcd482b7222436a5807301ec8c38d451015a8b60d753b44e5378e0e8f92cdf858e483c97063c5d5161d92f65855e74c8d9548db7f5fe9248f17943941c8455a67563b739d687b6dbe890115f0b9ea55d6134e112ac966a683e5ca89cf2d1ee5007c5da5fb55a76941c4b0a5d7fc6c081baf633babc06edb619123134b811ca167c4be3a16ae333233a796c34d955cfe6fe268a276e25cce124abc2d943201a03db1638cddaebbbba2b225353d4b868b80095439f2fd05c060b4d25bb172db4395510fd0fbad3eb4551ba2e6f18a34a975415f7d7be40b8b3ea330634727ce8e1588eb4a214238592fd92fc82791f1648e3fc3e9ebf54e56bb03224f0da75684a1d9830b652aafc65ac7cb0102ee55a7ab59b6b906b9b533236315021049b718076e7df2438399dab1c512f2021dca5346e45ce7c783f360bee9bb7deca4a203c87d0efc5b5adaa6dd100e6ac2b3a23030cfc889ab8d328675b244436a85ea90bfab5edf438e2d5adc922fae90848600783db7978b52e2c3672478af7bb9366e47a98a7db5b1c60b017dc500fed89060eca9f7d65365f9344e5deabf7496c9374343bf08b23e40054ce29ec5e762390f5aa18c522eac1baa304e90a901d49f9971cd9fd6cc94fc62eedc54c4abc5a5c9894408a7643b0c9c9376075ab41d802e29c9342e33765d16fbbe7ee9d35ebf3ac7ef5240ee73941b46f048301b681955ef5a344b5547eb01cb302a9fabb4eb0f2e6bbb3c2c55492e3365ab32c936009bf4fa09933422aa82d63041fa4875dda653eb110038da12d42d9846b0d2affa933a75eaf7e8b321f807975294c3b8344444812d9c2ad7de6662b0247ae6423e0000355ad29529c796fc3f1d1b1f5f4a430ba5b6448dc5d302dc4f10b4873eac184201debe7bd27f072f4f02eb10bd85d79ad4632c6defc3937e81aa9b53fd92b7a323ef788d9baa4974c78b6c807f1a8ebc8588b0003a6125b9c8c4acb19f4491a826051ff5b2d8a4f21bf6a41b8ac01716bd0af38f0784002e578b79b66d493502189371528601ac8c8ad4d8cd66fdda7d593dcfbefa1f32698b6d8155d4e5ef95a4587b202995af0c298ffe7cb6e5b7fa96d630a2ec2221eaac56b07d32cd73b11c71be3c2d92552d8f207ee5578423c2a7aa7548293e5cb39fabf09da1e19ab415690a0008a63f6f5b1b06b23af7e127ed672463e4d5104c60194075e53e300fb0dc7c1d5393b84bc84341eb7646acfd3b456c2be81d9c89c398d82e86f52ec0d89bec1e7845c08c421e87c0a3655e18da6ffe81f9d73f5be030417677b0b77ac67cb110d5ccadf2effaf52700a13a5beba650abd7470110029a37854d24b2f8588525bd0b54107a9747954bc85230abce258689334d5e5ab095e26bfba51eee0a9943862672791914fca5cc8aafcb5e3063c15e68db2e51ab025d904e2cb6e8a43e98195764c43093440574e11194b83b669d46be8bd0067e6499c93d5109de2e9edf99d9ba970275b791a3b9dd765a4a217c2f6c328f4505fc8a13aef97d20e5aa42000c5c733329e20b0634074da945da4c6e6e6350030bb07888d2bfacf1cea7e9e4c8f587b4fc94235c8691696eb30d39fdf0651d8e43d60ead201c9651f2e0d82e7312dab695e818be4464fe92885edada8b9b3bc3bcbc79def36f775f44a00aeadeeed52399a404afb9a0f67ab5bc75bddc57332f6dd4f5fe02b43cba976fda7ac3bbdd54ada2c057b747f78bf3db1e77f107d4a2d48dd06baf9d9966ff5c15c88de209b57238550d318f61dda7e6a48b6498261fe9c6e756463dd635e44174c697a474827b3159df5018ce81a29be9fb1350d9a7b0398d334cf06449ff417521b1c301860411cc4510fb0f141995db6aaddf603471eeb76f8ecaf2bc565da32e2a22d74ca7be7d0408b24fc00bb18cedf7a7c87b3880bad35f7b296d17c2ee85f00154398ca38c3cb209c1ccc25af7869e4ab3e9e900e3a21217fbe8dd5b292d4c6697f37aa5d25b42517b17768fb5a38870552c42ad8a069c94ae37bd8c3b385297dec58fd5c10fc078bcfd0ce4b53b747b0959b8f8b514fbcaba7ef73407c44680b67e3677cd30235efb4e9e2f9c9312153bc6d9e0ad224a840fee51e26409b36a766704ed8eb163b4b243bfa2aea664251af4b5e254cc74fae7cd222698e7c54602748e24148af96d5a4ecd62c3065d8dc285507e54035507457db138e4bc0966ed56ddec3a02870c2aaa2a15db47f2fbf7464f0981882b63a2c4466faef27e05d9118e49aefc23c6b03b256d1aaac7e366fc808f7d17a2fd1f8297e4292372bee83e4c11c7ec20dd08c49d4ad17b4b2cf090b4f923551fa56143d9820acd46194315bdb548c10e59a36c2da018f0879be224d7f911371ce6cc9d3862460c857b316c0b5043063a7074a479c9b1e453141542df53a4ef41a1ab2a14ed8e3b00d5a50a1b78318b105d4a7b62d8827d392a37a5dfbaea266b1fcc04ceb4c31f61ec55721eede5309cf351473436aa510ff80424d44cccaa1c3b4e3ead013184e3d4268606e07bf0062909da43c98388d690c5b47304a0afc3221ec636d8c332ed75a1b189fc6a40140160e7e000928e10838d64643f8f8fd9523878e46feca7f5e0f9afefa5ae96eb9c8f2d9067ae2771640f2677051f0b35888613cad51b73fb2ea4e2921778426bfc08abd61a9fa994ce98e7e32e30b183407feaede14a4c5bfe1b0c664a4e739eb283b3570c6de00295cb6952394f91560875fd167c0f3f899ecec8ab581c77e57cf42777c0130f9af26c5064f61a8bb7427d461e163d60ac6f4d6714f7b105708ed74082ffc1e88ceb78e6467bede023acc1b11a90cc4f9785d57a238320ef27645249dd3cc5c431a5a8e694b5dc59d5b0370b66ceda72c41c1cddf32c957aac66f29029818036892e17bc0ab565f55050b86328473a6f3787feb200545098bae85c0ee80fa479611a3b9d5438ec23373fce450999a2ab4954135ec5accdb3e2c2890a2bfd37e81b3d0983ed2192974d76944518a458b32d27155aec7da429605311f0f516565da54400760214236ef327ca0a3cb9e13c0d73170f4ce4954584f6e9399cd5bc2cb4d730e351faf0a6d9293aa318bc0cab6f735c2fa78ba101c19fcc7ef933a5b47640a430e9f185f3291cdeca8c7c000506a1c4bede949db4fa44ef12fce88374a6ff9cc4cc714542d04ff282041986e1c7ee88352e9b33f5e961a56d13a6cc522faa1274875c5e36731054fea34e8bf4d36439d0b4d3c379162ea8fae2174c68acd14943213df18606f09368b87e5a00cd4edf021603d454ebf2f580cf06f3536cce31d4de474b5ce8b5fc684eb740bac174e451df7e1962250b961a1cc1744777db5795350b95c1280d2c0159cc41374bcafa5070cd5f11c097b55d007e3e20c6e899c7a86a72bb820bb7e2d3bc2fa63d0cd4fc6637f058cca0d285e3b5a1113154e0c380842b3ae674e53b174c9706d53b3edd651e4d4f7a0b69430230a49f901ca98e291d12e25e0c4eb936e022734c740bb38269f08bb60d00a64350d1e82b476189a051351d91a5bdfff27209a3f63d2ea1ee685a6e62e958f82383c983443ff7c2d454682cd45ce38a361edd851c5b22099ae4f088ce04fafe5e3a6bc5dc7d1c41d7ddcee1417e33952821b1ebb11eb5ed306fa25ea149585d4922f0609685fef78f6cb374a2361827ab33bc442510b6158542896e7cf032d84e0949c406cdd4ebffa69e2f97b627b6d4dddce4959397e15379e86a7a3036acf90878be9b685e92a59efc615512c075eba46d42b5b98aa115b323350618680ec249ca25ca61ae92f6b014c83d4dbc372e5dd1a1778e7180a4a698359b210bdc9028be672712c582d0c5fd8108714a51873dd52293c1253233e1c821b944204043c1243c21412e8b74ac504d70b93ae712</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">请输入访问密码查看非公开内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <h2 id="学习背景">学习背景</h2>
+<p>最近由于公司项目的需要，要求把一个第三方c语言的so库封装成java接口，并打包成jar，最终运行在linux平台。</p>
+<p>整个学习和封装实现大约花了半个月，中间遇到了各种问题，特此总结。</p>
+<p>出于公司项目安全的要求，后续总结不给出实际的文件命名，而重新用一些简单的替换命名来表述。</p>
+<h2 id="实现流程">实现流程</h2>
+<ul>
+<li>已有一个第三方so库（a.so）、对应的头文件（记为a.h）</li>
+<li>根据头文件自行定义对应的java接口，a_interface.java，编写文档</li>
+<li>实现对应的a_imp.java源文件
+<ul>
+<li>类初始化时需要加载jni格式c文件编译生成的so库（jni.so）
+<ul>
+<li>如果有依赖库要先加载对应依赖库</li>
+</ul></li>
+<li>public 前缀修饰符对应 a_interface.java接口定义的实现</li>
+<li>private native
+前缀修饰符对应本地已有函数的声明，该函数的实现在jni.so中
+<ul>
+<li>和public一一对应</li>
+</ul></li>
+</ul></li>
+<li>命令行执行javah -jni -encoding UTF-8 [包名.子包名.a_interface.java]
+<ul>
+<li>将生成包名_子包名_a_interface.h jni格式的头文件</li>
+</ul></li>
+<li>创建并实现包名_子包名_a_interface.c jni格式的源文件
+<ul>
+<li>需要包含a.h</li>
+<li>需要加载a.so
+<ul>
+<li>编译配置推荐使用Makefile或CMakeLists实现</li>
+</ul></li>
+<li>在jni格式源文件中调用a.so中的接口，并根据a_imp.java的private
+native函数的形式来返回变量</li>
+</ul></li>
+<li>编译生成jni.so</li>
+<li>在a_imp.java对应的java项目中配置打包，导出a.jar包</li>
+<li>编写java测试demo，导入jar包、相关so库，调用a_interface的接口</li>
+</ul>
+<h2 id="调用流程">调用流程</h2>
+<p>这里考虑String作为入参和返回的情况</p>
+<ul>
+<li>外部使用者调用a_imp.java的接口，传入String对象</li>
+<li>public 把String对象传入对应的private native 函数中</li>
+<li>native函数调用jni.so对应函数，此时java中的String对象将自动转换为c语言的jString结构体变量</li>
+<li>调用jni相关转换函数，把jString转换为char数组</li>
+<li>把char数组作为入参传入到a.so对应的函数中，得到返回的char数组</li>
+<li>利用jni相关转换函数，把char数组转化为jString变量并返回</li>
+<li>native函数也就返回了java的String对象</li>
+<li>public接口返回String对象</li>
+</ul>
+<p>此外如果入参是java自定义类，则对应jni的jObject结构体；</p>
+<p>如果入参是int，则对应jni的jint类型；</p>
+<p>jni提供了完善的类型转换接口，可自行搜索资料</p>
+
     </div>
 
     
@@ -315,7 +460,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Working-Logs/" rel="tag"># Working Logs</a>
+              <a href="/tags/Knowledge-Summary/" rel="tag"># Knowledge Summary</a>
           </div>
 
         
@@ -324,13 +469,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/20/ODIN/" rel="prev" title="【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks">
-      <i class="fa fa-chevron-left"></i> 【阅读笔记】 Enhancing the Reliability of Out-of-Distribution Image Detection In Neural Networks
+    <a href="/2022/06/23/circuit-analysis-3/" rel="prev" title="【知识总结】 电路的动态分析">
+      <i class="fa fa-chevron-left"></i> 【知识总结】 电路的动态分析
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/08/graphIntroduction-1/" rel="next" title="【知识总结】 图的基本概念">
-      【知识总结】 图的基本概念 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -390,6 +532,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">学习背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">实现流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">调用流程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,14 +548,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -571,6 +714,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
