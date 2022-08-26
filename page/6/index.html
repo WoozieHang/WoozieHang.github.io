@@ -310,6 +310,136 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/07/operatingSystem1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/07/operatingSystem1/" class="post-title-link" itemprop="url">【知识总结】 第一章-操作系统概述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-07 22:23:55" itemprop="dateCreated datePublished" datetime="2021-11-07T22:23:55+08:00">2021-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-21 11:20:12" itemprop="dateModified" datetime="2021-11-21T11:20:12+08:00">2021-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/07/operatingSystem1/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第一章-操作系统概述" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/07/operatingSystem1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/07/operatingSystem1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本概念">基本概念</h2>
+<h3 id="概念">概念</h3>
+<ul>
+<li>定义：操作系统是管理分配计算机系统软硬件资源，组织调度计算机工作，为用户和其他软件提供接口环境的程序集合</li>
+<li>地位：操作系统是计算机系统最基本的系统软件</li>
+</ul>
+<h3 id="基本特征">基本特征</h3>
+<ul>
+<li>并发
+<ul>
+<li>通过引入进程，使得计算机系统有处理和调度多个程序同时间间隔运行的能力</li>
+<li>和并行有区别，并行指的是同时刻，并发指的是同间隔</li>
+</ul></li>
+<li>共享
+<ul>
+<li>即资源共享，包括互斥共享方式、同时访问方式</li>
+<li>互斥共享方式：对于临界资源（独占资源），一段时间只允许一个进程访问，如打印机和磁带</li>
+<li>同时访问方式：一段时间内可以分时的共享某资源，宏观上是同时访问资源，如磁盘设备</li>
+<li>并发和共享相互依存，是操作系统<strong>最基本的特征</strong></li>
+</ul></li>
+<li>虚拟
+<ul>
+<li>虚拟技术把实体变成用户感觉的逻辑对应物</li>
+<li>虚拟处理器技术（时分复用技术）：分时的使用一个实体CPU，逻辑上变成多个虚拟CPU供每个用户使用</li>
+<li>虚拟存储器技术（空分复用技术）：通过外存实现内存容量的扩展，使得用户感觉到更大的（虚拟）内存容量</li>
+<li>虚拟设备技术：把一台IO物理设备虚拟为多台逻辑IO设备，逻辑上变成多个虚拟IO设备供每个用户使用</li>
+</ul></li>
+<li>异步：指进程的执行断断续续，以不可预测速度推进，操作系统处于随机的环境中</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/07/operatingSystem1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/06/ComputerOrganization-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1524,142 +1654,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/19/DataStructure-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/19/DataStructure-6/" class="post-title-link" itemprop="url">【知识总结】 第六章-图</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-19 14:02:01" itemprop="dateCreated datePublished" datetime="2021-10-19T14:02:01+08:00">2021-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 17:29:52" itemprop="dateModified" datetime="2022-07-11T17:29:52+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/10/19/DataStructure-6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-图" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/10/19/DataStructure-6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/19/DataStructure-6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="图的基本概念">图的基本概念</h2>
-<h3 id="图的定义">图的定义</h3>
-<ul>
-<li>图G由顶点集V和边集E构成，记为G=(V,E)</li>
-<li>V(G)表示G中的顶点的有限<strong>非空</strong>集，|V|为点数</li>
-<li>E(G)表示G中的边的有限集，|E|为边数</li>
-<li>图不可以没有顶点，不能是空图，但可以没有边</li>
-</ul>
-<h3 id="基本概念">基本概念</h3>
-<ul>
-<li>有向图：如果E是有向边（弧）的有限集合，则G是有向图，从v到w的弧是顶点的有序对&lt;v,w&gt;，v是弧尾，w是弧头（也称作v邻接到w）</li>
-<li>无向图：如果E是无向边的有限集合，则G是无向图，边是顶点的无序对（v，w），w和v互为邻接点，边（v，w）依附于v和w两个点</li>
-<li>简单图：没有重复边，没有顶点到自身的边，数据结构中只讨论简单图</li>
-<li>完全图：任意两点之间都有一条边，一般是指无向图</li>
-<li>有向完全图：任意两点之间都有一对方向相反的弧</li>
-<li>子图：两个图G(V,E)和G'(V',E')，如果V'是V子集，E'是E子集，则G'是G子图</li>
-<li>生成子图：V'=V的子图</li>
-<li>点的连通：无向图两个顶点之间有路径则两个点是连通的</li>
-<li>连通图：任意两点是连通的</li>
-<li>连通分量：无向图（可以是<strong>非连通图</strong>）的极大连通子图（一个图的连通分量显然不一定唯一）</li>
-<li>强连通：有向图两个顶点之间相互可达</li>
-<li>强连通图：有向图任意两点之间强连通</li>
-<li>强连通分量：有向图的极大强连通子图</li>
-<li>生成树：<strong>连通图</strong>的生成树是包含图中全部顶点的极小连通子图</li>
-<li>顶点的度、入度、出度：无向图顶点上依附的边数为度（记为TD）；有向图根据出边和入边进一步区分度为入度和出度（记为ID和OD）</li>
-<li>无向图的顶点度之和是边数两倍</li>
-<li>有向图顶点入度和 = 出度和 = 图边数 = 度数和的一半</li>
-<li>带权图（网）：给图的边标上权值的图</li>
-<li>稠密图、稀疏图：边数少的图为稀疏图，反之为稠密图。一般认为|E|&lt;|V|log|V|时为稀疏图</li>
-<li>路径：顶点<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex" xmlns="http://www.w3.org/2000/svg" width="2.09ex" height="1.652ex" role="img" focusable="false" viewBox="0 -443 923.7 730.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"/></g><g data-mml-node="mi" transform="translate(518,-150) scale(0.707)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"/></g></g></g></g></svg></mjx-container></span>到<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex" xmlns="http://www.w3.org/2000/svg" width="2.021ex" height="1.652ex" role="img" focusable="false" viewBox="0 -443 893.3 730.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"/></g><g data-mml-node="mi" transform="translate(518,-150) scale(0.707)"><path data-c="1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/></g></g></g></g></svg></mjx-container></span>的路径指的是顶点序列<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex" xmlns="http://www.w3.org/2000/svg" width="16.262ex" height="2.347ex" role="img" focusable="false" viewBox="0 -750 7187.8 1037.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"/></g><g data-mml-node="mi" transform="translate(518,-150) scale(0.707)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"/></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(923.7,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">、</text></g></g><g data-mml-node="msub" transform="translate(1823.7,0)"><g data-mml-node="mi"><path data-c="1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"/></g><g data-mml-node="TeXAtom" transform="translate(518,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mn" transform="translate(345,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/></g></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2989.2,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">、</text></g></g><g data-mml-node="mo" transform="translate(4055.8,0)"><path data-c="22EF" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250ZM525 250Q525 274 542 292T585 310Q609 310 627 294T646 251Q646 226 629 208T586 190T543 207T525 250ZM972 250Q972 274 989 292T1032 310Q1056 310 1074 294T1093 251Q1093 226 1076 208T1033 190T990 207T972 250Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(5394.5,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">、</text></g></g><g data-mml-node="msub" transform="translate(6294.5,0)"><g data-mml-node="mi"><path data-c="1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"/></g><g data-mml-node="mi" transform="translate(518,-150) scale(0.707)"><path data-c="1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/></g></g></g></g></svg></mjx-container></span>，路径上边个数是路径长度，首位顶点相同的路径叫做回路或者环。n个顶点的图，如果边数大于n-1，则一定有环</li>
-<li>简单路径：顶点不重复的路径</li>
-<li>简单回路：除了首位顶点外，其他顶点不重复的回路</li>
-<li>距离：两个顶点的最短路径长度，如果不存在路径则距离为无穷</li>
-<li>有向树：一个顶点的入度为0，其余顶点的入度为1的有向图</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/19/DataStructure-6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1731,7 +1725,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
