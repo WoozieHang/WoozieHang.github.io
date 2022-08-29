@@ -310,6 +310,134 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/10/operatingSystem2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/10/operatingSystem2/" class="post-title-link" itemprop="url">【知识总结】 第二章-进程管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-10 15:41:30" itemprop="dateCreated datePublished" datetime="2021-11-10T15:41:30+08:00">2021-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 22:31:31" itemprop="dateModified" datetime="2022-05-19T22:31:31+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/11/10/operatingSystem2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-进程管理" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/11/10/operatingSystem2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/10/operatingSystem2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="进程">进程</h2>
+<h3 id="进程基本概念">进程基本概念</h3>
+<ul>
+<li>进程的定义
+<ul>
+<li>具有独立功能的程序在一个数据集合上的一次执行过程（活动）</li>
+<li>资源分配和调度的基本单位</li>
+</ul></li>
+<li>进程控制块PCB
+<ul>
+<li>描述进程基本情况和运行状态的数据结构</li>
+<li>系统通过PCB感知进程、控制和管理进程</li>
+<li>创建进程时创建PCB，撤销进程时撤销PCB，PCB是进程存在的唯一标志</li>
+<li>PCB包括进程的描述信息、控制管理信息、资源分配清单、处理机有关信息</li>
+<li>状态相同的各进程的PCB可以用索引表统一管理，每个表项指向一个PCB</li>
+</ul></li>
+<li>进程的特征
+<ul>
+<li>动态性：有动态的生命周期，比如：创建、活动、暂停、终止</li>
+<li>并发性：多个进程实体在同一段时间内，在内存中运行，并发是引入进程的目的</li>
+<li>独立性：进程实体能独立运行、获得资源、调度</li>
+<li>异步性：各进程按不可预测的速度推进</li>
+<li>结构性：每个进程一个PCB，进程实体包括程序段、数据段、PCB</li>
+</ul></li>
+</ul>
+<h3 id="进程状态和转换">进程状态和转换</h3>
+<h4 id="状态">状态</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/10/operatingSystem2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/07/operatingSystem1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1538,122 +1666,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/10/20/DataStructure-7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/20/DataStructure-7/" class="post-title-link" itemprop="url">【知识总结】 第七章-查找</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-20 15:19:14" itemprop="dateCreated datePublished" datetime="2021-10-20T15:19:14+08:00">2021-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-13 16:46:23" itemprop="dateModified" datetime="2021-12-13T16:46:23+08:00">2021-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/10/20/DataStructure-7/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第七章-查找" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/10/20/DataStructure-7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/20/DataStructure-7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本概念">基本概念</h2>
-<ul>
-<li>查找：在数据结构中寻找满足条件的元素的过程。查找可能成功或失败</li>
-<li>查找表：用于查找的数据结构，支持插入，删除，查询元素，不支持插入删除的是静态查找表，否则是动态查找表</li>
-<li>关键字：标识元素的数据项的值</li>
-<li>平均查找长度ASL:给定每个元素的查找概率，计算出所有查找过程的平均关键字比较次数</li>
-</ul>
-<h2 id="顺序查找和折半查找">顺序查找和折半查找</h2>
-<h3 id="顺序查找">顺序查找</h3>
-<ul>
-<li>一般线性表顺序查找：从一端开始，逐个搜索关键字是否满足条件</li>
-<li>有序表顺序查找：因为有序，有些失败的情况不一定要扫完整个表</li>
-<li>可以用顺序存储或链式存储</li>
-<li>可以用二叉树表示查找过程，叶子结点表示失败的情况，方便计算ASL</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/20/DataStructure-7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1725,14 +1737,14 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
