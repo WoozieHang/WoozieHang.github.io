@@ -310,6 +310,162 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/03/network6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
+      <meta itemprop="name" content="Woozie Hang">
+      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴紫航">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/03/network6/" class="post-title-link" itemprop="url">【知识总结】 第六章-应用层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-03 09:40:54" itemprop="dateCreated datePublished" datetime="2021-12-03T09:40:54+08:00">2021-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 22:39:37" itemprop="dateModified" datetime="2022-05-19T22:39:37+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/12/03/network6/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第六章-应用层" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2021/12/03/network6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/03/network6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="网络应用模型">网络应用模型</h2>
+<h3 id="客户服务器模型">客户/服务器模型</h3>
+<ul>
+<li>即Cient/Server模型、C/S模型
+<ul>
+<li>服务器是服务提供方，要一直保持运行状态</li>
+<li>客户是服务请求方，要实现知道服务器的地址</li>
+</ul></li>
+<li>工作流程
+<ul>
+<li>服务器处于接收请求状态</li>
+<li>客户机发出服务请求，等待结果</li>
+<li>服务器收到后，分析请求、处理、把结果发给客户机</li>
+</ul></li>
+<li>特征
+<ul>
+<li>非对称
+<ul>
+<li>占少数的服务器集中管理整个网络</li>
+<li>占多数的客户机的权限由服务器管理限制</li>
+</ul></li>
+<li>客户机之间不能通信</li>
+<li>服务器支持的客户机数有限</li>
+</ul></li>
+<li>应用举例
+<ul>
+<li>FTP</li>
+<li>TELNET</li>
+<li>SMTP</li>
+<li>DNS</li>
+<li>WWW（Web）</li>
+</ul></li>
+</ul>
+<h3 id="对等模型">对等模型</h3>
+<ul>
+<li>即P2P模型
+<ul>
+<li>P2P网络是由对等结点组成的逻辑网络</li>
+</ul></li>
+<li>特征
+<ul>
+<li>各计算机地位对称，既是客户，又是服务器
+<ul>
+<li>获取服务的同时需要提供服务，也算缺点</li>
+</ul></li>
+<li>任意一对计算机（对等方）直接相互通信</li>
+<li>网络单结点失效不影响其他结点</li>
+</ul></li>
+<li>应用举例
+<ul>
+<li>PPlive</li>
+<li>Bittorrent</li>
+<li>电驴</li>
+</ul></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/03/network6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/12/02/ProbabilityAndStatistics6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1597,171 +1753,10 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://wooziehang.github.io/2021/11/23/network2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png#/images/avatar.gif">
-      <meta itemprop="name" content="Woozie Hang">
-      <meta itemprop="description" content="This blog mainly shares knowledge summary, problem set solutions, reading notes, work logs, etc">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴紫航">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/23/network2/" class="post-title-link" itemprop="url">【知识总结】 第二章-物理层</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-23 10:11:05" itemprop="dateCreated datePublished" datetime="2021-11-23T10:11:05+08:00">2021-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-19 22:36:38" itemprop="dateModified" datetime="2022-05-19T22:36:38+08:00">2022-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/11/23/network2/" class="post-meta-item leancloud_visitors" data-flag-title="【知识总结】 第二章-物理层" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">评论数：</span>
-    
-    <a title="valine" href="/2021/11/23/network2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/23/network2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="通信基础">通信基础</h2>
-<h3 id="基本概念">基本概念</h3>
-<ul>
-<li>数据：信息的实体</li>
-<li>信号：数据的电气表现、存在形式
-<ul>
-<li>模拟信号：连续的信号</li>
-<li>数字信号：离散的信号</li>
-</ul></li>
-<li>码元：用固定时长（即码元宽度）的信号波形表示一个k进制数
-<ul>
-<li>码元宽度：固定时长</li>
-<li>数字脉冲：信号波形</li>
-</ul></li>
-<li>信源：产生和发送数据的源头
-<ul>
-<li>数据经过变换器变成信号，传给信道（详见编码和调制小节）</li>
-</ul></li>
-<li>信道：信号的传输媒介
-<ul>
-<li>噪声源会对信号产生干扰</li>
-<li>按信号类型分类：模拟信道、数字信道</li>
-<li>按传输介质分类：无线信道和有线信道</li>
-</ul></li>
-<li>信宿：接收数据的终点
-<ul>
-<li>信号经过反变换器变为数据，传给信宿</li>
-</ul></li>
-<li>基带传输：把数据以原始频带（基本频带）编码为基带信号，在数字信道上传输</li>
-<li>频带传输：把基带信号调制为模拟信号，在模拟信道上传输</li>
-<li>宽带传输：在频带传输基础上使用多个信道，每个信道同时频带传输，链路容量大，</li>
-<li>通信方式
-<ul>
-<li>单向通信：只有一个方向的通信</li>
-<li>半双工通信：同一时间只有一个方向的通信，需要两个信道</li>
-<li>全双工通信：同一时间可以有两个方向的通信，需要两个信道</li>
-</ul></li>
-<li>速率：单位时间内传输的数据量
-<ul>
-<li>码元传输速率（波特率、调制速率）：单位时间传输码元的个数（脉冲数）
-<ul>
-<li>单位是波特（Baud）</li>
-<li>与进制有关</li>
-</ul></li>
-<li>信息传输速率（比特率）：单位时间传输比特的个数
-<ul>
-<li>单位是b/s</li>
-</ul></li>
-</ul></li>
-<li>带宽
-<ul>
-<li>在通信领域指频带范围，单位Hz</li>
-<li>在网络领域指最高数据传输速率，单位b/s</li>
-</ul></li>
-</ul>
-<h3 id="奈奎斯特定理">奈奎斯特定理</h3>
-<ul>
-<li>条件：理想低通信道，即无噪声且带宽有限，带宽设为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex" xmlns="http://www.w3.org/2000/svg" width="2.371ex" height="1.595ex" role="img" focusable="false" viewBox="0 -683 1048 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"/></g></g></g></svg></mjx-container></span></li>
-<li>结论：极限波特率为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex" xmlns="http://www.w3.org/2000/svg" width="3.502ex" height="1.595ex" role="img" focusable="false" viewBox="0 -683 1548 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(500,0)"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"/></g></g></g></svg></mjx-container></span>，单位Baud</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/23/network2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1829,7 +1824,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
